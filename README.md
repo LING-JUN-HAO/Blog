@@ -1,2 +1,2 @@
-# 這是關於我使用Hexo + githubpage所建立的部落格網站
-- https://ling-jun-hao.github.io/Blog
+## 使用GitHub Pages + Hexo 來架設個人部落格
+-  https://ling-jun-hao.github.io/Blog
