@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/404</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/404</loc>
     
     <lastmod>2023-10-12</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/test/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/test/</loc>
     
     <lastmod>2023-10-12</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/categories/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/</loc>
     
     <lastmod>2023-10-11</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/tags/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/</loc>
     
     <lastmod>2023-10-11</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/about/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/about/</loc>
     
     <lastmod>2023-10-11</lastmod>
     
@@ -48,7 +48,7 @@
   
 
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog</loc>
+    <loc>https://ling-jun-hao.github.io/Blog</loc>
     <lastmod>2023-10-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -56,14 +56,14 @@
 
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/tags/HTML/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/HTML/</loc>
     <lastmod>2023-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/tags/CSS/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/CSS/</loc>
     <lastmod>2023-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -72,7 +72,7 @@
 
   
   <url>
-    <loc>https://github.com/LING-JUN-HAO/Blog/categories/HTML/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/HTML/</loc>
     <lastmod>2023-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
