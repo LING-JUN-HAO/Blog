@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/404</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/hexo-github-1/</loc>
     
-    <lastmod>2023-10-12</lastmod>
+    <lastmod>2023-10-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/test/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/404</loc>
     
     <lastmod>2023-10-12</lastmod>
     
@@ -49,22 +49,22 @@
 
   <url>
     <loc>https://ling-jun-hao.github.io/Blog</loc>
-    <lastmod>2023-10-12</lastmod>
+    <lastmod>2023-10-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/HTML/</loc>
-    <lastmod>2023-10-12</lastmod>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Hexo/</loc>
+    <lastmod>2023-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/CSS/</loc>
-    <lastmod>2023-10-12</lastmod>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/githubpage/</loc>
+    <lastmod>2023-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -72,8 +72,8 @@
 
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/categories/HTML/</loc>
-    <lastmod>2023-10-12</lastmod>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/Blog/</loc>
+    <lastmod>2023-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

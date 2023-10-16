@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>PostgreSQL on NAS1</title>
-    <url>/Blog/test/</url>
-    <content><![CDATA[<p>[筆記] 12PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS[筆記] PostgreSQL on NAS</p>
+    <title>(Day-1)不是工程師的妳/你，也可以有屬於自己的網站(Hexo + githubpage)</title>
+    <url>/Blog/hexo-github-1/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>儘管網路上許多關於架設網站的教學，但真的實際架設了之後也發現很多細節可以設定，希望能把這些細節紀錄下來幫助更多需要幫助的人，架設部落格不難，動動小手跟我一起創建屬於自己的部落格。</p>
+<h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
+<li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
+<li>使用Markdown(md)語法撰寫屬於自己的文章</li>
+</ul>
+<h2 id="讓我們開始安裝看看"><a href="#讓我們開始安裝看看" class="headerlink" title="讓我們開始安裝看看"></a>讓我們開始安裝看看</h2><p>首先要先介紹我們要安裝的兩個軟體Node.js及Git安裝流程</p>
+<h3 id="程式語言-Node-js-Node-js-版本需不低於8-10，建議使用-Node-js-10-0-及以上版本"><a href="#程式語言-Node-js-Node-js-版本需不低於8-10，建議使用-Node-js-10-0-及以上版本" class="headerlink" title="程式語言-Node.js (Node.js 版本需不低於8.10，建議使用 Node.js 10.0 及以上版本)"></a>程式語言-Node.js (Node.js 版本需不低於8.10，建議使用 Node.js 10.0 及以上版本)</h3><p><img src="https://drive.google.com/u/0/uc?id=1TwztjPCa0FcMs3klX47_VLzd62xke80y&export=download" alt="Nodejs程式語言官方載點"></p>
+<ul>
+<li>🔗 <a href="https://nodejs.org/en">Nodejs程式語言官方載點請點我</a><ul>
+<li>點選”Recommended For Most Users”推薦版本(通常使用上相較右邊最新版本穩定)<ul>
+<li>安裝上都按照預設點選下一步直至完成即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="程式語言-Node-js檢驗是否安裝完成"><a href="#程式語言-Node-js檢驗是否安裝完成" class="headerlink" title="程式語言-Node.js檢驗是否安裝完成"></a>程式語言-Node.js檢驗是否安裝完成</h4><ul>
+<li><p>在命令提示字元(Command Line)中輸入”nodejs -v”即可確認當前Nodejs版本(如果不知道命令提示字元怎麼開可以往下看)</p>
+</li>
+<li><p><img src="https://drive.google.com/u/0/uc?id=1xFchOsd00F4blXbQcRKY_rnO-QjZf6D7&export=download" alt="Nodejs版本查詢"></p>
+<ul>
+<li>有寫版本號碼就代表安裝完成囉!!!</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="版本控制系統-Git"><a href="#版本控制系統-Git" class="headerlink" title="版本控制系統-Git"></a>版本控制系統-Git</h3><p><img src="https://drive.google.com/u/0/uc?id=1r1P6CbgsecQTsW7OIb44qJFB7fx9WLEx&export=download" alt="Git版本控制系統官方載點"></p>
+<ul>
+<li>點選對應的電腦系統(Windows、macOS、Linux&#x2F;Unix)</li>
+</ul>
+<p><img src="https://drive.google.com/u/0/uc?id=1oy_99jzKRR_vnBqpItV_fhX3BCWhRpbq&export=download" alt="按照對應的位元數進行下載"></p>
+<ul>
+<li>按照對應的位元數進行下載(如果不知道位元數可以往下看)</li>
+<li>安裝上都按照預設點選下一步直至完成即可</li>
+</ul>
+<h3 id="版本控制系統-Git檢驗是否安裝完成"><a href="#版本控制系統-Git檢驗是否安裝完成" class="headerlink" title="版本控制系統-Git檢驗是否安裝完成"></a>版本控制系統-Git檢驗是否安裝完成</h3><ul>
+<li>在命令提示字元(Command Line)中輸入”git -v”即可確認當前Nodejs版本(如果不知道命令提示字元怎麼開可以往下看)<br><img src="https://drive.google.com/u/0/uc?id=1t3DgWlnVny61Dm1Z_Flau9fhAuL0Z8H_&export=download" alt="git版本查詢"><ul>
+<li>有寫版本號碼就代表安裝完成囉!!!</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="如果我不知道位元數多少怎麼辦"><a href="#如果我不知道位元數多少怎麼辦" class="headerlink" title="如果我不知道位元數多少怎麼辦?"></a>如果我不知道位元數多少怎麼辦?</h2><ul>
+<li>Step 1：在”搜尋框”輸入”系統”點開</li>
+</ul>
+<p><img src="https://drive.google.com/u/0/uc?id=1UdB1AI_-DmD609aVMVVd8mhKtbh-sk2i&export=download" alt="檢查自己電腦位元數"></p>
+<p>Step 2：”系統”這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
+<h2 id="如何開啟我的命令提示字元介面-Command-Line"><a href="#如何開啟我的命令提示字元介面-Command-Line" class="headerlink" title="如何開啟我的命令提示字元介面(Command Line)"></a>如何開啟我的命令提示字元介面(Command Line)</h2><ul>
+<li><p><img src="https://drive.google.com/u/0/uc?id=11ap2bIQfx6ZBteAYlZLdxKwPlTOWPQ_5&export=download" alt="電腦終端機介面檢查"></p>
+<ul>
+<li>點選”搜尋框”輸入cmd(cmd：Command Line)</li>
+<li>點選”命令提示字元”(與電腦溝通的介面)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
 ]]></content>
       <categories>
-        <category>HTML</category>
+        <category>Blog</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
+        <tag>Hexo</tag>
+        <tag>githubpage</tag>
       </tags>
   </entry>
 </search>
