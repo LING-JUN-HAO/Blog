@@ -8,16 +8,17 @@
 <li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
 <li>使用Markdown(md)語法撰寫屬於自己的文章</li>
 </ul>
-<h2 id="讓我們開始安裝看看"><a href="#讓我們開始安裝看看" class="headerlink" title="讓我們開始安裝看看"></a>讓我們開始安裝看看</h2><p>首先要先介紹我們要安裝的兩個軟體Node.js及Git安裝流程</p>
-<h3 id="程式語言-Node-js-建議使用Node-js-10-0及以上版本"><a href="#程式語言-Node-js-建議使用Node-js-10-0及以上版本" class="headerlink" title="程式語言-Node.js (建議使用Node.js 10.0及以上版本)"></a>程式語言-Node.js (建議使用Node.js 10.0及以上版本)</h3><p><img src="https://drive.google.com/u/0/uc?id=1TwztjPCa0FcMs3klX47_VLzd62xke80y&export=download" alt="Nodejs程式語言官方載點"></p>
+<h2 id="開始安裝看看"><a href="#開始安裝看看" class="headerlink" title="開始安裝看看"></a>開始安裝看看</h2><p>首先要先介紹我們要安裝的兩個軟體Node.js及Git安裝流程</p>
+<h3 id="Nodejs程式語言安裝"><a href="#Nodejs程式語言安裝" class="headerlink" title="Nodejs程式語言安裝"></a>Nodejs程式語言安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1TwztjPCa0FcMs3klX47_VLzd62xke80y&export=download" alt="Nodejs程式語言官方載點"></p>
 <ul>
 <li>🔗 <a href="https://nodejs.org/en">Nodejs程式語言官方載點請點我</a><ul>
+<li>建議使用Node.js 10.0及以上版本</li>
 <li>點選”Recommended For Most Users”推薦版本(通常使用上相較右邊最新版本穩定)</li>
 <li>安裝上都按照預設點選下一步直至完成即可</li>
 </ul>
 </li>
 </ul>
-<h3 id="程式語言-Node-js檢驗是否安裝完成"><a href="#程式語言-Node-js檢驗是否安裝完成" class="headerlink" title="程式語言-Node.js檢驗是否安裝完成"></a>程式語言-Node.js檢驗是否安裝完成</h3><ul>
+<h3 id="檢驗Nodejs安裝完成"><a href="#檢驗Nodejs安裝完成" class="headerlink" title="檢驗Nodejs安裝完成"></a>檢驗Nodejs安裝完成</h3><ul>
 <li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">nodejs -v</span><br></pre></td></tr></table></figure>
@@ -27,7 +28,7 @@
 <li>有寫版本號碼就代表安裝完成囉!!!</li>
 </ul>
 <hr>
-<h3 id="版本控制系統-Git"><a href="#版本控制系統-Git" class="headerlink" title="版本控制系統-Git"></a>版本控制系統-Git</h3><p><img src="https://drive.google.com/u/0/uc?id=1r1P6CbgsecQTsW7OIb44qJFB7fx9WLEx&export=download" alt="Git版本控制系統官方載點"></p>
+<h3 id="Git版本控制系統安裝"><a href="#Git版本控制系統安裝" class="headerlink" title="Git版本控制系統安裝"></a>Git版本控制系統安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1r1P6CbgsecQTsW7OIb44qJFB7fx9WLEx&export=download" alt="Git版本控制系統官方載點"></p>
 <ul>
 <li>點選對應的電腦系統(Windows、macOS、Linux&#x2F;Unix)</li>
 </ul>
@@ -38,7 +39,7 @@
 <li><p>安裝上都按照預設點選下一步直至完成即可</p>
 </li>
 </ul>
-<h3 id="版本控制系統-Git檢驗是否安裝完成"><a href="#版本控制系統-Git檢驗是否安裝完成" class="headerlink" title="版本控制系統-Git檢驗是否安裝完成"></a>版本控制系統-Git檢驗是否安裝完成</h3><ul>
+<h3 id="檢驗Git安裝完成"><a href="#檢驗Git安裝完成" class="headerlink" title="檢驗Git安裝完成"></a>檢驗Git安裝完成</h3><ul>
 <li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git -v</span><br></pre></td></tr></table></figure>
@@ -49,13 +50,13 @@
 </ul>
 <hr>
 <p><a id="bits"></a></p>
-<h2 id="如果我不知道位元數多少怎麼辦"><a href="#如果我不知道位元數多少怎麼辦" class="headerlink" title="如果我不知道位元數多少怎麼辦?"></a>如果我不知道位元數多少怎麼辦?</h2><ul>
+<h2 id="如何查看電腦系統位元數"><a href="#如何查看電腦系統位元數" class="headerlink" title="如何查看電腦系統位元數?"></a>如何查看電腦系統位元數?</h2><ul>
 <li>Step 1：在”搜尋框”輸入”系統”點開</li>
 </ul>
 <p><img src="https://drive.google.com/u/0/uc?id=1UdB1AI_-DmD609aVMVVd8mhKtbh-sk2i&export=download" alt="檢查自己電腦位元數"></p>
 <p>Step 2：”系統”這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
 <p><a id="command-line"></a></p>
-<h2 id="如何開啟我的命令提示字元介面-Command-Line"><a href="#如何開啟我的命令提示字元介面-Command-Line" class="headerlink" title="如何開啟我的命令提示字元介面(Command Line)"></a>如何開啟我的命令提示字元介面(Command Line)</h2><ul>
+<h2 id="如何開啟命令提示字元介面"><a href="#如何開啟命令提示字元介面" class="headerlink" title="如何開啟命令提示字元介面"></a>如何開啟命令提示字元介面</h2><ul>
 <li><p><img src="https://drive.google.com/u/0/uc?id=11ap2bIQfx6ZBteAYlZLdxKwPlTOWPQ_5&export=download" alt="電腦終端機介面檢查"></p>
 <ul>
 <li>點選”搜尋框”輸入cmd(cmd：Command Line)</li>
