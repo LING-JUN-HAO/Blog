@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>(Day-1)不是工程師的妳/你，也可以有屬於自己的網站(Hexo + githubpage)</title>
+    <title>(Day-1)不是工程師的妳/你，也可以有屬於自己的網站(Hexo + GitHub Pages)</title>
     <url>/Blog/hexo-github-1/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>儘管網路上許多關於架設網站的教學，但真的實際架設了之後也發現很多細節可以設定，希望能把這些細節紀錄下來幫助更多需要幫助的人，架設部落格不難，動動小手跟我一起創建屬於自己的部落格。</p>
 <h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
@@ -60,13 +60,15 @@
 </ul>
 <hr>
 <h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
+<hr>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
 ]]></content>
       <categories>
         <category>Blog</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>githubpage</tag>
+        <tag>GitHub Pages</tag>
       </tags>
   </entry>
 </search>
