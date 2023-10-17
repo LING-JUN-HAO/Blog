@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Day-1：不是工程師，也能擁有自己的部落格，開始你的部落格之旅：認識Hexo及所需工具</title>
+    <title>Day2：見證屬於你的第一個部落格產生，</title>
+    <url>/Blog/hexo-github-2/</url>
+    <content><![CDATA[<h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
+<li><p>在你的桌面上建立一個資料夾<br><img src="/Blog/image.png" alt="建立新資料夾"></p>
+</li>
+<li><p>點進去資料夾之後在資料夾路徑的位置上輸入cmd按下Enter按鍵<br><img src="/Blog/image-1.png" alt="利用資料夾打開cmd"></p>
+</li>
+</ul>
+<h3 id="安裝項目-hexo-cli"><a href="#安裝項目-hexo-cli" class="headerlink" title="安裝項目-hexo-cli"></a>安裝項目-hexo-cli</h3><ul>
+<li>輸入以下指令安裝，讓你也能使用Hexo命令列功能</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Blog/image-2.png" alt="cmd路徑檢視"></p>
+<h2 id="檢查hexo-cli安裝完成"><a href="#檢查hexo-cli安裝完成" class="headerlink" title="檢查hexo-cli安裝完成"></a>檢查hexo-cli安裝完成</h2><p><img src="/Blog/image-3.png" alt="檢驗hexo-cli安裝完成"></p>
+<ul>
+<li>確認顯示版本號代表已安裝完成</li>
+</ul>
+<h2 id="初始化Hexo檔案"><a href="#初始化Hexo檔案" class="headerlink" title="初始化Hexo檔案"></a>初始化Hexo檔案</h2><ul>
+<li>輸入以下指令產生Hexo初始化需要的檔案及資料夾<br><a href="#hexo-init-bug">如果出現黃色的異常字樣請點我</a></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<h2 id="檢查Hexo安裝成功"><a href="#檢查Hexo安裝成功" class="headerlink" title="檢查Hexo安裝成功"></a>檢查Hexo安裝成功</h2><p><img src="/Blog/image-6.png" alt="Hexo安裝成功"></p>
+<ul>
+<li>成功看到<strong><code>Start blogging with Hexo!</code></strong>代表安裝完成囉</li>
+</ul>
+<p><img src="/Blog/image-7.png" alt="Hexo初始化成功資料夾"></p>
+<ul>
+<li>可以看到剛剛的資料夾中出現了許多資料夾及檔案<br>(別灰心!!!只要慢慢跟著我就會了解)</li>
+</ul>
+<h2 id="Hexo初始化資料夾講解"><a href="#Hexo初始化資料夾講解" class="headerlink" title="Hexo初始化資料夾講解"></a>Hexo初始化資料夾講解</h2><p><a id="hexo-init-bug"></a></p>
+<h2 id="故障排除-無法成功執行hexo-init"><a href="#故障排除-無法成功執行hexo-init" class="headerlink" title="故障排除-無法成功執行hexo init"></a>故障排除-無法成功執行hexo init</h2><p><img src="/Blog/image-4.png" alt="故障圖示"></p>
+<ul>
+<li>這代表你的資料夾並非空的導致初始化失敗喔!!!<br>檢查一下你安裝Hexo的資料夾吧(以下是失敗可能範例)<br><img src="/Blog/image-5.png" alt="失敗案例"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day1：不是工程師，也能擁有自己的部落格，開始你的部落格之旅：認識Hexo及所需工具</title>
     <url>/Blog/hexo-github-1/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>儘管網路上許多關於架設網站的教學，但真的實際架設了之後也發現很多細節可以設定，希望能把這些細節紀錄下來幫助更多需要幫助的人，架設部落格不難，動動小手跟我一起創建屬於自己的部落格。</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雖然網路上充斥著各式架設網站的教學，但當我真正動手操作時，發現還有許多細節值得探討和設定。為了幫助更多有此需求的朋友，我決定將這些寶貴的經驗細節記錄下來。架設部落格其實並不困難，只要跟著我的步伐，你也可以輕鬆擁有一個專屬於自己的部落格。</p>
 <h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
 <li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
 <li>使用Markdown(md)語法撰寫屬於自己的文章</li>
@@ -13,7 +59,7 @@
 <ul>
 <li>🔗 <a href="https://nodejs.org/en">Nodejs程式語言官方載點請點我</a><ul>
 <li>建議使用Node.js 10.0及以上版本</li>
-<li>點選”Recommended For Most Users”推薦版本(通常使用上相較右邊最新版本穩定)</li>
+<li>點選<strong><code>Recommended For Most Users</code></strong>推薦版本(通常使用上相較右邊最新版本穩定)</li>
 <li>安裝上都按照預設點選下一步直至完成即可</li>
 </ul>
 </li>
@@ -51,15 +97,15 @@
 <hr>
 <p><a id="bits"></a></p>
 <h2 id="如何查看電腦系統位元數"><a href="#如何查看電腦系統位元數" class="headerlink" title="如何查看電腦系統位元數?"></a>如何查看電腦系統位元數?</h2><ul>
-<li>Step 1：在”搜尋框”輸入”系統”點開</li>
+<li>Step 1：在搜尋框輸入<strong><code>系統</code></strong>點開</li>
 </ul>
 <p><img src="https://drive.google.com/u/0/uc?id=1UdB1AI_-DmD609aVMVVd8mhKtbh-sk2i&export=download" alt="檢查自己電腦位元數"></p>
-<p>Step 2：”系統”這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
+<p>Step 2：<strong><code>系統</code></strong>這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
 <p><a id="command-line"></a></p>
 <h2 id="如何開啟命令提示字元介面"><a href="#如何開啟命令提示字元介面" class="headerlink" title="如何開啟命令提示字元介面"></a>如何開啟命令提示字元介面</h2><p><img src="https://drive.google.com/u/0/uc?id=11ap2bIQfx6ZBteAYlZLdxKwPlTOWPQ_5&export=download" alt="電腦終端機介面檢查"></p>
 <ul>
-<li>點選”搜尋框”輸入cmd(cmd：Command Line)</li>
-<li>點選”命令提示字元”(與電腦溝通的介面)</li>
+<li>點選<strong><code>搜尋框</code></strong>輸入cmd(cmd：Command Line)</li>
+<li>點選<strong><code>命令提示字元</code></strong>(與電腦溝通的介面)</li>
 </ul>
 <hr>
 <h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
