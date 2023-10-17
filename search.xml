@@ -1,80 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Day1：不是工程師，也能擁有自己的部落格，開始你的部落格之旅：認識Hexo及所需工具</title>
-    <url>/Blog/hexo-github-1/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雖然網路上充斥著各式架設網站的教學，但當我真正動手操作時，發現還有許多細節值得探討和設定。為了幫助更多有此需求的朋友，我決定將這些寶貴的經驗細節記錄下來。架設部落格其實並不困難，只要跟著我的步伐，你也可以輕鬆擁有一個專屬於自己的部落格。</p>
-<h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
-<li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
-<li>使用Markdown(md)語法撰寫屬於自己的文章</li>
-</ul>
-<h2 id="開始安裝看看"><a href="#開始安裝看看" class="headerlink" title="開始安裝看看"></a>開始安裝看看</h2><p>首先要先介紹我們要安裝的兩個軟體Node.js及Git安裝流程</p>
-<h3 id="Nodejs程式語言安裝"><a href="#Nodejs程式語言安裝" class="headerlink" title="Nodejs程式語言安裝"></a>Nodejs程式語言安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1TwztjPCa0FcMs3klX47_VLzd62xke80y&export=download" alt="Nodejs程式語言官方載點"></p>
-<ul>
-<li>🔗 <a href="https://nodejs.org/en">Nodejs程式語言官方載點請點我</a><ul>
-<li>建議使用Node.js 10.0及以上版本</li>
-<li>點選<strong><code>Recommended For Most Users</code></strong>推薦版本(通常使用上相較右邊最新版本穩定)</li>
-<li>安裝上都按照預設點選下一步直至完成即可</li>
-</ul>
-</li>
-</ul>
-<h3 id="檢驗Nodejs安裝完成"><a href="#檢驗Nodejs安裝完成" class="headerlink" title="檢驗Nodejs安裝完成"></a>檢驗Nodejs安裝完成</h3><ul>
-<li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">nodejs -v</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><img src="https://drive.google.com/u/0/uc?id=1xFchOsd00F4blXbQcRKY_rnO-QjZf6D7&export=download" alt="Nodejs版本查詢"></li>
-<li>有寫版本號碼就代表安裝完成囉!!!</li>
-</ul>
-<hr>
-<h3 id="Git版本控制系統安裝"><a href="#Git版本控制系統安裝" class="headerlink" title="Git版本控制系統安裝"></a>Git版本控制系統安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1r1P6CbgsecQTsW7OIb44qJFB7fx9WLEx&export=download" alt="Git版本控制系統官方載點"></p>
-<ul>
-<li>點選對應的電腦系統(Windows、macOS、Linux&#x2F;Unix)</li>
-</ul>
-<p><img src="https://drive.google.com/u/0/uc?id=1oy_99jzKRR_vnBqpItV_fhX3BCWhRpbq&export=download" alt="按照對應的位元數進行下載"></p>
-<ul>
-<li><p>按照對應的位元數進行下載<br><a href="#bits">(如果不知道位元數哪裡看請點我)</a></p>
-</li>
-<li><p>安裝上都按照預設點選下一步直至完成即可</p>
-</li>
-</ul>
-<h3 id="檢驗Git安裝完成"><a href="#檢驗Git安裝完成" class="headerlink" title="檢驗Git安裝完成"></a>檢驗Git安裝完成</h3><ul>
-<li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git -v</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://drive.google.com/u/0/uc?id=1t3DgWlnVny61Dm1Z_Flau9fhAuL0Z8H_&export=download" alt="git版本查詢"></p>
-<ul>
-<li>有寫版本號碼就代表安裝完成囉!!!</li>
-</ul>
-<hr>
-<p><a id="bits"></a></p>
-<h2 id="如何查看電腦系統位元數"><a href="#如何查看電腦系統位元數" class="headerlink" title="如何查看電腦系統位元數?"></a>如何查看電腦系統位元數?</h2><ul>
-<li>Step 1：在搜尋框輸入<strong><code>系統</code></strong>點開</li>
-</ul>
-<p><img src="https://drive.google.com/u/0/uc?id=1UdB1AI_-DmD609aVMVVd8mhKtbh-sk2i&export=download" alt="檢查自己電腦位元數"></p>
-<p>Step 2：<strong><code>系統</code></strong>這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
-<p><a id="command-line"></a></p>
-<h2 id="如何開啟命令提示字元介面"><a href="#如何開啟命令提示字元介面" class="headerlink" title="如何開啟命令提示字元介面"></a>如何開啟命令提示字元介面</h2><p><img src="https://drive.google.com/u/0/uc?id=11ap2bIQfx6ZBteAYlZLdxKwPlTOWPQ_5&export=download" alt="電腦終端機介面檢查"></p>
-<ul>
-<li>點選<strong><code>搜尋框</code></strong>輸入cmd(cmd：Command Line)</li>
-<li>點選<strong><code>命令提示字元</code></strong>(與電腦溝通的介面)</li>
-</ul>
-<hr>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
-<hr>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day2：你的部落格初體驗 - 從零開始的創建之旅</title>
     <url>/Blog/hexo-github-2/</url>
     <content><![CDATA[<h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
@@ -167,6 +93,80 @@
 <li><p>Oliver主題<br><img src="http://drive.google.com/uc?id=1hBoQhEx2AB-k4MIxNGha63qkg811_tbW&export=download" alt="Oliver主題"></p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day1：不是工程師，也能擁有自己的部落格，開始你的部落格之旅：認識Hexo及所需工具</title>
+    <url>/Blog/hexo-github-1/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雖然網路上充斥著各式架設網站的教學，但當我真正動手操作時，發現還有許多細節值得探討和設定。為了幫助更多有此需求的朋友，我決定將這些寶貴的經驗細節記錄下來。架設部落格其實並不困難，只要跟著我的步伐，你也可以輕鬆擁有一個專屬於自己的部落格。</p>
+<h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
+<li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
+<li>使用Markdown(md)語法撰寫屬於自己的文章</li>
+</ul>
+<h2 id="開始安裝看看"><a href="#開始安裝看看" class="headerlink" title="開始安裝看看"></a>開始安裝看看</h2><p>首先要先介紹我們要安裝的兩個軟體Node.js及Git安裝流程</p>
+<h3 id="Nodejs程式語言安裝"><a href="#Nodejs程式語言安裝" class="headerlink" title="Nodejs程式語言安裝"></a>Nodejs程式語言安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1TwztjPCa0FcMs3klX47_VLzd62xke80y&export=download" alt="Nodejs程式語言官方載點"></p>
+<ul>
+<li>🔗 <a href="https://nodejs.org/en">Nodejs程式語言官方載點請點我</a><ul>
+<li>建議使用Node.js 10.0及以上版本</li>
+<li>點選<strong><code>Recommended For Most Users</code></strong>推薦版本(通常使用上相較右邊最新版本穩定)</li>
+<li>安裝上都按照預設點選下一步直至完成即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="檢驗Nodejs安裝完成"><a href="#檢驗Nodejs安裝完成" class="headerlink" title="檢驗Nodejs安裝完成"></a>檢驗Nodejs安裝完成</h3><ul>
+<li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><strong><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></strong></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">nodejs -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><img src="https://drive.google.com/u/0/uc?id=1xFchOsd00F4blXbQcRKY_rnO-QjZf6D7&export=download" alt="Nodejs版本查詢"></li>
+<li>有寫版本號碼就代表安裝完成囉!!!</li>
+</ul>
+<hr>
+<h3 id="Git版本控制系統安裝"><a href="#Git版本控制系統安裝" class="headerlink" title="Git版本控制系統安裝"></a>Git版本控制系統安裝</h3><p><img src="https://drive.google.com/u/0/uc?id=1r1P6CbgsecQTsW7OIb44qJFB7fx9WLEx&export=download" alt="Git版本控制系統官方載點"></p>
+<ul>
+<li>點選對應的電腦系統(Windows、macOS、Linux&#x2F;Unix)</li>
+</ul>
+<p><img src="https://drive.google.com/u/0/uc?id=1oy_99jzKRR_vnBqpItV_fhX3BCWhRpbq&export=download" alt="按照對應的位元數進行下載"></p>
+<ul>
+<li><p>按照對應的位元數進行下載<br><strong><a href="#bits">(如果不知道位元數哪裡看請點我)</a></strong></p>
+</li>
+<li><p>安裝上都按照預設點選下一步直至完成即可</p>
+</li>
+</ul>
+<h3 id="檢驗Git安裝完成"><a href="#檢驗Git安裝完成" class="headerlink" title="檢驗Git安裝完成"></a>檢驗Git安裝完成</h3><ul>
+<li>在命令提示字元(Command Line)中輸入以下指令即可確認當前Nodejs版本<br><a href="#command-line">(如果不知道命令提示字元怎麼開請點我)</a></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://drive.google.com/u/0/uc?id=1t3DgWlnVny61Dm1Z_Flau9fhAuL0Z8H_&export=download" alt="git版本查詢"></p>
+<ul>
+<li>有寫版本號碼就代表安裝完成囉!!!</li>
+</ul>
+<hr>
+<p><a id="bits"></a></p>
+<h2 id="如何查看電腦系統位元數"><a href="#如何查看電腦系統位元數" class="headerlink" title="如何查看電腦系統位元數?"></a>如何查看電腦系統位元數?</h2><ul>
+<li>Step 1：在搜尋框輸入<strong><code>系統</code></strong>點開</li>
+</ul>
+<p><img src="https://drive.google.com/u/0/uc?id=1UdB1AI_-DmD609aVMVVd8mhKtbh-sk2i&export=download" alt="檢查自己電腦位元數"></p>
+<p>Step 2：<strong><code>系統</code></strong>這邊可以查看電腦位元數<br><img src="https://drive.google.com/u/0/uc?id=1IWAF5bs8M1U4MDpTE2vy00KTmhinxPeh&export=download" alt="查看電腦位元數"></p>
+<p><a id="command-line"></a></p>
+<h2 id="如何開啟命令提示字元介面"><a href="#如何開啟命令提示字元介面" class="headerlink" title="如何開啟命令提示字元介面"></a>如何開啟命令提示字元介面</h2><p><img src="https://drive.google.com/u/0/uc?id=11ap2bIQfx6ZBteAYlZLdxKwPlTOWPQ_5&export=download" alt="電腦終端機介面檢查"></p>
+<ul>
+<li>點選<strong><code>搜尋框</code></strong>輸入cmd(cmd：Command Line)</li>
+<li>點選<strong><code>命令提示字元</code></strong>(與電腦溝通的介面)</li>
+</ul>
+<hr>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
+<hr>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
 ]]></content>
       <categories>
         <category>Blog</category>
