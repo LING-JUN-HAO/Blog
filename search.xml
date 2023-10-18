@@ -111,7 +111,7 @@
 </ul>
 <hr>
 <h2 id="部落格產生-預設版本"><a href="#部落格產生-預設版本" class="headerlink" title="部落格產生(預設版本)"></a>部落格產生(預設版本)</h2><ul>
-<li>在前面我們產生的cmd介面中輸入以下指令即可看到預設的版本<br>(指令意思是預覽部落格畫面，指令使用端口預設是4000)</li>
+<li>在前面我們產生的cmd介面中輸入以下指令即可看到預設的版本<br>(指令意思是預覽部落格畫面，預設Port使用4000)</li>
 <li><strong><a href="#PortInUse">如果出現黃色訊息的意外情況請點我</a></strong></li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
@@ -184,7 +184,7 @@
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s -p 6000</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>今天也好好的邁出第二步了，看到屬於自己的畫面，希望能夠仔細的記錄過程幫助所有喜歡部落格的我跟你。</p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>今天也好好的邁出第二步了，看到屬於自己的畫面，希望能夠幫助所有喜歡部落格的我跟你。</p>
 ]]></content>
       <categories>
         <category>Blog</category>
