@@ -256,9 +256,9 @@
 <li>subtitle：網站副標題</li>
 <li>description：網站描述(SEO優化相關)</li>
 <li>keywords：網站的關鍵字(SEO優化相關)</li>
-<li>author：#網站作者的名字</li>
-<li>language：#網站使用的語系(會跟顯示內容相關)</li>
-<li>timezone：#網站使用的時區(預設電腦系統的時區)</li>
+<li>author：網站作者的名字</li>
+<li>language：網站使用的語系(會跟顯示內容相關)</li>
+<li>timezone：網站使用的時區(預設電腦系統的時區)</li>
 </ul>
 <h2 id="調整根目錄下-config-yml的Site參數"><a href="#調整根目錄下-config-yml的Site參數" class="headerlink" title="調整根目錄下_config.yml的Site參數"></a>調整根目錄下_config.yml的Site參數</h2><ul>
 <li>複製以下的內容更換原先的Site參數</li>
