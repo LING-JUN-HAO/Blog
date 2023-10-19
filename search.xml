@@ -280,18 +280,17 @@
 </li>
 <li><p>title、subtitle<br><img src="http://drive.google.com/uc?id=1FGS8v5gU5hXcXHX16rh-B0s8fJ8xOY0z&export=download" alt="title&amp;subtitle修改成果"></p>
 </li>
-<li><p>author<br><img src="http://drive.google.com/uc?id=1pOGvTSUIG_sMLzVHsw9JS9cv4g1o4VG0&export=download" alt="author修改成果"></p>
+<li><p>author<br><img src="http://drive.google.com/uc?id=1DUl8B4_nQqEKJQylN_vynBWPauoN5gXe&export=download" alt="author修改成果"></p>
 </li>
-<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="http://drive.google.com/uc?id=1bVK4DPupNHi9xXlXYWX4LJtlr0X1fT1W&export=download" alt="Antonio版面"></p>
+<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="http://drive.google.com/uc?id=1pZSShqWVHPjbsEfhvNQIIJI1eJwMeA3Q&export=download" alt="Antonio版面"></p>
 </li>
-<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!</p>
+<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!<br><img src="http://drive.google.com/uc?id=16wbbAJVSC6svExxY1XqgM0pAhBQH3MP5&export=download" alt="網站Google搜尋結果"></p>
 </li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=16wbbAJVSC6svExxY1XqgM0pAhBQH3MP5&export=download" alt="網站Google搜尋結果"></p>
 <h2 id="調整Site參數-language成果展示"><a href="#調整Site參數-language成果展示" class="headerlink" title="調整Site參數-language成果展示"></a>調整Site參數-language成果展示</h2><ul>
 <li>試著將language的參數從en(英文)修改成zh-TW(中文)</li>
 </ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: en #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: zh-TW #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>別忘了編譯網站指令跟啟動本地服務器預覽指令<br>(只要有調整設定檔案建議都要重新編譯過比較保險)</li>
@@ -300,7 +299,7 @@
 
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://drive.google.com/uc?id=1TEpjKfFchjKADVVoB8Hh3IdSw9wg3HSx&export=download" alt="語系變更中文"></p>
+<p><img src="http://drive.google.com/uc?id=1RVRXzi6EoUSDOIg2Vx9bgLuKpAJQR2yp&export=download" alt="語系變更中文"></p>
 <ul>
 <li>剛剛右邊區塊的英文都變成中文</li>
 </ul>
