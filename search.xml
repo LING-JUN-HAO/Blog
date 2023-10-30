@@ -75,6 +75,125 @@
       </tags>
   </entry>
   <entry>
+    <title>Day3：你的部落格工程師，搭配一些工具使調整更方便吧</title>
+    <url>/Blog/hexo-github-3/</url>
+    <content><![CDATA[<h2 id="打開昨天資料夾的這個檔案"><a href="#打開昨天資料夾的這個檔案" class="headerlink" title="打開昨天資料夾的這個檔案"></a>打開昨天資料夾的這個檔案</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
+<ul>
+<li>使用記事本打開的情況(看起來就很不容易修改吧…..)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1xUwAdJuHtnbHtXy1rZXC3FAmp3Ja6--m&export=download" alt="記事本打開"></p>
+<ul>
+<li>這時候需要搬出編輯器工具美化它</li>
+</ul>
+<hr>
+<h2 id="編譯器工具推薦"><a href="#編譯器工具推薦" class="headerlink" title="編譯器工具推薦"></a>編譯器工具推薦</h2><h3 id="推薦工具1-Vscode"><a href="#推薦工具1-Vscode" class="headerlink" title="推薦工具1-Vscode"></a>推薦工具1-Vscode</h3><ul>
+<li><strong><code><a href="https://code.visualstudio.com/download">官方下載連結請點我</a></code></strong></li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1xkbqJV1XHR3YgG2bK2A42h0gPrd94gWR&export=download" alt="Vscode官方下載圖片"></p>
+<ul>
+<li>安裝上都按照預設點選下一步直至完成即可</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=16yCHL6f3esb9quZx_r41Hq36yQuDapz_&export=download" alt="Vscode打開資料夾"></p>
+<ul>
+<li>使用Vscode編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1pt-FgqSbMwtTSyPdS6WSdONGAwnoRStu&export=download" alt="Vscode資料夾檢視畫面"></p>
+<ul>
+<li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
+<li>登登登登~看起來五顏六色的漂亮多了吧，這樣好編譯多了(加上#就變成綠色的註解寫法)</li>
+</ul>
+<h3 id="推薦工具2-Sublime-Text"><a href="#推薦工具2-Sublime-Text" class="headerlink" title="推薦工具2-Sublime Text"></a>推薦工具2-Sublime Text</h3><ul>
+<li><strong><code><a href="https://www.sublimetext.com/download">官方下載連結請點我</a></code></strong></li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1xKsoxcmtR--kquYg4d1_BVAjjBRFx7ph&export=download" alt="Subline官方下載圖片"></p>
+<ul>
+<li>安裝上都按照預設點選下一步直至完成即可</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1DTlqA9ZnECL-XelaPybZKUQ3r60Tz2iS&export=download" alt="Subline打開資料夾"></p>
+<ul>
+<li>使用Subline編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=18igTGqT70fqKYnYexhslbCy4cZ8OWeJL&export=download" alt="Subline"></p>
+<ul>
+<li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
+<li>質感不太一樣，有些人更喜歡這種感覺(加上#就變成灰色的註解寫法)</li>
+</ul>
+<p>兩者當然有各自優缺點，且均有免費的版本可以使用，只是Subline免費版本會很偶爾的跳出來問你要不要購買，就看大家的喜好挑選囉。</p>
+<hr>
+<h2 id="認識Hexo設定檔的第一步"><a href="#認識Hexo設定檔的第一步" class="headerlink" title="認識Hexo設定檔的第一步"></a>認識Hexo設定檔的第一步</h2><ul>
+<li>打開資料夾下的<strong><code>_config.yml</code></strong>檔案</li>
+<li>認識第一區塊的設計目的</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=13qWITCo9-xFHW0iNJTOWATUp3a4FQMmB&export=download" alt="Hexo Site設定"></p>
+<ul>
+<li>先試著使用剛剛說的#註解說明文字幫助自己更加了解這些參數特性吧!</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1QoVfCWl5_6yHlOReTucwGU9Q13UBahh-&export=download" alt="Site備註"></p>
+<ul>
+<li>title：網站標題</li>
+<li>subtitle：網站副標題</li>
+<li>description：網站描述(SEO優化相關)</li>
+<li>keywords：網站的關鍵字(SEO優化相關)</li>
+<li>author：網站作者的名字</li>
+<li>language：網站使用的語系(會跟顯示內容相關)</li>
+<li>timezone：網站使用的時區(預設電腦系統的時區)</li>
+</ul>
+<h2 id="調整根目錄下-config-yml的Site參數"><a href="#調整根目錄下-config-yml的Site參數" class="headerlink" title="調整根目錄下_config.yml的Site參數"></a>調整根目錄下_config.yml的Site參數</h2><ul>
+<li>複製以下的內容更換原先的Site參數</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: en #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打開cmd介面輸入以下指令編譯並生成對應靜態網站<br><strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打開cmd介面輸入以下指令啟動本地服務器預覽修改的畫面<br><strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h2 id="調整Site參數-title、subtitle成果展示"><a href="#調整Site參數-title、subtitle成果展示" class="headerlink" title="調整Site參數-title、subtitle成果展示"></a>調整Site參數-title、subtitle成果展示</h2><ul>
+<li><p>根據模板(Theme)的不同，顯示的位置會有些此不同。</p>
+</li>
+<li><p>title、subtitle<br><img src="http://drive.google.com/uc?id=1FGS8v5gU5hXcXHX16rh-B0s8fJ8xOY0z&export=download" alt="title&amp;subtitle修改成果"></p>
+</li>
+<li><p>author<br><img src="http://drive.google.com/uc?id=1DUl8B4_nQqEKJQylN_vynBWPauoN5gXe&export=download" alt="author修改成果"></p>
+</li>
+<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="http://drive.google.com/uc?id=1pZSShqWVHPjbsEfhvNQIIJI1eJwMeA3Q&export=download" alt="Antonio版面"></p>
+</li>
+<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!<br><img src="http://drive.google.com/uc?id=16wbbAJVSC6svExxY1XqgM0pAhBQH3MP5&export=download" alt="網站Google搜尋結果"></p>
+</li>
+</ul>
+<h2 id="調整Site參數-language成果展示"><a href="#調整Site參數-language成果展示" class="headerlink" title="調整Site參數-language成果展示"></a>調整Site參數-language成果展示</h2><ul>
+<li>試著將language的參數從en(英文)修改成zh-TW(中文)</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: zh-TW #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>別忘了編譯網站指令跟啟動本地服務器預覽指令<br>(只要有調整設定檔案建議都要重新編譯過比較保險)</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://drive.google.com/uc?id=1RVRXzi6EoUSDOIg2Vx9bgLuKpAJQR2yp&export=download" alt="語系變更中文"></p>
+<ul>
+<li>剛剛右邊區塊的英文都變成中文</li>
+</ul>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>雖然今天只有做出小小的改變，但每個部落格都是從小地方開始慢慢修改成自己喜歡的模樣。</p>
+<hr>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件-配置</a></p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day2：你的部落格初體驗，從零開始的創建之旅</title>
     <url>/Blog/hexo-github-2/</url>
     <content><![CDATA[<h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
@@ -197,126 +316,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Day3：你的部落格工程師，搭配一些工具使調整更方便吧</title>
-    <url>/Blog/hexo-github-3/</url>
-    <content><![CDATA[<h2 id="打開昨天資料夾的這個檔案"><a href="#打開昨天資料夾的這個檔案" class="headerlink" title="打開昨天資料夾的這個檔案"></a>打開昨天資料夾的這個檔案</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
-<ul>
-<li>使用記事本打開的情況(看起來就很不容易修改吧…..)</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1xUwAdJuHtnbHtXy1rZXC3FAmp3Ja6--m&export=download" alt="記事本打開"></p>
-<ul>
-<li>這時候需要搬出編輯器工具美化它</li>
-</ul>
-<hr>
-<h2 id="編譯器工具推薦"><a href="#編譯器工具推薦" class="headerlink" title="編譯器工具推薦"></a>編譯器工具推薦</h2><h3 id="推薦工具1-Vscode"><a href="#推薦工具1-Vscode" class="headerlink" title="推薦工具1-Vscode"></a>推薦工具1-Vscode</h3><ul>
-<li><strong><code><a href="https://code.visualstudio.com/download">官方下載連結請點我</a></code></strong></li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1xkbqJV1XHR3YgG2bK2A42h0gPrd94gWR&export=download" alt="Vscode官方下載圖片"></p>
-<ul>
-<li>安裝上都按照預設點選下一步直至完成即可</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=16yCHL6f3esb9quZx_r41Hq36yQuDapz_&export=download" alt="Vscode打開資料夾"></p>
-<ul>
-<li>使用Vscode編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1pt-FgqSbMwtTSyPdS6WSdONGAwnoRStu&export=download" alt="Vscode資料夾檢視畫面"></p>
-<ul>
-<li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
-<li>登登登登~看起來五顏六色的漂亮多了吧，這樣好編譯多了(加上#就變成綠色的註解寫法)</li>
-</ul>
-<h3 id="推薦工具2-Sublime-Text"><a href="#推薦工具2-Sublime-Text" class="headerlink" title="推薦工具2-Sublime Text"></a>推薦工具2-Sublime Text</h3><ul>
-<li><strong><code><a href="https://www.sublimetext.com/download">官方下載連結請點我</a></code></strong></li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1xKsoxcmtR--kquYg4d1_BVAjjBRFx7ph&export=download" alt="Subline官方下載圖片"></p>
-<ul>
-<li>安裝上都按照預設點選下一步直至完成即可</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1DTlqA9ZnECL-XelaPybZKUQ3r60Tz2iS&export=download" alt="Subline打開資料夾"></p>
-<ul>
-<li>使用Subline編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=18igTGqT70fqKYnYexhslbCy4cZ8OWeJL&export=download" alt="Subline"></p>
-<ul>
-<li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
-<li>質感不太一樣，有些人更喜歡這種感覺(加上#就變成灰色的註解寫法)</li>
-</ul>
-<p>兩者當然有各自優缺點，且均有免費的版本可以使用，只是Subline免費版本會很偶爾的跳出來問你要不要購買，就看大家的喜好挑選囉。</p>
-<hr>
-<h2 id="認識Hexo設定檔的第一步"><a href="#認識Hexo設定檔的第一步" class="headerlink" title="認識Hexo設定檔的第一步"></a>認識Hexo設定檔的第一步</h2><ul>
-<li>打開資料夾下的<strong><code>_config.yml</code></strong>檔案</li>
-<li>認識第一區塊的設計目的</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=13qWITCo9-xFHW0iNJTOWATUp3a4FQMmB&export=download" alt="Hexo Site設定"></p>
-<ul>
-<li>先試著使用剛剛說的#註解說明文字幫助自己更加了解這些參數特性吧!</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1QoVfCWl5_6yHlOReTucwGU9Q13UBahh-&export=download" alt="Site備註"></p>
-<ul>
-<li>title：網站標題</li>
-<li>subtitle：網站副標題</li>
-<li>description：網站描述(SEO優化相關)</li>
-<li>keywords：網站的關鍵字(SEO優化相關)</li>
-<li>author：網站作者的名字</li>
-<li>language：網站使用的語系(會跟顯示內容相關)</li>
-<li>timezone：網站使用的時區(預設電腦系統的時區)</li>
-</ul>
-<h2 id="調整根目錄下-config-yml的Site參數"><a href="#調整根目錄下-config-yml的Site參數" class="headerlink" title="調整根目錄下_config.yml的Site參數"></a>調整根目錄下_config.yml的Site參數</h2><ul>
-<li>複製以下的內容更換原先的Site參數</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: en #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打開cmd介面輸入以下指令編譯並生成對應靜態網站<br><strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>打開cmd介面輸入以下指令啟動本地服務器預覽修改的畫面<br><strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<h2 id="調整Site參數-title、subtitle成果展示"><a href="#調整Site參數-title、subtitle成果展示" class="headerlink" title="調整Site參數-title、subtitle成果展示"></a>調整Site參數-title、subtitle成果展示</h2><ul>
-<li><p>根據模板(Theme)的不同，顯示的位置會有些此不同。</p>
-</li>
-<li><p>title、subtitle<br><img src="http://drive.google.com/uc?id=1FGS8v5gU5hXcXHX16rh-B0s8fJ8xOY0z&export=download" alt="title&amp;subtitle修改成果"></p>
-</li>
-<li><p>author<br><img src="http://drive.google.com/uc?id=1DUl8B4_nQqEKJQylN_vynBWPauoN5gXe&export=download" alt="author修改成果"></p>
-</li>
-<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="http://drive.google.com/uc?id=1pZSShqWVHPjbsEfhvNQIIJI1eJwMeA3Q&export=download" alt="Antonio版面"></p>
-</li>
-<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!<br><img src="http://drive.google.com/uc?id=16wbbAJVSC6svExxY1XqgM0pAhBQH3MP5&export=download" alt="網站Google搜尋結果"></p>
-</li>
-</ul>
-<h2 id="調整Site參數-language成果展示"><a href="#調整Site參數-language成果展示" class="headerlink" title="調整Site參數-language成果展示"></a>調整Site參數-language成果展示</h2><ul>
-<li>試著將language的參數從en(英文)修改成zh-TW(中文)</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">title: Tech Explorer&#x27;s Diary #網站標題</span><br><span class="line">subtitle: &#x27;Journey through the world of technology&#x27; #網站副標題</span><br><span class="line">description: &#x27;A blog dedicated to exploring the latest trends, discoveries, and innovations in the tech world.&#x27; #網站描述(SEO優化相關)</span><br><span class="line">keywords: technology, innovation, programming, software, hardware, reviews #網站的關鍵字(SEO優化相關)</span><br><span class="line">author: John Doe #網站作者的名字</span><br><span class="line">language: zh-TW #網站使用的語系(會跟顯示內容相關)</span><br><span class="line">timezone: &#x27;&#x27; #網站使用的時區(預設電腦系統的時區)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>別忘了編譯網站指令跟啟動本地服務器預覽指令<br>(只要有調整設定檔案建議都要重新編譯過比較保險)</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://drive.google.com/uc?id=1RVRXzi6EoUSDOIg2Vx9bgLuKpAJQR2yp&export=download" alt="語系變更中文"></p>
-<ul>
-<li>剛剛右邊區塊的英文都變成中文</li>
-</ul>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>雖然今天只有做出小小的改變，但每個部落格都是從小地方開始慢慢修改成自己喜歡的模樣。</p>
-<hr>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件-配置</a></p>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day4：了解Hexo指令，將網站上線至Github</title>
+    <title>Day4：了解Hexo指令，幫部落格換上衣服</title>
     <url>/Blog/hexo-github-4/</url>
     <content><![CDATA[<h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
 <li>在當前路徑下建造hexo初始化的相關資訊<br>(Day2使用過此指令，在一開始初始化並生成Hexo資訊的時候使用)</li>
@@ -324,7 +324,7 @@
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
 <h3 id="hexo-new-title-生成文章"><a href="#hexo-new-title-生成文章" class="headerlink" title="hexo new title 生成文章"></a>hexo new title 生成文章</h3><ul>
-<li>創建一篇文章(title要記得替換成你想使用的文章名稱)</li>
+<li>創建一篇文章(<strong><code><code>&lt;title&gt;</code></code></strong>要記得替換成你想使用的文章名稱)</li>
 <li>創文章流程：<ul>
 <li>文章會根據<strong><code>./scaffolds</code></strong>路徑下的<strong><code>post.md</code></strong>模板生成文章格式</li>
 <li>生成完的文章會在<strong><code>./source/_posts</code></strong>路徑下生成</li>
@@ -356,7 +356,7 @@
 </ul>
  <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 
-<h2 id="更換部落格主題"><a href="#更換部落格主題" class="headerlink" title="更換部落格主題"></a>更換部落格主題</h2><p>這邊使用大家較常使用的版型Next<br><strong><a href="https://github.com/theme-next/hexo-theme-next">Next官方Github資料</a></strong></p>
+<h2 id="更換部落格主題"><a href="#更換部落格主題" class="headerlink" title="更換部落格主題"></a>更換部落格主題</h2><p>這邊使用大家較常使用的版型Next，等等將會拉取以下檔案至本地喔<br><strong><a href="https://github.com/theme-next/hexo-theme-next">Next官方Github資料請點我查看</a></strong></p>
 <h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
 <li>Step 1:進去hexo init初始化的資料夾</li>
 <li>Step 2:在資料夾路徑的部分輸入cmd打開當前路徑的命令提示字元</li>
@@ -370,13 +370,14 @@
 <ul>
 <li>當安裝完成時，可以看到<strong><code>./themes</code></strong>路徑下多了<strong><code>next</code></strong>的資料夾，裡面已經有剛剛下載的模板資料了</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=13UjBOeNxf8O-sKLUbkGsDgXVVpLf3cTG&export=download" alt="Next安裝完成"></p>
+<p><img src="http://drive.google.com/uc?id=1U_OPm-y2jjtB09fZRXDFrF3AmPURUDZ3&export=download" alt="Next安裝完成"></p>
 <h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="http://drive.google.com/uc?id=1HnWlLG1OTpANAhjRTYm91GsFxZ1BQQOY&export=download" alt="修改根目錄下的設定檔"></p>
 <ul>
 <li>看到theme: landscape的部分，我們要換掉，換成自己的模板next<br>(請修改如下)</li>
 </ul>
  <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h3 id="查看next的模板新世界吧"><a href="#查看next的模板新世界吧" class="headerlink" title="查看next的模板新世界吧&gt; &lt;"></a>查看next的模板新世界吧&gt; &lt;</h3><ul>
 <li>輸入以下指令</li>
 </ul>
