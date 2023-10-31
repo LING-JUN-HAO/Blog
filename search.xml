@@ -399,4 +399,75 @@
         <tag>GitHub Pages</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Day1：前端開發的神器 - 使用Emmet提升網頁開發效率</title>
+    <url>/Blog/Emmet-1/</url>
+    <content><![CDATA[<h2 id="Emmet是甚麼呢"><a href="#Emmet是甚麼呢" class="headerlink" title="Emmet是甚麼呢?"></a>Emmet是甚麼呢?</h2><p>這是一套文字編輯器的外掛程式，輔助用縮寫的編排方式提升編輯HTML、XML、XSL的速度。</p>
+<p>簡單來說就是前端的開發利器，大部分編譯器都已經內鍵安裝此套件了，學會使用能大大加速撰寫整體架構的速度(相見恨晚是不是!!!)。</p>
+<h2 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h2><p>-打開Vscode點選<strong><code>new File</code></strong></p>
+<p><img src="http://drive.google.com/uc?id=1T5RtHQ2SZUiy98VErdJs3N_YJog03fl4&export=download" alt="Alt text"></p>
+<ul>
+<li>輸入<strong><code>Test.html</code></strong>創立這個html檔案</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1gEkHZwGt9IcuPWgdRkgEQNN_r77YdqbE&export=download" alt="Alt text"></p>
+<ul>
+<li>檢查一下右下角是否是<strong><code>HTML</code></strong>，否則Emmet語法可能會沒有反應</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1PWMyu37tQEYhsqvYt545lcYsHaMdtbnc&export=download" alt="Alt text"></p>
+<h2 id="常用語法-我自己常用的語法QQ"><a href="#常用語法-我自己常用的語法QQ" class="headerlink" title="常用語法(我自己常用的語法QQ)"></a>常用語法(我自己常用的語法QQ)</h2><p><strong><code>以下所有的空白鍵(Enter)均能替換成Tab鍵(英文字母Q旁邊的Tab按鍵)</code></strong></p>
+<h3 id="html檔案基本架構"><a href="#html檔案基本架構" class="headerlink" title="html檔案基本架構"></a>html檔案基本架構</h3><ul>
+<li>輸入! + Enter(有看到旁邊提示才能按空白鍵)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1WKpX8zPQX0RtsUNoCgjE0_5JL5JvuG41&export=download" alt="Alt text"></p>
+<ul>
+<li>登登登登~快速產生了一個html</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1bskZ7QDqAbjoyXLXec7fxa4aIHizUqpS&export=download" alt="Alt text"></p>
+<hr>
+<h3 id="HTML標籤-無Class"><a href="#HTML標籤-無Class" class="headerlink" title="HTML標籤(無Class)"></a>HTML標籤(無Class)</h3><ul>
+<li>輸入標籤名稱 + Enter(有看到旁邊提示才能按空白鍵)</li>
+<li>以下範例圖片輸入h1 + Enter</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1EVE6pdXXR4nku07Zz4xIWVFt_DgnCxYQ&export=download" alt="Alt text"></p>
+<hr>
+<h3 id="HTML標籤-Class"><a href="#HTML標籤-Class" class="headerlink" title="HTML標籤 + Class"></a>HTML標籤 + Class</h3><p>單單只是產生標籤那一定不夠，腦中可能已經將畫面各自命名了(Class)，那就要一次到位</p>
+<ul>
+<li>輸入標籤名稱 + . + class名稱 + Enter(有看到旁邊提示才能按空白鍵)<br>有幾個Class就多幾組的 . + class名稱</li>
+<li>範例圖片使用 p + . + name + . + number(一次給他兩個Class名稱)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1L2pOvAmkd1JLzmABiv2KAloR5r6FcOgy&export=download" alt="Alt text"></p>
+<ul>
+<li>順帶一提，如果沒有給標籤名稱會變成神麼樣子呢?</li>
+<li>登登登登答案就是div，也就是只有div可以省略標籤名稱</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1cCMZIiuh2KJk9x81lKLG8MnjcN4FELkn&export=download" alt="Alt text"></p>
+<hr>
+<h3 id="HTML標籤-Attribute"><a href="#HTML標籤-Attribute" class="headerlink" title="HTML標籤 + Attribute"></a>HTML標籤 + Attribute</h3><p>標籤屬性也是HTML裡面很重要的一環，讓我們把這個也學起來</p>
+<ul>
+<li>輸入標籤名稱 + [屬性名稱:屬性值] + Enter(有看到旁邊提示才能按空白鍵)<br>有幾個屬性就用空格分開</li>
+<li>範例圖片使用input[type&#x3D;text name&#x3D;姓名框]</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1wPY8-DtGslDG7jv4QR4_J-IK54e5ZQ-U&export=download" alt="Alt text"></p>
+<hr>
+<h3 id="Class-Attribute一次滿足"><a href="#Class-Attribute一次滿足" class="headerlink" title="Class + Attribute一次滿足"></a>Class + Attribute一次滿足</h3><p>偷偷告訴你一個小技巧，Emmet語法可以混用喔!!!</p>
+<ul>
+<li>範例如片使用input[type&#x3D;text name&#x3D;姓名框].UserInput</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1aI_aNMPjfFvifqwNIZonc17X3dRRSy7X&export=download" alt="Alt text"></p>
+<hr>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>上面僅僅只是冰山一角呢，有時間會補齊自己常用的語法，如果你還是那麼想知道的話就告訴你吧。</p>
+<p>最完整的使用方法就在<a href="https://docs.emmet.io/cheat-sheet/">Emmet官方文件</a>(不要打我QQ)</p>
+<hr>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://zh.wikipedia.org/wiki/Emmet">Emmet維基百科</a><br>[2] <a href="https://docs.emmet.io/cheat-sheet/">Emmet官方文件</a></p>
+]]></content>
+      <categories>
+        <category>Emmet</category>
+        <category>Web Development</category>
+      </categories>
+      <tags>
+        <tag>Emmet</tag>
+        <tag>Codepen</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
 </search>
