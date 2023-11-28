@@ -63,7 +63,7 @@
 <li>點選<strong><code>命令提示字元</code></strong>(與電腦溝通的介面)</li>
 </ul>
 <hr>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出。</p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>希望讓想架設部落格的任何人，都可以有第一步可以踏出(跟我一樣)。</p>
 <hr>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
 ]]></content>
@@ -202,7 +202,7 @@
     <title>建立自己的部落格(三)：修改Hexo設定檔中Site，查看其變化</title>
     <url>/Blog/hexo-github-3/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
-<h2 id="打開昨天資料夾的這個檔案"><a href="#打開昨天資料夾的這個檔案" class="headerlink" title="打開昨天資料夾的這個檔案"></a>打開昨天資料夾的這個檔案</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
+<h2 id="查看Hexo設定檔"><a href="#查看Hexo設定檔" class="headerlink" title="查看Hexo設定檔"></a>查看Hexo設定檔</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
 <ul>
 <li>使用記事本打開的情況(看起來就很不容易修改吧…..)</li>
 </ul>
@@ -404,7 +404,7 @@
       </tags>
   </entry>
   <entry>
-    <title>前端開發的神器(一)：使用Emmet提升網頁開發效率</title>
+    <title>前端開發神器(一)：使用Emmet提升網頁開發效率</title>
     <url>/Blog/Emmet-1/</url>
     <content><![CDATA[<h2 id="Emmet是甚麼呢"><a href="#Emmet是甚麼呢" class="headerlink" title="Emmet是甚麼呢?"></a>Emmet是甚麼呢?</h2><p>這是一套文字編輯器的外掛程式，輔助用縮寫的編排方式提升編輯HTML、XML、XSL的速度。</p>
 <p>簡單來說就是前端的開發利器，大部分編譯器都已經內鍵安裝此套件了，學會使用能大大加速撰寫整體架構的速度(相見恨晚是不是!!!)。</p>
@@ -474,6 +474,240 @@
         <tag>Emmet</tag>
         <tag>Codepen</tag>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript(一)：淺談ES6常見縮寫</title>
+    <url>/Blog/JS-1/</url>
+    <content><![CDATA[<p><strong>ES6語法糖：不會影響運作，邏輯與當前 JS 一致</strong></p>
+<hr>
+<h2 id="物件內的函式"><a href="#物件內的函式" class="headerlink" title="物件內的函式"></a>物件內的函式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">hello</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="title function_">hello</span>()</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6縮寫-去除funtion"><a href="#ES6縮寫-去除funtion" class="headerlink" title="ES6縮寫(去除funtion)"></a>ES6縮寫(去除funtion)</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="title function_">hello</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="title function_">hello</span>()</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="物件內變數"><a href="#物件內變數" class="headerlink" title="物件內變數"></a>物件內變數</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="number">100</span></span><br><span class="line"><span class="keyword">const</span> B = &#123;<span class="string">&quot;A&quot;</span>: A&#125;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">A</span>:<span class="number">100</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6縮寫-將同名變數僅寫一個"><a href="#ES6縮寫-將同名變數僅寫一個" class="headerlink" title="ES6縮寫(將同名變數僅寫一個)"></a>ES6縮寫(將同名變數僅寫一個)</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="number">100</span></span><br><span class="line"><span class="keyword">const</span> C = &#123;A&#125;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span>A<span class="punctuation">:</span><span class="number">100</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>這樣的效果跟原本{“A”: A}一樣</li>
+</ul>
+<hr>
+<h2 id="物件展開-陣列相加"><a href="#物件展開-陣列相加" class="headerlink" title="物件展開-陣列相加"></a>物件展開-陣列相加</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> groupA = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> groupB = [<span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> groupAll = groupA.<span class="title function_">concat</span>(groupB);</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6陣列相加縮寫"><a href="#ES6陣列相加縮寫" class="headerlink" title="ES6陣列相加縮寫"></a>ES6陣列相加縮寫</h3><ul>
+<li>能夠透過…的方式代表陣列展開的形式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> groupA = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> groupB = [<span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> groupAll = [...groupA, ...groupB]</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="ES6物件展開"><a href="#ES6物件展開" class="headerlink" title="ES6物件展開"></a>ES6物件展開</h3><ul>
+<li>新增一個物件包含新方法，同時加入原有的方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> methods = &#123;</span><br><span class="line">  <span class="title function_">fn1</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">fn2</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newmethod = &#123;</span><br><span class="line">  <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  ...methods</span><br><span class="line">&#125;</span><br><span class="line">newmethod.<span class="title function_">fn1</span>()</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Web Development</category>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript(二)：深入了解This的指向與應用</title>
+    <url>/Blog/JS-2/</url>
+    <content><![CDATA[<p><strong>JavaScript this指向跟調用關係有關</strong></p>
+<hr>
+<h2 id="一個函式中包含多少參數"><a href="#一個函式中包含多少參數" class="headerlink" title="一個函式中包含多少參數"></a>一個函式中包含多少參數</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(params, <span class="variable language_">this</span>, <span class="variable language_">window</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>每個Function都擁有<strong>params</strong>及<strong>arguments</strong><ul>
+<li>params(參數)：參數是函式定義中所列出的變數<ul>
+<li>100</li>
+</ul>
+</li>
+<li>arguments(引數)：引數是當我們呼叫函式時傳遞給它的值<ul>
+<li>[100, 200, 300]</li>
+<li>這個是類陣列(Array-like)：意思就是他不是真的陣列，有一些方法他並無法使用，雖然他可以查看長度，以及變更參數的值，但是他不是純陣列。</li>
+</ul>
+</li>
+<li>this(隱含的引數)：根據調用的方式指向的位置不同(這邊是全域變數也就是window)</li>
+</ul>
+</li>
+<li>window：預設的全域變數。</li>
+</ul>
+<hr>
+<ul>
+<li>接著讓我們來了解不同情況的this的指向(以調用的方式為主)</li>
+<li>這邊this是callSomeone的孩子，本身自己調用函式的情況下this會指向全域(window)變數，也就是全域變數的someone。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;全域&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callSomeone</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">callSomeone</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">全域</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="案例1-傳統函式this指向"><a href="#案例1-傳統函式this指向" class="headerlink" title="案例1.傳統函式this指向"></a>案例1.傳統函式this指向</h3><ul>
+<li>當前案例this是callSomeone的小孩。</li>
+<li>調用的方式改成透過obj去調用這個callSome，這時候this會改指向前面的這個怪叔叔，也就是obj，所以這邊的this已經不是window，已經改變成obj，自然this.someone就會變成obj裡面的someone。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;搗蛋鬼&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件&#x27;</span>,</span><br><span class="line">  <span class="title function_">callSomeone</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="title function_">callSomeone</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">物件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="案例2-引用傳統函式this指向-小小變形一下"><a href="#案例2-引用傳統函式this指向-小小變形一下" class="headerlink" title="案例2.引用傳統函式this指向(小小變形一下)"></a>案例2.引用傳統函式this指向(小小變形一下)</h3><ul>
+<li>雖然原本定義在obj裡面的function變成引用外面的function，但調用的方式依然是obj2.callSomeone()，傳統函式的情況大多符合這種規則。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;全域&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callSomeone</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件2&#x27;</span>,</span><br><span class="line">  callSomeone</span><br><span class="line">&#125;</span><br><span class="line">obj2.<span class="title function_">callSomeone</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">物件<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="案例3-夾帶兩層函式的this指向"><a href="#案例3-夾帶兩層函式的this指向" class="headerlink" title="案例3.夾帶兩層函式的this指向"></a>案例3.夾帶兩層函式的this指向</h3><ul>
+<li>這邊可以看到wrapObj.callSomeone()這個是由wrapObj調用，因此this會指向wrapObj這個物件，自然就會將this.someone定義成外層物件。</li>
+<li>而wrapObj.innerObj.callSomeone()調用的人改變成innderObj，因此調用的this.someone將會定義成innerObj裡面的內層物件。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;搗蛋鬼&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callSomeone</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> wrapObj = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;外層物件&#x27;</span>,</span><br><span class="line">  callSomeone,</span><br><span class="line">  <span class="attr">innerObj</span>: &#123;</span><br><span class="line">    <span class="attr">someone</span>: <span class="string">&#x27;內層物件&#x27;</span>,</span><br><span class="line">    callSomeone,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">wrapObj.<span class="title function_">callSomeone</span>()</span><br><span class="line">wrapObj.<span class="property">innerObj</span>.<span class="title function_">callSomeone</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">外層物件</span><br><span class="line">內層物件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="特殊案例1-間接使用this函式"><a href="#特殊案例1-間接使用this函式" class="headerlink" title="特殊案例1.間接使用this函式"></a>特殊案例1.間接使用this函式</h3><ul>
+<li>我們來看看特別一些的案例，記清楚剛剛說過this只取決於調用他的人是誰，callSomeone前面並沒有人使用它，因此他的this會指向全域(陷阱題)。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;搗蛋鬼&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callSomeone</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件 3&#x27;</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">callSomeone</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj3.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">搗蛋鬼</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="特殊案例2-setTimeout回調函式"><a href="#特殊案例2-setTimeout回調函式" class="headerlink" title="特殊案例2.setTimeout回調函式"></a>特殊案例2.setTimeout回調函式</h3><ul>
+<li>大部分傳統函式的情況下，遇到回調函式，this會指向全域變數，因此this.someone會變成搗蛋鬼。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;搗蛋鬼&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj4 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件 4&#x27;</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj4.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">搗蛋鬼</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Web Development</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript(三)：掌握箭頭函式，優雅簡約的程式寫作</title>
+    <url>/Blog/JS-3/</url>
+    <content><![CDATA[<p><strong>箭頭函數是ES6的新語法，能夠有效縮短傳統函式寫法</strong></p>
+<h2 id="傳統函式-VS-箭頭函式情境說明"><a href="#傳統函式-VS-箭頭函式情境說明" class="headerlink" title="傳統函式 VS 箭頭函式情境說明"></a>傳統函式 VS 箭頭函式情境說明</h2><ul>
+<li>直接透過一個例子來進行比較更快瞭解，透過箭頭函式縮短傳統函式。</li>
+<li>情境：我想快速將陣列中的每個元素都變成兩倍(map對原陣列進行操作產生一個新的陣列)。</li>
+</ul>
+<h3 id="傳統函式"><a href="#傳統函式" class="headerlink" title="傳統函式"></a>傳統函式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="箭頭函式"><a href="#箭頭函式" class="headerlink" title="箭頭函式"></a>箭頭函式</h3><ul>
+<li>省略function替換成箭頭函數的方式。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>當確定僅有一個參數(item)，不可為空或超過一個參數，可以省略成以下寫法。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> item * <span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="this指向差別-箭頭函式沒有自己的this指向"><a href="#this指向差別-箭頭函式沒有自己的this指向" class="headerlink" title="this指向差別-箭頭函式沒有自己的this指向"></a>this指向差別-箭頭函式沒有自己的this指向</h2><ul>
+<li>當看到this的時候自動忽視包覆他的函式</li>
+</ul>
+<h2 id="傳統函式的this指向"><a href="#傳統函式的this指向" class="headerlink" title="傳統函式的this指向"></a>傳統函式的this指向</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">  <span class="title function_">callName</span>(<span class="params"></span>) &#123; </span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>); <span class="comment">// 2</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">person.<span class="title function_">callName</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">全域</span><br></pre></td></tr></table></figure>
+
+<h3 id="案例1-回調函數遇到箭頭函式"><a href="#案例1-回調函數遇到箭頭函式" class="headerlink" title="案例1.回調函數遇到箭頭函式"></a>案例1.回調函數遇到箭頭函式</h3><ul>
+<li>當看到this的時候自動忽視包覆他的函式(setTimeout)，可以想像成this.name又變成在callName函式之下，因此這時候this.name就會從全域變數變成指向person物件下的name。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">  <span class="title function_">callName</span>(<span class="params"></span>) &#123; </span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>); <span class="comment">// 2</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">person.<span class="title function_">callName</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">小明</span><br></pre></td></tr></table></figure>
+
+<h3 id="案例2-傳統函式遇到箭頭函式-單層"><a href="#案例2-傳統函式遇到箭頭函式-單層" class="headerlink" title="案例2.傳統函式遇到箭頭函式(單層)"></a>案例2.傳統函式遇到箭頭函式(單層)</h3><ul>
+<li>使用箭頭函式會直接跳出當前包覆的function(callName)，也就是目前並沒有人調用person本身，因此this會指向全域。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">  <span class="attr">callName</span>: <span class="function">() =&gt;</span> &#123; </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">person.<span class="title function_">callName</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">全域</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="案例3-傳統函式遇到箭頭函式-雙層"><a href="#案例3-傳統函式遇到箭頭函式-雙層" class="headerlink" title="案例3.傳統函式遇到箭頭函式(雙層)"></a>案例3.傳統函式遇到箭頭函式(雙層)</h3><ul>
+<li>this.name跳脫包覆他的callName函式，變成直接在callMe下面，因此callMe被person呼叫使用，this將會指向person。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">  <span class="title function_">callMe</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">callName</span> = (<span class="params"></span>) =&gt; &#123; </span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>); <span class="comment">// 請尋找箭頭所在的作用域為何？</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="title function_">callName</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">person.<span class="title function_">callMe</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">小明</span><br></pre></td></tr></table></figure>
+
+<h2 id="this指向實戰作法，讓this取得正確的值"><a href="#this指向實戰作法，讓this取得正確的值" class="headerlink" title="this指向實戰作法，讓this取得正確的值"></a>this指向實戰作法，讓this取得正確的值</h2><ul>
+<li>回調函式使用傳統函式的寫法一般指向全域</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;全域&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj4 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件 4&#x27;</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj4.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">全域</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改方式1-利用其他變數取代當前this"><a href="#修改方式1-利用其他變數取代當前this" class="headerlink" title="修改方式1.利用其他變數取代當前this"></a>修改方式1.利用其他變數取代當前this</h3><ul>
+<li>透過在fn使用變數儲存當前this位置指向fn，在回調函式中使用該變數以讓this指向obj4，取得物件 4的值。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;全域&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj4 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件 4&#x27;</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="variable language_">this</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(that.<span class="property">someone</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj4.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">物件 <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改方式2-使用箭頭函數"><a href="#修改方式2-使用箭頭函數" class="headerlink" title="修改方式2.使用箭頭函數"></a>修改方式2.使用箭頭函數</h3><ul>
+<li>透過箭頭函數忽視函式setTimeout，讓this變成在fn函式下，this就會指向使用fn的obj4，進而取得obj4下的someone。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">&#x27;全域&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> obj4 = &#123;</span><br><span class="line">  <span class="attr">someone</span>: <span class="string">&#x27;物件 4&#x27;</span>,</span><br><span class="line">  <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">someone</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj4.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">物件 <span class="number">4</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Web Development</category>
+        <category>Arrow Function</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
