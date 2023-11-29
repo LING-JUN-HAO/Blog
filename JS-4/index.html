@@ -37,15 +37,15 @@
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="透過關注點分離的設計方式，可顯著提高系統整體的可維護性。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://hackmd.io/_uploads/BJRIjJHET.jpg">
-<meta property="og:image" content="https://hackmd.io/_uploads/r1M9s1rN6.jpg">
+<meta property="og:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
+<meta property="og:image" content="http://drive.google.com/uc?id=12FyG23_e8aHiACL6LOyaEQ-9CeVIaH0J&export=download">
+<meta property="og:image" content="http://drive.google.com/uc?id=1GNrRHe4_sPec69XJhhgBVyCR503He1l3&export=download">
 <meta property="article:published_time" content="2023-11-29T01:44:29.000Z">
-<meta property="article:modified_time" content="2023-11-29T01:53:45.561Z">
+<meta property="article:modified_time" content="2023-11-29T07:39:55.933Z">
 <meta property="article:author" content="LING,JUN HAO">
-<meta property="article:tag" content="Web Development">
 <meta property="article:tag" content="SoC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hackmd.io/_uploads/BJRIjJHET.jpg">
+<meta name="twitter:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-4/">
 
@@ -238,7 +238,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2023-11-29 09:44:29 / 修改時間：09:53:45" itemprop="dateCreated datePublished" datetime="2023-11-29T09:44:29+08:00">2023-11-29</time>
+              <time title="創建時間：2023-11-29 09:44:29 / 修改時間：15:39:55" itemprop="dateCreated datePublished" datetime="2023-11-29T09:44:29+08:00">2023-11-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,7 +288,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
+        <p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
 <h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><ul>
 <li>關注點分離是一種軟體設計原則，將一個系統劃分為不同的模組或元件，每個模組或元件集中於解決特定的關注點或任務，以提高系統的可操作性、可維護性、可擴展性和可重用性。該原則主張將不同層面的關注點獨立開發，使得修改一個關注點不會影響其他關注點。</li>
 <li>傳統的網頁開發中，通常會將網頁的開發區分為HTML、CSS、JavaScript三個技術領域，並分別將它們拆分成不同的檔案，以負責各自的領域。<ul>
@@ -334,13 +335,13 @@
 </ul>
 <hr>
 <ul>
-<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="https://hackmd.io/_uploads/BJRIjJHET.jpg" alt="02"></li>
+<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="http://drive.google.com/uc?id=12FyG23_e8aHiACL6LOyaEQ-9CeVIaH0J&export=download" alt="傳統網頁結構"></li>
 </ul>
 <hr>
 <p>我們希望透過MVC的概念讓維護上更為方便。</p>
 <ul>
 <li>使用者與介面互動 -&gt; Controller處理網頁邏輯 -&gt; Controller調用Model方法，影響Model資料(新增或修改) -&gt; 修改完Controller再次呼叫View渲染的方法 -&gt; View根據更新後的資料重新渲染</li>
-<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="https://hackmd.io/_uploads/r1M9s1rN6.jpg" alt="01"></li>
+<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="http://drive.google.com/uc?id=1GNrRHe4_sPec69XJhhgBVyCR503He1l3&export=download" alt="關注點分離-網頁結構"></li>
 <li>透過以下流程搭配程式碼進行說明<ol>
 <li>用戶與界面互動，觸發 Controller 的相應方法。<ul>
 <li>使用者在瀏覽器點擊移除。</li>
@@ -380,7 +381,6 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Blog/tags/Web-Development/" rel="tag"># Web Development</a>
               <a href="/Blog/tags/SoC/" rel="tag"># SoC</a>
           </div>
 
@@ -477,7 +477,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
