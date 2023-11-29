@@ -1126,8 +1126,8 @@
   <entry>
     <title>React(二)：JSX 是什麼？為何在 React 中使用 JSX？</title>
     <url>/Blog/React-2/</url>
-    <content><![CDATA[<h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
-<ul>
+    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
+<h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
 <li>JSX（JavaScript XML）是一種 JavaScript 的語法擴展，通常與 React 一同使用。它允許開發者在 JavaScript 中使用類似 XML 或 HTML 的語法來撰寫 React 元素，並透過渲染（Render）將其轉譯為實際的 DOM 元素及相對應的事件。這種語法使得 React 組件的描述更直觀、易讀，同時提供了更高效的元素創建方式。</li>
 <li>JSX只是為React element(原生語法)提供語法糖。</li>
 <li>原生創建React元素語法：React.createElement(component, props, …children)。<ul>
