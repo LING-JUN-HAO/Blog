@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ling-jun-hao.github.io/Blog/Emmet-1/</loc>
+    
+    <lastmod>2023-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/React-1/</loc>
+    
+    <lastmod>2023-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/React-2/</loc>
+    
+    <lastmod>2023-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ling-jun-hao.github.io/Blog/JS-4/</loc>
     
     <lastmod>2023-11-29</lastmod>
@@ -12,15 +39,6 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/JS-6/</loc>
-    
-    <lastmod>2023-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/Emmet-1/</loc>
     
     <lastmod>2023-11-29</lastmod>
     
@@ -160,27 +178,6 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Emmet/</loc>
-    <lastmod>2023-11-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Codepen/</loc>
-    <lastmod>2023-11-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/React/</loc>
-    <lastmod>2023-11-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES6/</loc>
     <lastmod>2023-11-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -229,6 +226,27 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Pure-Function/</loc>
+    <lastmod>2023-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/JSX/</loc>
+    <lastmod>2023-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
+    <lastmod>2023-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -246,14 +264,14 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/categories/Web-Development/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/JavaScript/</loc>
     <lastmod>2023-11-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/categories/JavaScript/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/React/</loc>
     <lastmod>2023-11-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
