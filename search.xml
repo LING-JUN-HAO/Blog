@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>建立自己的部落格(一)：認識Hexo及所其需工具(Nodejs &amp; Git)</title>
+    <title>建立自己的部落格(1)：認識Hexo及所其需工具(Nodejs &amp; Git)</title>
     <url>/Blog/hexo-github-1/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雖然網路上充斥著各式架設網站的教學，但當我真正動手操作時，發現還有許多細節值得探討和設定。為了幫助更多有此需求的朋友，我決定將這些寶貴的經驗細節記錄下來。架設部落格其實並不困難，只要跟著我的步伐，你也可以輕鬆擁有一個專屬於自己的部落格。</p>
@@ -72,11 +72,10 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
       </tags>
   </entry>
   <entry>
-    <title>建立自己的部落格(四)：了解Hexo指令，更換next部落格主題</title>
+    <title>建立自己的部落格(4)：了解Hexo指令，更換next部落格主題</title>
     <url>/Blog/hexo-github-4/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
 <h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
@@ -157,11 +156,10 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
       </tags>
   </entry>
   <entry>
-    <title>建立自己的部落格(三)：修改Hexo設定檔中Site，查看其變化</title>
+    <title>建立自己的部落格(3)：修改Hexo設定檔中Site，查看其變化</title>
     <url>/Blog/hexo-github-3/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
 <h2 id="查看Hexo設定檔"><a href="#查看Hexo設定檔" class="headerlink" title="查看Hexo設定檔"></a>查看Hexo設定檔</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
@@ -277,11 +275,10 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
       </tags>
   </entry>
   <entry>
-    <title>建立自己的部落格(二)：創建Hexo Blog初始的模板</title>
+    <title>建立自己的部落格(2)：創建Hexo Blog初始的模板</title>
     <url>/Blog/hexo-github-2/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
 <h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
@@ -400,11 +397,10 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>GitHub Pages</tag>
       </tags>
   </entry>
   <entry>
-    <title>前端開發神器(一)：使用Emmet提升網頁開發效率</title>
+    <title>前端開發神器(1)：使用Emmet提升網頁開發效率</title>
     <url>/Blog/Emmet-1/</url>
     <content><![CDATA[<h2 id="Emmet是甚麼呢"><a href="#Emmet是甚麼呢" class="headerlink" title="Emmet是甚麼呢?"></a>Emmet是甚麼呢?</h2><p>這是一套文字編輯器的外掛程式，輔助用縮寫的編排方式提升編輯HTML、XML、XSL的速度。</p>
 <p>簡單來說就是前端的開發利器，大部分編譯器都已經內鍵安裝此套件了，學會使用能大大加速撰寫整體架構的速度(相見恨晚是不是!!!)。</p>
@@ -474,7 +470,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(一)：淺談ES6常見縮寫</title>
+    <title>JavaScript(1)：淺談ES6常見縮寫</title>
     <url>/Blog/JS-1/</url>
     <content><![CDATA[<p><strong>ES6語法糖：不會影響運作，邏輯與當前 JS 一致</strong></p>
 <hr>
@@ -531,7 +527,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(二)：深入了解This的指向與應用</title>
+    <title>JavaScript(2)：深入了解This的指向與應用</title>
     <url>/Blog/JS-2/</url>
     <content><![CDATA[<p><strong>JavaScript this指向跟調用關係有關</strong></p>
 <hr>
@@ -616,7 +612,7 @@
       </categories>
   </entry>
   <entry>
-    <title>JavaScript(三)：掌握箭頭函式，優雅簡約的程式寫作</title>
+    <title>JavaScript(3)：掌握箭頭函式，優雅簡約的程式寫作</title>
     <url>/Blog/JS-3/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <p><strong>箭頭函數是ES6的新語法，能夠有效縮短傳統函式寫法</strong></p>
@@ -706,7 +702,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(五)：物件傳參考特性(Pass by reference)</title>
+    <title>JavaScript(5)：物件傳參考特性(Pass by reference)</title>
     <url>/Blog/JS-5/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <h2 id="JS-5-Javascript物件傳參考特性"><a href="#JS-5-Javascript物件傳參考特性" class="headerlink" title="JS-5 Javascript物件傳參考特性"></a>JS-5 Javascript物件傳參考特性</h2><p>JS的型別大致可分為原始型別(Primitive Types)及物件(Object)兩種</p>
@@ -831,7 +827,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(四)：注重關注點的分離</title>
+    <title>JavaScript(4)：注重關注點的分離</title>
     <url>/Blog/JS-4/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
@@ -926,7 +922,7 @@
       </tags>
   </entry>
   <entry>
-    <title>React(二)：JSX 是什麼？為何在 React 中使用 JSX？</title>
+    <title>React(2)：JSX 是什麼？為何在 React 中使用 JSX？</title>
     <url>/Blog/React-2/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
 <h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
@@ -1059,7 +1055,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(六)：深入理解Promise的原理及實際應用</title>
+    <title>JavaScript(6)：深入理解Promise的原理及實際應用</title>
     <url>/Blog/JS-6/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <h2 id="Promise為了解決什麼問題"><a href="#Promise為了解決什麼問題" class="headerlink" title="Promise為了解決什麼問題"></a>Promise為了解決什麼問題</h2><ul>
@@ -1188,7 +1184,7 @@
       </tags>
   </entry>
   <entry>
-    <title>React(一)：Pure Function 的概念及其在 React 中的應用</title>
+    <title>React(1)：Pure Function 的概念及其在 React 中的應用</title>
     <url>/Blog/React-1/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
 <h2 id="Pure-Function是甚麼"><a href="#Pure-Function是甚麼" class="headerlink" title="Pure Function是甚麼"></a>Pure Function是甚麼</h2><ol>
@@ -1257,7 +1253,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(八)：ES module 匯入與匯出</title>
+    <title>JavaScript(8)：ES module 匯入與匯出</title>
     <url>/Blog/JS-8/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <h2 id="早期模塊化規範-CommonJS-CJS"><a href="#早期模塊化規範-CommonJS-CJS" class="headerlink" title="早期模塊化規範-CommonJS(CJS)"></a>早期模塊化規範-CommonJS(CJS)</h2><p>運行環境: 主要在<strong>Node.js</strong>環境下運行。Node.js是一個基於V8引擎的伺服器端JavaScript執行環境，並且內建支援CommonJS模塊系統。</p>
