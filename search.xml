@@ -1257,7 +1257,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JS-8：ES module 匯入與匯出</title>
+    <title>JavaScript(八)：ES module 匯入與匯出</title>
     <url>/Blog/JS-8/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
 <h2 id="早期模塊化規範-CommonJS-CJS"><a href="#早期模塊化規範-CommonJS-CJS" class="headerlink" title="早期模塊化規範-CommonJS(CJS)"></a>早期模塊化規範-CommonJS(CJS)</h2><p>運行環境: 主要在<strong>Node.js</strong>環境下運行。Node.js是一個基於V8引擎的伺服器端JavaScript執行環境，並且內建支援CommonJS模塊系統。</p>
