@@ -13,7 +13,7 @@
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/React-2/</loc>
     
-    <lastmod>2023-11-29</lastmod>
+    <lastmod>2023-11-30</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -187,6 +187,13 @@
   </url>
   
   <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES6/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -201,7 +208,7 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/SoC/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Pass-by-reference/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -222,21 +229,7 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Pass-by-reference/</loc>
-    <lastmod>2023-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Promise/</loc>
-    <lastmod>2023-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Pure-Function/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/SoC/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -250,7 +243,7 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Promise/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -265,6 +258,13 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES-Module/</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Pure-Function/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

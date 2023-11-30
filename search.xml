@@ -76,119 +76,81 @@
       </tags>
   </entry>
   <entry>
-    <title>建立自己的部落格(二)：創建Hexo Blog初始的模板</title>
-    <url>/Blog/hexo-github-2/</url>
+    <title>建立自己的部落格(四)：了解Hexo指令，更換next部落格主題</title>
+    <url>/Blog/hexo-github-4/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
-<h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
-<li>在你的桌面上建立一個資料夾</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1G5qSGgmkefn6mMQIsxe7HKYFGgrvBhEQ&export=download" alt="建立新資料夾"></p>
-<ul>
-<li>點進去資料夾之後在資料夾路徑的位置上輸入cmd按下Enter按鍵</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1d0rgsH76CCs-9DQn4OhEdwcbRRtVdZL_&export=download" alt="利用資料夾打開cmd"></p>
-<h3 id="安裝項目-hexo-cli"><a href="#安裝項目-hexo-cli" class="headerlink" title="安裝項目-hexo-cli"></a>安裝項目-hexo-cli</h3><ul>
-<li>輸入以下指令安裝，讓你也能使用Hexo命令列功能</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://drive.google.com/uc?id=1dNAonSeWAP9tqps4rw3d4GA3qC5i4I2N&export=download" alt="cmd路徑檢視"></p>
-<h2 id="檢查hexo-cli安裝完成"><a href="#檢查hexo-cli安裝完成" class="headerlink" title="檢查hexo-cli安裝完成"></a>檢查hexo-cli安裝完成</h2><p><img src="http://drive.google.com/uc?id=19l_mxVF2KedSCMDk5k8GNufNkZiTKsr7&export=download" alt="檢驗hexo-cli安裝完成"></p>
-<ul>
-<li>確認顯示版本號代表已安裝完成</li>
-</ul>
-<hr>
-<h2 id="初始化Hexo檔案"><a href="#初始化Hexo檔案" class="headerlink" title="初始化Hexo檔案"></a>初始化Hexo檔案</h2><ul>
-<li>輸入以下指令產生Hexo初始化需要的檔案及資料夾<br><strong><a href="#hexo-init-bug">如果出現黃色訊息的意外情況請點我</a></strong></li>
+<h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
+<li>在當前路徑下建造hexo初始化的相關資訊<br>(Day2使用過此指令，在一開始初始化並生成Hexo資訊的時候使用)</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
-<h2 id="檢查Hexo安裝成功"><a href="#檢查Hexo安裝成功" class="headerlink" title="檢查Hexo安裝成功"></a>檢查Hexo安裝成功</h2><p><img src="http://drive.google.com/uc?id=1NIKaDy-JNwn1l0wtlHqayS7Ryiv4QUOQ&export=download" alt="Hexo安裝成功"></p>
-<ul>
-<li>成功看到<strong><code>Start blogging with Hexo!</code></strong>代表安裝完成囉</li>
+<h3 id="hexo-new-title-生成文章"><a href="#hexo-new-title-生成文章" class="headerlink" title="hexo new title 生成文章"></a>hexo new title 生成文章</h3><ul>
+<li>創建一篇文章(<strong><code><code>&lt;title&gt;</code></code></strong>要記得替換成你想使用的文章名稱)</li>
+<li>創文章流程：<ul>
+<li>文章會根據<strong><code>./scaffolds</code></strong>路徑下的<strong><code>post.md</code></strong>模板生成文章格式</li>
+<li>生成完的文章會在<strong><code>./source/_posts</code></strong>路徑下生成</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1sFrMyyi2q6dtA55KiIwnHzL-BrJ8-owu&export=download" alt="Hexo初始化成功資料夾"></p>
-<ul>
-<li>可以看到剛剛的資料夾中出現了許多資料夾及檔案</li>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-g-生成靜態檔案"><a href="#hexo-g-生成靜態檔案" class="headerlink" title="hexo g 生成靜態檔案"></a>hexo g 生成靜態檔案</h3><ul>
+<li>在.&#x2F;public的路徑下生成靜態檔案<br>(會將文章的md檔案轉換成html的檔案)</li>
+<li>g是generate的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-s-本地伺服器預覽畫面"><a href="#hexo-s-本地伺服器預覽畫面" class="headerlink" title="hexo s 本地伺服器預覽畫面"></a>hexo s 本地伺服器預覽畫面</h3><ul>
+<li>啟動本地伺服器<br>(可以在自己電腦上預覽部落格樣式及文章內容)</li>
+<li>s是server的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-d-部屬靜態檔案至上線環境"><a href="#hexo-d-部屬靜態檔案至上線環境" class="headerlink" title="hexo d 部屬靜態檔案至上線環境"></a>hexo d 部屬靜態檔案至上線環境</h3><ul>
+<li>部署public生成的靜態檔案至網站讓其他人也能看到你的文章</li>
+<li>d是deploy的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-clean-清除快取資源及已生成的靜態檔案"><a href="#hexo-clean-清除快取資源及已生成的靜態檔案" class="headerlink" title="hexo clean 清除快取資源及已生成的靜態檔案"></a>hexo clean 清除快取資源及已生成的靜態檔案</h3><ul>
+<li>清除快取檔案<strong><code>db.json</code></strong>及<strong><code>./puclic</code></strong>路徑下已生成的靜態檔案</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h2 id="更換部落格主題"><a href="#更換部落格主題" class="headerlink" title="更換部落格主題"></a>更換部落格主題</h2><p>這邊使用大家較常使用的版型Next，等等將會拉取以下檔案至本地喔<br><strong><a href="https://github.com/theme-next/hexo-theme-next">Next官方Github資料請點我查看</a></strong></p>
+<h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
+<li>Step 1:進去hexo init初始化的資料夾</li>
+<li>Step 2:在資料夾路徑的部分輸入cmd打開當前路徑的命令提示字元</li>
 </ul>
 <hr>
-<h2 id="部落格產生-預設版本"><a href="#部落格產生-預設版本" class="headerlink" title="部落格產生(預設版本)"></a>部落格產生(預設版本)</h2><ul>
-<li>在前面我們產生的cmd介面中輸入以下指令即可看到預設的版本<br>(指令意思是啟動本地服務器預覽部落格畫面，預設Port使用4000)</li>
-<li><strong><a href="#PortInUse">如果出現黃色訊息的意外情況請點我</a></strong></li>
+<h3 id="將next模板資料拉取至本地上"><a href="#將next模板資料拉取至本地上" class="headerlink" title="將next模板資料拉取至本地上"></a>將next模板資料拉取至本地上</h3><ul>
+<li>輸入以下指令，將github的資料拉取至本機電腦上</li>
 </ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>打開你的瀏覽器(Chrome、Edge)</li>
-<li>輸入以下的網址</li>
+<li>當安裝完成時，可以看到<strong><code>./themes</code></strong>路徑下多了<strong><code>next</code></strong>的資料夾，裡面已經有剛剛下載的模板資料了</li>
 </ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://drive.google.com/uc?id=1Z1ohRccWkBWnb0HZPlgngO_XGLr35D9f&export=download" alt="Hexo預設網站"></p>
+<p><img src="http://drive.google.com/uc?id=1U_OPm-y2jjtB09fZRXDFrF3AmPURUDZ3&export=download" alt="Next安裝完成"></p>
+<h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="http://drive.google.com/uc?id=1HnWlLG1OTpANAhjRTYm91GsFxZ1BQQOY&export=download" alt="修改根目錄下的設定檔"></p>
 <ul>
-<li>出現這個畫面代表你已經成功架設起屬於自己的部落格了</li>
+<li>看到theme: landscape的部分，我們要換掉，換成自己的模板next<br>(請修改如下)</li>
 </ul>
-<hr>
-<h2 id="Hexo初始化資料夾講解"><a href="#Hexo初始化資料夾講解" class="headerlink" title="Hexo初始化資料夾講解"></a>Hexo初始化資料夾講解</h2><ul>
-<li>_config.yml<ul>
-<li>部落格的設定檔</li>
-</ul>
-</li>
-<li>scaffolds<ul>
-<li>Markdown(md)檔案生成的模板<ul>
-<li>draft.md：草稿使用的文章模板</li>
-<li>page.md：分頁畫面使用的網頁模板</li>
-<li>post.md：正式區使用的文章模板</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>source<ul>
-<li>放置網站內容的地方(前輟帶有_會被Hexo忽略，僅有_posts不會)<br>這邊的所有md、html檔案在處理之後會放置<strong><code>/public</code></strong></li>
-</ul>
-</li>
-<li>themes<ul>
-<li>根據不同的主題生成不同的靜態網頁風格。<br><strong><a href="https://hexo.io/themes/">快點擊我找一個自己喜歡的模板吧!!!</a></strong><br><strong><a href="#Preview">(如果官方預覽不知道怎麼看到點我)</a></strong></li>
-</ul>
-</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1TVrYUqsDOhVOMDuLtMyEfTqQDWQIKYsu&export=download" alt="官方的Themes shops"></p>
-<hr>
-<p><a id="hexo-init-bug"></a></p>
-<h2 id="hexo-init故障排除"><a href="#hexo-init故障排除" class="headerlink" title="hexo init故障排除"></a>hexo init故障排除</h2><p><img src="http://drive.google.com/uc?id=122vdtyo7V3P1tY9HwR-gcv0vaRvFSRs8&export=download" alt="故障圖示"></p>
-<ul>
-<li>這代表你的資料夾並非空的導致初始化失敗喔!!!<br>檢查一下你安裝Hexo的資料夾吧(以下是失敗可能範例)</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1hogZRaHc6QF3xdZcqw446llldmPfaJrz&export=download" alt="失敗案例"></p>
-<p><a id="Preview"></a></p>
-<hr>
-<h2 id="官方主題看預覽畫面教學-選好的主題將在Day4進行更換"><a href="#官方主題看預覽畫面教學-選好的主題將在Day4進行更換" class="headerlink" title="官方主題看預覽畫面教學(選好的主題將在Day4進行更換)"></a>官方主題看預覽畫面教學(選好的主題將在Day4進行更換)</h2><ul>
-<li>通常點進去都會有對應的靜態網頁連結可以點擊</li>
-<li>leedom主題</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1MLSaDPDfaNI99PpJVDk4tD8kl3VipklJ&export=download" alt="leedom主題"></p>
-<ul>
-<li>Tranquilpeak主題</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1pbgOcs512ENueWPTXColRmgBWxc3VOFk&export=download" alt="Tranquilpeak主題"></p>
-<ul>
-<li>Oliver主題</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1hBoQhEx2AB-k4MIxNGha63qkg811_tbW&export=download" alt="Oliver主題"></p>
-<p><a id="PortInUse"></a></p>
-<h2 id="hexo-s故障排除"><a href="#hexo-s故障排除" class="headerlink" title="hexo s故障排除"></a>hexo s故障排除</h2><p><img src="http://drive.google.com/uc?id=1HdAT2Lf78KWfnVf1vttJ7e4iq-WzOv1p&export=download" alt="port號佔用"></p>
-<ul>
-<li><p>這代表port號被占用了</p>
-</li>
-<li><p>可以試著改用以下方式讓使用的port號改變</p>
-</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s -p 6000</span><br></pre></td></tr></table></figure>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>今天也好好的邁出第二步了，看到屬於自己的畫面，希望能夠幫助所有喜歡部落格的我跟你。</p>
+<h3 id="查看next的模板新世界吧"><a href="#查看next的模板新世界吧" class="headerlink" title="查看next的模板新世界吧&gt; &lt;"></a>查看next的模板新世界吧&gt; &lt;</h3><ul>
+<li>輸入以下指令</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>透過瀏覽器查看當前部落格新造型<br>(<a href="http://localhost:4000/">http://localhost:4000/</a>)</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1ioZAj4UUNo6u9PC5-pOx_vyrfrohEeol&export=download" alt="next模板造型"></p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>看到新造型感覺越來越有樣子了吧!!!希望我們都能夠將部落格布置成每個人獨一無二的秘密基地。</p>
 <hr>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件-指令</a></p>
 ]]></content>
       <categories>
         <category>Blog</category>
@@ -319,81 +281,119 @@
       </tags>
   </entry>
   <entry>
-    <title>建立自己的部落格(四)：了解Hexo指令，更換next部落格主題</title>
-    <url>/Blog/hexo-github-4/</url>
+    <title>建立自己的部落格(二)：創建Hexo Blog初始的模板</title>
+    <url>/Blog/hexo-github-2/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
-<h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
-<li>在當前路徑下建造hexo初始化的相關資訊<br>(Day2使用過此指令，在一開始初始化並生成Hexo資訊的時候使用)</li>
+<h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
+<li>在你的桌面上建立一個資料夾</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1G5qSGgmkefn6mMQIsxe7HKYFGgrvBhEQ&export=download" alt="建立新資料夾"></p>
+<ul>
+<li>點進去資料夾之後在資料夾路徑的位置上輸入cmd按下Enter按鍵</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1d0rgsH76CCs-9DQn4OhEdwcbRRtVdZL_&export=download" alt="利用資料夾打開cmd"></p>
+<h3 id="安裝項目-hexo-cli"><a href="#安裝項目-hexo-cli" class="headerlink" title="安裝項目-hexo-cli"></a>安裝項目-hexo-cli</h3><ul>
+<li>輸入以下指令安裝，讓你也能使用Hexo命令列功能</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://drive.google.com/uc?id=1dNAonSeWAP9tqps4rw3d4GA3qC5i4I2N&export=download" alt="cmd路徑檢視"></p>
+<h2 id="檢查hexo-cli安裝完成"><a href="#檢查hexo-cli安裝完成" class="headerlink" title="檢查hexo-cli安裝完成"></a>檢查hexo-cli安裝完成</h2><p><img src="http://drive.google.com/uc?id=19l_mxVF2KedSCMDk5k8GNufNkZiTKsr7&export=download" alt="檢驗hexo-cli安裝完成"></p>
+<ul>
+<li>確認顯示版本號代表已安裝完成</li>
+</ul>
+<hr>
+<h2 id="初始化Hexo檔案"><a href="#初始化Hexo檔案" class="headerlink" title="初始化Hexo檔案"></a>初始化Hexo檔案</h2><ul>
+<li>輸入以下指令產生Hexo初始化需要的檔案及資料夾<br><strong><a href="#hexo-init-bug">如果出現黃色訊息的意外情況請點我</a></strong></li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
-<h3 id="hexo-new-title-生成文章"><a href="#hexo-new-title-生成文章" class="headerlink" title="hexo new title 生成文章"></a>hexo new title 生成文章</h3><ul>
-<li>創建一篇文章(<strong><code><code>&lt;title&gt;</code></code></strong>要記得替換成你想使用的文章名稱)</li>
-<li>創文章流程：<ul>
-<li>文章會根據<strong><code>./scaffolds</code></strong>路徑下的<strong><code>post.md</code></strong>模板生成文章格式</li>
-<li>生成完的文章會在<strong><code>./source/_posts</code></strong>路徑下生成</li>
+<h2 id="檢查Hexo安裝成功"><a href="#檢查Hexo安裝成功" class="headerlink" title="檢查Hexo安裝成功"></a>檢查Hexo安裝成功</h2><p><img src="http://drive.google.com/uc?id=1NIKaDy-JNwn1l0wtlHqayS7Ryiv4QUOQ&export=download" alt="Hexo安裝成功"></p>
+<ul>
+<li>成功看到<strong><code>Start blogging with Hexo!</code></strong>代表安裝完成囉</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1sFrMyyi2q6dtA55KiIwnHzL-BrJ8-owu&export=download" alt="Hexo初始化成功資料夾"></p>
+<ul>
+<li>可以看到剛剛的資料夾中出現了許多資料夾及檔案</li>
+</ul>
+<hr>
+<h2 id="部落格產生-預設版本"><a href="#部落格產生-預設版本" class="headerlink" title="部落格產生(預設版本)"></a>部落格產生(預設版本)</h2><ul>
+<li>在前面我們產生的cmd介面中輸入以下指令即可看到預設的版本<br>(指令意思是啟動本地服務器預覽部落格畫面，預設Port使用4000)</li>
+<li><strong><a href="#PortInUse">如果出現黃色訊息的意外情況請點我</a></strong></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打開你的瀏覽器(Chrome、Edge)</li>
+<li>輸入以下的網址</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://drive.google.com/uc?id=1Z1ohRccWkBWnb0HZPlgngO_XGLr35D9f&export=download" alt="Hexo預設網站"></p>
+<ul>
+<li>出現這個畫面代表你已經成功架設起屬於自己的部落格了</li>
+</ul>
+<hr>
+<h2 id="Hexo初始化資料夾講解"><a href="#Hexo初始化資料夾講解" class="headerlink" title="Hexo初始化資料夾講解"></a>Hexo初始化資料夾講解</h2><ul>
+<li>_config.yml<ul>
+<li>部落格的設定檔</li>
+</ul>
+</li>
+<li>scaffolds<ul>
+<li>Markdown(md)檔案生成的模板<ul>
+<li>draft.md：草稿使用的文章模板</li>
+<li>page.md：分頁畫面使用的網頁模板</li>
+<li>post.md：正式區使用的文章模板</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="hexo-g-生成靜態檔案"><a href="#hexo-g-生成靜態檔案" class="headerlink" title="hexo g 生成靜態檔案"></a>hexo g 生成靜態檔案</h3><ul>
-<li>在.&#x2F;public的路徑下生成靜態檔案<br>(會將文章的md檔案轉換成html的檔案)</li>
-<li>g是generate的縮寫</li>
+</li>
+<li>source<ul>
+<li>放置網站內容的地方(前輟帶有_會被Hexo忽略，僅有_posts不會)<br>這邊的所有md、html檔案在處理之後會放置<strong><code>/public</code></strong></li>
 </ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<h3 id="hexo-s-本地伺服器預覽畫面"><a href="#hexo-s-本地伺服器預覽畫面" class="headerlink" title="hexo s 本地伺服器預覽畫面"></a>hexo s 本地伺服器預覽畫面</h3><ul>
-<li>啟動本地伺服器<br>(可以在自己電腦上預覽部落格樣式及文章內容)</li>
-<li>s是server的縮寫</li>
+</li>
+<li>themes<ul>
+<li>根據不同的主題生成不同的靜態網頁風格。<br><strong><a href="https://hexo.io/themes/">快點擊我找一個自己喜歡的模板吧!!!</a></strong><br><strong><a href="#Preview">(如果官方預覽不知道怎麼看到點我)</a></strong></li>
 </ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<h3 id="hexo-d-部屬靜態檔案至上線環境"><a href="#hexo-d-部屬靜態檔案至上線環境" class="headerlink" title="hexo d 部屬靜態檔案至上線環境"></a>hexo d 部屬靜態檔案至上線環境</h3><ul>
-<li>部署public生成的靜態檔案至網站讓其他人也能看到你的文章</li>
-<li>d是deploy的縮寫</li>
+</li>
 </ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<h3 id="hexo-clean-清除快取資源及已生成的靜態檔案"><a href="#hexo-clean-清除快取資源及已生成的靜態檔案" class="headerlink" title="hexo clean 清除快取資源及已生成的靜態檔案"></a>hexo clean 清除快取資源及已生成的靜態檔案</h3><ul>
-<li>清除快取檔案<strong><code>db.json</code></strong>及<strong><code>./puclic</code></strong>路徑下已生成的靜態檔案</li>
-</ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<h2 id="更換部落格主題"><a href="#更換部落格主題" class="headerlink" title="更換部落格主題"></a>更換部落格主題</h2><p>這邊使用大家較常使用的版型Next，等等將會拉取以下檔案至本地喔<br><strong><a href="https://github.com/theme-next/hexo-theme-next">Next官方Github資料請點我查看</a></strong></p>
-<h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
-<li>Step 1:進去hexo init初始化的資料夾</li>
-<li>Step 2:在資料夾路徑的部分輸入cmd打開當前路徑的命令提示字元</li>
-</ul>
+<p><img src="http://drive.google.com/uc?id=1TVrYUqsDOhVOMDuLtMyEfTqQDWQIKYsu&export=download" alt="官方的Themes shops"></p>
 <hr>
-<h3 id="將next模板資料拉取至本地上"><a href="#將next模板資料拉取至本地上" class="headerlink" title="將next模板資料拉取至本地上"></a>將next模板資料拉取至本地上</h3><ul>
-<li>輸入以下指令，將github的資料拉取至本機電腦上</li>
-</ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-
+<p><a id="hexo-init-bug"></a></p>
+<h2 id="hexo-init故障排除"><a href="#hexo-init故障排除" class="headerlink" title="hexo init故障排除"></a>hexo init故障排除</h2><p><img src="http://drive.google.com/uc?id=122vdtyo7V3P1tY9HwR-gcv0vaRvFSRs8&export=download" alt="故障圖示"></p>
 <ul>
-<li>當安裝完成時，可以看到<strong><code>./themes</code></strong>路徑下多了<strong><code>next</code></strong>的資料夾，裡面已經有剛剛下載的模板資料了</li>
+<li>這代表你的資料夾並非空的導致初始化失敗喔!!!<br>檢查一下你安裝Hexo的資料夾吧(以下是失敗可能範例)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1U_OPm-y2jjtB09fZRXDFrF3AmPURUDZ3&export=download" alt="Next安裝完成"></p>
-<h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="http://drive.google.com/uc?id=1HnWlLG1OTpANAhjRTYm91GsFxZ1BQQOY&export=download" alt="修改根目錄下的設定檔"></p>
+<p><img src="http://drive.google.com/uc?id=1hogZRaHc6QF3xdZcqw446llldmPfaJrz&export=download" alt="失敗案例"></p>
+<p><a id="Preview"></a></p>
+<hr>
+<h2 id="官方主題看預覽畫面教學-選好的主題將在Day4進行更換"><a href="#官方主題看預覽畫面教學-選好的主題將在Day4進行更換" class="headerlink" title="官方主題看預覽畫面教學(選好的主題將在Day4進行更換)"></a>官方主題看預覽畫面教學(選好的主題將在Day4進行更換)</h2><ul>
+<li>通常點進去都會有對應的靜態網頁連結可以點擊</li>
+<li>leedom主題</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1MLSaDPDfaNI99PpJVDk4tD8kl3VipklJ&export=download" alt="leedom主題"></p>
 <ul>
-<li>看到theme: landscape的部分，我們要換掉，換成自己的模板next<br>(請修改如下)</li>
+<li>Tranquilpeak主題</li>
 </ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p><img src="http://drive.google.com/uc?id=1pbgOcs512ENueWPTXColRmgBWxc3VOFk&export=download" alt="Tranquilpeak主題"></p>
+<ul>
+<li>Oliver主題</li>
+</ul>
+<p><img src="http://drive.google.com/uc?id=1hBoQhEx2AB-k4MIxNGha63qkg811_tbW&export=download" alt="Oliver主題"></p>
+<p><a id="PortInUse"></a></p>
+<h2 id="hexo-s故障排除"><a href="#hexo-s故障排除" class="headerlink" title="hexo s故障排除"></a>hexo s故障排除</h2><p><img src="http://drive.google.com/uc?id=1HdAT2Lf78KWfnVf1vttJ7e4iq-WzOv1p&export=download" alt="port號佔用"></p>
+<ul>
+<li><p>這代表port號被占用了</p>
+</li>
+<li><p>可以試著改用以下方式讓使用的port號改變</p>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s -p 6000</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="查看next的模板新世界吧"><a href="#查看next的模板新世界吧" class="headerlink" title="查看next的模板新世界吧&gt; &lt;"></a>查看next的模板新世界吧&gt; &lt;</h3><ul>
-<li>輸入以下指令</li>
-</ul>
- <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>透過瀏覽器查看當前部落格新造型<br>(<a href="http://localhost:4000/">http://localhost:4000/</a>)</li>
-</ul>
-<p><img src="http://drive.google.com/uc?id=1ioZAj4UUNo6u9PC5-pOx_vyrfrohEeol&export=download" alt="next模板造型"></p>
-<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>看到新造型感覺越來越有樣子了吧!!!希望我們都能夠將部落格布置成每個人獨一無二的秘密基地。</p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>今天也好好的邁出第二步了，看到屬於自己的畫面，希望能夠幫助所有喜歡部落格的我跟你。</p>
 <hr>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件-指令</a></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件</a></p>
 ]]></content>
       <categories>
         <category>Blog</category>
@@ -706,101 +706,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript(四)：注重關注點的分離</title>
-    <url>/Blog/JS-4/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
-<p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
-<h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><ul>
-<li>關注點分離是一種軟體設計原則，將一個系統劃分為不同的模組或元件，每個模組或元件集中於解決特定的關注點或任務，以提高系統的可操作性、可維護性、可擴展性和可重用性。該原則主張將不同層面的關注點獨立開發，使得修改一個關注點不會影響其他關注點。</li>
-<li>傳統的網頁開發中，通常會將網頁的開發區分為HTML、CSS、JavaScript三個技術領域，並分別將它們拆分成不同的檔案，以負責各自的領域。<ul>
-<li>HTML： 語意層，負責網頁結構和整體語意。</li>
-<li>CSS： 樣式層，負責網頁外觀和樣式。</li>
-<li>JavaScript： 邏輯層，負責處理事件邏輯和動態行為。</li>
-</ul>
-</li>
-<li>避免寫行內樣式(inline style)跟行內腳本(inline script)造成彼此領域的干涉。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1 style=&quot;color:red;font-size:46px;&quot;  onclick=&quot;alert(&#x27;Hi&#x27;)&quot;&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li>關注點分離寫法</li>
-<li>HTML(語意層)：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>CSS(樣式層)</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">46px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>JavaScript（邏輯層）</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// script.js</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> header = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span><br><span class="line">  header.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Hi&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="關注點分離-MVC概念"><a href="#關注點分離-MVC概念" class="headerlink" title="關注點分離- MVC概念"></a>關注點分離- MVC概念</h2><ul>
-<li>Model：<ul>
-<li>負責處理數據的邏輯，包括數據的存儲、檢索、更新和刪除等操作。</li>
-</ul>
-</li>
-<li>View：<ul>
-<li>負責呈現界面，即用戶界面的渲染和顯示。</li>
-</ul>
-</li>
-<li>Controller：<ul>
-<li>負責接收用戶的輸入，處理業務邏輯，然後更新模型和視圖。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="http://drive.google.com/uc?id=12FyG23_e8aHiACL6LOyaEQ-9CeVIaH0J&export=download" alt="傳統網頁結構"></li>
-</ul>
-<hr>
-<p>我們希望透過MVC的概念讓維護上更為方便。</p>
-<ul>
-<li>使用者與介面互動 -&gt; Controller處理網頁邏輯 -&gt; Controller調用Model方法，影響Model資料(新增或修改) -&gt; 修改完Controller再次呼叫View渲染的方法 -&gt; View根據更新後的資料重新渲染</li>
-<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="http://drive.google.com/uc?id=1GNrRHe4_sPec69XJhhgBVyCR503He1l3&export=download" alt="關注點分離-網頁結構"></li>
-<li>透過以下流程搭配程式碼進行說明<ol>
-<li>用戶與界面互動，觸發 Controller 的相應方法。<ul>
-<li>使用者在瀏覽器點擊移除。</li>
-</ul>
-</li>
-<li>Controller 根據用戶的輸入操作 Model。<ul>
-<li>按鈕的點擊事件觸發了 removeData 方法，這是 Controller 中的一個相應方法。</li>
-</ul>
-</li>
-<li>Model 的狀態發生變化。<ul>
-<li>removeData方法中使用了 splice 方法來移除資料陣列 data 中的特定項目，即刪除了一個資料項。</li>
-</ul>
-</li>
-<li>Controller 得知 Model 狀態的變化，通知相應的 View。<ul>
-<li>removeData方法執行完畢後，立即呼叫了 render 方法，這是通知 View 部分。</li>
-</ul>
-</li>
-<li>View 從 Model 中獲取最新的數據。<ul>
-<li>render方法內部重新遍歷資料陣列，創建新的HTML元素，並更新 DOM 中的內容。</li>
-</ul>
-</li>
-<li>View 使用這些數據更新界面。<ul>
-<li>新的HTML元素被注入到DOM中，此時界面上的列表已經更新，反映了資料變化。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/LYqevQL">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> component = &#123;</span><br><span class="line">  <span class="comment">// Model的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="attr">data</span>: [</span><br><span class="line">    <span class="string">&#x27;這是第一句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第二句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第三句話&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="title function_">removeData</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">splice</span>(id, <span class="number">1</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// View的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">renderList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> list = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.component ul&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> content = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">      content = <span class="string">`<span class="subst">$&#123;content&#125;</span>&lt;li&gt;<span class="subst">$&#123;item&#125;</span> &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-id=&quot;<span class="subst">$&#123;i&#125;</span>&quot;&gt;移除&lt;/button&gt;&lt;/li&gt;`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    list.<span class="property">innerHTML</span> = content;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">addEventListeners</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> btns = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">    btns.<span class="title function_">forEach</span>(<span class="function"><span class="params">btn</span> =&gt;</span> btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> id = e.<span class="property">target</span>.<span class="property">dataset</span>.<span class="property">id</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">removeData</span>(id);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Controller</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; <span class="comment">// 渲染方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">renderList</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">addEventListeners</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">&#125;;</span><br><span class="line">component.<span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>SoC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript(五)：物件傳參考特性(Pass by reference)</title>
     <url>/Blog/JS-5/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
@@ -920,9 +825,237 @@
         <category>JavaScript</category>
       </categories>
       <tags>
+        <tag>Pass by reference</tag>
         <tag>shallow copy</tag>
         <tag>deep copy</tag>
-        <tag>Pass by reference</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript(四)：注重關注點的分離</title>
+    <url>/Blog/JS-4/</url>
+    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
+<h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><ul>
+<li>關注點分離是一種軟體設計原則，將一個系統劃分為不同的模組或元件，每個模組或元件集中於解決特定的關注點或任務，以提高系統的可操作性、可維護性、可擴展性和可重用性。該原則主張將不同層面的關注點獨立開發，使得修改一個關注點不會影響其他關注點。</li>
+<li>傳統的網頁開發中，通常會將網頁的開發區分為HTML、CSS、JavaScript三個技術領域，並分別將它們拆分成不同的檔案，以負責各自的領域。<ul>
+<li>HTML： 語意層，負責網頁結構和整體語意。</li>
+<li>CSS： 樣式層，負責網頁外觀和樣式。</li>
+<li>JavaScript： 邏輯層，負責處理事件邏輯和動態行為。</li>
+</ul>
+</li>
+<li>避免寫行內樣式(inline style)跟行內腳本(inline script)造成彼此領域的干涉。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1 style=&quot;color:red;font-size:46px;&quot;  onclick=&quot;alert(&#x27;Hi&#x27;)&quot;&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>關注點分離寫法</li>
+<li>HTML(語意層)：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1&gt;</span><br><span class="line">  Hello World</span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSS(樣式層)</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">46px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JavaScript（邏輯層）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// script.js</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> header = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span><br><span class="line">  header.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Hi&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="關注點分離-MVC概念"><a href="#關注點分離-MVC概念" class="headerlink" title="關注點分離- MVC概念"></a>關注點分離- MVC概念</h2><ul>
+<li>Model：<ul>
+<li>負責處理數據的邏輯，包括數據的存儲、檢索、更新和刪除等操作。</li>
+</ul>
+</li>
+<li>View：<ul>
+<li>負責呈現界面，即用戶界面的渲染和顯示。</li>
+</ul>
+</li>
+<li>Controller：<ul>
+<li>負責接收用戶的輸入，處理業務邏輯，然後更新模型和視圖。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="http://drive.google.com/uc?id=12FyG23_e8aHiACL6LOyaEQ-9CeVIaH0J&export=download" alt="傳統網頁結構"></li>
+</ul>
+<hr>
+<p>我們希望透過MVC的概念讓維護上更為方便。</p>
+<ul>
+<li>使用者與介面互動 -&gt; Controller處理網頁邏輯 -&gt; Controller調用Model方法，影響Model資料(新增或修改) -&gt; 修改完Controller再次呼叫View渲染的方法 -&gt; View根據更新後的資料重新渲染</li>
+<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="http://drive.google.com/uc?id=1GNrRHe4_sPec69XJhhgBVyCR503He1l3&export=download" alt="關注點分離-網頁結構"></li>
+<li>透過以下流程搭配程式碼進行說明<ol>
+<li>用戶與界面互動，觸發 Controller 的相應方法。<ul>
+<li>使用者在瀏覽器點擊移除。</li>
+</ul>
+</li>
+<li>Controller 根據用戶的輸入操作 Model。<ul>
+<li>按鈕的點擊事件觸發了 removeData 方法，這是 Controller 中的一個相應方法。</li>
+</ul>
+</li>
+<li>Model 的狀態發生變化。<ul>
+<li>removeData方法中使用了 splice 方法來移除資料陣列 data 中的特定項目，即刪除了一個資料項。</li>
+</ul>
+</li>
+<li>Controller 得知 Model 狀態的變化，通知相應的 View。<ul>
+<li>removeData方法執行完畢後，立即呼叫了 render 方法，這是通知 View 部分。</li>
+</ul>
+</li>
+<li>View 從 Model 中獲取最新的數據。<ul>
+<li>render方法內部重新遍歷資料陣列，創建新的HTML元素，並更新 DOM 中的內容。</li>
+</ul>
+</li>
+<li>View 使用這些數據更新界面。<ul>
+<li>新的HTML元素被注入到DOM中，此時界面上的列表已經更新，反映了資料變化。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/LYqevQL">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> component = &#123;</span><br><span class="line">  <span class="comment">// Model的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="attr">data</span>: [</span><br><span class="line">    <span class="string">&#x27;這是第一句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第二句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第三句話&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="title function_">removeData</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">splice</span>(id, <span class="number">1</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// View的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">renderList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> list = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.component ul&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> content = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">      content = <span class="string">`<span class="subst">$&#123;content&#125;</span>&lt;li&gt;<span class="subst">$&#123;item&#125;</span> &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-id=&quot;<span class="subst">$&#123;i&#125;</span>&quot;&gt;移除&lt;/button&gt;&lt;/li&gt;`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    list.<span class="property">innerHTML</span> = content;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">addEventListeners</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> btns = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">    btns.<span class="title function_">forEach</span>(<span class="function"><span class="params">btn</span> =&gt;</span> btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> id = e.<span class="property">target</span>.<span class="property">dataset</span>.<span class="property">id</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">removeData</span>(id);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Controller</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; <span class="comment">// 渲染方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">renderList</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">addEventListeners</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">&#125;;</span><br><span class="line">component.<span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>SoC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React(二)：JSX 是什麼？為何在 React 中使用 JSX？</title>
+    <url>/Blog/React-2/</url>
+    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
+<h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
+<li>JSX（JavaScript XML）是一種 JavaScript 的語法擴展，通常與 React 一同使用。它允許開發者在 JavaScript 中使用類似 XML 或 HTML 的語法來撰寫 React 元素，並透過渲染（Render）將其轉譯為實際的 DOM 元素及相對應的事件。這種語法使得 React 組件的描述更直觀、易讀，同時提供了更高效的元素創建方式。</li>
+<li>JSX只是為React element(原生語法)提供語法糖。</li>
+<li>原生創建React元素語法：React.createElement(component, props, …children)。<ul>
+<li>component：React 元素的類型，可以是 HTML 元素名稱（字符串，例如 ‘div’）或 React 組件</li>
+<li>props：元素的屬性（attributes），是一個包含元素屬性及其值的物件。</li>
+<li>…children：元素的子元素，可以是單一元素或一個包含多個子元素的數組。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  div,</span><br><span class="line">  &#123;<span class="attr">className</span>: <span class="string">&#x27;info&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSX寫法如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;info&quot;</span>&gt;<span class="title class_">Hello</span> <span class="title class_">World</span>&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>巢狀寫法的案例如下：<ul>
+<li>React.createElement寫法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  &#123; <span class="attr">className</span>: <span class="string">&#x27;container&#x27;</span> &#125;,</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;h1&#x27;</span>,</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    <span class="string">&#x27;Nested Example&#x27;</span></span><br><span class="line">  ),</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;p&#x27;</span>,</span><br><span class="line">    &#123; <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;blue&#x27;</span> &#125; &#125;,</span><br><span class="line">    <span class="string">&#x27;This is a nested paragraph.&#x27;</span></span><br><span class="line">  )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSX寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;container&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Nested Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">blue</span>&#x27; &#125;&#125;&gt;</span>This is a nested paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSX內部原理及規則"><a href="#JSX內部原理及規則" class="headerlink" title="JSX內部原理及規則"></a>JSX內部原理及規則</h2><ul>
+<li>JSX會在編譯階段被轉譯成對應的 React.createElement 的呼叫，生成一個 JavaScript 物件，這個物件描述了 React 元素的類型、屬性（props），以及子元素。</li>
+</ul>
+<hr>
+<p>JSX使用規則如下</p>
+<h3 id="使用者定義的元件必須大寫"><a href="#使用者定義的元件必須大寫" class="headerlink" title="使用者定義的元件必須大寫"></a>使用者定義的元件必須大寫</h3><ul>
+<li>錯誤寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="comment">// ↓ 正確：hello-&gt;Hello</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 使用hello非大寫會導致發生錯誤，無法透過JSX引用該元件</span></span><br><span class="line">  <span class="comment">//   正確的方式：hello-&gt;Hello</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正確寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="React元件不能使用表達式-只能是大寫字母開頭的變數或函數名"><a href="#React元件不能使用表達式-只能是大寫字母開頭的變數或函數名" class="headerlink" title="React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)"></a>React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)</h3><ul>
+<li>錯誤寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Components</span> = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 請用變數賦值，避免使用表達式</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml">&lt;Components[props.storyType]; story=&#123;props.story&#125; /&gt;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正確寫法</li>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/ZEwamdE">CodePen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> components = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// 根據 props 中的 storyType 選擇要渲染的元件</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">SpecificStory</span> = components[props.<span class="property">storyType</span>];</span><br><span class="line">  <span class="comment">// 渲染所選擇的元件，並將 story 作為 props 傳遞</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">SpecificStory</span> <span class="attr">story</span>=<span class="string">&#123;props.story&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Photo</span> <span class="title class_">Story</span>: A beautiful photo story</span><br><span class="line"><span class="title class_">Video</span> <span class="title class_">Story</span>: <span class="title class_">An</span> amazing video story</span><br></pre></td></tr></table></figure>
+
+<h3 id="回傳單一個根元素"><a href="#回傳單一個根元素" class="headerlink" title="回傳單一個根元素"></a>回傳單一個根元素</h3><ul>
+<li>最外層需要使用父層元素包覆(EX：div、或使用 Fragment (&lt;&gt; 和 &lt;&#x2F;&gt;))</li>
+<li>案例如下：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="所有標籤都需要結尾標籤"><a href="#所有標籤都需要結尾標籤" class="headerlink" title="所有標籤都需要結尾標籤"></a>所有標籤都需要結尾標籤</h3><p>範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自閉標籤(self-closing)範例如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;img /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSX特色"><a href="#JSX特色" class="headerlink" title="JSX特色"></a>JSX特色</h2><h3 id="Props可以使用Javascript表達式-foo-1-2-3-4"><a href="#Props可以使用Javascript表達式-foo-1-2-3-4" class="headerlink" title="Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})"></a>Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})</h3><ul>
+<li>Javascript表達式案例如下：</li>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/eYxebZp">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>由App組件傳過來的foo參數：&#123;props.foo&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">MyComponent</span> <span class="attr">foo</span>=<span class="string">&#123;1</span> + <span class="attr">2</span> + <span class="attr">3</span> + <span class="attr">4</span>&#125; /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">由<span class="title class_">App</span>組件傳過來的foo參數：<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>if跟for不是表達式不能使用</strong></li>
+<li>三元運算符(肚子餓了嗎?餓了:還沒餓)及邏輯運算符(&amp;&amp;)算是表達式的一種</li>
+<li>三元運算符案例如下：</li>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/qBgVLrX">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Greeting</span> = (<span class="params">&#123; isLoggedIn &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;isLoggedIn ? (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      ) : (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Please log in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      )&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] = <span class="title function_">useState</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleLoginToggle</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsLoggedIn</span>(<span class="function">(<span class="params">prevIsLoggedIn</span>) =&gt;</span> !prevIsLoggedIn);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleLoginToggle&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;isLoggedIn ? &#x27;Logout&#x27; : &#x27;Login&#x27;&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Greeting</span> <span class="attr">isLoggedIn</span>=<span class="string">&#123;isLoggedIn&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>邏輯運算符(&amp;&amp;)案例如下：</li>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzML">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> isLoggedIn = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;isLoggedIn &amp;&amp; <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Welcome</span> back!</span><br></pre></td></tr></table></figure>
+
+<h3 id="純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白"><a href="#純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白" class="headerlink" title="純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)"></a>純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div /&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;false&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;null&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;undefined&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;true&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="屬性展開-…"><a href="#屬性展開-…" class="headerlink" title="屬性展開(…)"></a>屬性展開(…)</h3><ul>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/KKJybyw">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> props = &#123; <span class="attr">className</span>: <span class="string">&#x27;my-class&#x27;</span>, <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span> &#125; &#125;;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...props</span>&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列作為子元素：-你可以使用陣列來傳遞多個子元素"><a href="#陣列作為子元素：-你可以使用陣列來傳遞多個子元素" class="headerlink" title="陣列作為子元素： 你可以使用陣列來傳遞多個子元素"></a>陣列作為子元素： 你可以使用陣列來傳遞多個子元素</h3><ul>
+<li><a href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzaW">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> items = [<span class="string">&#x27;Item 1&#x27;</span>, <span class="string">&#x27;Item 2&#x27;</span>, <span class="string">&#x27;Item 3&#x27;</span>];</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;items.map((item, index) =&gt; (</span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                ))&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="React內聯樣式（inline-styles）"><a href="#React內聯樣式（inline-styles）" class="headerlink" title="React內聯樣式（inline styles）"></a>React內聯樣式（inline styles）</h3><ul>
+<li>JSX不能使用保留字(會自動轉換成別的字詞避免與保留字衝突)<ul>
+<li>class-&gt;className</li>
+<li>for-&gt;htmlfor(label)</li>
+<li>CSS內聯屬性stroke-width改成駝峰式命名(Camel-Case)strokeWidth</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">red</span>&#x27;, <span class="attr">fontSize:</span> &#x27;<span class="attr">16px</span>&#x27; &#125;&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
@@ -1124,139 +1257,6 @@
       </tags>
   </entry>
   <entry>
-    <title>React(二)：JSX 是什麼？為何在 React 中使用 JSX？</title>
-    <url>/Blog/React-2/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
-<h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
-<li>JSX（JavaScript XML）是一種 JavaScript 的語法擴展，通常與 React 一同使用。它允許開發者在 JavaScript 中使用類似 XML 或 HTML 的語法來撰寫 React 元素，並透過渲染（Render）將其轉譯為實際的 DOM 元素及相對應的事件。這種語法使得 React 組件的描述更直觀、易讀，同時提供了更高效的元素創建方式。</li>
-<li>JSX只是為React element(原生語法)提供語法糖。</li>
-<li>原生創建React元素語法：React.createElement(component, props, …children)。<ul>
-<li>component：React 元素的類型，可以是 HTML 元素名稱（字符串，例如 ‘div’）或 React 組件</li>
-<li>props：元素的屬性（attributes），是一個包含元素屬性及其值的物件。</li>
-<li>…children：元素的子元素，可以是單一元素或一個包含多個子元素的數組。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  div,</span><br><span class="line">  &#123;<span class="attr">className</span>: <span class="string">&#x27;info&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>JSX寫法如下</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;info&quot;</span>&gt;<span class="title class_">Hello</span> <span class="title class_">World</span>&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li>巢狀寫法的案例如下：<ul>
-<li>React.createElement寫法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  &#123; <span class="attr">className</span>: <span class="string">&#x27;container&#x27;</span> &#125;,</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;h1&#x27;</span>,</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    <span class="string">&#x27;Nested Example&#x27;</span></span><br><span class="line">  ),</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;p&#x27;</span>,</span><br><span class="line">    &#123; <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;blue&#x27;</span> &#125; &#125;,</span><br><span class="line">    <span class="string">&#x27;This is a nested paragraph.&#x27;</span></span><br><span class="line">  )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>JSX寫法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;container&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Nested Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">blue</span>&#x27; &#125;&#125;&gt;</span>This is a nested paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="JSX內部原理及規則"><a href="#JSX內部原理及規則" class="headerlink" title="JSX內部原理及規則"></a>JSX內部原理及規則</h2><ul>
-<li>JSX會在編譯階段被轉譯成對應的 React.createElement 的呼叫，生成一個 JavaScript 物件，這個物件描述了 React 元素的類型、屬性（props），以及子元素。</li>
-</ul>
-<hr>
-<p>JSX使用規則如下</p>
-<h3 id="使用者定義的元件必須大寫"><a href="#使用者定義的元件必須大寫" class="headerlink" title="使用者定義的元件必須大寫"></a>使用者定義的元件必須大寫</h3><ul>
-<li>錯誤寫法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="comment">// ↓ 正確：hello-&gt;Hello</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 使用hello非大寫會導致發生錯誤，無法透過JSX引用該元件</span></span><br><span class="line">  <span class="comment">//   正確的方式：hello-&gt;Hello</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>正確寫法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="React元件不能使用表達式-只能是大寫字母開頭的變數或函數名"><a href="#React元件不能使用表達式-只能是大寫字母開頭的變數或函數名" class="headerlink" title="React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)"></a>React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)</h3><ul>
-<li>錯誤寫法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Components</span> = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 請用變數賦值，避免使用表達式</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml">&lt;Components[props.storyType]; story=&#123;props.story&#125; /&gt;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>正確寫法</li>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/ZEwamdE">CodePen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> components = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// 根據 props 中的 storyType 選擇要渲染的元件</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">SpecificStory</span> = components[props.<span class="property">storyType</span>];</span><br><span class="line">  <span class="comment">// 渲染所選擇的元件，並將 story 作為 props 傳遞</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">SpecificStory</span> <span class="attr">story</span>=<span class="string">&#123;props.story&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<p>顯示如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Photo</span> <span class="title class_">Story</span>: A beautiful photo story</span><br><span class="line"><span class="title class_">Video</span> <span class="title class_">Story</span>: <span class="title class_">An</span> amazing video story</span><br></pre></td></tr></table></figure>
-
-<h3 id="回傳單一個根元素"><a href="#回傳單一個根元素" class="headerlink" title="回傳單一個根元素"></a>回傳單一個根元素</h3><ul>
-<li>最外層需要使用父層元素包覆(EX：div、或使用 Fragment (&lt;&gt; 和 &lt;&#x2F;&gt;))</li>
-<li>案例如下：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="所有標籤都需要結尾標籤"><a href="#所有標籤都需要結尾標籤" class="headerlink" title="所有標籤都需要結尾標籤"></a>所有標籤都需要結尾標籤</h3><p>範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>自閉標籤(self-closing)範例如下</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;img /&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="JSX特色"><a href="#JSX特色" class="headerlink" title="JSX特色"></a>JSX特色</h2><h3 id="Props可以使用Javascript表達式-foo-1-2-3-4"><a href="#Props可以使用Javascript表達式-foo-1-2-3-4" class="headerlink" title="Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})"></a>Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})</h3><ul>
-<li>Javascript表達式案例如下：</li>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/eYxebZp">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>由App組件傳過來的foo參數：&#123;props.foo&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">MyComponent</span> <span class="attr">foo</span>=<span class="string">&#123;1</span> + <span class="attr">2</span> + <span class="attr">3</span> + <span class="attr">4</span>&#125; /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<p>顯示如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">由<span class="title class_">App</span>組件傳過來的foo參數：<span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>if跟for不是表達式不能使用</strong></li>
-<li>三元運算符(肚子餓了嗎?餓了:還沒餓)及邏輯運算符(&amp;&amp;)算是表達式的一種</li>
-<li>三元運算符案例如下：</li>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/qBgVLrX">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Greeting</span> = (<span class="params">&#123; isLoggedIn &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;isLoggedIn ? (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      ) : (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Please log in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      )&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] = <span class="title function_">useState</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleLoginToggle</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsLoggedIn</span>(<span class="function">(<span class="params">prevIsLoggedIn</span>) =&gt;</span> !prevIsLoggedIn);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleLoginToggle&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;isLoggedIn ? &#x27;Logout&#x27; : &#x27;Login&#x27;&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Greeting</span> <span class="attr">isLoggedIn</span>=<span class="string">&#123;isLoggedIn&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>邏輯運算符(&amp;&amp;)案例如下：</li>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzML">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> isLoggedIn = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;isLoggedIn &amp;&amp; <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<p>顯示如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Welcome</span> back!</span><br></pre></td></tr></table></figure>
-
-<h3 id="純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白"><a href="#純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白" class="headerlink" title="純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)"></a>純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div /&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;false&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;null&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;undefined&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;true&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="屬性展開-…"><a href="#屬性展開-…" class="headerlink" title="屬性展開(…)"></a>屬性展開(…)</h3><ul>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/KKJybyw">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> props = &#123; <span class="attr">className</span>: <span class="string">&#x27;my-class&#x27;</span>, <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span> &#125; &#125;;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...props</span>&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="陣列作為子元素：-你可以使用陣列來傳遞多個子元素"><a href="#陣列作為子元素：-你可以使用陣列來傳遞多個子元素" class="headerlink" title="陣列作為子元素： 你可以使用陣列來傳遞多個子元素"></a>陣列作為子元素： 你可以使用陣列來傳遞多個子元素</h3><ul>
-<li><a href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzaW">Codepen連結</a></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> items = [<span class="string">&#x27;Item 1&#x27;</span>, <span class="string">&#x27;Item 2&#x27;</span>, <span class="string">&#x27;Item 3&#x27;</span>];</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;items.map((item, index) =&gt; (</span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                ))&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="React內聯樣式（inline-styles）"><a href="#React內聯樣式（inline-styles）" class="headerlink" title="React內聯樣式（inline styles）"></a>React內聯樣式（inline styles）</h3><ul>
-<li>JSX不能使用保留字(會自動轉換成別的字詞避免與保留字衝突)<ul>
-<li>class-&gt;className</li>
-<li>for-&gt;htmlfor(label)</li>
-<li>CSS內聯屬性stroke-width改成駝峰式命名(Camel-Case)strokeWidth</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">red</span>&#x27;, <span class="attr">fontSize:</span> &#x27;<span class="attr">16px</span>&#x27; &#125;&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>React</category>
-      </categories>
-      <tags>
-        <tag>JSX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS-8：ES module 匯入與匯出</title>
     <url>/Blog/JS-8/</url>
     <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
@@ -1348,7 +1348,7 @@
 <ul>
 <li>以下是HTML範例檔案</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;ES Module Example&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">        import &#123; myVariable, myFunction &#125; from &#x27;./Export.js&#x27;</span><br><span class="line">        console.log(myFunction(800))</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>ES Module Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">import</span> &#123; myVariable, myFunction &#125; <span class="keyword">from</span> <span class="string">&#x27;./Export.js&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">myFunction</span>(<span class="number">800</span>))</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>顯示結果如下：<br><img src="http://drive.google.com/uc?id=1dR3M7bp7yzjSP2GvUTn_n1J9nFWzAaIh&export=download" alt="ESM匯入自己的JS方法"></p>
 <h4 id="使用第三方套件的JS方法"><a href="#使用第三方套件的JS方法" class="headerlink" title="使用第三方套件的JS方法"></a>使用第三方套件的JS方法</h4><ul>
@@ -1360,7 +1360,7 @@
 <ul>
 <li>範例如下(以Axios為例)</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Using Axios in the Browser&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">        import axios from &#x27;https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/esm/axios.js&#x27;;</span><br><span class="line">        // 發送 GET 請求</span><br><span class="line">        axios.get(&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;)</span><br><span class="line">            .then(response =&gt; &#123;</span><br><span class="line">                console.log(&#x27;Data:&#x27;, response.data);</span><br><span class="line">            &#125;)</span><br><span class="line">            .catch(error =&gt; &#123;</span><br><span class="line">                console.error(&#x27;Error:&#x27;, error);</span><br><span class="line">            &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Using Axios in the Browser<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/esm/axios.js&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 發送 GET 請求</span></span></span><br><span class="line"><span class="language-javascript">        axios.<span class="title function_">get</span>(<span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Data:&#x27;</span>, response.<span class="property">data</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;)</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Error:&#x27;</span>, error);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>顯示如下<br><img src="http://drive.google.com/uc?id=1tyA347NAcTCS-EzfSMELSEoAZDlMElEp&export=download" alt="ESM使用Axios第三方套件"></p>
 ]]></content>
