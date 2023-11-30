@@ -1256,4 +1256,120 @@
         <tag>JSX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JS-8：ES module 匯入與匯出</title>
+    <url>/Blog/JS-8/</url>
+    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<h2 id="早期模塊化規範-CommonJS-CJS"><a href="#早期模塊化規範-CommonJS-CJS" class="headerlink" title="早期模塊化規範-CommonJS(CJS)"></a>早期模塊化規範-CommonJS(CJS)</h2><p>運行環境: 主要在<strong>Node.js</strong>環境下運行。Node.js是一個基於V8引擎的伺服器端JavaScript執行環境，並且內建支援CommonJS模塊系統。</p>
+<ul>
+<li>匯入模塊<br>使用<strong>require</strong>語法進行模塊匯入</li>
+<li>匯出模塊<br>使用<strong>module.exports</strong>或<strong>exports</strong>語法進行模塊匯出</li>
+</ul>
+<hr>
+<ul>
+<li>以下是匯出的JS檔案(Export.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓匯出變數</span></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">myVariable</span> = <span class="string">&quot;Hello from CommonJS&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓匯出函數</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">myVariableFunc</span> = <span class="keyword">function</span>(<span class="params">Value</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Value</span> + <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下是匯入的JS檔案(Import.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓匯入模塊</span></span><br><span class="line"><span class="keyword">const</span> myModule = <span class="built_in">require</span>(<span class="string">&#x27;./Export.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myModule&quot;</span>, myModule)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myVariable&quot;</span>, myModule.<span class="property">myVariable</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myVariableFunc&quot;</span>, myModule.<span class="title function_">myVariableFunc</span>(<span class="number">200</span>))</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">myModule &#123;</span><br><span class="line">  <span class="attr">myVariable</span>: <span class="string">&#x27;Hello from CommonJS&#x27;</span>,</span><br><span class="line">  <span class="attr">myVariableFunc</span>: [<span class="title class_">Function</span> (anonymous)]</span><br><span class="line">&#125;</span><br><span class="line">myVariable <span class="title class_">Hello</span> <span class="keyword">from</span> <span class="title class_">CommonJS</span></span><br><span class="line">myVariableFunc <span class="number">300</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6模塊化規範-ES-Module-ESM"><a href="#ES6模塊化規範-ES-Module-ESM" class="headerlink" title="ES6模塊化規範-ES Module(ESM)"></a>ES6模塊化規範-ES Module(ESM)</h2><p>運行環境: 可以在<strong>Node.js</strong>和<strong>瀏覽器環境下</strong>運行。ES Modules是ECMAScript 6（ES6）引入的官方模塊系統，得到了現代瀏覽器的原生支援。</p>
+<ul>
+<li>匯入模塊<br>使用<strong>import</strong>語法進行模塊匯入</li>
+<li>匯出模塊<br>使用<strong>export</strong>語法進行模塊匯出</li>
+</ul>
+<hr>
+<p>方式分為以下兩種</p>
+<h3 id="具名匯出-Named-Export"><a href="#具名匯出-Named-Export" class="headerlink" title="具名匯出(Named Export)"></a>具名匯出(Named Export)</h3><ul>
+<li>藉由解構賦值來選擇性地引入模塊中的特定變數、函數或類別。</li>
+<li>模塊可同時匯出多個變數、函數或類別，使得模塊的功能可以被彈性地引入。</li>
+<li>匯入的變數名稱必須與原始模塊中的名稱保持一致</li>
+</ul>
+<hr>
+<ul>
+<li>以下是匯出的JS檔案(Export.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯出變數</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> myVariable = <span class="string">&quot;Hello from ES Module&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓具名匯出函數</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params">Value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Value</span> + <span class="number">100</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下是匯入的JS檔案(Import.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯入 (Named Import)</span></span><br><span class="line"><span class="keyword">import</span> &#123; myVariable, myFunction &#125; <span class="keyword">from</span> <span class="string">&#x27;./Export.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myVariable&quot;</span>, myVariable)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myFunction&quot;</span>, <span class="title function_">myFunction</span>(<span class="number">300</span>))</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">myVariable <span class="title class_">Hello</span> <span class="keyword">from</span> <span class="variable constant_">ES</span> <span class="title class_">Module</span></span><br><span class="line">myFunction <span class="number">400</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="匯出的JS檔案不同的寫法-統一最後在匯出"><a href="#匯出的JS檔案不同的寫法-統一最後在匯出" class="headerlink" title="匯出的JS檔案不同的寫法(統一最後在匯出)"></a>匯出的JS檔案不同的寫法(統一最後在匯出)</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯出變數</span></span><br><span class="line"><span class="keyword">const</span> myVariable = <span class="string">&quot;Hello from ES Module&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓具名匯出函數</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params">Value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Value</span> + <span class="number">100</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; myVariable, myFunction &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="匯入所有的具名模塊"><a href="#匯入所有的具名模塊" class="headerlink" title="匯入所有的具名模塊(*)"></a>匯入所有的具名模塊(*)</h4><ul>
+<li>需要將*命名成一個自定義的模塊名稱</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯入 (Named Import)</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> importModule <span class="keyword">from</span> <span class="string">&#x27;./Export.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;importModule&quot;</span>, importModule)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myVariable&quot;</span>, importModule.<span class="property">myVariable</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;myFunction&quot;</span>, importModule.<span class="title function_">myFunction</span>(<span class="number">300</span>))</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">importModule [<span class="title class_">Module</span>: <span class="literal">null</span> prototype] &#123;</span><br><span class="line">  <span class="attr">myFunction</span>: [<span class="title class_">Function</span>: myFunction],</span><br><span class="line">  <span class="attr">myVariable</span>: <span class="string">&#x27;Hello from ES Module&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">myVariable <span class="title class_">Hello</span> <span class="keyword">from</span> <span class="variable constant_">ES</span> <span class="title class_">Module</span></span><br><span class="line">myFunction <span class="number">400</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="預設匯出-Default-Export"><a href="#預設匯出-Default-Export" class="headerlink" title="預設匯出(Default Export)"></a>預設匯出(Default Export)</h3><ul>
+<li>模塊中唯一的默認導出。每個模塊只能使用一個 export default 來導出一個變數、函數、物件等。</li>
+<li>可以自行命名引入的變數名稱</li>
+</ul>
+<hr>
+<ul>
+<li>以下是匯出的JS檔案(Export.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓預設匯出變數</span></span><br><span class="line"><span class="keyword">const</span> defaultVariable = <span class="string">&quot;Hello from Default Export&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defaultVariable;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下是匯入的JS檔案(Import.js)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯入 (Named Import)</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Customize</span> <span class="keyword">from</span> <span class="string">&#x27;./Export.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Customize&quot;</span>, <span class="title class_">Customize</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模塊化使用教學"><a href="#模塊化使用教學" class="headerlink" title="模塊化使用教學"></a>模塊化使用教學</h2><h3 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h3><ul>
+<li>透過以下語法快速生成專案所需的package.json</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新增type告訴專案使用的是commonjs或是module即可使用對應的方法。<br><img src="http://drive.google.com/uc?id=1hE2_Vh9AmPofL-cooKNtHMb53Cx58eBG&export=download" alt="Package.json設定照片"></li>
+</ul>
+<h3 id="瀏覽器"><a href="#瀏覽器" class="headerlink" title="瀏覽器"></a>瀏覽器</h3><h4 id="使用自己撰寫的js方法"><a href="#使用自己撰寫的js方法" class="headerlink" title="使用自己撰寫的js方法"></a>使用自己撰寫的js方法</h4><ul>
+<li>透過VS Code Live Server或是自幾架設Server(避免CORS限制)</li>
+<li>Export.js檔案內容如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ↓具名匯出變數</span></span><br><span class="line"><span class="keyword">const</span> myVariable = <span class="string">&quot;Hello from ES Module&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓具名匯出函數</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params">Value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Value</span> + <span class="number">100</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; myVariable, myFunction &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下是HTML範例檔案</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;ES Module Example&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">        import &#123; myVariable, myFunction &#125; from &#x27;./Export.js&#x27;</span><br><span class="line">        console.log(myFunction(800))</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>顯示結果如下：<br><img src="http://drive.google.com/uc?id=1dR3M7bp7yzjSP2GvUTn_n1J9nFWzAaIh&export=download" alt="ESM匯入自己的JS方法"></p>
+<h4 id="使用第三方套件的JS方法"><a href="#使用第三方套件的JS方法" class="headerlink" title="使用第三方套件的JS方法"></a>使用第三方套件的JS方法</h4><ul>
+<li>透過CDN的網站查找別人已開發好的第三方套件方法</li>
+<li><a href="https://cdnjs.com/">網站連結</a></li>
+<li>需確認CDN上面有寫esm標記，代表可以使用ECMAScript模塊的方式匯入<br><img src="https://drive.google.com/file/d/1xCICcuJiKWP_hyNpni23um86x1yBrpXt/view?usp=drive_link" alt="確定CDN有esm的標記"></li>
+</ul>
+<hr>
+<ul>
+<li>範例如下(以Axios為例)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Using Axios in the Browser&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">        import axios from &#x27;https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/esm/axios.js&#x27;;</span><br><span class="line">        // 發送 GET 請求</span><br><span class="line">        axios.get(&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;)</span><br><span class="line">            .then(response =&gt; &#123;</span><br><span class="line">                console.log(&#x27;Data:&#x27;, response.data);</span><br><span class="line">            &#125;)</span><br><span class="line">            .catch(error =&gt; &#123;</span><br><span class="line">                console.error(&#x27;Error:&#x27;, error);</span><br><span class="line">            &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下<br><img src="http://drive.google.com/uc?id=1tyA347NAcTCS-EzfSMELSEoAZDlMElEp&export=download" alt="ESM使用Axios第三方套件"></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>CommonJS</tag>
+        <tag>ES Module</tag>
+      </tags>
+  </entry>
 </search>
