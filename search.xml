@@ -627,12 +627,17 @@
 
 <hr>
 <h3 id="箭頭函式"><a href="#箭頭函式" class="headerlink" title="箭頭函式"></a>箭頭函式</h3><ul>
-<li>省略function替換成箭頭函數的方式。</li>
+<li>方法1：省略function替換成箭頭函數的方式。</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>當確定僅有一個參數(item)，不可為空或超過一個參數，可以省略成以下寫法。</li>
+<li>方法2：省略function + 省略return。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> (item * <span class="number">2</span>))</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方法3：當確定僅有一個參數(item)，不可為空或超過一個參數，可以省略成以下寫法。</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> resultarr = arr.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> item * <span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultarr)</span><br></pre></td></tr></table></figure>
 
