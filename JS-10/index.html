@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://drive.google.com/uc?id=1ZoUBCHQrYhtmVa_be25gQMFFcvW1MxmR&export=download">
 <meta property="og:image" content="http://drive.google.com/uc?id=1ZE8nVzrOcWRo536RnmPH-P-lZkJFBO9z&export=download">
 <meta property="article:published_time" content="2023-12-10T15:53:30.000Z">
-<meta property="article:modified_time" content="2023-12-11T05:27:07.002Z">
+<meta property="article:modified_time" content="2023-12-11T12:31:27.613Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="var">
 <meta property="article:tag" content="let">
@@ -253,7 +253,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-11 13:27:07" itemprop="dateModified" datetime="2023-12-11T13:27:07+08:00">2023-12-11</time>
+                <time title="修改時間：2023-12-11 20:31:27" itemprop="dateModified" datetime="2023-12-11T20:31:27+08:00">2023-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -370,7 +370,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>區域 數字太大了</span><br><span class="line"><span class="title class_">Uncaught</span> <span class="title class_">ReferenceError</span>: <span class="title class_">Title</span> is not defined</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Title作用域在if的括號之內(紅色框框)，因此if外層的console.log(“我是funcA的最下面”, Title)無法正確讀取到Title變數，出現ReferenceError錯誤</li>
+<li>Title作用域在if的括號之內(紅色框框)，因此 if 外層的console.log(“我是funcA的最下面”, Title)無法正確讀取到Title變數，出現ReferenceError錯誤</li>
 </ul>
 <p><img src="http://drive.google.com/uc?id=1nx8TSEISllPuFeuQtTtlybc9mCqRsZzg&export=download" alt="塊級作用域(解釋外層讀取內層變數錯誤方式)"></p>
 <h3 id="const-let-差異"><a href="#const-let-差異" class="headerlink" title="const &amp; let 差異"></a>const &amp; let 差異</h3><h4 id="let與const重新賦值差別"><a href="#let與const重新賦值差別" class="headerlink" title="let與const重新賦值差別"></a>let與const重新賦值差別</h4><ul>
@@ -443,9 +443,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ReferenceError</span>: <span class="title class_">Cannot</span> access <span class="string">&#x27;x&#x27;</span> before initialization</span><br></pre></td></tr></table></figure>
 
 <hr>
-<ul>
-<li>透過不同方式更確定let的區塊性提升</li>
-</ul>
+<p>透過不同方式更確定let的區塊性提升</p>
 <p>範例如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>()</span><br></pre></td></tr></table></figure>
 

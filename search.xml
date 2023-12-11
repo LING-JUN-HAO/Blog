@@ -1579,7 +1579,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>區域 數字太大了</span><br><span class="line"><span class="title class_">Uncaught</span> <span class="title class_">ReferenceError</span>: <span class="title class_">Title</span> is not defined</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Title作用域在if的括號之內(紅色框框)，因此if外層的console.log(“我是funcA的最下面”, Title)無法正確讀取到Title變數，出現ReferenceError錯誤</li>
+<li>Title作用域在if的括號之內(紅色框框)，因此 if 外層的console.log(“我是funcA的最下面”, Title)無法正確讀取到Title變數，出現ReferenceError錯誤</li>
 </ul>
 <p><img src="http://drive.google.com/uc?id=1nx8TSEISllPuFeuQtTtlybc9mCqRsZzg&export=download" alt="塊級作用域(解釋外層讀取內層變數錯誤方式)"></p>
 <h3 id="const-let-差異"><a href="#const-let-差異" class="headerlink" title="const &amp; let 差異"></a>const &amp; let 差異</h3><h4 id="let與const重新賦值差別"><a href="#let與const重新賦值差別" class="headerlink" title="let與const重新賦值差別"></a>let與const重新賦值差別</h4><ul>
@@ -1652,9 +1652,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ReferenceError</span>: <span class="title class_">Cannot</span> access <span class="string">&#x27;x&#x27;</span> before initialization</span><br></pre></td></tr></table></figure>
 
 <hr>
-<ul>
-<li>透過不同方式更確定let的區塊性提升</li>
-</ul>
+<p>透過不同方式更確定let的區塊性提升</p>
 <p>範例如下</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>()</span><br></pre></td></tr></table></figure>
 
