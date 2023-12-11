@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ling-jun-hao.github.io/Blog/JS-10/</loc>
+    
+    <lastmod>2023-12-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/JS-5/</loc>
+    
+    <lastmod>2023-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ling-jun-hao.github.io/Blog/JS-3/</loc>
     
     <lastmod>2023-12-01</lastmod>
@@ -48,15 +66,6 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/JS-6/</loc>
-    
-    <lastmod>2023-11-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/JS-5/</loc>
     
     <lastmod>2023-11-30</lastmod>
     
@@ -175,7 +184,7 @@
 
   <url>
     <loc>https://ling-jun-hao.github.io/Blog</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -183,133 +192,154 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Hexo/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES6/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Arrow-Function/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Pass-by-reference/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/shallow-copy/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/deep-copy/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/SoC/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/JSX/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Promise/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/CommonJS/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES-Module/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Pure-Function/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-forEach/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-map/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-filter/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-findIndex/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-reduce/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Array-sort/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/var/</loc>
+    <lastmod>2023-12-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/let/</loc>
+    <lastmod>2023-12-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/const/</loc>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -318,28 +348,28 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/categories/Blog/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/categories/Emmet/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/categories/JavaScript/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/categories/React/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
