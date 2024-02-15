@@ -37,13 +37,13 @@
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="探索JavaScript This 的指向：深入剖析判斷的技巧。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
 <meta property="article:published_time" content="2023-11-28T14:22:45.000Z">
-<meta property="article:modified_time" content="2023-11-30T16:50:37.876Z">
+<meta property="article:modified_time" content="2024-02-15T15:06:03.055Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="Blog, 部落格, Hexo, Github Page">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-2/">
 
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-01 00:50:37" itemprop="dateModified" datetime="2023-12-01T00:50:37+08:00">2023-12-01</time>
+                <time title="修改時間：2024-02-15 23:06:03" itemprop="dateModified" datetime="2024-02-15T23:06:03+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,7 +294,7 @@
       
         <p><strong>JavaScript this指向跟調用關係有關</strong></p>
 <hr>
-<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="一個函式中包含多少參數"><a href="#一個函式中包含多少參數" class="headerlink" title="一個函式中包含多少參數"></a>一個函式中包含多少參數</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(params, <span class="variable language_">this</span>, <span class="variable language_">window</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>

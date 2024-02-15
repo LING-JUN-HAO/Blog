@@ -3,7 +3,7 @@
   <entry>
     <title>建立自己的部落格(1)：認識Hexo及所其需工具(Nodejs &amp; Git)</title>
     <url>/Blog/hexo-github-1/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>雖然網路上充斥著各式架設網站的教學，但當我真正動手操作時，發現還有許多細節值得探討和設定。為了幫助更多有此需求的朋友，我決定將這些寶貴的經驗細節記錄下來。架設部落格其實並不困難，只要跟著我的步伐，你也可以輕鬆擁有一個專屬於自己的部落格。</p>
 <h2 id="什麼是Hexo呢"><a href="#什麼是Hexo呢" class="headerlink" title="什麼是Hexo呢?"></a>什麼是Hexo呢?</h2><ul>
 <li>Hexo 是一個快速、簡單且強大的部落格框架，透過設定檔調整即可將對應的網頁進行樣式變更</li>
@@ -77,7 +77,7 @@
   <entry>
     <title>建立自己的部落格(4)：了解Hexo指令，更換next部落格主題</title>
     <url>/Blog/hexo-github-4/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
 <h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
 <li>在當前路徑下建造hexo初始化的相關資訊<br>(Day2使用過此指令，在一開始初始化並生成Hexo資訊的時候使用)</li>
 </ul>
@@ -130,8 +130,8 @@
 <ul>
 <li>當安裝完成時，可以看到<strong><code>./themes</code></strong>路徑下多了<strong><code>next</code></strong>的資料夾，裡面已經有剛剛下載的模板資料了</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1U_OPm-y2jjtB09fZRXDFrF3AmPURUDZ3&export=download" alt="Next安裝完成"></p>
-<h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="http://drive.google.com/uc?id=1HnWlLG1OTpANAhjRTYm91GsFxZ1BQQOY&export=download" alt="修改根目錄下的設定檔"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/Next%E5%AE%89%E8%A3%9D%E5%AE%8C%E6%88%90.jpg" alt="Next安裝完成"></p>
+<h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E9%8C%84%E4%B8%8B%E7%9A%84%E8%A8%AD%E5%AE%9A%E6%AA%94.png" alt="修改根目錄下的設定檔"></p>
 <ul>
 <li>看到theme: landscape的部分，我們要換掉，換成自己的模板next<br>(請修改如下)</li>
 </ul>
@@ -146,7 +146,7 @@
 <ul>
 <li>透過瀏覽器查看當前部落格新造型<br>(<a href="http://localhost:4000/">http://localhost:4000/</a>)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1ioZAj4UUNo6u9PC5-pOx_vyrfrohEeol&export=download" alt="next模板造型"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007049/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/next%E6%A8%A1%E6%9D%BF%E9%80%A0%E5%9E%8B.png" alt="next模板造型"></p>
 <h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>看到新造型感覺越來越有樣子了吧!!!希望我們都能夠將部落格布置成每個人獨一無二的秘密基地。</p>
 <hr>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a href="https://hexo.io/zh-tw/docs/">Hexo官方文件-指令</a></p>
@@ -161,12 +161,12 @@
   <entry>
     <title>建立自己的部落格(3)：修改Hexo設定檔中Site，查看其變化</title>
     <url>/Blog/hexo-github-3/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
-<h2 id="查看Hexo設定檔"><a href="#查看Hexo設定檔" class="headerlink" title="查看Hexo設定檔"></a>查看Hexo設定檔</h2><p><img src="http://drive.google.com/uc?id=13AiVmiL8LUNuCxmK-T4JcdlfX63PhVvQ&export=download" alt="Hexo資料夾"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
+<h2 id="查看Hexo設定檔"><a href="#查看Hexo設定檔" class="headerlink" title="查看Hexo設定檔"></a>查看Hexo設定檔</h2><p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007045/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%E8%B3%87%E6%96%99%E5%A4%BE.png" alt="Hexo資料夾"></p>
 <ul>
 <li>使用記事本打開的情況(看起來就很不容易修改吧…..)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1xUwAdJuHtnbHtXy1rZXC3FAmp3Ja6--m&export=download" alt="記事本打開"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007041/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/%E8%A8%98%E4%BA%8B%E6%9C%AC%E6%89%93%E9%96%8B%E8%A8%AD%E5%AE%9A%E6%AA%94.png" alt="記事本打開"></p>
 <ul>
 <li>這時候需要搬出編輯器工具美化它</li>
 </ul>
@@ -174,15 +174,15 @@
 <h2 id="編譯器工具推薦"><a href="#編譯器工具推薦" class="headerlink" title="編譯器工具推薦"></a>編譯器工具推薦</h2><h3 id="推薦工具1-Vscode"><a href="#推薦工具1-Vscode" class="headerlink" title="推薦工具1-Vscode"></a>推薦工具1-Vscode</h3><ul>
 <li><strong><code><a href="https://code.visualstudio.com/download">官方下載連結請點我</a></code></strong></li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1xkbqJV1XHR3YgG2bK2A42h0gPrd94gWR&export=download" alt="Vscode官方下載圖片"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007046/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Vscode%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BC%89%E5%9C%96%E7%89%87.png" alt="Vscode官方下載圖片"></p>
 <ul>
 <li>安裝上都按照預設點選下一步直至完成即可</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=16yCHL6f3esb9quZx_r41Hq36yQuDapz_&export=download" alt="Vscode打開資料夾"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007048/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Vscode%E6%89%93%E9%96%8B%E8%B3%87%E6%96%99%E5%A4%BE.png" alt="Vscode打開資料夾"></p>
 <ul>
 <li>使用Vscode編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1pt-FgqSbMwtTSyPdS6WSdONGAwnoRStu&export=download" alt="Vscode資料夾檢視畫面"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007047/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Vscode%E8%B3%87%E6%96%99%E5%A4%BE%E6%AA%A2%E8%A6%96%E7%95%AB%E9%9D%A2.png" alt="Vscode資料夾檢視畫面"></p>
 <ul>
 <li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
 <li>登登登登~看起來五顏六色的漂亮多了吧，這樣好編譯多了(加上#就變成綠色的註解寫法)</li>
@@ -190,15 +190,15 @@
 <h3 id="推薦工具2-Sublime-Text"><a href="#推薦工具2-Sublime-Text" class="headerlink" title="推薦工具2-Sublime Text"></a>推薦工具2-Sublime Text</h3><ul>
 <li><strong><code><a href="https://www.sublimetext.com/download">官方下載連結請點我</a></code></strong></li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1xKsoxcmtR--kquYg4d1_BVAjjBRFx7ph&export=download" alt="Subline官方下載圖片"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007048/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Subline%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BC%89%E5%9C%96%E7%89%87.png" alt="Subline官方下載圖片"></p>
 <ul>
 <li>安裝上都按照預設點選下一步直至完成即可</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1DTlqA9ZnECL-XelaPybZKUQ3r60Tz2iS&export=download" alt="Subline打開資料夾"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007048/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Subline%E6%89%93%E9%96%8B%E8%B3%87%E6%96%99%E5%A4%BE.png" alt="Subline打開資料夾"></p>
 <ul>
 <li>使用Subline編譯器將資料夾打開吧(File -&gt; Open Folder)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=18igTGqT70fqKYnYexhslbCy4cZ8OWeJL&export=download" alt="Subline"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007049/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Subline%E8%B3%87%E6%96%99%E5%A4%BE%E7%95%AB%E9%9D%A2.png" alt="Subline資料夾畫面"></p>
 <ul>
 <li>左邊是資料夾的結構樹狀圖(點擊即可查看該檔案)</li>
 <li>質感不太一樣，有些人更喜歡這種感覺(加上#就變成灰色的註解寫法)</li>
@@ -209,11 +209,11 @@
 <li>打開資料夾下的<strong><code>_config.yml</code></strong>檔案</li>
 <li>認識第一區塊的設計目的</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=13qWITCo9-xFHW0iNJTOWATUp3a4FQMmB&export=download" alt="Hexo Site設定"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20Site%E8%A8%AD%E5%AE%9A.png" alt="Hexo Site設定"></p>
 <ul>
 <li>先試著使用剛剛說的#註解說明文字幫助自己更加了解這些參數特性吧!</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1QoVfCWl5_6yHlOReTucwGU9Q13UBahh-&export=download" alt="Site備註"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20Site%E5%82%99%E8%A8%BB.png" alt="Hexo Site備註"></p>
 <ul>
 <li>title：網站標題</li>
 <li>subtitle：網站副標題</li>
@@ -241,13 +241,13 @@
 <h2 id="調整Site參數-title、subtitle成果展示"><a href="#調整Site參數-title、subtitle成果展示" class="headerlink" title="調整Site參數-title、subtitle成果展示"></a>調整Site參數-title、subtitle成果展示</h2><ul>
 <li><p>根據模板(Theme)的不同，顯示的位置會有些此不同。</p>
 </li>
-<li><p>title、subtitle<br><img src="http://drive.google.com/uc?id=1FGS8v5gU5hXcXHX16rh-B0s8fJ8xOY0z&export=download" alt="title&amp;subtitle修改成果"></p>
+<li><p>title、subtitle<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007044/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20title%20and%20subtitle%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png" alt="Hexo title&amp;subtitle修改成果"></p>
 </li>
-<li><p>author<br><img src="http://drive.google.com/uc?id=1DUl8B4_nQqEKJQylN_vynBWPauoN5gXe&export=download" alt="author修改成果"></p>
+<li><p>author<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20author%20%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png" alt="Hexo author修改成果"></p>
 </li>
-<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="http://drive.google.com/uc?id=1pZSShqWVHPjbsEfhvNQIIJI1eJwMeA3Q&export=download" alt="Antonio版面"></p>
+<li><p>description(因為預設版面沒有顯示這部分改以我的版面進行說明)<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007046/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Antonio%20Hexo%E7%89%88%E9%9D%A2.png" alt="Antonio Hexo版面"></p>
 </li>
-<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!<br><img src="http://drive.google.com/uc?id=16wbbAJVSC6svExxY1XqgM0pAhBQH3MP5&export=download" alt="網站Google搜尋結果"></p>
+<li><p>這部分關於網站的敘述也會在搜尋時被大家看到喔!!!<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/%E7%B6%B2%E7%AB%99Google%E6%90%9C%E5%B0%8B%E7%B5%90%E6%9E%9C.png" alt="網站Google搜尋結果"></p>
 </li>
 </ul>
 <h2 id="調整Site參數-language成果展示"><a href="#調整Site參數-language成果展示" class="headerlink" title="調整Site參數-language成果展示"></a>調整Site參數-language成果展示</h2><ul>
@@ -262,7 +262,7 @@
 
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://drive.google.com/uc?id=1RVRXzi6EoUSDOIg2Vx9bgLuKpAJQR2yp&export=download" alt="語系變更中文"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007045/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20%E8%AA%9E%E7%B3%BB%E8%AE%8A%E6%9B%B4%E4%B8%AD%E6%96%87.png" alt="Hexo 語系變更中文"></p>
 <ul>
 <li>剛剛右邊區塊的英文都變成中文</li>
 </ul>
@@ -280,7 +280,7 @@
   <entry>
     <title>建立自己的部落格(2)：創建Hexo Blog初始的模板</title>
     <url>/Blog/hexo-github-2/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=18TQ_febk5WVVEwvASXVqeoXXZCTQBl45&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
 <h2 id="安裝Hexo手把手教學"><a href="#安裝Hexo手把手教學" class="headerlink" title="安裝Hexo手把手教學"></a>安裝Hexo手把手教學</h2><ul>
 <li>在你的桌面上建立一個資料夾</li>
 </ul>
@@ -407,55 +407,55 @@
 <h2 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h2><ul>
 <li>打開Vscode點選<strong><code>new File</code></strong></li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1T5RtHQ2SZUiy98VErdJs3N_YJog03fl4&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007035/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/image-3_ohwpsn.png" alt="Vscode打開new File"></p>
 <ul>
 <li>輸入<strong><code>Test.html</code></strong>創立這個html檔案</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1gEkHZwGt9IcuPWgdRkgEQNN_r77YdqbE&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007038/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/%E5%89%B5%E5%BB%BAhtml.png" alt="Vscode創建html檔案"></p>
 <ul>
 <li>檢查一下右下角是否是<strong><code>HTML</code></strong>，否則Emmet語法可能會沒有反應</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1PWMyu37tQEYhsqvYt545lcYsHaMdtbnc&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007040/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Vscode%E5%8F%B3%E4%B8%8B%E8%A7%92%E9%A1%AF%E7%A4%BAHTML.png" alt="Vscode確認右下角顯示HTML"></p>
 <h2 id="常用語法-我自己常用的語法QQ"><a href="#常用語法-我自己常用的語法QQ" class="headerlink" title="常用語法(我自己常用的語法QQ)"></a>常用語法(我自己常用的語法QQ)</h2><p><strong><code>以下所有的空白鍵(Enter)均能替換成Tab鍵(英文字母Q旁邊的Tab按鍵)</code></strong></p>
 <h3 id="html檔案基本架構"><a href="#html檔案基本架構" class="headerlink" title="html檔案基本架構"></a>html檔案基本架構</h3><ul>
 <li>輸入! + Enter(有看到旁邊提示才能按空白鍵)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1WKpX8zPQX0RtsUNoCgjE0_5JL5JvuG41&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007036/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%E7%94%A2%E7%94%9FHTML%E5%BF%AB%E6%8D%B7%E9%8D%B5%28%21%20%2B%20%E7%A9%BA%E7%99%BD%E9%8D%B5%29.png" alt="Emmet 輸入! + Enter"></p>
 <ul>
 <li>登登登登~快速產生了一個html</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1bskZ7QDqAbjoyXLXec7fxa4aIHizUqpS&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007035/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9F%E7%9A%84HTML.png" alt="Emmet 快速產生html"></p>
 <hr>
 <h3 id="HTML標籤-無Class"><a href="#HTML標籤-無Class" class="headerlink" title="HTML標籤(無Class)"></a>HTML標籤(無Class)</h3><ul>
 <li>輸入標籤名稱 + Enter(有看到旁邊提示才能按空白鍵)</li>
 <li>以下範例圖片輸入h1 + Enter</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1EVE6pdXXR4nku07Zz4xIWVFt_DgnCxYQ&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007036/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fh1%E6%A8%99%E7%B1%A4%28h1%20%2B%20Enter%29.png" alt="Emmet HTML標籤"></p>
 <hr>
 <h3 id="HTML標籤-Class"><a href="#HTML標籤-Class" class="headerlink" title="HTML標籤 + Class"></a>HTML標籤 + Class</h3><p>單單只是產生標籤那一定不夠，腦中可能已經將畫面各自命名了(Class)，那就要一次到位</p>
 <ul>
 <li>輸入標籤名稱 + . + class名稱 + Enter(有看到旁邊提示才能按空白鍵)<br>有幾個Class就多幾組的 . + class名稱</li>
 <li>範例圖片使用 p + . + name + . + number(一次給他兩個Class名稱)</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1L2pOvAmkd1JLzmABiv2KAloR5r6FcOgy&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007033/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%20HTML%E6%A8%99%E7%B1%A4%20%2B%20Class.png" alt="Emmet HTML標籤 + Class"></p>
 <ul>
 <li>順帶一提，如果沒有給標籤名稱會變成神麼樣子呢?</li>
 <li>登登登登答案就是div，也就是只有div可以省略標籤名稱</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1cCMZIiuh2KJk9x81lKLG8MnjcN4FELkn&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007033/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%20%E7%84%A1%E6%A8%99%E7%B1%A4%20%2B%20Class.png" alt="Emmet 無標籤 + Class"></p>
 <hr>
 <h3 id="HTML標籤-Attribute"><a href="#HTML標籤-Attribute" class="headerlink" title="HTML標籤 + Attribute"></a>HTML標籤 + Attribute</h3><p>標籤屬性也是HTML裡面很重要的一環，讓我們把這個也學起來</p>
 <ul>
 <li>輸入標籤名稱 + [屬性名稱:屬性值] + Enter(有看到旁邊提示才能按空白鍵)<br>有幾個屬性就用空格分開</li>
 <li>範例圖片使用input[type&#x3D;text name&#x3D;姓名框]</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1wPY8-DtGslDG7jv4QR4_J-IK54e5ZQ-U&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007033/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/HTML%E6%A8%99%E7%B1%A4%20%2B%20Attribute.png" alt="Emmet HTML標籤 + Attribute"></p>
 <hr>
 <h3 id="Class-Attribute一次滿足"><a href="#Class-Attribute一次滿足" class="headerlink" title="Class + Attribute一次滿足"></a>Class + Attribute一次滿足</h3><p>偷偷告訴你一個小技巧，Emmet語法可以混用喔!!!</p>
 <ul>
 <li>範例圖片使用input[type&#x3D;text name&#x3D;姓名框].UserInput</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1aI_aNMPjfFvifqwNIZonc17X3dRRSy7X&export=download" alt="Alt text"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007034/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/Emmet-1/Emmet%20Class%20%2B%20Attribute%E4%B8%80%E6%AC%A1%E6%BB%BF%E8%B6%B3.png" alt="Emmet Class + Attribute一次滿足"></p>
 <hr>
 <h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>上面僅僅只是冰山一角呢，有時間會補齊自己常用的語法，如果你還是那麼想知道的話就告訴你吧。</p>
 <p>最完整的使用方法就在<a href="https://docs.emmet.io/cheat-sheet/">Emmet官方文件</a>(不要打我QQ)</p>
@@ -474,7 +474,7 @@
     <url>/Blog/JS-1/</url>
     <content><![CDATA[<p><strong>ES6語法糖：不會影響運作，邏輯與當前 JS 一致</strong></p>
 <hr>
-<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="物件內的函式"><a href="#物件內的函式" class="headerlink" title="物件內的函式"></a>物件內的函式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">hello</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="title function_">hello</span>()</span><br></pre></td></tr></table></figure>
 
 <p>顯示如下</p>
@@ -531,7 +531,7 @@
     <url>/Blog/JS-2/</url>
     <content><![CDATA[<p><strong>JavaScript this指向跟調用關係有關</strong></p>
 <hr>
-<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="一個函式中包含多少參數"><a href="#一個函式中包含多少參數" class="headerlink" title="一個函式中包含多少參數"></a>一個函式中包含多少參數</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;全域&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(params, <span class="variable language_">this</span>, <span class="variable language_">window</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -614,7 +614,7 @@
   <entry>
     <title>JavaScript(3)：掌握箭頭函式，優雅簡約的程式寫作</title>
     <url>/Blog/JS-3/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <p><strong>箭頭函數是ES6的新語法，能夠有效縮短傳統函式寫法</strong></p>
 <h2 id="傳統函式-VS-箭頭函式情境說明"><a href="#傳統函式-VS-箭頭函式情境說明" class="headerlink" title="傳統函式 VS 箭頭函式情境說明"></a>傳統函式 VS 箭頭函式情境說明</h2><ul>
 <li>直接透過一個例子來進行比較更快瞭解，透過箭頭函式縮短傳統函式。</li>
@@ -709,7 +709,7 @@
   <entry>
     <title>JavaScript(5)：物件傳參考特性(Pass by reference)</title>
     <url>/Blog/JS-5/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="JS-5-Javascript物件傳參考特性"><a href="#JS-5-Javascript物件傳參考特性" class="headerlink" title="JS-5 Javascript物件傳參考特性"></a>JS-5 Javascript物件傳參考特性</h2><p>JS的型別大致可分為原始型別(Primitive Types)及物件(Object)兩種</p>
 <ul>
 <li>原始型別(Primitive Types)：傳值(Pass by value)<ul>
@@ -846,7 +846,7 @@
   <entry>
     <title>JavaScript(4)：注重關注點的分離</title>
     <url>/Blog/JS-4/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
 <h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><ul>
 <li>關注點分離是一種軟體設計原則，將一個系統劃分為不同的模組或元件，每個模組或元件集中於解決特定的關注點或任務，以提高系統的可操作性、可維護性、可擴展性和可重用性。該原則主張將不同層面的關注點獨立開發，使得修改一個關注點不會影響其他關注點。</li>
@@ -893,13 +893,13 @@
 </ul>
 <hr>
 <ul>
-<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="http://drive.google.com/uc?id=12FyG23_e8aHiACL6LOyaEQ-9CeVIaH0J&export=download" alt="傳統網頁結構"></li>
+<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg" alt="傳統網頁結構"></li>
 </ul>
 <hr>
 <p>我們希望透過MVC的概念讓維護上更為方便。</p>
 <ul>
 <li>使用者與介面互動 -&gt; Controller處理網頁邏輯 -&gt; Controller調用Model方法，影響Model資料(新增或修改) -&gt; 修改完Controller再次呼叫View渲染的方法 -&gt; View根據更新後的資料重新渲染</li>
-<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="http://drive.google.com/uc?id=1GNrRHe4_sPec69XJhhgBVyCR503He1l3&export=download" alt="關注點分離-網頁結構"></li>
+<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg" alt="關注點分離-網頁結構"></li>
 <li>透過以下流程搭配程式碼進行說明<ol>
 <li>用戶與界面互動，觸發 Controller 的相應方法。<ul>
 <li>使用者在瀏覽器點擊移除。</li>
@@ -941,7 +941,7 @@
   <entry>
     <title>React(2)：JSX 是什麼？為何在 React 中使用 JSX？</title>
     <url>/Blog/React-2/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg" alt="Blog背景圖"></p>
 <h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
 <li>JSX（JavaScript XML）是一種 JavaScript 的語法擴展，通常與 React 一同使用。它允許開發者在 JavaScript 中使用類似 XML 或 HTML 的語法來撰寫 React 元素，並透過渲染（Render）將其轉譯為實際的 DOM 元素及相對應的事件。這種語法使得 React 組件的描述更直觀、易讀，同時提供了更高效的元素創建方式。</li>
 <li>JSX只是為React element(原生語法)提供語法糖。</li>
@@ -1074,7 +1074,7 @@
   <entry>
     <title>JavaScript(6)：深入理解Promise的原理及實際應用</title>
     <url>/Blog/JS-6/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="Promise為了解決什麼問題"><a href="#Promise為了解決什麼問題" class="headerlink" title="Promise為了解決什麼問題"></a>Promise為了解決什麼問題</h2><ul>
 <li>JavaScript Promise是一種用來處理異步操作的對象，它代表一個異步操作的成功(resolve)或失敗(reject)的結果。(以下皆使用setTimeout()示範異步操作的案例)</li>
 <li>透過這種方法能避免回調地獄（Callback Hell）的問題。</li>
@@ -1085,7 +1085,7 @@
 <p>顯示如下(依序出現A-&gt;B-&gt;C-&gt;All)：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Operation</span> A completed</span><br><span class="line"><span class="title class_">Operation</span> B completed</span><br><span class="line"><span class="title class_">Operation</span> C completed</span><br><span class="line"><span class="title class_">All</span> operations completed</span><br></pre></td></tr></table></figure>
 
-<p><strong>這邊特別強調多層次結構的Callback Hell會變成像是波動拳的結構!!!難以維護</strong><br><img src="http://drive.google.com/uc?id=148dq9WwigzosTIFX_ywC7yzsi1h3VBzd&export=download" alt="Callback Hell示意圖"></p>
+<p><strong>這邊特別強調多層次結構的Callback Hell會變成像是波動拳的結構!!!難以維護</strong><br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/%E6%B3%A2%E5%8B%95%E6%8B%B3_fmoteh.png" alt="Callback Hell示意圖"></p>
 <hr>
 <ul>
 <li>Promise的寫法能夠避免內嵌的回調函數寫法</li>
@@ -1122,7 +1122,7 @@
 <ul>
 <li>基本使用概念如下</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1hLqu0LIzjRGUhEMXusPZzXuhHuLOU94S&export=download" alt="Promise流程圖"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/Promise%E6%B5%81%E7%A8%8B%E5%9C%96_u9xnts.png" alt="Promise流程圖"></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">operationA</span>()</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;操作成功:&quot;</span>, res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;錯誤:&quot;</span>, error);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;不論成功還是失敗都會執行的代碼&quot;</span>);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -1203,7 +1203,7 @@
   <entry>
     <title>React(1)：Pure Function 的概念及其在 React 中的應用</title>
     <url>/Blog/React-1/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1N3HPaFYilEySnyN-OI5TN_fk2sdu2Rjq&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg" alt="Blog背景圖"></p>
 <h2 id="Pure-Function是甚麼"><a href="#Pure-Function是甚麼" class="headerlink" title="Pure Function是甚麼"></a>Pure Function是甚麼</h2><ol>
 <li><strong>此函數在相同的輸入值時，需產生相同的輸出。</strong></li>
 </ol>
@@ -1388,7 +1388,7 @@
   <entry>
     <title>JavaScript(9)：陣列的常見操作方法</title>
     <url>/Blog/JS-9/</url>
-    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="Array-forEach-callback-element-index-array"><a href="#Array-forEach-callback-element-index-array" class="headerlink" title="Array.forEach(callback[element, index, array])"></a>Array.forEach(callback[element, index, array])</h2><h3 id="forEach參數-變數名稱可以自定義"><a href="#forEach參數-變數名稱可以自定義" class="headerlink" title="forEach參數(變數名稱可以自定義)"></a>forEach參數(變數名稱可以自定義)</h3><ul>
 <li>element：當前陣列元素(必填)</li>
 <li>index：當前陣列元素索引值(可選)</li>
@@ -1512,7 +1512,7 @@
   <entry>
     <title>JavaScript(10)：var、let、const之間的差異解析</title>
     <url>/Blog/JS-10/</url>
-    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="作用域-Scope-的差別"><a href="#作用域-Scope-的差別" class="headerlink" title="作用域(Scope)的差別"></a>作用域(Scope)的差別</h2><p>作用域（Scope）是指在程式碼中變數和函式的可訪問範圍</p>
 <h3 id="var-函數作用域-function-scope"><a href="#var-函數作用域-function-scope" class="headerlink" title="var 函數作用域(function scope)"></a>var 函數作用域(function scope)</h3><ul>
 <li>變數在函數中的任何地方都是可讀取的。</li>

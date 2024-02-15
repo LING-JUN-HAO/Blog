@@ -37,7 +37,7 @@
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="var、let及const是JavaScript中宣告變數的關鍵字，它們在作用域、對於for迴圈的影響、提升 (Hoisting) 的差異及重複宣告的處理上有所不同。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007051/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-10/var%E4%BD%9C%E7%94%A8%E5%9F%9F_oui5yp.png">
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007051/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-10/Window%E5%85%A8%E5%B1%80%E5%B1%AC%E6%80%A7_bbtlce.png">
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007051/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-10/Window%E5%85%A8%E5%B1%80%E5%B1%AC%E6%80%A7_%E8%B7%B3%E9%81%8E%E5%AE%A3%E5%91%8A%E7%9A%84%E6%83%85%E5%BD%A2_ievtuq.png">
@@ -48,13 +48,13 @@
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007051/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-10/for%E8%BF%B4%E5%9C%88_var%E8%BF%B4%E5%9C%88%E6%A1%88%E4%BE%8B_z2fzw4.png">
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-10/for%E8%BF%B4%E5%9C%88_let%E8%BF%B4%E5%9C%88%E6%A1%88%E4%BE%8B_vqxnqk.png">
 <meta property="article:published_time" content="2023-12-10T15:53:30.000Z">
-<meta property="article:modified_time" content="2024-02-15T14:40:48.630Z">
+<meta property="article:modified_time" content="2024-02-15T14:57:51.866Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="var">
 <meta property="article:tag" content="let">
 <meta property="article:tag" content="const">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-10/">
 
@@ -253,7 +253,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-02-15 22:40:48" itemprop="dateModified" datetime="2024-02-15T22:40:48+08:00">2024-02-15</time>
+                <time title="修改時間：2024-02-15 22:57:51" itemprop="dateModified" datetime="2024-02-15T22:57:51+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -303,7 +303,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="作用域-Scope-的差別"><a href="#作用域-Scope-的差別" class="headerlink" title="作用域(Scope)的差別"></a>作用域(Scope)的差別</h2><p>作用域（Scope）是指在程式碼中變數和函式的可訪問範圍</p>
 <h3 id="var-函數作用域-function-scope"><a href="#var-函數作用域-function-scope" class="headerlink" title="var 函數作用域(function scope)"></a>var 函數作用域(function scope)</h3><ul>
 <li>變數在函數中的任何地方都是可讀取的。</li>

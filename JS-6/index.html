@@ -37,15 +37,15 @@
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="透過Promise，我們能夠有效解決JavaScript中的異步事件，使得程式碼更為清晰和可讀。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
-<meta property="og:image" content="http://drive.google.com/uc?id=148dq9WwigzosTIFX_ywC7yzsi1h3VBzd&export=download">
-<meta property="og:image" content="http://drive.google.com/uc?id=1hLqu0LIzjRGUhEMXusPZzXuhHuLOU94S&export=download">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/%E6%B3%A2%E5%8B%95%E6%8B%B3_fmoteh.png">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/Promise%E6%B5%81%E7%A8%8B%E5%9C%96_u9xnts.png">
 <meta property="article:published_time" content="2023-11-29T06:49:18.000Z">
-<meta property="article:modified_time" content="2023-11-30T16:50:54.875Z">
+<meta property="article:modified_time" content="2024-02-15T14:59:23.699Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="Promise">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-6/">
 
@@ -244,7 +244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-12-01 00:50:54" itemprop="dateModified" datetime="2023-12-01T00:50:54+08:00">2023-12-01</time>
+                <time title="修改時間：2024-02-15 22:59:23" itemprop="dateModified" datetime="2024-02-15T22:59:23+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,7 +294,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
 <h2 id="Promise為了解決什麼問題"><a href="#Promise為了解決什麼問題" class="headerlink" title="Promise為了解決什麼問題"></a>Promise為了解決什麼問題</h2><ul>
 <li>JavaScript Promise是一種用來處理異步操作的對象，它代表一個異步操作的成功(resolve)或失敗(reject)的結果。(以下皆使用setTimeout()示範異步操作的案例)</li>
 <li>透過這種方法能避免回調地獄（Callback Hell）的問題。</li>
@@ -305,7 +305,7 @@
 <p>顯示如下(依序出現A-&gt;B-&gt;C-&gt;All)：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Operation</span> A completed</span><br><span class="line"><span class="title class_">Operation</span> B completed</span><br><span class="line"><span class="title class_">Operation</span> C completed</span><br><span class="line"><span class="title class_">All</span> operations completed</span><br></pre></td></tr></table></figure>
 
-<p><strong>這邊特別強調多層次結構的Callback Hell會變成像是波動拳的結構!!!難以維護</strong><br><img src="http://drive.google.com/uc?id=148dq9WwigzosTIFX_ywC7yzsi1h3VBzd&export=download" alt="Callback Hell示意圖"></p>
+<p><strong>這邊特別強調多層次結構的Callback Hell會變成像是波動拳的結構!!!難以維護</strong><br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/%E6%B3%A2%E5%8B%95%E6%8B%B3_fmoteh.png" alt="Callback Hell示意圖"></p>
 <hr>
 <ul>
 <li>Promise的寫法能夠避免內嵌的回調函數寫法</li>
@@ -342,7 +342,7 @@
 <ul>
 <li>基本使用概念如下</li>
 </ul>
-<p><img src="http://drive.google.com/uc?id=1hLqu0LIzjRGUhEMXusPZzXuhHuLOU94S&export=download" alt="Promise流程圖"></p>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007053/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-6/Promise%E6%B5%81%E7%A8%8B%E5%9C%96_u9xnts.png" alt="Promise流程圖"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">operationA</span>()</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;操作成功:&quot;</span>, res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;錯誤:&quot;</span>, error);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;不論成功還是失敗都會執行的代碼&quot;</span>);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
 <hr>
