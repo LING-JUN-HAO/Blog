@@ -1388,7 +1388,7 @@
   <entry>
     <title>JavaScript(9)：陣列的常見操作方法</title>
     <url>/Blog/JS-9/</url>
-    <content><![CDATA[<p><img src="http://drive.google.com/uc?id=1WZ1ikZYPmyZoUx_gGqNf52tZJC0gCS_T&export=download" alt="Blog背景圖"></p>
+    <content><![CDATA[<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
 <h2 id="Array-forEach-callback-element-index-array"><a href="#Array-forEach-callback-element-index-array" class="headerlink" title="Array.forEach(callback[element, index, array])"></a>Array.forEach(callback[element, index, array])</h2><h3 id="forEach參數-變數名稱可以自定義"><a href="#forEach參數-變數名稱可以自定義" class="headerlink" title="forEach參數(變數名稱可以自定義)"></a>forEach參數(變數名稱可以自定義)</h3><ul>
 <li>element：當前陣列元素(必填)</li>
 <li>index：當前陣列元素索引值(可選)</li>
