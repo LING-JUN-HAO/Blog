@@ -20,4 +20,4 @@
 
 ---
 
-你也可以在這裡查看我的部落格：[https://ling-jun-hao.github.io/Blog](https://ling-jun-hao.github.io/Blog)
+你也可以在這裡查看我的部落格：[https://ling-jun-hao.github.io/Blog](https://ling-jun-hao.github.io/Blog)1
