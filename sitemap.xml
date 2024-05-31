@@ -207,14 +207,14 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/ES6/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/ES6/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Web-Development-Tool/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -256,13 +256,6 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/Promise/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/Pure-Function/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -277,6 +270,13 @@
   </url>
   
   <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/Promise/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/CommonJS/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -285,27 +285,6 @@
   
   <url>
     <loc>https://ling-jun-hao.github.io/Blog/tags/ES-Module/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/var/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/let/</loc>
-    <lastmod>2024-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ling-jun-hao.github.io/Blog/tags/const/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -374,6 +353,27 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/var/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/let/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ling-jun-hao.github.io/Blog/tags/const/</loc>
+    <lastmod>2024-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -384,14 +384,14 @@
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/categories/Emmet/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/JavaScript/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ling-jun-hao.github.io/Blog/categories/JavaScript/</loc>
+    <loc>https://ling-jun-hao.github.io/Blog/categories/Emmet/</loc>
     <lastmod>2024-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
