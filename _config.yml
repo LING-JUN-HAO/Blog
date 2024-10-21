@@ -127,3 +127,6 @@ search:
   limit: 100
 sitemap:
     path: sitemap.xml
+
+
+darkmode: false

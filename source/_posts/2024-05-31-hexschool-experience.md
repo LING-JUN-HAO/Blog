@@ -1,5 +1,5 @@
 ---
-title: hexschool-experience
+title: 2024軟體工程師體驗營-心得分享
 date: 2024-05-31 21:40:05
 tags:
 - [六角學院]
@@ -10,13 +10,9 @@ categories:
 description: 這麼多線上課程? 你不想知道什麼是最吸引我的線上學習課程嗎?
 ---
 
-![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/v1717163281/hexschool-experience_c5chm6.avif)
+<strong>面對網路上各種學習資源的洗禮，你也曾經感到無助或是找不到人討論嗎?</strong>
 
-```text=
-面對網路上各種學習資源的洗禮，你也曾經感到無助或是找不到人討論嗎?
-
-今天想輕鬆一些分享關於我最喜歡的線上課程「六角學院」
-```
+<strong>今天想輕鬆一些分享關於我最喜歡的線上課程「六角學院」</strong>
 
 ## 跟自己比較就好
 
