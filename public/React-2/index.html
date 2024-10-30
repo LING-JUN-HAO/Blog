@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/icon100.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/icon50.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/Blog/lib/pace/pace-theme-bounce.min.css">
+  <script src="/Blog/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ling-jun-hao.github.io","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XWTEE0094B');
+</script>
+  <meta name="description" content="透過 JSX 語法糖，你能夠在一次 JavaScript 撰寫中包含 HTML 與 CSS 的內容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React(2)：JSX 是什麼？為何在 React 中使用 JSX？">
+<meta property="og:url" content="https://ling-jun-hao.github.io/Blog/React-2/">
+<meta property="og:site_name" content="Antonio&#39;s blog">
+<meta property="og:description" content="透過 JSX 語法糖，你能夠在一次 JavaScript 撰寫中包含 HTML 與 CSS 的內容">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg">
+<meta property="article:published_time" content="2023-11-29T08:03:40.000Z">
+<meta property="article:modified_time" content="2024-05-31T14:23:51.000Z">
+<meta property="article:author" content="LING,JUN HAO">
+<meta property="article:tag" content="JSX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg">
+
+<link rel="canonical" href="https://ling-jun-hao.github.io/Blog/React-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+    <title>React(2)：JSX 是什麼？為何在 React 中使用 JSX？ | Antonio's blog | 前端小蝦米</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XWTEE0094B');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Antonio's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端小蝦米</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首頁">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/Blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-文章分類">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>文章分類</a>
+
+  </li>
+        <li class="menu-item menu-item-文章列表">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章列表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ling-jun-hao.github.io/Blog/React-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/antonio.jpg">
+      <meta itemprop="name" content="LING,JUN HAO">
+      <meta itemprop="description" content="我是一隻前端小蝦米，努力夢想有一天變成大鯨魚">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Antonio's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React(2)：JSX 是什麼？為何在 React 中使用 JSX？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-11-29 16:03:40" itemprop="dateCreated datePublished" datetime="2023-11-29T16:03:40+08:00">2023-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-05-31 22:23:51" itemprop="dateModified" datetime="2024-05-31T22:23:51+08:00">2024-05-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Blog/React-2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="React-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>6 分鐘</span>
+            </span>
+            <div class="post-description">透過 JSX 語法糖，你能夠在一次 JavaScript 撰寫中包含 HTML 與 CSS 的內容</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg" alt="Blog背景圖"></p>
+<h2 id="什麼是-JSX-為什麼要用JSX"><a href="#什麼是-JSX-為什麼要用JSX" class="headerlink" title="什麼是 JSX? 為什麼要用JSX?"></a>什麼是 JSX? 為什麼要用JSX?</h2><ul>
+<li>JSX（JavaScript XML）是一種 JavaScript 的語法擴展，通常與 React 一同使用。它允許開發者在 JavaScript 中使用類似 XML 或 HTML 的語法來撰寫 React 元素，並透過渲染（Render）將其轉譯為實際的 DOM 元素及相對應的事件。這種語法使得 React 組件的描述更直觀、易讀，同時提供了更高效的元素創建方式。</li>
+<li>JSX只是為React element(原生語法)提供語法糖。</li>
+<li>原生創建React元素語法：React.createElement(component, props, …children)。<ul>
+<li>component：React 元素的類型，可以是 HTML 元素名稱（字符串，例如 ‘div’）或 React 組件</li>
+<li>props：元素的屬性（attributes），是一個包含元素屬性及其值的物件。</li>
+<li>…children：元素的子元素，可以是單一元素或一個包含多個子元素的數組。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  div,</span><br><span class="line">  &#123;<span class="attr">className</span>: <span class="string">&#x27;info&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSX寫法如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;info&quot;</span>&gt;<span class="title class_">Hello</span> <span class="title class_">World</span>&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>巢狀寫法的案例如下：<ul>
+<li>React.createElement寫法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  &#123; <span class="attr">className</span>: <span class="string">&#x27;container&#x27;</span> &#125;,</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;h1&#x27;</span>,</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    <span class="string">&#x27;Nested Example&#x27;</span></span><br><span class="line">  ),</span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&#x27;p&#x27;</span>,</span><br><span class="line">    &#123; <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;blue&#x27;</span> &#125; &#125;,</span><br><span class="line">    <span class="string">&#x27;This is a nested paragraph.&#x27;</span></span><br><span class="line">  )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSX寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;container&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Nested Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">blue</span>&#x27; &#125;&#125;&gt;</span>This is a nested paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSX內部原理及規則"><a href="#JSX內部原理及規則" class="headerlink" title="JSX內部原理及規則"></a>JSX內部原理及規則</h2><ul>
+<li>JSX會在編譯階段被轉譯成對應的 React.createElement 的呼叫，生成一個 JavaScript 物件，這個物件描述了 React 元素的類型、屬性（props），以及子元素。</li>
+</ul>
+<hr>
+<p>JSX使用規則如下</p>
+<h3 id="使用者定義的元件必須大寫"><a href="#使用者定義的元件必須大寫" class="headerlink" title="使用者定義的元件必須大寫"></a>使用者定義的元件必須大寫</h3><ul>
+<li>錯誤寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="comment">// ↓ 正確：hello-&gt;Hello</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 使用hello非大寫會導致發生錯誤，無法透過JSX引用該元件</span></span><br><span class="line">  <span class="comment">//   正確的方式：hello-&gt;Hello</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正確寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Hello</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.toWhat&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">HelloWorld</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Hello</span> <span class="attr">toWhat</span>=<span class="string">&quot;World&quot;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="React元件不能使用表達式-只能是大寫字母開頭的變數或函數名"><a href="#React元件不能使用表達式-只能是大寫字母開頭的變數或函數名" class="headerlink" title="React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)"></a>React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)</h3><ul>
+<li>錯誤寫法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Components</span> = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// ↓ 請用變數賦值，避免使用表達式</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml">&lt;Components[props.storyType]; story=&#123;props.story&#125; /&gt;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正確寫法</li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/ZEwamdE">CodePen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PhotoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PhotoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// VideoStory 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">VideoStory</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Video Story: &#123;props.story&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Story 元件</span></span><br><span class="line"><span class="keyword">const</span> components = &#123;</span><br><span class="line">  <span class="attr">photo</span>: <span class="title class_">PhotoStory</span>,</span><br><span class="line">  <span class="attr">video</span>: <span class="title class_">VideoStory</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Story</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="comment">// 根據 props 中的 storyType 選擇要渲染的元件</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">SpecificStory</span> = components[props.<span class="property">storyType</span>];</span><br><span class="line">  <span class="comment">// 渲染所選擇的元件，並將 story 作為 props 傳遞</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">SpecificStory</span> <span class="attr">story</span>=<span class="string">&#123;props.story&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// App 元件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;photo&quot;</span> <span class="attr">story</span>=<span class="string">&quot;A beautiful photo story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Story</span> <span class="attr">storyType</span>=<span class="string">&quot;video&quot;</span> <span class="attr">story</span>=<span class="string">&quot;An amazing video story&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Photo</span> <span class="title class_">Story</span>: A beautiful photo story</span><br><span class="line"><span class="title class_">Video</span> <span class="title class_">Story</span>: <span class="title class_">An</span> amazing video story</span><br></pre></td></tr></table></figure>
+
+<h3 id="回傳單一個根元素"><a href="#回傳單一個根元素" class="headerlink" title="回傳單一個根元素"></a>回傳單一個根元素</h3><ul>
+<li>最外層需要使用父層元素包覆(EX：div、或使用 Fragment (&lt;&gt; 和 &lt;&#x2F;&gt;))</li>
+<li>案例如下：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="所有標籤都需要結尾標籤"><a href="#所有標籤都需要結尾標籤" class="headerlink" title="所有標籤都需要結尾標籤"></a>所有標籤都需要結尾標籤</h3><p>範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自閉標籤(self-closing)範例如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSX特色"><a href="#JSX特色" class="headerlink" title="JSX特色"></a>JSX特色</h2><h3 id="Props可以使用Javascript表達式-foo-1-2-3-4"><a href="#Props可以使用Javascript表達式-foo-1-2-3-4" class="headerlink" title="Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})"></a>Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})</h3><ul>
+<li>Javascript表達式案例如下：</li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/eYxebZp">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>由App組件傳過來的foo參數：&#123;props.foo&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">MyComponent</span> <span class="attr">foo</span>=<span class="string">&#123;1</span> + <span class="attr">2</span> + <span class="attr">3</span> + <span class="attr">4</span>&#125; /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由<span class="title class_">App</span>組件傳過來的foo參數：<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>if跟for不是表達式不能使用</strong></li>
+<li>三元運算符(肚子餓了嗎?餓了:還沒餓)及邏輯運算符(&amp;&amp;)算是表達式的一種</li>
+<li>三元運算符案例如下：</li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/qBgVLrX">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Greeting</span> = (<span class="params">&#123; isLoggedIn &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;isLoggedIn ? (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      ) : (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Please log in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      )&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] = <span class="title function_">useState</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleLoginToggle</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsLoggedIn</span>(<span class="function">(<span class="params">prevIsLoggedIn</span>) =&gt;</span> !prevIsLoggedIn);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleLoginToggle&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;isLoggedIn ? &#x27;Logout&#x27; : &#x27;Login&#x27;&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Greeting</span> <span class="attr">isLoggedIn</span>=<span class="string">&#123;isLoggedIn&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>邏輯運算符(&amp;&amp;)案例如下：</li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzML">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> isLoggedIn = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;isLoggedIn &amp;&amp; <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Welcome</span> back!</span><br></pre></td></tr></table></figure>
+
+<h3 id="純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白"><a href="#純布林值、Null-和未定義值將被忽略-以下案例全部均顯示空白" class="headerlink" title="純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)"></a>純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div /&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;false&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;null&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;undefined&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;true&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="屬性展開-…"><a href="#屬性展開-…" class="headerlink" title="屬性展開(…)"></a>屬性展開(…)</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/KKJybyw">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> props = &#123; <span class="attr">className</span>: <span class="string">&#x27;my-class&#x27;</span>, <span class="attr">style</span>: &#123; <span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span> &#125; &#125;;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> &#123;<span class="attr">...props</span>&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列作為子元素：-你可以使用陣列來傳遞多個子元素"><a href="#陣列作為子元素：-你可以使用陣列來傳遞多個子元素" class="headerlink" title="陣列作為子元素： 你可以使用陣列來傳遞多個子元素"></a>陣列作為子元素： 你可以使用陣列來傳遞多個子元素</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/QWYOzaW">Codepen連結</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> items = [<span class="string">&#x27;Item 1&#x27;</span>, <span class="string">&#x27;Item 2&#x27;</span>, <span class="string">&#x27;Item 3&#x27;</span>];</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;items.map((item, index) =&gt; (</span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                ))&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="React內聯樣式（inline-styles）"><a href="#React內聯樣式（inline-styles）" class="headerlink" title="React內聯樣式（inline styles）"></a>React內聯樣式（inline styles）</h3><ul>
+<li>JSX不能使用保留字(會自動轉換成別的字詞避免與保留字衝突)<ul>
+<li>class-&gt;className</li>
+<li>for-&gt;htmlfor(label)</li>
+<li>CSS內聯屬性stroke-width改成駝峰式命名(Camel-Case)strokeWidth</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> &#x27;<span class="attr">red</span>&#x27;, <span class="attr">fontSize:</span> &#x27;<span class="attr">16px</span>&#x27; &#125;&#125;&gt;</span>Hello, World!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/JSX/" rel="tag"># JSX</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/React-1/" rel="prev" title="React(1)：Pure Function 的概念及其在 React 中的應用">
+      <i class="fa fa-chevron-left"></i> React(1)：Pure Function 的概念及其在 React 中的應用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/JS-8/" rel="next" title="JavaScript(8)：ES module 匯入與匯出">
+      JavaScript(8)：ES module 匯入與匯出 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-JSX-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E7%94%A8JSX"><span class="nav-number">1.</span> <span class="nav-text">什麼是 JSX? 為什麼要用JSX?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX%E5%85%A7%E9%83%A8%E5%8E%9F%E7%90%86%E5%8F%8A%E8%A6%8F%E5%89%87"><span class="nav-number">2.</span> <span class="nav-text">JSX內部原理及規則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E5%AE%9A%E7%BE%A9%E7%9A%84%E5%85%83%E4%BB%B6%E5%BF%85%E9%A0%88%E5%A4%A7%E5%AF%AB"><span class="nav-number">2.1.</span> <span class="nav-text">使用者定義的元件必須大寫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React%E5%85%83%E4%BB%B6%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E8%A1%A8%E9%81%94%E5%BC%8F-%E5%8F%AA%E8%83%BD%E6%98%AF%E5%A4%A7%E5%AF%AB%E5%AD%97%E6%AF%8D%E9%96%8B%E9%A0%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%88%96%E5%87%BD%E6%95%B8%E5%90%8D"><span class="nav-number">2.2.</span> <span class="nav-text">React元件不能使用表達式(只能是大寫字母開頭的變數或函數名)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%82%B3%E5%96%AE%E4%B8%80%E5%80%8B%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">2.3.</span> <span class="nav-text">回傳單一個根元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%A8%99%E7%B1%A4%E9%83%BD%E9%9C%80%E8%A6%81%E7%B5%90%E5%B0%BE%E6%A8%99%E7%B1%A4"><span class="nav-number">2.4.</span> <span class="nav-text">所有標籤都需要結尾標籤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX%E7%89%B9%E8%89%B2"><span class="nav-number">3.</span> <span class="nav-text">JSX特色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Props%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8Javascript%E8%A1%A8%E9%81%94%E5%BC%8F-foo-1-2-3-4"><span class="nav-number">3.1.</span> <span class="nav-text">Props可以使用Javascript表達式(foo&#x3D;{1 + 2 + 3 + 4})</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%94%E5%B8%83%E6%9E%97%E5%80%BC%E3%80%81Null-%E5%92%8C%E6%9C%AA%E5%AE%9A%E7%BE%A9%E5%80%BC%E5%B0%87%E8%A2%AB%E5%BF%BD%E7%95%A5-%E4%BB%A5%E4%B8%8B%E6%A1%88%E4%BE%8B%E5%85%A8%E9%83%A8%E5%9D%87%E9%A1%AF%E7%A4%BA%E7%A9%BA%E7%99%BD"><span class="nav-number">3.2.</span> <span class="nav-text">純布林值、Null 和未定義值將被忽略(以下案例全部均顯示空白)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%AC%E6%80%A7%E5%B1%95%E9%96%8B-%E2%80%A6"><span class="nav-number">3.3.</span> <span class="nav-text">屬性展開(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E4%BD%9C%E7%82%BA%E5%AD%90%E5%85%83%E7%B4%A0%EF%BC%9A-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E9%99%A3%E5%88%97%E4%BE%86%E5%82%B3%E9%81%9E%E5%A4%9A%E5%80%8B%E5%AD%90%E5%85%83%E7%B4%A0"><span class="nav-number">3.4.</span> <span class="nav-text">陣列作為子元素： 你可以使用陣列來傳遞多個子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React%E5%85%A7%E8%81%AF%E6%A8%A3%E5%BC%8F%EF%BC%88inline-styles%EF%BC%89"><span class="nav-number">3.5.</span> <span class="nav-text">React內聯樣式（inline styles）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LING,JUN HAO"
+      src="/Blog/images/antonio.jpg">
+  <p class="site-author-name" itemprop="name">LING,JUN HAO</p>
+  <div class="site-description" itemprop="description">我是一隻前端小蝦米，努力夢想有一天變成大鯨魚</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/LING-JUN-HAO" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LING-JUN-HAO" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qd513020@gmail.com" title="E-Mail → mailto:qd513020@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Antonio</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ling-jun-hao-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ling-jun-hao.github.io/Blog/React-2/";
+    this.page.identifier = "React-2/";
+    this.page.title = "React(2)：JSX 是什麼？為何在 React 中使用 JSX？";
+    this.language = "zh_TW";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ling-jun-hao-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/icon100.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/icon50.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/Blog/lib/pace/pace-theme-bounce.min.css">
+  <script src="/Blog/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ling-jun-hao.github.io","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XWTEE0094B');
+</script>
+  <meta name="description" content="探索 Pure Function 概念及其與 React 的相互關係。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React(1)：Pure Function 的概念及其在 React 中的應用">
+<meta property="og:url" content="https://ling-jun-hao.github.io/Blog/React-1/">
+<meta property="og:site_name" content="Antonio&#39;s blog">
+<meta property="og:description" content="探索 Pure Function 概念及其與 React 的相互關係。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg">
+<meta property="article:published_time" content="2023-11-29T07:50:17.000Z">
+<meta property="article:modified_time" content="2024-05-31T14:23:51.000Z">
+<meta property="article:author" content="LING,JUN HAO">
+<meta property="article:tag" content="Pure Function">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg">
+
+<link rel="canonical" href="https://ling-jun-hao.github.io/Blog/React-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+    <title>React(1)：Pure Function 的概念及其在 React 中的應用 | Antonio's blog | 前端小蝦米</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XWTEE0094B');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Antonio's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端小蝦米</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首頁">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/Blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-文章分類">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>文章分類</a>
+
+  </li>
+        <li class="menu-item menu-item-文章列表">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章列表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ling-jun-hao.github.io/Blog/React-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/antonio.jpg">
+      <meta itemprop="name" content="LING,JUN HAO">
+      <meta itemprop="description" content="我是一隻前端小蝦米，努力夢想有一天變成大鯨魚">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Antonio's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React(1)：Pure Function 的概念及其在 React 中的應用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-11-29 15:50:17" itemprop="dateCreated datePublished" datetime="2023-11-29T15:50:17+08:00">2023-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-05-31 22:23:51" itemprop="dateModified" datetime="2024-05-31T22:23:51+08:00">2024-05-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Blog/React-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="React-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分鐘</span>
+            </span>
+            <div class="post-description">探索 Pure Function 概念及其與 React 的相互關係。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007057/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/React_xakmoo.jpg" alt="Blog背景圖"></p>
+<h2 id="Pure-Function是甚麼"><a href="#Pure-Function是甚麼" class="headerlink" title="Pure Function是甚麼"></a>Pure Function是甚麼</h2><ol>
+<li><strong>此函數在相同的輸入值時，需產生相同的輸出。</strong></li>
+</ol>
+<ul>
+<li>pure Functions範例如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = <span class="keyword">function</span> (<span class="params">value1, value2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> value1 + value2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">100</span>, <span class="number">200</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不管你傳入幾次得到的結果都一樣</li>
+<li>不受外部變數影響</li>
+</ul>
+<hr>
+<ul>
+<li>Impure Functions範例則如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title class_">Number</span> = <span class="number">20</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="keyword">function</span> (<span class="params">Value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Value</span> + <span class="title class_">Number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>會在執行的過程中受到Number外部變數的影響</li>
+</ul>
+<ol>
+<li><strong>該函數不能有語義上可觀察的函數副作用。</strong></li>
+</ol>
+<ul>
+<li><p>常見的副作用</p>
+<ul>
+<li>Making a HTTP request（發送 HTTP 請求）</li>
+<li>Mutating data（修改資料）</li>
+<li>Printing to a screen or console（輸出至螢幕或控制台）</li>
+<li>DOM Query&#x2F;Manipulation（DOM 操作）</li>
+<li>Math.random()（使用亂數）</li>
+<li>Getting the current time（取得目前時間）</li>
+</ul>
+</li>
+<li><p>pure Functions範例如下</p>
+</li>
+<li><p>Impure Functions(會在執行的過程中產生副作用)</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> revise = <span class="keyword">function</span> (<span class="params">key, value, object</span>) &#123;</span><br><span class="line">    object[key] = value</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> food = &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;banana&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(food)</span><br><span class="line"><span class="title function_">revise</span>(<span class="string">&quot;number&quot;</span>, <span class="number">100</span>, food)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(food)</span><br></pre></td></tr></table></figure>
+
+<p>顯示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">name</span>: <span class="string">&#x27;banana&#x27;</span> &#125;</span><br><span class="line">&#123; <span class="attr">name</span>: <span class="string">&#x27;banana&#x27;</span>, <span class="attr">number</span>: <span class="number">100</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Impure Functions會在執行的過程中產生副作用，導致物件產生變更</li>
+</ul>
+<h2 id="React跟Pure-Function的關係"><a href="#React跟Pure-Function的關係" class="headerlink" title="React跟Pure Function的關係"></a>React跟Pure Function的關係</h2><ul>
+<li>React中的組件概念使用Pure Function的理念，並且React的 functional components 通常被設計成純函數的形式。<ul>
+<li>Props 是唯讀的： 父組件向子組件傳遞 props，而子組件不能直接修改這些 props，確保了 props 的不可變性。</li>
+<li>State 控制內部狀態： 使用 useState 來管理組件的內部狀態，React 確保了state的不可變性和純粹性。每次狀態發生改變，React 都會根據新的狀態重新渲染組件，確保渲染的結果是基於當前的應用狀態而生成的，並保證了渲染的一致性。</li>
+</ul>
+</li>
+<li>若直接更改obj.count將無法導致渲染，進而無法讓UI顯示最新狀態。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./styles.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [obj, setObj] = <span class="title function_">useState</span>(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;);</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">clickPlus1</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// obj.count = obj.count + 1;</span></span><br><span class="line">    <span class="comment">// ↑ 直接改變 obj 時並沒有改變這個 obj 的reference，所以雖然數字改變了，但並不會重新 render</span></span><br><span class="line">    <span class="title function_">setObj</span>(&#123; <span class="attr">count</span>: obj.<span class="property">count</span> + <span class="number">1</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;App&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;obj.count&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> clickPlus1()&#125;&gt;plus 1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Pure-Function/" rel="tag"># Pure Function</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/JS-6/" rel="prev" title="JavaScript(6)：深入理解Promise的原理及實際應用">
+      <i class="fa fa-chevron-left"></i> JavaScript(6)：深入理解Promise的原理及實際應用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/React-2/" rel="next" title="React(2)：JSX 是什麼？為何在 React 中使用 JSX？">
+      React(2)：JSX 是什麼？為何在 React 中使用 JSX？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pure-Function%E6%98%AF%E7%94%9A%E9%BA%BC"><span class="nav-number">1.</span> <span class="nav-text">Pure Function是甚麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E8%B7%9FPure-Function%E7%9A%84%E9%97%9C%E4%BF%82"><span class="nav-number">2.</span> <span class="nav-text">React跟Pure Function的關係</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LING,JUN HAO"
+      src="/Blog/images/antonio.jpg">
+  <p class="site-author-name" itemprop="name">LING,JUN HAO</p>
+  <div class="site-description" itemprop="description">我是一隻前端小蝦米，努力夢想有一天變成大鯨魚</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/LING-JUN-HAO" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LING-JUN-HAO" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qd513020@gmail.com" title="E-Mail → mailto:qd513020@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Antonio</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ling-jun-hao-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ling-jun-hao.github.io/Blog/React-1/";
+    this.page.identifier = "React-1/";
+    this.page.title = "React(1)：Pure Function 的概念及其在 React 中的應用";
+    this.language = "zh_TW";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ling-jun-hao-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+
+  
+
+</body>
+</html>
