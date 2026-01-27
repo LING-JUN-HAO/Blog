@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/icon100.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/icon50.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/Blog/lib/pace/pace-theme-bounce.min.css">
+  <script src="/Blog/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ling-jun-hao.github.io","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XWTEE0094B');
+</script>
+  <meta name="description" content="今天的你跟我都是Hexo指令指揮官，讓我們將部落格造型大改造一下吧!!!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建立自己的部落格(4)：了解Hexo指令，更換next部落格主題">
+<meta property="og:url" content="https://ling-jun-hao.github.io/Blog/hexo-github-4/">
+<meta property="og:site_name" content="Antonio&#39;s blog">
+<meta property="og:description" content="今天的你跟我都是Hexo指令指揮官，讓我們將部落格造型大改造一下吧!!!">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/Next%E5%AE%89%E8%A3%9D%E5%AE%8C%E6%88%90.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E9%8C%84%E4%B8%8B%E7%9A%84%E8%A8%AD%E5%AE%9A%E6%AA%94.png">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007049/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/next%E6%A8%A1%E6%9D%BF%E9%80%A0%E5%9E%8B.png">
+<meta property="article:published_time" content="2023-10-20T06:33:38.000Z">
+<meta property="article:modified_time" content="2026-01-02T02:24:00.926Z">
+<meta property="article:author" content="LING,JUN HAO">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg">
+
+<link rel="canonical" href="https://ling-jun-hao.github.io/Blog/hexo-github-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+    <title>建立自己的部落格(4)：了解Hexo指令，更換next部落格主題 | Antonio's blog | 前端小蝦米</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XWTEE0094B');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Antonio's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端小蝦米</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首頁">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/Blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-文章分類">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>文章分類</a>
+
+  </li>
+        <li class="menu-item menu-item-文章列表">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章列表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ling-jun-hao.github.io/Blog/hexo-github-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/antonio.jpg">
+      <meta itemprop="name" content="LING,JUN HAO">
+      <meta itemprop="description" content="我是一隻前端小蝦米，努力夢想有一天變成大鯨魚">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Antonio's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          建立自己的部落格(4)：了解Hexo指令，更換next部落格主題
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-10-20 14:33:38" itemprop="dateCreated datePublished" datetime="2023-10-20T14:33:38+08:00">2023-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2026-01-02 10:24:00" itemprop="dateModified" datetime="2026-01-02T10:24:00+08:00">2026-01-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Blog/hexo-github-4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="hexo-github-4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>994</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分鐘</span>
+            </span>
+            <div class="post-description">今天的你跟我都是Hexo指令指揮官，讓我們將部落格造型大改造一下吧!!!</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg" alt="Blog背景圖"></p>
+<h2 id="Hexo常用指令說明"><a href="#Hexo常用指令說明" class="headerlink" title="Hexo常用指令說明"></a>Hexo常用指令說明</h2><h3 id="hexo-init-初始化資訊"><a href="#hexo-init-初始化資訊" class="headerlink" title="hexo init 初始化資訊"></a>hexo init 初始化資訊</h3><ul>
+<li>在當前路徑下建造hexo初始化的相關資訊<br>(Day2使用過此指令，在一開始初始化並生成Hexo資訊的時候使用)</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-new-title-生成文章"><a href="#hexo-new-title-生成文章" class="headerlink" title="hexo new title 生成文章"></a>hexo new title 生成文章</h3><ul>
+<li>創建一篇文章(<strong><code><code>&lt;title&gt;</code></code></strong>要記得替換成你想使用的文章名稱)</li>
+<li>創文章流程：<ul>
+<li>文章會根據<strong><code>./scaffolds</code></strong>路徑下的<strong><code>post.md</code></strong>模板生成文章格式</li>
+<li>生成完的文章會在<strong><code>./source/_posts</code></strong>路徑下生成</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-g-生成靜態檔案"><a href="#hexo-g-生成靜態檔案" class="headerlink" title="hexo g 生成靜態檔案"></a>hexo g 生成靜態檔案</h3><ul>
+<li>在.&#x2F;public的路徑下生成靜態檔案<br>(會將文章的md檔案轉換成html的檔案)</li>
+<li>g是generate的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-s-本地伺服器預覽畫面"><a href="#hexo-s-本地伺服器預覽畫面" class="headerlink" title="hexo s 本地伺服器預覽畫面"></a>hexo s 本地伺服器預覽畫面</h3><ul>
+<li>啟動本地伺服器<br>(可以在自己電腦上預覽部落格樣式及文章內容)</li>
+<li>s是server的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-d-部屬靜態檔案至上線環境"><a href="#hexo-d-部屬靜態檔案至上線環境" class="headerlink" title="hexo d 部屬靜態檔案至上線環境"></a>hexo d 部屬靜態檔案至上線環境</h3><ul>
+<li>部署public生成的靜態檔案至網站讓其他人也能看到你的文章</li>
+<li>d是deploy的縮寫</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-clean-清除快取資源及已生成的靜態檔案"><a href="#hexo-clean-清除快取資源及已生成的靜態檔案" class="headerlink" title="hexo clean 清除快取資源及已生成的靜態檔案"></a>hexo clean 清除快取資源及已生成的靜態檔案</h3><ul>
+<li>清除快取檔案<strong><code>db.json</code></strong>及<strong><code>./puclic</code></strong>路徑下已生成的靜態檔案</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h2 id="更換部落格主題"><a href="#更換部落格主題" class="headerlink" title="更換部落格主題"></a>更換部落格主題</h2><p>這邊使用大家較常使用的版型Next，等等將會拉取以下檔案至本地喔<br><strong><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">Next官方Github資料請點我查看</a></strong></p>
+<h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
+<li>Step 1:進去hexo init初始化的資料夾</li>
+<li>Step 2:在資料夾路徑的部分輸入cmd打開當前路徑的命令提示字元</li>
+</ul>
+<hr>
+<h3 id="將next模板資料拉取至本地上"><a href="#將next模板資料拉取至本地上" class="headerlink" title="將next模板資料拉取至本地上"></a>將next模板資料拉取至本地上</h3><ul>
+<li>輸入以下指令，將github的資料拉取至本機電腦上</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>當安裝完成時，可以看到<strong><code>./themes</code></strong>路徑下多了<strong><code>next</code></strong>的資料夾，裡面已經有剛剛下載的模板資料了</li>
+</ul>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/Next%E5%AE%89%E8%A3%9D%E5%AE%8C%E6%88%90.jpg" alt="Next安裝完成"></p>
+<h3 id="修改根目錄下的-config-yml檔案-不是next資料夾下的喔"><a href="#修改根目錄下的-config-yml檔案-不是next資料夾下的喔" class="headerlink" title="修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)"></a>修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</h3><p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E9%8C%84%E4%B8%8B%E7%9A%84%E8%A8%AD%E5%AE%9A%E6%AA%94.png" alt="修改根目錄下的設定檔"></p>
+<ul>
+<li>看到theme: landscape的部分，我們要換掉，換成自己的模板next<br>(請修改如下)</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="查看next的模板新世界吧"><a href="#查看next的模板新世界吧" class="headerlink" title="查看next的模板新世界吧&gt; &lt;"></a>查看next的模板新世界吧&gt; &lt;</h3><ul>
+<li>輸入以下指令</li>
+</ul>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>透過瀏覽器查看當前部落格新造型<br>(<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>)</li>
+</ul>
+<p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007049/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-4/next%E6%A8%A1%E6%9D%BF%E9%80%A0%E5%9E%8B.png" alt="next模板造型"></p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>看到新造型感覺越來越有樣子了吧!!!希望我們都能夠將部落格布置成每個人獨一無二的秘密基地。</p>
+<hr>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>[1] <a target="_blank" rel="noopener" href="https://hexo.io/zh-tw/docs/">Hexo官方文件-指令</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/hexo-github-3/" rel="prev" title="建立自己的部落格(3)：修改Hexo設定檔中Site，查看其變化">
+      <i class="fa fa-chevron-left"></i> 建立自己的部落格(3)：修改Hexo設定檔中Site，查看其變化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/Emmet-1/" rel="next" title="前端開發神器(1)：使用Emmet提升網頁開發效率">
+      前端開發神器(1)：使用Emmet提升網頁開發效率 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E8%AA%AA%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">Hexo常用指令說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-init-%E5%88%9D%E5%A7%8B%E5%8C%96%E8%B3%87%E8%A8%8A"><span class="nav-number">1.1.</span> <span class="nav-text">hexo init 初始化資訊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-new-title-%E7%94%9F%E6%88%90%E6%96%87%E7%AB%A0"><span class="nav-number">1.2.</span> <span class="nav-text">hexo new title 生成文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-g-%E7%94%9F%E6%88%90%E9%9D%9C%E6%85%8B%E6%AA%94%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">hexo g 生成靜態檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-s-%E6%9C%AC%E5%9C%B0%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%A0%90%E8%A6%BD%E7%95%AB%E9%9D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">hexo s 本地伺服器預覽畫面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-d-%E9%83%A8%E5%B1%AC%E9%9D%9C%E6%85%8B%E6%AA%94%E6%A1%88%E8%87%B3%E4%B8%8A%E7%B7%9A%E7%92%B0%E5%A2%83"><span class="nav-number">1.5.</span> <span class="nav-text">hexo d 部屬靜態檔案至上線環境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-clean-%E6%B8%85%E9%99%A4%E5%BF%AB%E5%8F%96%E8%B3%87%E6%BA%90%E5%8F%8A%E5%B7%B2%E7%94%9F%E6%88%90%E7%9A%84%E9%9D%9C%E6%85%8B%E6%AA%94%E6%A1%88"><span class="nav-number">1.6.</span> <span class="nav-text">hexo clean 清除快取資源及已生成的靜態檔案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8F%9B%E9%83%A8%E8%90%BD%E6%A0%BC%E4%B8%BB%E9%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">更換部落格主題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">前置工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87next%E6%A8%A1%E6%9D%BF%E8%B3%87%E6%96%99%E6%8B%89%E5%8F%96%E8%87%B3%E6%9C%AC%E5%9C%B0%E4%B8%8A"><span class="nav-number">2.2.</span> <span class="nav-text">將next模板資料拉取至本地上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E9%8C%84%E4%B8%8B%E7%9A%84-config-yml%E6%AA%94%E6%A1%88-%E4%B8%8D%E6%98%AFnext%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%8B%E7%9A%84%E5%96%94"><span class="nav-number">2.3.</span> <span class="nav-text">修改根目錄下的_config.yml檔案(不是next資料夾下的喔!!!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bnext%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%96%B0%E4%B8%96%E7%95%8C%E5%90%A7"><span class="nav-number">2.4.</span> <span class="nav-text">查看next的模板新世界吧&gt; &lt;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E5%B0%BE"><span class="nav-number">3.</span> <span class="nav-text">結尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LING,JUN HAO"
+      src="/Blog/images/antonio.jpg">
+  <p class="site-author-name" itemprop="name">LING,JUN HAO</p>
+  <div class="site-description" itemprop="description">我是一隻前端小蝦米，努力夢想有一天變成大鯨魚</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/LING-JUN-HAO" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LING-JUN-HAO" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qd513020@gmail.com" title="E-Mail → mailto:qd513020@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Antonio</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ling-jun-hao-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ling-jun-hao.github.io/Blog/hexo-github-4/";
+    this.page.identifier = "hexo-github-4/";
+    this.page.title = "建立自己的部落格(4)：了解Hexo指令，更換next部落格主題";
+    this.language = "zh_TW";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ling-jun-hao-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+
+  
+
+</body>
+</html>
