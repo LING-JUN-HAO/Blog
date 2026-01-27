@@ -1,13 +1,18 @@
 ---
-title: 建立自己的部落格(3)：修改Hexo設定檔中Site，查看其變化
+title: 建立自己的部落格：修改Hexo設定檔中Site，查看其變化
 date: 2023-10-18 20:50:31
 tags:
-- [Hexo]
+  - [Hexo]
+  - [VSCode]
+  - [Sublime Text]
+  - [YAML]
+  - [SEO]
 categories:
-- [Blog]
+  - [Blog]
 description: 今天的你跟我都是部落格工程師，我們一起來將網頁做一些小小的改變，有一天匯集在一起就會讓你的部落格變的與眾不同。
 ---
-![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg)
+
+![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769445040/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC_%E4%BF%AE%E6%94%B9Hexo%E8%A8%AD%E5%AE%9A%E6%AA%94%E4%B8%ADSite_%E6%9F%A5%E7%9C%8B%E5%85%B6%E8%AE%8A%E5%8C%96_vhu1rd.jpg)
 
 ## 查看Hexo設定檔
 
@@ -63,7 +68,7 @@ description: 今天的你跟我都是部落格工程師，我們一起來將網�
 
 ## 認識Hexo設定檔的第一步
 
-- 打開資料夾下的<strong><code>_config.yml</code></strong>檔案
+- 打開資料夾下的<strong><code>\_config.yml</code></strong>檔案
 - 認識第一區塊的設計目的
 
 ![Hexo Site設定](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007050/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20Site%E8%A8%AD%E5%AE%9A.png)
@@ -80,7 +85,7 @@ description: 今天的你跟我都是部落格工程師，我們一起來將網�
 - language：網站使用的語系(會跟顯示內容相關)
 - timezone：網站使用的時區(預設電腦系統的時區)
 
-## 調整根目錄下_config.yml的Site參數
+## 調整根目錄下\_config.yml的Site參數
 
 - 複製以下的內容更換原先的Site參數
 
@@ -95,14 +100,14 @@ timezone: '' #網站使用的時區(預設電腦系統的時區)
 ```
 
 - 打開cmd介面輸入以下指令編譯並生成對應靜態網站
-<strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong>
+  <strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong>
 
 ```text
 hexo g
 ```
 
 - 打開cmd介面輸入以下指令啟動本地服務器預覽修改的畫面
-<strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong>
+  <strong><code>(如果不知道cmd介面如何開啟請看Day2的介紹)</code></strong>
 
 ```text
 hexo s
@@ -113,16 +118,16 @@ hexo s
 - 根據模板(Theme)的不同，顯示的位置會有些此不同。
 
 - title、subtitle
-![Hexo title&subtitle修改成果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007044/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20title%20and%20subtitle%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png)
+  ![Hexo title&subtitle修改成果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007044/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20title%20and%20subtitle%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png)
 
 - author
-![Hexo author修改成果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20author%20%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png)
+  ![Hexo author修改成果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Hexo%20author%20%E4%BF%AE%E6%94%B9%E6%88%90%E6%9E%9C.png)
 
 - description(因為預設版面沒有顯示這部分改以我的版面進行說明)
-![Antonio Hexo版面](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007046/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Antonio%20Hexo%E7%89%88%E9%9D%A2.png)
+  ![Antonio Hexo版面](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007046/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/Antonio%20Hexo%E7%89%88%E9%9D%A2.png)
 
 - 這部分關於網站的敘述也會在搜尋時被大家看到喔!!!
-![網站Google搜尋結果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/%E7%B6%B2%E7%AB%99Google%E6%90%9C%E5%B0%8B%E7%B5%90%E6%9E%9C.png)
+  ![網站Google搜尋結果](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-3/%E7%B6%B2%E7%AB%99Google%E6%90%9C%E5%B0%8B%E7%B5%90%E6%9E%9C.png)
 
 ## 調整Site參數-language成果展示
 
@@ -139,7 +144,7 @@ timezone: '' #網站使用的時區(預設電腦系統的時區)
 ```
 
 - 別忘了編譯網站指令跟啟動本地服務器預覽指令
-(只要有調整設定檔案建議都要重新編譯過比較保險)
+  (只要有調整設定檔案建議都要重新編譯過比較保險)
 
 ```text
 hexo g

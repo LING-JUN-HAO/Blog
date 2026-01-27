@@ -2,15 +2,15 @@
 title: 六角學院 - 軟體工程師體驗營
 date: 2024-05-31 21:40:05
 tags:
-- [六角學院]
-- [軟體工程師體驗營]
-- [心得分享]
+  - [六角學院]
+  - [軟體工程師體驗營]
 categories:
-- [學習心得]
+  - [學習心得]
+  - [前端成長記]
 description: 這麼多線上課程? 你不想知道什麼是最吸引我的線上學習課程嗎?
 ---
 
-![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/v1717163281/hexschool-experience_c5chm6.avif)
+![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769507179/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2_-_%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E5%B8%AB%E9%AB%94%E9%A9%97%E7%87%9F_xw2p9p.jpg)
 
 ```text=
 面對網路上各種學習資源的洗禮，你也曾經感到無助或是找不到人討論嗎?

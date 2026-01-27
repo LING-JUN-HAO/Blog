@@ -2,13 +2,17 @@
 title: 關聯式資料庫設計必備 - dbdiagram.io ERD 繪圖工具
 date: 2024-11-05 20:18:24
 tags:
-- [Online tool]
+  - [ERD]
+  - [dbdiagram.io]
+  - [DBML]
+  - [資料庫設計]
 categories:
-- [ERD]
+  - [Database]
+  - [開發工具]
 description: 還在煩惱如何設計關聯式資料表實體關聯圖嗎？ 使用 dbdiagram.io 加快你與同事之間的距離
 ---
 
-![文章封面圖](https://res.cloudinary.com/dseg0uwc9/image/upload/v1730813913/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E5%BA%AB%E8%A8%AD%E8%A8%88%E5%BF%85%E5%82%99%20-%20dbdiagram.io%20ERD%20%E7%B9%AA%E5%9C%96%E5%B7%A5%E5%85%B7/ER_%E9%97%9C%E8%81%AF%E5%9C%96_rq9q9g.png)
+![文章封面圖](https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1730813913/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E5%BA%AB%E8%A8%AD%E8%A8%88%E5%BF%85%E5%82%99%20-%20dbdiagram.io%20ERD%20%E7%B9%AA%E5%9C%96%E5%B7%A5%E5%85%B7/ER_%E9%97%9C%E8%81%AF%E5%9C%96_rq9q9g.png)
 
 ## 什麼是 Entity-relationship diagram(ERD)？
 
@@ -105,6 +109,7 @@ Table very_long_user_table as U {
 ```
 
 Ref: U.id < posts.user_id
+
 > 使用別名可以用於建立外來鍵關係時使用，特別是表單名稱比較長的時候 (=´ω`=)。
 
 #### 表單註解(Note)
@@ -143,7 +148,7 @@ Table buildings {
   - null or not null：不得為空
   - unique：唯一值的特性
   - default：預設值(數字、字串、布林或表達式)
-  > 表達式範例：`now() - interval '5 days'`(當前時間往前推五天)
+    > 表達式範例：`now() - interval '5 days'`(當前時間往前推五天)
   - increment：自動遞增
 
 【 dbdocs 對應顯示區塊 - 欄位定義 】

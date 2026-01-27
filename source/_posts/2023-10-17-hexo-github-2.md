@@ -1,13 +1,16 @@
 ---
-title: 建立自己的部落格(2)：創建Hexo Blog初始的模板
+title: 建立自己的部落格：創建Hexo Blog初始的模板
 date: 2023-10-17 15:59:37
 tags:
-- [Hexo]
+  - [Hexo]
+  - [Hexo-cli]
+  - [hexo init]
 categories:
-- [Blog]
+  - [Blog]
 description: 踏出那關鍵的第一步，從白紙到完整的部落格，一同見證你的部落格誕生的奇妙時刻。
 ---
-![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007060/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/web_icuxev.jpg)
+
+![Blog背景圖](https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769444140/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC_%E5%89%B5%E5%BB%BAHexo_Blog%E5%88%9D%E5%A7%8B%E7%9A%84%E6%A8%A1%E6%9D%BF_vxq2el.jpg)
 
 ## 安裝Hexo手把手教學
 
@@ -40,7 +43,7 @@ npm install -g hexo-cli
 ## 初始化Hexo檔案
 
 - 輸入以下指令產生Hexo初始化需要的檔案及資料夾
-<strong>[如果出現黃色訊息的意外情況請點我](#hexo-init-bug)</strong>
+  <strong>[如果出現黃色訊息的意外情況請點我](#hexo-init-bug)</strong>
 
 ```text
 hexo init
@@ -61,7 +64,7 @@ hexo init
 ## 部落格產生(預設版本)
 
 - 在前面我們產生的cmd介面中輸入以下指令即可看到預設的版本
-(指令意思是啟動本地服務器預覽部落格畫面，預設Port使用4000)
+  (指令意思是啟動本地服務器預覽部落格畫面，預設Port使用4000)
 - <strong>[如果出現黃色訊息的意外情況請點我](#PortInUse)</strong>
 
 ```text
@@ -83,7 +86,7 @@ http://localhost:4000/
 
 ## Hexo初始化資料夾講解
 
-- _config.yml
+- \_config.yml
   - 部落格的設定檔
 - scaffolds
   - Markdown(md)檔案生成的模板
@@ -91,12 +94,12 @@ http://localhost:4000/
     - page.md：分頁畫面使用的網頁模板
     - post.md：正式區使用的文章模板
 - source
-  - 放置網站內容的地方(前輟帶有_會被Hexo忽略，僅有_posts不會)
-  這邊的所有md、html檔案在處理之後會放置<strong><code>/public</code></strong>
+  - 放置網站內容的地方(前輟帶有\_會被Hexo忽略，僅有\_posts不會)
+    這邊的所有md、html檔案在處理之後會放置<strong><code>/public</code></strong>
 - themes
   - 根據不同的主題生成不同的靜態網頁風格。
-  <strong>[快點擊我找一個自己喜歡的模板吧!!!](https://hexo.io/themes/)</strong>
-  <strong>[(如果官方預覽不知道怎麼看到點我)](#Preview)</strong>
+    <strong>[快點擊我找一個自己喜歡的模板吧!!!](https://hexo.io/themes/)</strong>
+    <strong>[(如果官方預覽不知道怎麼看到點我)](#Preview)</strong>
 
 ![官方的Themes shops](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007043/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-2/%E5%AE%98%E6%96%B9%E7%9A%84Themes%20shops.png)
 
@@ -109,7 +112,7 @@ http://localhost:4000/
 ![cmd非空初始化hexo故障顯示](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007040/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-2/cmd%E9%9D%9E%E7%A9%BA%E5%88%9D%E5%A7%8B%E5%8C%96hexo%E6%95%85%E9%9A%9C%E9%A1%AF%E7%A4%BA.png)
 
 - 這代表你的資料夾並非空的導致初始化失敗喔!!!
-檢查一下你安裝Hexo的資料夾吧(以下是失敗可能範例)
+  檢查一下你安裝Hexo的資料夾吧(以下是失敗可能範例)
 
 ![資料夾已有檔案(package.json)](https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007041/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/hexo-github-2/%E8%B3%87%E6%96%99%E5%A4%BE%E5%B7%B2%E6%9C%89%E6%AA%94%E6%A1%88%28package.json%29.png)
 
