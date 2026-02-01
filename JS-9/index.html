@@ -32,23 +32,23 @@
 </script>
   <meta name="description" content="掌握 JavaScript 陣列操作！從forEach、map、filter、findIndex、reduce、sort，深入了解這些方法，使你的程式碼更具靈活性和效率！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript(9)：陣列的常見操作方法">
+<meta property="og:title" content="JavaScript：陣列的常見操作方法">
 <meta property="og:url" content="https://ling-jun-hao.github.io/Blog/JS-9/">
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="掌握 JavaScript 陣列操作！從forEach、map、filter、findIndex、reduce、sort，深入了解這些方法，使你的程式碼更具靈活性和效率！">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769436436/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_%E9%99%A3%E5%88%97%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95_uk4omz.jpg">
 <meta property="article:published_time" content="2023-12-01T07:01:06.000Z">
-<meta property="article:modified_time" content="2026-01-02T02:24:00.928Z">
+<meta property="article:modified_time" content="2026-01-26T14:08:39.871Z">
 <meta property="article:author" content="LING,JUN HAO">
-<meta property="article:tag" content="Array.forEach">
-<meta property="article:tag" content="Array.map">
-<meta property="article:tag" content="Array.filter">
-<meta property="article:tag" content="Array.findIndex">
-<meta property="article:tag" content="Array.reduce">
-<meta property="article:tag" content="Array.sort">
+<meta property="article:tag" content="forEach">
+<meta property="article:tag" content="map">
+<meta property="article:tag" content="filter">
+<meta property="article:tag" content="reduce">
+<meta property="article:tag" content="sort">
+<meta property="article:tag" content="findIndex">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769436436/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_%E9%99%A3%E5%88%97%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95_uk4omz.jpg">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-9/">
 
@@ -63,7 +63,7 @@
   };
 </script>
 
-    <title>JavaScript(9)：陣列的常見操作方法 | Antonio's blog | 前端小蝦米</title>
+    <title>JavaScript：陣列的常見操作方法 | Antonio's blog | 前端小蝦米</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
     <script>
@@ -230,7 +230,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript(9)：陣列的常見操作方法
+          JavaScript：陣列的常見操作方法
         </h1>
 
         <div class="post-meta">
@@ -247,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2026-01-02 10:24:00" itemprop="dateModified" datetime="2026-01-02T10:24:00+08:00">2026-01-02</time>
+                <time title="修改時間：2026-01-26 22:08:39" itemprop="dateModified" datetime="2026-01-26T22:08:39+08:00">2026-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,6 +256,10 @@
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/Blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/" itemprop="url" rel="index"><span itemprop="name">前端開發</span></a>
                 </span>
             </span>
 
@@ -297,7 +301,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769436436/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_%E9%99%A3%E5%88%97%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95_uk4omz.jpg" alt="Blog背景圖"></p>
 <h2 id="Array-forEach-callback-element-index-array"><a href="#Array-forEach-callback-element-index-array" class="headerlink" title="Array.forEach(callback[element, index, array])"></a>Array.forEach(callback[element, index, array])</h2><h3 id="forEach參數-變數名稱可以自定義"><a href="#forEach參數-變數名稱可以自定義" class="headerlink" title="forEach參數(變數名稱可以自定義)"></a>forEach參數(變數名稱可以自定義)</h3><ul>
 <li>element：當前陣列元素(必填)</li>
 <li>index：當前陣列元素索引值(可選)</li>
@@ -414,12 +418,12 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Blog/tags/Array-forEach/" rel="tag"># Array.forEach</a>
-              <a href="/Blog/tags/Array-map/" rel="tag"># Array.map</a>
-              <a href="/Blog/tags/Array-filter/" rel="tag"># Array.filter</a>
-              <a href="/Blog/tags/Array-findIndex/" rel="tag"># Array.findIndex</a>
-              <a href="/Blog/tags/Array-reduce/" rel="tag"># Array.reduce</a>
-              <a href="/Blog/tags/Array-sort/" rel="tag"># Array.sort</a>
+              <a href="/Blog/tags/forEach/" rel="tag"># forEach</a>
+              <a href="/Blog/tags/map/" rel="tag"># map</a>
+              <a href="/Blog/tags/filter/" rel="tag"># filter</a>
+              <a href="/Blog/tags/reduce/" rel="tag"># reduce</a>
+              <a href="/Blog/tags/sort/" rel="tag"># sort</a>
+              <a href="/Blog/tags/findIndex/" rel="tag"># findIndex</a>
           </div>
 
         
@@ -428,12 +432,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Blog/JS-8/" rel="prev" title="JavaScript(8)：ES module 匯入與匯出">
-      <i class="fa fa-chevron-left"></i> JavaScript(8)：ES module 匯入與匯出
+    <a href="/Blog/JS-8/" rel="prev" title="JavaScript：ES module 匯入與匯出">
+      <i class="fa fa-chevron-left"></i> JavaScript：ES module 匯入與匯出
     </a></div>
       <div class="post-nav-item">
-    <a href="/Blog/JS-10/" rel="next" title="JavaScript(10)：var、let、const之間的差異解析">
-      JavaScript(10)：var、let、const之間的差異解析 <i class="fa fa-chevron-right"></i>
+    <a href="/Blog/JS-10/" rel="next" title="JavaScript：var、let、const之間的差異解析">
+      JavaScript：var、let、const之間的差異解析 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -515,18 +519,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -641,7 +645,7 @@
   var disqus_config = function() {
     this.page.url = "https://ling-jun-hao.github.io/Blog/JS-9/";
     this.page.identifier = "JS-9/";
-    this.page.title = "JavaScript(9)：陣列的常見操作方法";
+    this.page.title = "JavaScript：陣列的常見操作方法";
     this.language = "zh_TW";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {

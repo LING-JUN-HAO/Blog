@@ -37,17 +37,19 @@
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="初步踏入後端的世界，了解何謂後端以及資料庫常見語法 DDL、DML。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png">
 <meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1730303549/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E5%BE%8C%E7%AB%AF%E6%A5%B5%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96_dqigqz.png">
 <meta property="article:published_time" content="2024-10-30T14:43:49.000Z">
-<meta property="article:modified_time" content="2026-01-02T02:24:00.928Z">
+<meta property="article:modified_time" content="2026-01-27T09:52:21.120Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="六角學院">
-<meta property="article:tag" content="DDL">
-<meta property="article:tag" content="DML">
 <meta property="article:tag" content="PostgreSQL">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="DML">
+<meta property="article:tag" content="DDL">
+<meta property="article:tag" content="資料庫">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/PostgreSQL-1/">
 
@@ -246,7 +248,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2026-01-02 10:24:00" itemprop="dateModified" datetime="2026-01-02T10:24:00+08:00">2026-01-02</time>
+                <time title="修改時間：2026-01-27 17:52:21" itemprop="dateModified" datetime="2026-01-27T17:52:21+08:00">2026-01-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +256,15 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Blog/categories/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a>
+                  <a href="/Blog/categories/%E5%AD%B8%E7%BF%92%E5%BF%83%E5%BE%97/" itemprop="url" rel="index"><span itemprop="name">學習心得</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/%E5%BE%8C%E7%AB%AF%E5%AF%A6%E6%88%B0/" itemprop="url" rel="index"><span itemprop="name">後端實戰</span></a>
                 </span>
             </span>
 
@@ -296,7 +306,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png" alt="文章封面圖"></p>
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1730362541/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F/%E5%89%8D%E7%AB%AF%E5%8B%87%E5%A3%AB%E5%A4%A7%E9%97%96%E5%85%AD%E8%A7%92%E5%BE%8C%E7%AB%AF%E9%AB%94%E9%A9%97%E7%87%9F_ofqtre.png" alt="文章封面圖"></p>
 <h2 id="什麼是後端伺服器？"><a href="#什麼是後端伺服器？" class="headerlink" title="什麼是後端伺服器？"></a>什麼是後端伺服器？</h2><p>當我們透過前端伺服器發送請求到後端伺服器的流程，大致可以規劃成以下簡易的流程。</p>
 <p>依照之前架設的<code>Nodejs express</code>伺服器的經驗：</p>
 <ol>
@@ -355,9 +365,10 @@
 <p>這是一個關於小美在家具店打工時，遇到客人的故事…</p>
 <blockquote>
 <ul>
-<li><strong>客人</strong>：我要看那個貓抓皮沙發，你們還有貨嗎？</li>
-<li><strong>小美</strong>：（慌張）啊…貓抓皮沙發…<br>(ＱＱ 一時想不起來，只能使用學長之力，急著用 LINE 問小明學長)<blockquote>
-<ul>
+<li><p><strong>客人</strong>：我要看那個貓抓皮沙發，你們還有貨嗎？</p>
+</li>
+<li><p><strong>小美</strong>：（慌張）啊…貓抓皮沙發…<br>(ＱＱ 一時想不起來，只能使用學長之力，急著用 LINE 問小明學長)</p>
+</li>
 <li><p><strong>小美</strong>：學長救命！要怎麼查這個沙發？</p>
 </li>
 <li><p><strong>小明</strong>：(學長光環閃爍)這邊只要對著這個機器下等於的語法</p>
@@ -385,9 +396,6 @@
 <li><p><strong>小明</strong>：那我再考你幾題，如果你都會了以後，那我就可以退休了ㄏㄏㄏ</p>
 </li>
 <li><p><strong>小美</strong>：學長不可以啦…..</p>
-</li>
-</ul>
-</blockquote>
 </li>
 </ul>
 </blockquote>
@@ -565,9 +573,11 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/Blog/tags/%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2/" rel="tag"># 六角學院</a>
-              <a href="/Blog/tags/DDL/" rel="tag"># DDL</a>
-              <a href="/Blog/tags/DML/" rel="tag"># DML</a>
               <a href="/Blog/tags/PostgreSQL/" rel="tag"># PostgreSQL</a>
+              <a href="/Blog/tags/SQL/" rel="tag"># SQL</a>
+              <a href="/Blog/tags/DML/" rel="tag"># DML</a>
+              <a href="/Blog/tags/DDL/" rel="tag"># DDL</a>
+              <a href="/Blog/tags/%E8%B3%87%E6%96%99%E5%BA%AB/" rel="tag"># 資料庫</a>
           </div>
 
         
@@ -663,18 +673,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -32,20 +32,24 @@
 </script>
   <meta name="description" content="透過關注點分離的設計方式，可顯著提高系統整體的可維護性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript(4)：注重關注點的分離">
+<meta property="og:title" content="JavaScript：注重關注點的分離">
 <meta property="og:url" content="https://ling-jun-hao.github.io/Blog/JS-4/">
 <meta property="og:site_name" content="Antonio&#39;s blog">
 <meta property="og:description" content="透過關注點分離的設計方式，可顯著提高系統整體的可維護性。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg">
-<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1767590450/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E9%83%A8%E8%90%BD%E6%A0%BC_JavaScript_2_o4jnzo.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_auto,h_675,c_fill/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_auto,h_675,c_fill/v1/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E9%97%9C%E6%B3%A8%E9%BB%9E%E5%88%86%E9%9B%A2%E7%89%88%E6%9C%AC-%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_unos1s?_a=BAMAAAhK0">
 <meta property="article:published_time" content="2023-11-29T01:44:29.000Z">
-<meta property="article:modified_time" content="2026-01-02T02:24:00.927Z">
+<meta property="article:modified_time" content="2026-01-05T05:21:47.442Z">
 <meta property="article:author" content="LING,JUN HAO">
 <meta property="article:tag" content="SoC">
+<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="Design Patterns">
+<meta property="article:tag" content="Clean Code">
+<meta property="article:tag" content="Refactoring">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1767590450/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E9%83%A8%E8%90%BD%E6%A0%BC_JavaScript_2_o4jnzo.jpg">
 
 <link rel="canonical" href="https://ling-jun-hao.github.io/Blog/JS-4/">
 
@@ -60,7 +64,7 @@
   };
 </script>
 
-    <title>JavaScript(4)：注重關注點的分離 | Antonio's blog | 前端小蝦米</title>
+    <title>JavaScript：注重關注點的分離 | Antonio's blog | 前端小蝦米</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
     <script>
@@ -227,7 +231,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript(4)：注重關注點的分離
+          JavaScript：注重關注點的分離
         </h1>
 
         <div class="post-meta">
@@ -244,7 +248,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2026-01-02 10:24:00" itemprop="dateModified" datetime="2026-01-02T10:24:00+08:00">2026-01-02</time>
+                <time title="修改時間：2026-01-05 13:21:47" itemprop="dateModified" datetime="2026-01-05T13:21:47+08:00">2026-01-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,6 +257,10 @@
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/Blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">Software Engineering</span></a>
                 </span>
             </span>
 
@@ -294,11 +302,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007055/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JavaScript_f1qbxb.jpg" alt="Blog背景圖"></p>
-<p><strong>關注點分離（Separation of Concerns，SoC）</strong></p>
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1767590450/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/%E9%83%A8%E8%90%BD%E6%A0%BC_JavaScript_2_o4jnzo.jpg" alt="Blog背景圖"></p>
+<p><strong>🌟 關注點分離（Separation of Concerns，SoC）</strong></p>
+<hr>
 <h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><ul>
 <li>關注點分離是一種軟體設計原則，將一個系統劃分為不同的模組或元件，每個模組或元件集中於解決特定的關注點或任務，以提高系統的可操作性、可維護性、可擴展性和可重用性。該原則主張將不同層面的關注點獨立開發，使得修改一個關注點不會影響其他關注點。</li>
-<li>傳統的網頁開發中，通常會將網頁的開發區分為HTML、CSS、JavaScript三個技術領域，並分別將它們拆分成不同的檔案，以負責各自的領域。<ul>
+<li>傳統的網頁開發中，通常會將網頁的開發區分為 HTML、CSS、JavaScript 三個技術領域，並分別將它們拆分成不同的檔案，以負責各自的領域。<ul>
 <li>HTML： 語意層，負責網頁結構和整體語意。</li>
 <li>CSS： 樣式層，負責網頁外觀和樣式。</li>
 <li>JavaScript： 邏輯層，負責處理事件邏輯和動態行為。</li>
@@ -325,7 +334,7 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// script.js</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> header = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span><br><span class="line">  header.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Hi&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="關注點分離-MVC概念"><a href="#關注點分離-MVC概念" class="headerlink" title="關注點分離- MVC概念"></a>關注點分離- MVC概念</h2><ul>
+<h2 id="關注點分離-MVC-概念"><a href="#關注點分離-MVC-概念" class="headerlink" title="關注點分離- MVC 概念"></a>關注點分離- MVC 概念</h2><ul>
 <li>Model：<ul>
 <li>負責處理數據的邏輯，包括數據的存儲、檢索、更新和刪除等操作。</li>
 </ul>
@@ -341,13 +350,13 @@
 </ul>
 <hr>
 <ul>
-<li>單純依賴Controller影響View的節點，使得View上呈現的節點難以維護。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg" alt="傳統網頁結構"></li>
+<li>單純依賴 Controller 影響 View 的節點，使得 View 上呈現的節點難以維護。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_auto,h_675,c_fill/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg" alt="傳統網頁結構"></li>
 </ul>
 <hr>
-<p>我們希望透過MVC的概念讓維護上更為方便。</p>
+<p>我們希望透過 MVC 的概念讓維護上更為方便。</p>
 <ul>
-<li>使用者與介面互動 -&gt; Controller處理網頁邏輯 -&gt; Controller調用Model方法，影響Model資料(新增或修改) -&gt; 修改完Controller再次呼叫View渲染的方法 -&gt; View根據更新後的資料重新渲染</li>
-<li>達到View及Model透過Controller進行彼此的溝通而不直接互相影響。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/v1708007052/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E5%82%B3%E7%B5%B1%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_bkkbwr.jpg" alt="關注點分離-網頁結構"></li>
+<li>使用者與介面互動 -&gt; Controller 處理網頁邏輯 -&gt; Controller 調用 Model 方法，影響 Model 資料(新增或修改) -&gt; 修改完 Controller 再次呼叫 View 渲染的方法 -&gt; View 根據更新後的資料重新渲染</li>
+<li>達到 View 及 Model 透過 Controller 進行彼此的溝通而不直接互相影響。<br><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_auto,h_675,c_fill/v1/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/JS-4/%E9%97%9C%E6%B3%A8%E9%BB%9E%E5%88%86%E9%9B%A2%E7%89%88%E6%9C%AC-%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B_unos1s?_a=BAMAAAhK0" alt="關注點分離-網頁結構"></li>
 <li>透過以下流程搭配程式碼進行說明<ol>
 <li>用戶與界面互動，觸發 Controller 的相應方法。<ul>
 <li>使用者在瀏覽器點擊移除。</li>
@@ -358,25 +367,27 @@
 </ul>
 </li>
 <li>Model 的狀態發生變化。<ul>
-<li>removeData方法中使用了 splice 方法來移除資料陣列 data 中的特定項目，即刪除了一個資料項。</li>
+<li>removeData 方法中使用了 splice 方法來移除資料陣列 data 中的特定項目，即刪除了一個資料項。</li>
 </ul>
 </li>
 <li>Controller 得知 Model 狀態的變化，通知相應的 View。<ul>
-<li>removeData方法執行完畢後，立即呼叫了 render 方法，這是通知 View 部分。</li>
+<li>removeData 方法執行完畢後，立即呼叫了 render 方法，這是通知 View 部分。</li>
 </ul>
 </li>
 <li>View 從 Model 中獲取最新的數據。<ul>
-<li>render方法內部重新遍歷資料陣列，創建新的HTML元素，並更新 DOM 中的內容。</li>
+<li>render 方法內部重新遍歷資料陣列，創建新的 HTML 元素，並更新 DOM 中的內容。</li>
 </ul>
 </li>
 <li>View 使用這些數據更新界面。<ul>
-<li>新的HTML元素被注入到DOM中，此時界面上的列表已經更新，反映了資料變化。</li>
+<li>新的 HTML 元素被注入到 DOM 中，此時界面上的列表已經更新，反映了資料變化。</li>
 </ul>
 </li>
 </ol>
 </li>
-<li><a target="_blank" rel="noopener" href="https://codepen.io/gwhvusel-the-builder/pen/LYqevQL">Codepen連結</a></li>
 </ul>
+<iframe src="https://codepen.io/gwhvusel-the-builder/embed/LYqevQL?default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<p>程式碼：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> component = &#123;</span><br><span class="line">  <span class="comment">// Model的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="attr">data</span>: [</span><br><span class="line">    <span class="string">&#x27;這是第一句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第二句話&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;這是第三句話&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="title function_">removeData</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">splice</span>(id, <span class="number">1</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// View的部分</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">renderList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> list = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.component ul&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> content = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">data</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">      content = <span class="string">`<span class="subst">$&#123;content&#125;</span>&lt;li&gt;<span class="subst">$&#123;item&#125;</span> &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-id=&quot;<span class="subst">$&#123;i&#125;</span>&quot;&gt;移除&lt;/button&gt;&lt;/li&gt;`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    list.<span class="property">innerHTML</span> = content;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">addEventListeners</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> btns = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">    btns.<span class="title function_">forEach</span>(<span class="function"><span class="params">btn</span> =&gt;</span> btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> id = e.<span class="property">target</span>.<span class="property">dataset</span>.<span class="property">id</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">removeData</span>(id);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Controller</span></span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123; <span class="comment">// 渲染方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">renderList</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">addEventListeners</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">render</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// --------</span></span><br><span class="line">&#125;;</span><br><span class="line">component.<span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -388,6 +399,10 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/Blog/tags/SoC/" rel="tag"># SoC</a>
+              <a href="/Blog/tags/MVC/" rel="tag"># MVC</a>
+              <a href="/Blog/tags/Design-Patterns/" rel="tag"># Design Patterns</a>
+              <a href="/Blog/tags/Clean-Code/" rel="tag"># Clean Code</a>
+              <a href="/Blog/tags/Refactoring/" rel="tag"># Refactoring</a>
           </div>
 
         
@@ -396,12 +411,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Blog/JS-3/" rel="prev" title="JavaScript(3)：掌握箭頭函式，優雅簡約的程式寫作">
-      <i class="fa fa-chevron-left"></i> JavaScript(3)：掌握箭頭函式，優雅簡約的程式寫作
+    <a href="/Blog/JS-3/" rel="prev" title="JavaScript：掌握箭頭函式，優雅簡約的程式寫作">
+      <i class="fa fa-chevron-left"></i> JavaScript：掌握箭頭函式，優雅簡約的程式寫作
     </a></div>
       <div class="post-nav-item">
-    <a href="/Blog/JS-5/" rel="next" title="JavaScript(5)：物件傳參考特性(Pass by reference)">
-      JavaScript(5)：物件傳參考特性(Pass by reference) <i class="fa fa-chevron-right"></i>
+    <a href="/Blog/JS-5/" rel="next" title="JavaScript：物件傳參考特性(Pass by Reference)">
+      JavaScript：物件傳參考特性(Pass by Reference) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -468,7 +483,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9"><span class="nav-number">1.</span> <span class="nav-text">定義</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%B3%A8%E9%BB%9E%E5%88%86%E9%9B%A2-MVC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">關注點分離- MVC概念</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9"><span class="nav-number">1.</span> <span class="nav-text">定義</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%B3%A8%E9%BB%9E%E5%88%86%E9%9B%A2-MVC-%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">關注點分離- MVC 概念</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,18 +498,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/Blog/archives">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Blog/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Blog/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -609,7 +624,7 @@
   var disqus_config = function() {
     this.page.url = "https://ling-jun-hao.github.io/Blog/JS-4/";
     this.page.identifier = "JS-4/";
-    this.page.title = "JavaScript(4)：注重關注點的分離";
+    this.page.title = "JavaScript：注重關注點的分離";
     this.language = "zh_TW";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {

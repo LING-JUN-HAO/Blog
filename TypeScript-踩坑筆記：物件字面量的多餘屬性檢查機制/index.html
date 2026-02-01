@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/icon100.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/icon50.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/Blog/lib/pace/pace-theme-bounce.min.css">
+  <script src="/Blog/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ling-jun-hao.github.io","root":"/Blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XWTEE0094B');
+</script>
+  <meta name="description" content="深入探討 TypeScript 的多餘屬性檢查（Excess Property Checks）機制，解析物件字面量與變數賦值的型別檢查差異，並提供實務開發中避免型別陷阱的最佳實踐方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 踩坑筆記：物件字面量的多餘屬性檢查機制">
+<meta property="og:url" content="https://ling-jun-hao.github.io/Blog/TypeScript-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6/">
+<meta property="og:site_name" content="Antonio&#39;s blog">
+<meta property="og:description" content="深入探討 TypeScript 的多餘屬性檢查（Excess Property Checks）機制，解析物件字面量與變數賦值的型別檢查差異，並提供實務開發中避免型別陷阱的最佳實踐方法。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769848037/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/TypeScript_%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98_%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6_m18jex.jpg">
+<meta property="article:published_time" content="2026-01-31T08:29:23.000Z">
+<meta property="article:modified_time" content="2026-02-01T16:20:55.160Z">
+<meta property="article:author" content="LING,JUN HAO">
+<meta property="article:tag" content="Excess Property Checks">
+<meta property="article:tag" content="Structural Typing">
+<meta property="article:tag" content="Type Safety">
+<meta property="article:tag" content="NestJS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769848037/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/TypeScript_%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98_%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6_m18jex.jpg">
+
+<link rel="canonical" href="https://ling-jun-hao.github.io/Blog/TypeScript-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+    <title>TypeScript 踩坑筆記：物件字面量的多餘屬性檢查機制 | Antonio's blog | 前端小蝦米</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWTEE0094B"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XWTEE0094B');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Antonio's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端小蝦米</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首頁">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/Blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/Blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-文章分類">
+
+    <a href="/Blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>文章分類</a>
+
+  </li>
+        <li class="menu-item menu-item-文章列表">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章列表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://ling-jun-hao.github.io/Blog/TypeScript-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/antonio.jpg">
+      <meta itemprop="name" content="LING,JUN HAO">
+      <meta itemprop="description" content="我是一隻前端小蝦米，努力夢想有一天變成大鯨魚">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Antonio's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript 踩坑筆記：物件字面量的多餘屬性檢查機制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2026-01-31 16:29:23" itemprop="dateCreated datePublished" datetime="2026-01-31T16:29:23+08:00">2026-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2026-02-02 00:20:55" itemprop="dateModified" datetime="2026-02-02T00:20:55+08:00">2026-02-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Blog/categories/TypeScript/" itemprop="url" rel="index"><span itemprop="name">TypeScript</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/Blog/TypeScript-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TypeScript-踩坑筆記：物件字面量的多餘屬性檢查機制/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分鐘</span>
+            </span>
+            <div class="post-description">深入探討 TypeScript 的多餘屬性檢查（Excess Property Checks）機制，解析物件字面量與變數賦值的型別檢查差異，並提供實務開發中避免型別陷阱的最佳實踐方法。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://res.cloudinary.com/dseg0uwc9/image/upload/f_auto,q_auto,w_1200,h_675,c_fill/v1769848037/%E9%83%A8%E8%90%BD%E6%A0%BC%E5%B0%88%E7%94%A8/TypeScript_%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98_%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6_m18jex.jpg" alt="Blog背景圖"></p>
+<p>最近在學 Nest.js，練習定義請求和回應的 DTO 型別。</p>
+<p>我在 StackBlitz 上用模擬資料實作了一個 Swagger API，整個流程是：</p>
+<ol>
+<li>Controller 接收請求</li>
+<li>Service 處理 MockData</li>
+<li>回傳結果</li>
+</ol>
+<p>結果碰到多餘參數型別不一致的問題</p>
+<h2 id="問題場景"><a href="#問題場景" class="headerlink" title="問題場景"></a>問題場景</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackblitz.com/edit/nestjs-typescript-starter-zuugwhx3?file=src/app.service.ts">stackblitz 問題重現連結</a></p>
+</blockquote>
+<p><strong>Controller 定義</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 略</span></span><br><span class="line"><span class="meta">@ApiTags</span>(<span class="string">&#x27;users&#x27;</span>)</span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">&#x27;users&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppController</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="attr">appService</span>: <span class="title class_">AppService</span></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>()</span><br><span class="line">  <span class="meta">@ApiOperation</span>(&#123;</span><br><span class="line">    <span class="attr">summary</span>: <span class="string">&#x27;取得全部用戶資訊&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>: <span class="string">&#x27;返回系統中所有的用戶資訊，包括用戶名稱、角色和狀態。&#x27;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="meta">@ApiResponse</span>(&#123;</span><br><span class="line">    <span class="attr">status</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">description</span>: <span class="string">&#x27;User search successfully.&#x27;</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">FilterUsersResponseDto</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="title function_">filterByRole</span>(</span><br><span class="line">    <span class="meta">@Query</span>() <span class="attr">queryParams</span>: <span class="title class_">FilterUsersRequestDto</span>): <span class="title class_">FilterUsersResponseDto</span>[] &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">appService</span>.<span class="title function_">filterMockData</span>(queryParams);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Service 定義</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">filterMockData</span>(<span class="attr">filterDto</span>: <span class="title class_">FilterUsersRequestDto</span>): <span class="title class_">FilterUsersResponseDto</span>[] &#123;</span><br><span class="line">    <span class="keyword">const</span> filterUserResult = <span class="variable language_">this</span>.<span class="property">mockData</span>.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">        (!filterDto.<span class="property">role</span> || filterDto.<span class="property">role</span>.<span class="title function_">includes</span>(item.<span class="property">role</span>)) &amp;&amp;</span><br><span class="line">        (!filterDto.<span class="property">status</span> || item.<span class="property">status</span> === filterDto.<span class="property">status</span>) &amp;&amp;</span><br><span class="line">        (!filterDto.<span class="property">name</span> || item.<span class="property">name</span>.<span class="title function_">includes</span>(filterDto.<span class="property">name</span>))</span><br><span class="line">        );</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> filterUserResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>MockData 定義</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> mockData = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;John Doe&#x27;</span>,</span><br><span class="line">    <span class="attr">role</span>: <span class="title class_">UserRole</span>.<span class="property">Admin</span>,</span><br><span class="line">    <span class="attr">status</span>: <span class="title class_">UserStatus</span>.<span class="property">Active</span>,</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&#x27;john.doe@example.com&#x27;</span>,</span><br><span class="line">    <span class="attr">createdAt</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2023-01-01&#x27;</span>),</span><br><span class="line">    <span class="attr">updatedAt</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2023-01-10&#x27;</span>),</span><br><span class="line">    <span class="attr">test</span>: <span class="number">123</span>, <span class="comment">// 亂新增的值</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 略</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>乍看之下沒有什麼問題，但當我調整 MockData 新增一個值時，我發現 TS 型別檢查上並沒有報錯。</p>
+<p>誒…..怎麼會這樣，這跟原本的型別已經不同了，多了 <code>test</code> 應該要報錯才對呀 ?</p>
+<h2 id="Excess-Property-Checks"><a href="#Excess-Property-Checks" class="headerlink" title="Excess Property Checks"></a>Excess Property Checks</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/objects.html">官方章節</a></p>
+</blockquote>
+<p>當物件以**物件字面值（Object Literal）**的形式直接傳遞時，TypeScript 會執行更嚴格的型別檢查。若物件包含目標型別未定義的屬性，編譯器會立即報錯。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Error: Object literal may only specify known properties, and &#x27;phone&#x27; does not exist in type &#x27;IUser&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果透過變數指派的方式，TypeScript 就只會檢查有沒有符合 IUser 的屬性，多餘的屬性就不會被檢查了。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userObj = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br></pre></td></tr></table></figure>
+
+<p>這種繞過 <code>Excess Property Checks</code> 的寫法，應該只在有明確需求時才使用。在大多數情況下，出現這種情形往往代表著型別定義不夠嚴謹。</p>
+<h2 id="避免方式"><a href="#避免方式" class="headerlink" title="避免方式"></a>避免方式</h2><h3 id="1-明確標註型別時會觸發檢查"><a href="#1-明確標註型別時會觸發檢查" class="headerlink" title="1. 明確標註型別時會觸發檢查"></a>1. 明確標註型別時會觸發檢查</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">userObj</span>: <span class="title class_">IUser</span> = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br><span class="line"><span class="comment">// Error: Object literal may only specify known properties, and &#x27;phone&#x27; does not exist in type &#x27;IUser&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用-satisfies-保留物件字面值行為"><a href="#2-使用-satisfies-保留物件字面值行為" class="headerlink" title="2. 使用 satisfies 保留物件字面值行為"></a>2. 使用 satisfies 保留物件字面值行為</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userObj = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125; <span class="keyword">satisfies</span> <span class="title class_">IUser</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br><span class="line"><span class="comment">// Error: Object literal may only specify known properties, and &#x27;phone&#x27; does not exist in type &#x27;IUser&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="允許額外屬性的型別定義"><a href="#允許額外屬性的型別定義" class="headerlink" title="允許額外屬性的型別定義"></a>允許額外屬性的型別定義</h2><p>如果業務需求確實需要允許動態新增屬性，可以考慮以下兩種方式：</p>
+<h3 id="1-索引簽名（Index-Signature）"><a href="#1-索引簽名（Index-Signature）" class="headerlink" title="1. 索引簽名（Index Signature）"></a>1. 索引簽名（Index Signature）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span>,</span><br><span class="line">  [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="built_in">unknown</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">userObj</span>: <span class="title class_">IUser</span> = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用介面繼承擴展原型別定義"><a href="#2-使用介面繼承擴展原型別定義" class="headerlink" title="2. 使用介面繼承擴展原型別定義"></a>2. 使用介面繼承擴展原型別定義</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IUserWithPhone</span> <span class="keyword">extends</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">phone</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">userObj</span>: <span class="title class_">IUserWithPhone</span> = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用型別交集（Type-Intersection）"><a href="#3-使用型別交集（Type-Intersection）" class="headerlink" title="3. 使用型別交集（Type Intersection）"></a>3. 使用型別交集（Type Intersection）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IUser</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">IUserWithPhone</span> = <span class="title class_">IUser</span> &amp; &#123;</span><br><span class="line">  <span class="attr">phone</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">TestUse</span>(<span class="params"><span class="attr">user</span>: <span class="title class_">IUser</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;user&#x27;</span>, user)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">userObj</span>: <span class="title class_">IUserWithPhone</span> = &#123; <span class="attr">name</span>: <span class="string">&#x27;Antonio&#x27;</span>, <span class="attr">age</span>: <span class="number">27</span>, <span class="attr">phone</span>: <span class="number">100</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">TestUse</span>(userObj)</span><br></pre></td></tr></table></figure>
+
+<h2 id="回到問題場景的解決方案"><a href="#回到問題場景的解決方案" class="headerlink" title="回到問題場景的解決方案"></a>回到問題場景的解決方案</h2><p>回到文章開頭的 Nest.js 範例，只需要在定義 <code>mockData</code> 時明確標註型別，TypeScript 就會對多餘的屬性進行檢查並報錯：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="attr">mockData</span>: <span class="title class_">FilterUsersResponseDto</span>[] = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;John Doe&#x27;</span>,</span><br><span class="line">    <span class="attr">role</span>: <span class="title class_">UserRole</span>.<span class="property">Admin</span>,</span><br><span class="line">    <span class="attr">status</span>: <span class="title class_">UserStatus</span>.<span class="property">Active</span>,</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&#x27;john.doe@example.com&#x27;</span>,</span><br><span class="line">    <span class="attr">createdAt</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2023-01-01&#x27;</span>),</span><br><span class="line">    <span class="attr">updatedAt</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2023-01-10&#x27;</span>),</span><br><span class="line">    <span class="attr">test</span>: <span class="number">123</span>, <span class="comment">// Error: &#x27;test&#x27; does not exist in type &#x27;FilterUsersResponseDto&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 略</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>這樣一來，當我們不小心新增了 <code>test</code> 這個多餘屬性時，TypeScript 會立即提示錯誤，避免潛在的型別不一致問題。</p>
+<h2 id="補充資料來源"><a href="#補充資料來源" class="headerlink" title="補充資料來源"></a>補充資料來源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.stackademic.com/understanding-typescripts-handling-of-object-literal-types-the-quirks-and-insights-c1c8b4e49645">Understanding TypeScript’s Handling of Object Literal Types: The Quirks and Insights</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Excess-Property-Checks/" rel="tag"># Excess Property Checks</a>
+              <a href="/Blog/tags/Structural-Typing/" rel="tag"># Structural Typing</a>
+              <a href="/Blog/tags/Type-Safety/" rel="tag"># Type Safety</a>
+              <a href="/Blog/tags/NestJS/" rel="tag"># NestJS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/dbdiagram-tool/" rel="prev" title="關聯式資料庫設計必備 - dbdiagram.io ERD 繪圖工具">
+      <i class="fa fa-chevron-left"></i> 關聯式資料庫設計必備 - dbdiagram.io ERD 繪圖工具
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E5%A0%B4%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">問題場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Excess-Property-Checks"><span class="nav-number">2.</span> <span class="nav-text">Excess Property Checks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">避免方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%98%8E%E7%A2%BA%E6%A8%99%E8%A8%BB%E5%9E%8B%E5%88%A5%E6%99%82%E6%9C%83%E8%A7%B8%E7%99%BC%E6%AA%A2%E6%9F%A5"><span class="nav-number">3.1.</span> <span class="nav-text">1. 明確標註型別時會觸發檢查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-satisfies-%E4%BF%9D%E7%95%99%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E5%80%BC%E8%A1%8C%E7%82%BA"><span class="nav-number">3.2.</span> <span class="nav-text">2. 使用 satisfies 保留物件字面值行為</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%81%E8%A8%B1%E9%A1%8D%E5%A4%96%E5%B1%AC%E6%80%A7%E7%9A%84%E5%9E%8B%E5%88%A5%E5%AE%9A%E7%BE%A9"><span class="nav-number">4.</span> <span class="nav-text">允許額外屬性的型別定義</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%B4%A2%E5%BC%95%E7%B0%BD%E5%90%8D%EF%BC%88Index-Signature%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">1. 索引簽名（Index Signature）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E4%BB%8B%E9%9D%A2%E7%B9%BC%E6%89%BF%E6%93%B4%E5%B1%95%E5%8E%9F%E5%9E%8B%E5%88%A5%E5%AE%9A%E7%BE%A9"><span class="nav-number">4.2.</span> <span class="nav-text">2. 使用介面繼承擴展原型別定義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E5%9E%8B%E5%88%A5%E4%BA%A4%E9%9B%86%EF%BC%88Type-Intersection%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">3. 使用型別交集（Type Intersection）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0%E5%95%8F%E9%A1%8C%E5%A0%B4%E6%99%AF%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">回到問題場景的解決方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%9C%E5%85%85%E8%B3%87%E6%96%99%E4%BE%86%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">補充資料來源</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LING,JUN HAO"
+      src="/Blog/images/antonio.jpg">
+  <p class="site-author-name" itemprop="name">LING,JUN HAO</p>
+  <div class="site-description" itemprop="description">我是一隻前端小蝦米，努力夢想有一天變成大鯨魚</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Blog/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Blog/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/LING-JUN-HAO" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LING-JUN-HAO" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qd513020@gmail.com" title="E-Mail → mailto:qd513020@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Antonio</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/pisces.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/Blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ling-jun-hao-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ling-jun-hao.github.io/Blog/TypeScript-%E8%B8%A9%E5%9D%91%E7%AD%86%E8%A8%98%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A4%9A%E9%A4%98%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5%E6%A9%9F%E5%88%B6/";
+    this.page.identifier = "TypeScript-踩坑筆記：物件字面量的多餘屬性檢查機制/";
+    this.page.title = "TypeScript 踩坑筆記：物件字面量的多餘屬性檢查機制";
+    this.language = "zh_TW";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ling-jun-hao-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+
+  
+
+</body>
+</html>
