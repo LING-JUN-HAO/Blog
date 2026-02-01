@@ -95,7 +95,7 @@ filterMockData(filterDto: FilterUsersRequestDto): FilterUsersResponseDto[] {
 
 > [官方章節](https://www.typescriptlang.org/docs/handbook/2/objects.html)
 
-當物件以**物件字面值（Object Literal）**的形式直接傳遞時，TypeScript 會執行更嚴格的型別檢查。若物件包含目標型別未定義的屬性，編譯器會立即報錯。
+當物件以 **物件字面值（Object Literal）** 的形式直接傳遞時，TypeScript 會執行更嚴格的型別檢查。若物件包含目標型別未定義的屬性，編譯器會立即報錯。
 
 ```Ts
 interface IUser {
