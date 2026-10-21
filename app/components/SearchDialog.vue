@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MiniSearch from 'minisearch'
+import { withTrailingSlash } from 'ufo'
 
 interface Section { id: string, title: string, titles: string[], content: string }
 
@@ -36,20 +37,30 @@ const { data: sections, execute } = useLazyAsyncData('search-sections', () => qu
   server: false,
 })
 
-// 結果的標籤：sections 的 id 是「文章路徑#標題」，用文章路徑對回標籤
+// sections 的 id 是「文章路徑#標題」，用文章路徑對回文章標題與標籤
 const { data: posts } = usePosts()
-const tagsByPath = computed(() => new Map(posts.value.map(p => [p.path, p.tags.filter(t => !/鐵人賽$/.test(t))])))
+const postByPath = computed(() => new Map(posts.value.map(p => [p.path, p])))
 const activeTag = ref('')
 
+// 一篇文章只留一筆（分數最高的段落），點下去從文章頂端開始讀，摘要仍取自最相關的段落
 const hits = computed(() => {
   if (!engine.value || query.value.trim().length === 0) return []
-  return engine.value.search(query.value, { prefix: true, combineWith: 'AND' }).map(hit => ({
-    id: hit.id as string,
-    title: hit.title as string,
-    titles: hit.titles as string[],
-    content: hit.content as string,
-    tags: tagsByPath.value.get((hit.id as string).split('#')[0]!) ?? [],
-  }))
+  const seen = new Set<string>()
+  return engine.value.search(query.value, { prefix: true, combineWith: 'AND' }).flatMap((hit) => {
+    const path = (hit.id as string).split('#')[0]!
+    if (seen.has(path)) return []
+    seen.add(path)
+    const post = postByPath.value.get(path)
+    const title = post?.title ?? (hit.titles as string[])[0] ?? (hit.title as string)
+    return [{
+      path,
+      title,
+      // 命中的是文章內的段落時，標出段落名稱
+      section: hit.title === title ? '' : hit.title as string,
+      content: hit.content as string,
+      tags: post?.tags.filter(t => !/鐵人賽$/.test(t)) ?? [],
+    }]
+  })
 })
 // 篩選用的標籤：結果裡最常出現的前 8 個
 const tagOptions = computed(() => {
@@ -134,7 +145,7 @@ onKeyStroke(['k', 'K'], (event) => {
 async function openFirst() {
   query.value = typed.value
   const first = results.value[0]
-  if (first) await navigateTo(first.id)
+  if (first) await navigateTo(withTrailingSlash(first.path))
 }
 
 const route = useRoute()
@@ -207,22 +218,25 @@ watch(() => route.fullPath, () => {
         <ul>
           <li
             v-for="item in results"
-            :key="item.id"
+            :key="item.path"
             class="border-b border-(--line) last:border-b-0"
           >
             <NuxtLink
-              :to="item.id"
+              :to="item.path"
               class="block px-5 py-3.5 hover:bg-(--wash)"
             >
-              <p class="text-xs text-(--ink-soft)">
-                {{ item.titles.join(' / ') }}
-              </p>
               <p class="font-bold">
                 <component
                   :is="part.hit ? 'mark' : 'span'"
                   v-for="(part, i) in highlight(item.title)"
                   :key="i"
                 >{{ part.text }}</component>
+              </p>
+              <p
+                v-if="item.section"
+                class="mt-0.5 text-xs text-(--ink-soft)"
+              >
+                段落：{{ item.section }}
               </p>
               <p class="mt-0.5 line-clamp-2 text-sm text-(--ink-soft)">
                 <component
