@@ -169,9 +169,11 @@ defineOgImage('Post', {
         />
       </header>
 
+      <!-- 系列文章的目錄直接接在系列導覽下面，共用分隔線，不另外留白 -->
       <details
         v-if="toc.length"
-        class="mt-8 max-w-(--container-prose) border-y border-(--line) py-3 xl:hidden"
+        class="max-w-(--container-prose) border-(--line) py-3 xl:hidden"
+        :class="series ? 'border-b' : 'mt-8 border-y'"
       >
         <summary class="cursor-pointer text-sm text-(--ink-soft)">
           文章目錄
