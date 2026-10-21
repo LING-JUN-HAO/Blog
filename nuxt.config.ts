@@ -42,10 +42,11 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // 網頁字型延到 load 之後才套用（見 main.css 的 .fonts-ready）；同一個分頁載過一次就有快取，直接套用避免閃字
+          // 網頁字型延到 load 之後、瀏覽器閒置時才套用（見 main.css 的 .fonts-ready），確保首屏與 LCP 圖片已經畫完；
+          // 同一個分頁載過一次就有快取，直接套用避免閃字
           key: 'fonts-ready',
           tagPosition: 'head',
-          innerHTML: `(function(){var r=document.documentElement,k='blog-fonts-ready',on=function(){r.classList.add('fonts-ready');try{sessionStorage.setItem(k,'1')}catch(e){}};try{if(sessionStorage.getItem(k)){on();return}}catch(e){}if(document.readyState==='complete')on();else addEventListener('load',on,{once:true})})()`,
+          innerHTML: `(function(){var r=document.documentElement,k='blog-fonts-ready',on=function(){r.classList.add('fonts-ready');try{sessionStorage.setItem(k,'1')}catch(e){}};try{if(sessionStorage.getItem(k)){on();return}}catch(e){}var idle=function(){'requestIdleCallback' in window?requestIdleCallback(on,{timeout:3000}):setTimeout(on,300)};if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})()`,
         },
       ],
       link: [

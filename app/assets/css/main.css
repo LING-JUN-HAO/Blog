@@ -4,7 +4,7 @@
 
 /*
  * 中文網頁字型（Noto Sans TC、LXGW WenKai TC）一頁就要下載將近 2MB，
- * 預設先用系統字，頁面 load 之後 <html> 加上 .fonts-ready 才換成網頁字型（nuxt.config 的 head script），
+ * 預設先用系統字，頁面 load 之後、瀏覽器閒置時 <html> 加上 .fonts-ready 才換成網頁字型（nuxt.config 的 head script），
  * 首次繪製不必等字型下載
  */
 @theme {
