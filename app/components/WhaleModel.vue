@@ -15,6 +15,8 @@ const running = computed(() => inView.value && pageVisibility.value === 'visible
 const interactive = ref(false)
 
 let dispose: (() => void) | undefined
+// 每做完一段就讓出主執行緒：初始化拆成幾個短任務，手機上才不會連續擋住捲動與點擊
+const yieldToMain = () => new Promise<void>(resolve => setTimeout(resolve, 0))
 
 onMounted(async () => {
   const el = container.value
@@ -24,11 +26,14 @@ onMounted(async () => {
   await new Promise<void>(resolve => ('requestIdleCallback' in window ? requestIdleCallback(() => resolve(), { timeout: 2000 }) : setTimeout(resolve, 300)))
   if (!container.value) return
   const [THREE, { createWhale }, { gsap }] = await Promise.all([import('three'), import('~/three/createWhale'), import('gsap')])
+  await yieldToMain()
+  if (!container.value) return
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.outputColorSpace = THREE.SRGBColorSpace
   el.appendChild(renderer.domElement)
+  await yieldToMain()
 
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 200)
@@ -50,6 +55,7 @@ onMounted(async () => {
     { onRipple: (strength, delay) => emit('ripple', strength, delay) },
   )
   whale.setSea(props.sea)
+  await yieldToMain()
   const stopSea = watch(() => props.sea, value => whale.setSea(value))
   // 模型的頭朝 +X、相機在 +Z：轉約 55° 成四分之三側面，臉朝向畫面，往上翹的尾巴也看得到
   const baseTurn = -0.95

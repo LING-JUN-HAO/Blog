@@ -133,7 +133,11 @@ export default defineNuxtConfig({
   hooks: {
     // 動態載入的 chunk（Three.js、搜尋索引等）不要在頁面載入時就 prefetch，真的用到才下載
     'build:manifest': (manifest) => {
-      for (const chunk of Object.values(manifest)) chunk.prefetch = false
+      for (const chunk of Object.values(manifest)) {
+        chunk.prefetch = false
+        // 搜尋的 Web Worker 打開搜尋時才建立，不要被放進每一頁的 modulepreload
+        if (chunk.file.includes('search.worker')) chunk.preload = false
+      }
     },
   },
 
