@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { gsap } from 'gsap'
+// GSAP 在掛載後才動態載入，不放進每一頁都要下載的入口 chunk
+let gsap: typeof import('gsap').gsap | undefined
 
 // 首頁的海平面：載入時描線一次，之後跟著滑鼠起伏（小蝦米游過的水波）
 const WIDTH = 1200
@@ -29,10 +30,10 @@ function render() {
 }
 
 let lastY = 0
-let moveX: gsap.QuickToFunc | undefined
+let moveX: ((value: number) => void) | undefined
 
 function onPointerMove(event: PointerEvent) {
-  if (reducedMotion.value || !svg.value) return
+  if (reducedMotion.value || !svg.value || !gsap) return
   const rect = svg.value.getBoundingClientRect()
   const x = ((event.clientX - rect.left) / rect.width) * WIDTH
   const speed = Math.min(36, Math.abs(event.clientY - lastY) + Math.abs(event.movementX) * 0.4)
@@ -42,22 +43,35 @@ function onPointerMove(event: PointerEvent) {
 }
 
 function settle() {
-  gsap.to(wave, { bumpAmp: 0, duration: 1.6, ease: 'elastic.out(1, 0.3)' })
+  gsap?.to(wave, { bumpAmp: 0, duration: 1.6, ease: 'elastic.out(1, 0.3)' })
 }
 
-onMounted(() => {
+// 捲出畫面就停止海浪的 ticker
+const inView = useElementVisibility(svg)
+let stopTicking: (() => void) | undefined
+
+onMounted(async () => {
   render()
   if (reducedMotion.value || !path.value) return
 
+  // 先同步藏起線條，等 GSAP 載入後再描出來，避免先閃一下完整的線
   const length = path.value.getTotalLength()
-  gsap.fromTo(path.value, { strokeDasharray: length, strokeDashoffset: length }, {
+  path.value.style.strokeDasharray = `${length}`
+  path.value.style.strokeDashoffset = `${length}`
+  gsap = (await import('gsap')).gsap
+  if (!path.value) return
+  gsap.to(path.value, {
     strokeDashoffset: 0,
     duration: 1.8,
     ease: 'power2.inOut',
     onComplete: () => path.value?.removeAttribute('style'),
   })
   moveX = gsap.quickTo(wave, 'bumpX', { duration: 0.5, ease: 'power3.out' })
-  gsap.ticker.add(tick)
+  // 寫在 await 之後的 watch 不會跟著元件卸載自動停止，在 onBeforeUnmount 手動停
+  stopTicking = watch(inView, (visible) => {
+    if (visible) gsap?.ticker.add(tick)
+    else gsap?.ticker.remove(tick)
+  }, { immediate: true })
 })
 
 function tick() {
@@ -66,8 +80,9 @@ function tick() {
 }
 
 onBeforeUnmount(() => {
-  gsap.ticker.remove(tick)
-  gsap.killTweensOf(wave)
+  stopTicking?.()
+  gsap?.ticker.remove(tick)
+  gsap?.killTweensOf(wave)
 })
 </script>
 

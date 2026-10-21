@@ -2,14 +2,24 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * 中文網頁字型（Noto Sans TC、LXGW WenKai TC）一頁就要下載將近 2MB，
+ * 預設先用系統字，頁面 load 之後 <html> 加上 .fonts-ready 才換成網頁字型（nuxt.config 的 head script），
+ * 首次繪製不必等字型下載
+ */
 @theme {
-  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-  --font-display: "LXGW WenKai TC", "Noto Sans TC", "PingFang TC", serif;
+  --font-sans: "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "PingFang TC", "Microsoft JhengHei", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* 版面寬度：整體 72rem，內文欄 50rem（一行約 47 個中文字） */
   --container-site: 72rem;
   --container-prose: 50rem;
+}
+
+:root.fonts-ready {
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "LXGW WenKai TC", "Noto Sans TC", "PingFang TC", serif;
 }
 
 /* 語意色票：淺色是紙白與深海墨藍，強調色是蝦紅，只用在連結與目前位置 */

@@ -1,7 +1,13 @@
 <script setup lang="ts">
-const { alt } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
+const { src, alt } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
 
 const label = computed(() => alt || '文章插圖')
+// 文章的第一張圖可能在首屏，用高優先序立即載入；其餘延後到捲動接近時才載（計數器由文章頁 provide）
+const counter = inject<{ count: number } | null>('prose-img-counter', null)
+const first = counter ? counter.count++ === 0 : false
+// 文內最寬 1600px（內文欄 50rem 在 2x 螢幕約 1600px）；放大時用原尺寸
+const inlineSrc = computed(() => optimizeImage(src, 1600))
+const fullSrc = computed(() => optimizeImage(src))
 const open = ref(false)
 const dialog = useTemplateRef('dialog')
 
@@ -21,11 +27,12 @@ watch(open, async (value) => {
     @click="open = true"
   >
     <img
-      :src="src"
+      :src="inlineSrc"
       :alt="label"
       :width="width"
       :height="height"
-      loading="lazy"
+      :loading="first ? 'eager' : 'lazy'"
+      :fetchpriority="first ? 'high' : 'auto'"
       decoding="async"
     >
   </button>
@@ -40,7 +47,7 @@ watch(open, async (value) => {
       @click="dialog?.close()"
     >
       <img
-        :src="src"
+        :src="fullSrc"
         :alt="label"
         class="max-h-[92vh] max-w-[94vw] rounded-md object-contain"
       >

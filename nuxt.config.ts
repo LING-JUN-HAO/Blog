@@ -40,6 +40,14 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#fbfcfd', media: '(prefers-color-scheme: light)' },
         { name: 'theme-color', content: '#0e1626', media: '(prefers-color-scheme: dark)' },
       ],
+      script: [
+        {
+          // 網頁字型延到 load 之後才套用（見 main.css 的 .fonts-ready）；同一個分頁載過一次就有快取，直接套用避免閃字
+          key: 'fonts-ready',
+          tagPosition: 'head',
+          innerHTML: `(function(){var r=document.documentElement,k='blog-fonts-ready',on=function(){r.classList.add('fonts-ready');try{sessionStorage.setItem(k,'1')}catch(e){}};try{if(sessionStorage.getItem(k)){on();return}}catch(e){}if(document.readyState==='complete')on();else addEventListener('load',on,{once:true})})()`,
+        },
+      ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/images/favicon-32.png' },
@@ -102,7 +110,8 @@ export default defineNuxtConfig({
     viewTransition: true,
     // 沿用 Hexo 的網址格式：/slug/
     defaults: {
-      nuxtLink: { trailingSlash: 'append' },
+      // 預設是連結一出現在畫面就預載該頁，列表頁會一次抓幾十篇；改成滑過、focus 或觸控時才預載
+      nuxtLink: { trailingSlash: 'append', prefetchOn: { visibility: false, interaction: true } },
     },
   },
   compatibilityDate: '2026-10-01',
@@ -117,6 +126,13 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  hooks: {
+    // 動態載入的 chunk（Three.js、搜尋索引等）不要在頁面載入時就 prefetch，真的用到才下載
+    'build:manifest': (manifest) => {
+      for (const chunk of Object.values(manifest)) chunk.prefetch = false
+    },
   },
 
   // llms.txt / llms-full.txt 由 server/routes 自己產生；AI Ready 在 vercel-static 輸出下不會寫出檔案
