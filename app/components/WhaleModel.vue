@@ -1,5 +1,11 @@
 <script setup lang="ts">
 // 首頁的 3D 可愛鯨魚（「努力夢想有一天變成大鯨魚」）；模型由 Codex 依設計規格以 Three.js 幾何組成
+const props = withDefaults(defineProps<{
+  /** 畫出鯨魚自己的一小片海面與漣漪；頁面另外畫海面（手機版的 SeaLine）時關掉 */
+  sea?: boolean
+}>(), { sea: true })
+// 鯨魚激起漣漪時通知外面，讓頁面上的海面跟著盪開（delay 單位為秒）
+const emit = defineEmits<{ ripple: [strength: number, delay: number] }>()
 const container = useTemplateRef('container')
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 // 捲出畫面或切到背景分頁就暫停動畫，不佔主執行緒
@@ -38,7 +44,13 @@ onMounted(async () => {
   rimLight.position.set(18, 10, -24)
   scene.add(rimLight)
 
-  const whale = createWhale(THREE, { body: '#283c94', belly: '#ece9e2', accent: '#e9728f', ink: '#121726' })
+  const whale = createWhale(
+    THREE,
+    { body: '#283c94', belly: '#ece9e2', accent: '#e9728f', ink: '#121726' },
+    { onRipple: (strength, delay) => emit('ripple', strength, delay) },
+  )
+  whale.setSea(props.sea)
+  const stopSea = watch(() => props.sea, value => whale.setSea(value))
   // 模型的頭朝 +X、相機在 +Z：轉約 55° 成四分之三側面，臉朝向畫面，往上翹的尾巴也看得到
   const baseTurn = -0.95
   const baseTilt = 0.08
@@ -60,6 +72,7 @@ onMounted(async () => {
   // 先非同步編譯 shader（瀏覽器支援 KHR_parallel_shader_compile 時不佔主執行緒），第一次繪製才不會卡住幾百毫秒
   await renderer.compileAsync(scene, camera)
   if (!container.value) {
+    stopSea()
     observer.disconnect()
     whale.dispose()
     renderer.dispose()
@@ -124,6 +137,7 @@ onMounted(async () => {
   }
 
   dispose = () => {
+    stopSea()
     stopMotion?.()
     observer.disconnect()
     whale.dispose()

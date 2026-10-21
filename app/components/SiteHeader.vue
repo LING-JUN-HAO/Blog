@@ -3,6 +3,7 @@ const { blog } = useAppConfig()
 const route = useRoute()
 const menuOpen = ref(false)
 const searchOpen = useState('search-open', () => false)
+const searchWarm = useState('search-warm', () => false)
 const header = useTemplateRef('header')
 
 onClickOutside(header, () => {
@@ -89,6 +90,8 @@ function isActive(to: string) {
           type="button"
           class="tool-btn"
           aria-label="搜尋文章"
+          @pointerenter="searchWarm = true"
+          @focus="searchWarm = true"
           @click="searchOpen = true"
         >
           <AppIcon name="search" />

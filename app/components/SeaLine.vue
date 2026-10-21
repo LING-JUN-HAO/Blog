@@ -3,6 +3,12 @@
 let gsap: typeof import('gsap').gsap | undefined
 
 // 首頁的海平面：載入時描線一次，之後跟著滑鼠起伏（小蝦米游過的水波）
+// 手機版鯨魚浮在這條線上：線下方是一層半透明的水，蓋住鯨魚泡在水裡的半身；鯨魚激起的漣漪由 ripple() 傳進來，從牠的位置往兩側盪開
+const props = defineProps<{
+  /** 浮在海面上的東西（鯨魚），漣漪從它的水平中心盪開 */
+  anchor?: HTMLElement | null
+}>()
+
 const WIDTH = 1200
 const HEIGHT = 120
 const BASE_Y = 70
@@ -12,21 +18,59 @@ const svg = useTemplateRef('svg')
 const path = useTemplateRef('path')
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 
+const water = useTemplateRef('water')
+const veil = useTemplateRef('veil')
+const id = useId()
+
 const wave = { phase: 0, bumpX: WIDTH / 2, bumpAmp: 0 }
 
+// 漣漪：以 px 計算距離，線被 preserveAspectRatio="none" 橫向拉伸時波紋才不會跟著變形
+const RIPPLE_SPEED = 70
+const RIPPLE_LIFE = 2.2
+// 漣漪從鯨魚身體邊緣開始往外盪，水線在牠身上保持平穩，不會拱起來蓋住臉
+const RIPPLE_START = 0.32
+let rings: { age: number, strength: number }[] = []
+const box = useElementBounding(svg)
+const anchorBox = useElementBounding(() => props.anchor)
+
+function ripple(strength: number, delay = 0) {
+  if (reducedMotion.value || rings.length > 12) return
+  rings.push({ age: -delay, strength })
+}
+defineExpose({ ripple })
+
+function rippleAt(distance: number, start: number) {
+  let lift = 0
+  for (const ring of rings) {
+    if (ring.age <= 0 || ring.age >= RIPPLE_LIFE) continue
+    const offset = distance - start - ring.age * RIPPLE_SPEED
+    const fade = (1 - ring.age / RIPPLE_LIFE) ** 1.5
+    lift += ring.strength * 7 * fade * Math.exp(-(offset ** 2) / (2 * 16 ** 2)) * Math.cos(offset / 9)
+  }
+  return lift
+}
+
 function buildPath() {
+  const scale = box.width.value / WIDTH || 1
+  const anchorX = (anchorBox.left.value + anchorBox.width.value / 2 - box.left.value) / scale
+  const rippling = rings.length > 0 && anchorBox.width.value > 0
   let d = ''
   for (let i = 0; i <= STEPS; i++) {
     const x = (WIDTH / STEPS) * i
     const swell = Math.sin(x / 95 + wave.phase) * 4 + Math.sin(x / 41 + wave.phase * 1.7) * 1.5
     const bump = wave.bumpAmp * Math.exp(-((x - wave.bumpX) ** 2) / (2 * 70 ** 2))
-    d += `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${(BASE_Y + swell - bump).toFixed(1)}`
+    const lift = rippling ? rippleAt(Math.abs(x - anchorX) * scale, anchorBox.width.value * RIPPLE_START) : 0
+    d += `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${(BASE_Y + swell - bump - lift).toFixed(1)}`
   }
   return d
 }
 
 function render() {
-  path.value?.setAttribute('d', buildPath())
+  const d = buildPath()
+  path.value?.setAttribute('d', d)
+  const body = `${d}L${WIDTH} ${HEIGHT}L0 ${HEIGHT}Z`
+  water.value?.setAttribute('d', body)
+  veil.value?.setAttribute('d', body)
 }
 
 let lastY = 0
@@ -66,6 +110,8 @@ onMounted(async () => {
     ease: 'power2.inOut',
     onComplete: () => path.value?.removeAttribute('style'),
   })
+  // 水面跟著描線慢慢浮現
+  gsap.from([water.value, veil.value], { opacity: 0, duration: 1.2, delay: 0.8, ease: 'power1.out' })
   moveX = gsap.quickTo(wave, 'bumpX', { duration: 0.5, ease: 'power3.out' })
   // 寫在 await 之後的 watch 不會跟著元件卸載自動停止，在 onBeforeUnmount 手動停
   stopTicking = watch(inView, (visible) => {
@@ -74,7 +120,12 @@ onMounted(async () => {
   }, { immediate: true })
 })
 
-function tick() {
+let lastTime = 0
+function tick(time: number) {
+  const dt = Math.min(time - lastTime, 0.05)
+  lastTime = time
+  // 有延遲的漣漪不一定依加入順序結束，逐一過濾
+  if (rings.length) rings = rings.filter(ring => (ring.age += dt) < RIPPLE_LIFE)
   wave.phase += 0.012
   render()
 }
@@ -83,6 +134,7 @@ onBeforeUnmount(() => {
   stopTicking?.()
   gsap?.ticker.remove(tick)
   gsap?.killTweensOf(wave)
+  gsap?.killTweensOf([water.value, veil.value])
 })
 </script>
 
@@ -91,10 +143,64 @@ onBeforeUnmount(() => {
     ref="svg"
     :viewBox="`0 0 ${WIDTH} ${HEIGHT}`"
     preserveAspectRatio="none"
-    class="block h-20 w-full touch-pan-y sm:h-24"
+    class="block h-28 w-full touch-pan-y sm:h-24"
     aria-hidden="true"
     @pointermove="onPointerMove"
   >
+    <!-- 線下的水：只在手機版（鯨魚浮在線上）出現。veil 是頁面底色，讓鯨魚泡在水裡的半身變淡；water 是一抹往下淡出的海色 -->
+    <g
+      v-if="anchor !== undefined"
+      class="sm:hidden"
+    >
+      <defs>
+        <linearGradient
+          :id="`${id}-veil`"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          :y1="BASE_Y - 6"
+          x2="0"
+          :y2="HEIGHT"
+        >
+          <stop
+            offset="0"
+            stop-color="var(--paper)"
+            stop-opacity="0.5"
+          />
+          <stop
+            offset="1"
+            stop-color="var(--paper)"
+            stop-opacity="0.95"
+          />
+        </linearGradient>
+        <linearGradient
+          :id="`${id}-water`"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          :y1="BASE_Y - 6"
+          x2="0"
+          :y2="HEIGHT"
+        >
+          <stop
+            offset="0"
+            stop-color="var(--accent)"
+            stop-opacity="0.1"
+          />
+          <stop
+            offset="1"
+            stop-color="var(--accent)"
+            stop-opacity="0"
+          />
+        </linearGradient>
+      </defs>
+      <path
+        ref="veil"
+        :fill="`url(#${id}-veil)`"
+      />
+      <path
+        ref="water"
+        :fill="`url(#${id}-water)`"
+      />
+    </g>
     <path
       ref="path"
       fill="none"

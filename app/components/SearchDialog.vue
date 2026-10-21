@@ -87,19 +87,35 @@ watch(open, async (value) => {
     return
   }
   dialog.value?.showModal()
-  if (!sections.value) await execute()
-  if (!engine.value && sections.value) {
-    const search = new MiniSearch<Section>({
-      fields: ['title', 'titles', 'content'],
-      storeFields: ['title', 'titles', 'content'],
-      tokenize,
-      searchOptions: { boost: { title: 3, titles: 2 }, tokenize },
-    })
-    search.addAll(sections.value as Section[])
-    engine.value = search
-  }
   await nextTick()
   input.value?.focus()
+  await prepare()
+})
+
+// 下載文章資料並建立索引；滑過或 focus 搜尋按鈕時就先開始，打開時多半已經好了
+let preparing: Promise<void> | undefined
+function prepare() {
+  preparing ??= (async () => {
+    if (!sections.value) await execute()
+    if (!engine.value && sections.value) {
+      const search = new MiniSearch<Section>({
+        fields: ['title', 'titles', 'content'],
+        storeFields: ['title', 'titles', 'content'],
+        tokenize,
+        searchOptions: { boost: { title: 3, titles: 2 }, tokenize },
+      })
+      search.addAll(sections.value as Section[])
+      engine.value = search
+    }
+    // 下載失敗時下次再試
+    if (!engine.value) preparing = undefined
+  })()
+  return preparing
+}
+
+const warm = useState('search-warm', () => false)
+watch(warm, (value) => {
+  if (value) prepare()
 })
 
 // 搜尋框有文字時，瀏覽器預設的 Esc 只會清空文字，這裡直接關閉

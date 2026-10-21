@@ -15,6 +15,7 @@ const copy = computed(() => is404.value
     })
 
 const searchOpen = useState('search-open', () => false)
+const searchWarm = useState('search-warm', () => false)
 
 useSeoMeta({
   title: is404.value ? '找不到頁面' : '頁面載入失敗',
@@ -47,6 +48,8 @@ useSeoMeta({
             v-if="is404"
             type="button"
             class="inline-flex items-center gap-2 rounded-md border border-(--line) px-4 py-2 transition-colors hover:bg-(--wash)"
+            @pointerenter="searchWarm = true"
+            @focus="searchWarm = true"
             @click="searchOpen = true"
           >
             <AppIcon

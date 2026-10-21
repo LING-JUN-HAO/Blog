@@ -10,6 +10,14 @@ const current = computed(() => stream.value.slice(0, blog.perPage))
 // 三屆鐵人賽：依年份由新到舊
 const series = computed(() => groupSeries(posts.value))
 
+// 手機版鯨魚浮在海浪線上：鯨魚激起的漣漪交給 SeaLine 畫，鯨魚自己的小片海面關掉；平板以上兩者分開排
+const isMobile = useMediaQuery('(max-width: 639.98px)')
+const whaleBox = useTemplateRef('whaleBox')
+const seaLine = useTemplateRef('seaLine')
+function onWhaleRipple(strength: number, delay: number) {
+  if (isMobile.value) seaLine.value?.ripple(strength, delay)
+}
+
 useSeoMeta({
   title: blog.title,
   titleTemplate: '%s',
@@ -31,13 +39,24 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
           我是一隻前端小蝦米，<br>努力夢想有一天變成大鯨魚。
         </p>
         <!-- 尺寸放在外層：Lazy 元件下載期間 ClientOnly 裡是空的，佔位不能跟著塌掉（會整個首屏位移） -->
-        <div class="col-start-1 row-start-2 -mt-4 aspect-square w-28 shrink-0 justify-self-end sm:col-start-2 sm:row-start-1 sm:-mb-4 sm:mt-0 sm:w-40 lg:w-60">
+        <div
+          ref="whaleBox"
+          class="col-start-1 row-start-2 -mt-7 mr-5 aspect-square w-36 shrink-0 justify-self-end sm:col-start-2 sm:mr-0 sm:row-start-1 sm:-mb-4 sm:mt-0 sm:w-40 lg:w-60"
+        >
           <ClientOnly>
-            <LazyWhaleModel class="size-full" />
+            <LazyWhaleModel
+              class="size-full"
+              :sea="!isMobile"
+              @ripple="onWhaleRipple"
+            />
           </ClientOnly>
         </div>
-        <!-- 手機版海浪線畫在鯨魚前面，像鯨魚半身泡在浪裡；不攔截點擊，鯨魚仍點得到 -->
-        <SeaLine class="pointer-events-none relative col-start-1 row-start-2 mt-2 self-start sm:pointer-events-auto sm:col-span-2" />
+        <!-- 手機版海浪線就是鯨魚浮著的海面，畫在鯨魚前面、線下的水蓋住泡在水裡的半身；不攔截點擊，鯨魚仍點得到 -->
+        <SeaLine
+          ref="seaLine"
+          :anchor="whaleBox"
+          class="pointer-events-none relative col-start-1 row-start-2 mt-2 self-start sm:pointer-events-auto sm:col-span-2"
+        />
       </div>
       <p class="max-w-(--container-prose) text-(--ink-soft)">
         這裡有 {{ published.length }} 篇前端、後端與開發工具的學習筆記，從 JavaScript 基礎、TypeScript 踩坑到資料庫設計，也收錄了三屆 iThome 鐵人賽的完整系列。

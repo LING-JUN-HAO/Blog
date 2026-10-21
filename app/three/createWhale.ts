@@ -15,7 +15,14 @@ export type Whale = {
   splash: (strength?: number) => void
   /** Pointer hovering: the tail wags faster, the eyes squint happily and the cheeks blush. */
   setHover: (hovering: boolean) => void
+  /** Show or hide the whale's own patch of sea (surface and ripple rings), e.g. when the page draws the sea itself. */
+  setSea: (visible: boolean) => void
   dispose: () => void
+}
+
+export type WhaleOptions = {
+  /** Called whenever the whale sends out a ripple, so a sea drawn outside the canvas can ripple along. `delay` is in seconds. */
+  onRipple?: (strength: number, delay: number) => void
 }
 
 /**
@@ -26,6 +33,7 @@ export type Whale = {
 export function createWhale(
   THREE: typeof ThreeTypes,
   colors: WhaleColors,
+  options: WhaleOptions = {},
 ): Whale {
   const group = new THREE.Group()
   group.name = 'dream-whale'
@@ -345,6 +353,12 @@ export function createWhale(
     const ripple = ripples[nextRipple]!
     nextRipple = (nextRipple + 1) % ripples.length
     Object.assign(ripple, { age: -delay, life: 1.4 + to * 0.12, from, to, strength })
+    options.onRipple?.(strength, delay)
+  }
+  let seaVisible = true
+  const setSea = (visible: boolean): void => {
+    seaVisible = visible
+    surface.visible = visible
   }
   const dummy = new THREE.Object3D()
   const up = new THREE.Vector3(0, 1, 0)
@@ -647,7 +661,7 @@ export function createWhale(
     ripples.forEach((ripple) => {
       ripple.age += dt
       const t = ripple.age / ripple.life
-      ripple.mesh.visible = t > 0 && t < 1
+      ripple.mesh.visible = seaVisible && t > 0 && t < 1
       if (!ripple.mesh.visible) return
       const radius = ripple.from + (ripple.to - ripple.from) * (1 - (1 - t) ** 2)
       ripple.mesh.scale.set(radius, 1, radius * 0.7)
@@ -737,5 +751,5 @@ export function createWhale(
     root.clear()
   }
 
-  return { group: root, animate, splash, setHover, dispose }
+  return { group: root, animate, splash, setHover, setSea, dispose }
 }
