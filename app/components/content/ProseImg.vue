@@ -13,6 +13,19 @@ const size = computed(() => (width && height ? { width, height } : imageSize(src
 const open = ref(false)
 const dialog = useTemplateRef('dialog')
 
+// 載入前用淡色色塊佔位；不知道尺寸的圖片先佔 16:9，載入後換成實際比例
+const image = useTemplateRef('image')
+const loaded = ref(false)
+const markLoaded = () => {
+  loaded.value = true
+}
+useEventListener(image, 'load', markLoaded)
+useEventListener(image, 'error', markLoaded)
+// hydration 前就載完的圖片不會再觸發 load
+onMounted(() => {
+  if (image.value?.complete) markLoaded()
+})
+
 // 圖片放大用原生 dialog：Esc、焦點鎖定與背景遮罩都由瀏覽器處理
 watch(open, async (value) => {
   if (!value) return
@@ -29,7 +42,9 @@ watch(open, async (value) => {
     @click="open = true"
   >
     <img
+      ref="image"
       :src="inlineSrc"
+      :class="{ 'is-loading': !loaded, 'is-unsized': !size }"
       :srcset="srcset"
       sizes="(min-width: 50rem) 50rem, 100vw"
       :alt="label"
@@ -37,7 +52,7 @@ watch(open, async (value) => {
       :height="size?.height"
       :loading="first ? 'eager' : 'lazy'"
       :fetchpriority="first ? 'high' : 'auto'"
-      decoding="async"
+      :decoding="first ? 'auto' : 'async'"
     >
   </button>
   <!-- dialog 不能放在 <p> 裡（瀏覽器會提前結束段落造成 hydration 不一致），所以搬到 body -->
@@ -60,6 +75,13 @@ watch(open, async (value) => {
 </template>
 
 <style scoped>
+.is-loading {
+  background: var(--wash);
+}
+.is-loading.is-unsized {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 .image-dialog::backdrop {
   background: rgb(14 22 38 / 0.8);
 }
