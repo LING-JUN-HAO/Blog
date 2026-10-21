@@ -120,13 +120,18 @@ onMounted(async () => {
   }, { immediate: true })
 })
 
+// 觸控裝置上平靜的海面用 30fps 重畫（每幀要重設三條 SVG path，手機上重繪不便宜）；有漣漪或指標掀起水波時恢復 60fps
+const coarse = import.meta.client && window.matchMedia('(pointer: coarse)').matches
 let lastTime = 0
 function tick(time: number) {
+  const calm = !rings.length && wave.bumpAmp < 0.5
+  if (coarse && calm && time - lastTime < 1 / 32) return
   const dt = Math.min(time - lastTime, 0.05)
   lastTime = time
   // 有延遲的漣漪不一定依加入順序結束，逐一過濾
   if (rings.length) rings = rings.filter(ring => (ring.age += dt) < RIPPLE_LIFE)
-  wave.phase += 0.012
+  // 相位依時間推進，降成 30fps 時海浪速度不變（原本每幀 0.012，以 60fps 計）
+  wave.phase += dt * 0.72
   render()
 }
 

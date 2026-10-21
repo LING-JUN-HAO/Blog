@@ -30,7 +30,9 @@ onMounted(async () => {
   if (!container.value) return
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  // 觸控裝置上鯨魚只有 144px 寬，解析度上限 1.5 倍就夠清楚，GPU 每幀少畫將近一半的像素
+  const coarse = window.matchMedia('(pointer: coarse)').matches
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, coarse ? 1.5 : 2))
   renderer.outputColorSpace = THREE.SRGBColorSpace
   el.appendChild(renderer.domElement)
   await yieldToMain()
@@ -92,6 +94,10 @@ onMounted(async () => {
     render()
   }
   else {
+    // 觸控裝置閒置時用 30fps 畫（待機動作很慢，看不出差別），手機上主執行緒與 GPU 的負擔減半；
+    // 剛出場的彈跳和點了鯨魚之後的水花恢復 60fps
+    let fullRateUntil = gsap.ticker.time + 1.5
+    let lastFrame = -1
     // 跟著指標轉頭；其餘只有模型本身很輕的待機動畫
     const turnY = gsap.quickTo(pivot.rotation, 'y', { duration: 0.9, ease: 'power3.out' })
     const turnX = gsap.quickTo(pivot.rotation, 'x', { duration: 0.9, ease: 'power3.out' })
@@ -106,6 +112,7 @@ onMounted(async () => {
     const stopLeave = useEventListener(el, 'pointerleave', (event: PointerEvent) => event.pointerType === 'mouse' && whale.setHover(false))
     // 點一下鯨魚：跳起來噴出比平常更大的水柱，落水時濺起水花
     const stopDown = useEventListener(el, 'pointerdown', (event: PointerEvent) => {
+      fullRateUntil = gsap.ticker.time + 3
       whale.splash(1.8)
       if (event.pointerType !== 'mouse') {
         whale.setHover(true)
@@ -121,6 +128,8 @@ onMounted(async () => {
 
     gsap.from(pivot.scale, { x: 0.7, y: 0.7, z: 0.7, duration: 1.2, ease: 'elastic.out(1, 0.5)' })
     const tick = (time: number) => {
+      if (coarse && time > fullRateUntil && time - lastFrame < 1 / 32) return
+      lastFrame = time
       whale.animate(time)
       render()
     }

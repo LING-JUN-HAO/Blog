@@ -284,6 +284,8 @@ export function createWhale(
 
   // --- Spray particles, added after framing so they never affect the bounds.
   const sprayCount = 280
+  // Start as shown so the first frame writes every matrix (hidden) once.
+  const shownDrops: boolean[] = Array.from({ length: sprayCount }, () => true)
   const spray = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 12, 8), waterMaterial, sprayCount)
   spray.name = 'spray'
   spray.frustumCulled = false
@@ -402,6 +404,7 @@ export function createWhale(
   // hard in the air, swell and fade, so the plume is narrow and dense at the
   // base and opens into an airy, irregular cloud higher up.
   const mistCount = 240
+  const shownPuffs: boolean[] = Array.from({ length: mistCount }, () => true)
   const mistGeometry = new THREE.BufferGeometry()
   const mistPositions = new Float32Array(mistCount * 3)
   const mistSizes = new Float32Array(mistCount)
@@ -673,7 +676,12 @@ export function createWhale(
       if (!hopping) emitBubbles(1 + Math.floor(Math.random() * 3))
     }
 
+    // Only touch instances that are alive, or that just died and still need hiding;
+    // an idle whale then uploads nothing to the GPU.
+    let sprayDirty = false
     particles.forEach((particle, index) => {
+      const wasShown = shownDrops[index]
+      if (particle.age >= particle.life && !wasShown) return
       if (particle.age < particle.life) {
         particle.age += dt
         particle.velocity.y -= gravity * particle.gravityScale * dt
@@ -695,10 +703,14 @@ export function createWhale(
         .multiplyScalar(alive ? particle.size * groupScale * (0.45 + fade * 0.55) : 0)
       dummy.updateMatrix()
       spray.setMatrixAt(index, dummy.matrix)
+      shownDrops[index] = alive
+      sprayDirty = true
     })
-    spray.instanceMatrix.needsUpdate = true
+    if (sprayDirty) spray.instanceMatrix.needsUpdate = true
 
+    let mistDirty = false
     puffs.forEach((puff, index) => {
+      if (puff.age >= puff.life && !shownPuffs[index]) return
       let alpha = 0
       let size = 0
       if (puff.age < puff.life) {
@@ -714,10 +726,14 @@ export function createWhale(
       mistPositions.set([puff.position.x, puff.position.y, puff.position.z], index * 3)
       mistSizes[index] = size
       mistAlphas[index] = alpha
+      shownPuffs[index] = alpha > 0
+      mistDirty = true
     })
-    mistGeometry.attributes.position!.needsUpdate = true
-    mistGeometry.attributes.size!.needsUpdate = true
-    mistGeometry.attributes.alpha!.needsUpdate = true
+    if (mistDirty) {
+      mistGeometry.attributes.position!.needsUpdate = true
+      mistGeometry.attributes.size!.needsUpdate = true
+      mistGeometry.attributes.alpha!.needsUpdate = true
+    }
   }
 
   const splash = (strength = 1): void => {
