@@ -70,12 +70,11 @@ useSeoMeta({
           </a>
         </div>
       </div>
-      <ClientOnly>
-        <LazyWhaleModel class="mx-auto w-56 md:w-full" />
-        <template #fallback>
-          <div class="mx-auto aspect-square w-56 md:w-full" />
-        </template>
-      </ClientOnly>
+      <div class="mx-auto aspect-square w-56 md:w-full">
+        <ClientOnly>
+          <LazyWhaleModel class="size-full" />
+        </ClientOnly>
+      </div>
     </section>
   </NuxtLayout>
 </template>

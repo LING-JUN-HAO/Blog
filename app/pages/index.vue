@@ -30,12 +30,12 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
         <p class="self-start font-display text-[2rem] leading-[1.35] font-bold sm:self-auto sm:text-[2.75rem] lg:text-[3.25rem]">
           我是一隻前端小蝦米，<br>努力夢想有一天變成大鯨魚。
         </p>
-        <ClientOnly>
-          <LazyWhaleModel class="-mb-6 w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60" />
-          <template #fallback>
-            <div class="-mb-6 aspect-square w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60" />
-          </template>
-        </ClientOnly>
+        <!-- 尺寸放在外層：Lazy 元件下載期間 ClientOnly 裡是空的，佔位不能跟著塌掉（手機版會整個首屏位移） -->
+        <div class="-mb-6 aspect-square w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60">
+          <ClientOnly>
+            <LazyWhaleModel class="size-full" />
+          </ClientOnly>
+        </div>
       </div>
       <SeaLine class="mt-2" />
       <p class="max-w-(--container-prose) text-(--ink-soft)">

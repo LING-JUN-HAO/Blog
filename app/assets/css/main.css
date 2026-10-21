@@ -8,13 +8,45 @@
  * 首次繪製不必等字型下載
  */
 @theme {
-  --font-sans: "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-  --font-display: "PingFang TC", "Microsoft JhengHei", serif;
+  --font-sans: "Blog Sans Fallback", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "Blog Display Fallback", "PingFang TC", "Microsoft JhengHei", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* 版面寬度：整體 72rem，內文欄 50rem（一行約 47 個中文字） */
   --container-site: 72rem;
   --container-prose: 50rem;
+}
+
+/*
+ * 換成網頁字型前的英數字 fallback：中文兩邊都是 1em 寬，位移來自英數字寬度
+ * （PingFang 的英數字比網頁字型寬約 4%，標題會多換一行）。Arial 系列（Linux 上的 Liberation Sans / Arimo 字寬相同）
+ * 與 LXGW WenKai 粗體幾乎等寬、比 Noto Sans TC 窄約 2%，用 size-adjust 補齊；只套用在拉丁字元範圍
+ */
+@font-face {
+  font-family: "Blog Display Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Liberation Sans Bold"), local("Arimo Bold");
+  font-weight: 700;
+  unicode-range: U+0000-024F, U+2000-206F;
+}
+@font-face {
+  font-family: "Blog Display Fallback";
+  src: local("Arial"), local("ArialMT"), local("Helvetica"), local("Liberation Sans"), local("Arimo");
+  font-weight: 400;
+  unicode-range: U+0000-024F, U+2000-206F;
+}
+@font-face {
+  font-family: "Blog Sans Fallback";
+  src: local("Arial"), local("ArialMT"), local("Helvetica"), local("Liberation Sans"), local("Arimo");
+  font-weight: 400;
+  size-adjust: 102.4%;
+  unicode-range: U+0000-024F, U+2000-206F;
+}
+@font-face {
+  font-family: "Blog Sans Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Liberation Sans Bold"), local("Arimo Bold");
+  font-weight: 700;
+  size-adjust: 101.8%;
+  unicode-range: U+0000-024F, U+2000-206F;
 }
 
 :root.fonts-ready {
