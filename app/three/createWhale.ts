@@ -233,25 +233,27 @@ export function createWhale(
   smile.name = 'smile'
   anatomy.add(smile)
 
-  // --- Spout: a narrow jet out of the blowhole; the spray particles below
-  // carry it on from the top of the jet.
+  // --- Spout: the whale blows every few seconds. Each blow is a forceful
+  // burst at the blowhole that opens into a soft, widening plume of mist
+  // (see `mist` below) with droplets thrown out around its edges.
   const spout = new THREE.Group()
   spout.name = 'spout'
   spout.position.set(1.9, 3.05, 0)
   group.add(spout)
 
-  // The jet grows and shrinks; its geometry starts at the blowhole so
+  // The thick, energetic base of the blow: a translucent flared cone that
+  // pops up at the start of each blow. Its geometry starts at the blowhole so
   // scaling Y stretches it upward only.
-  const stemGeometry = new THREE.CylinderGeometry(0.05, 0.13, 1, 16)
-  stemGeometry.translate(0, 0.5, 0)
-  const stem = new THREE.Mesh(stemGeometry, waterMaterial)
-  stem.name = 'spout-column'
-  spout.add(stem)
-
-  // A rounded teardrop where the jet starts to break apart.
-  const tip = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), waterMaterial)
-  tip.name = 'spout-tip'
-  spout.add(tip)
+  const burstGeometry = new THREE.CylinderGeometry(0.34, 0.13, 1, 20, 1, true)
+  burstGeometry.translate(0, 0.5, 0)
+  const burstMaterial = waterMaterial.clone()
+  burstMaterial.transparent = true
+  burstMaterial.opacity = 0.55
+  burstMaterial.depthWrite = false
+  burstMaterial.side = THREE.DoubleSide
+  const burst = new THREE.Mesh(burstGeometry, burstMaterial)
+  burst.name = 'spout-burst'
+  spout.add(burst)
 
   // Centre the complete silhouette, including fins, tail, and the spout.
   const boundsCenter = new THREE.Box3().setFromObject(group).getCenter(new THREE.Vector3())
@@ -266,12 +268,18 @@ export function createWhale(
   // Sit a little low in the frame so the tall spray has headroom.
   group.children.forEach(child => (child.position.y -= 1.6))
 
+  // The whale hops and sways inside `root`; the sea and anything already
+  // thrown into the air (drops, mist) live in `root` so they stay put.
+  const root = new THREE.Group()
+  root.name = 'whale-root'
+  root.add(group)
+
   // --- Spray particles, added after framing so they never affect the bounds.
-  const sprayCount = 360
+  const sprayCount = 280
   const spray = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 12, 8), waterMaterial, sprayCount)
   spray.name = 'spray'
   spray.frustumCulled = false
-  group.add(spray)
+  root.add(spray)
   const particles = Array.from({ length: sprayCount }, () => ({
     position: new THREE.Vector3(),
     velocity: new THREE.Vector3(),
@@ -287,80 +295,193 @@ export function createWhale(
   group.updateMatrixWorld(true)
   const mouth = group.worldToLocal(smile.getWorldPosition(new THREE.Vector3()))
   const bellyY = group.worldToLocal(new THREE.Box3().setFromObject(anatomy).min.clone()).y
+
+  // --- A small patch of sea under the belly: a surface that fades out at
+  // the edges, plus ripple rings that spread from the whale.
+  const seaY = bellyY + 0.7
+  const seaColor = new THREE.Color('#7cc0ff')
+  const surfaceMaterial = new THREE.ShaderMaterial({
+    uniforms: { color: { value: seaColor } },
+    vertexShader: /* glsl */ `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform vec3 color;
+      varying vec2 vUv;
+      void main() {
+        float edge = 1.0 - smoothstep(0.15, 1.0, length(vUv - 0.5) * 2.0);
+        gl_FragColor = vec4(color, edge * 0.3);
+        #include <colorspace_fragment>
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  })
+  const surface = new THREE.Mesh(new THREE.CircleGeometry(1, 64), surfaceMaterial)
+  surface.name = 'sea-surface'
+  surface.rotation.x = -Math.PI / 2
+  surface.scale.set(7.5, 4.6, 1)
+  surface.position.y = seaY
+  root.add(surface)
+
+  const rippleGeometry = new THREE.RingGeometry(0.93, 1, 64)
+  rippleGeometry.rotateX(-Math.PI / 2)
+  const ripples = Array.from({ length: 8 }, (_, index) => {
+    const material = new THREE.MeshBasicMaterial({ color: seaColor, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide })
+    const mesh = new THREE.Mesh(rippleGeometry, material)
+    mesh.name = `sea-ripple-${index + 1}`
+    mesh.position.y = seaY + 0.01
+    mesh.visible = false
+    root.add(mesh)
+    return { mesh, material, age: 0, life: 0, from: 0, to: 0, strength: 0, delay: 0 }
+  })
+  let nextRipple = 0
+  const addRipple = (from: number, to: number, strength: number, delay = 0) => {
+    const ripple = ripples[nextRipple]!
+    nextRipple = (nextRipple + 1) % ripples.length
+    Object.assign(ripple, { age: -delay, life: 1.4 + to * 0.12, from, to, strength })
+  }
   const dummy = new THREE.Object3D()
   const up = new THREE.Vector3(0, 1, 0)
   const heading = new THREE.Vector3()
   const gravity = 9.5
   let nextParticle = 0
 
-  // Most drops follow a short-lived "arc": the same launch direction for a
-  // handful of drops in a row, so they trail one another into a connected
-  // stream that curves outward and falls. Each new arc swings to another
-  // side, which keeps the fountain lopsided instead of a symmetric fan.
-  let arcAngle = Math.random() * Math.PI * 2
-  let arcTilt = 0.25
-  let arcLeft = 0
-  let arcLength = 1
-  let arcHead = false
+  // Each blow leans a little to one side, like a real blow caught by the wind.
+  let blowLean = 0
 
+  // Droplets thrown out of the blow. Most are tiny, a few are big; they leave
+  // at a spread of angles so the edge of the plume stays ragged, then arc
+  // over and fall back with gravity.
   const emit = (count: number, power: number) => {
     for (let i = 0; i < count; i += 1) {
       const particle = particles[nextParticle]!
       nextParticle = (nextParticle + 1) % sprayCount
-      if (arcLeft <= 0) {
-        arcAngle += 1.3 + Math.random() * 3.6
-        arcTilt = 0.32 + Math.random() * 0.38
-        arcLength = 8 + Math.floor(Math.random() * 8)
-        arcLeft = arcLength
-        arcHead = true
-      }
-      const inArc = arcHead || Math.random() < 0.8
-      let angle: number
-      let tilt: number
-      let speed: number
-      if (inArc) {
-        arcLeft -= 1
-        angle = arcAngle + (Math.random() - 0.5) * 0.2
-        tilt = arcTilt + (Math.random() - 0.5) * 0.05
-        speed = power * (arcHead ? 1.05 : 0.94 + Math.random() * 0.08)
-        // The leading drop of each arc is the big one; the trail tapers off.
-        particle.size = arcHead ? 0.17 + Math.random() * 0.05 : 0.05 + 0.1 * (arcLeft / arcLength) + Math.random() * 0.03
-        arcHead = false
-      }
-      else {
-        // Loose droplets in a narrow cone; sizes skew small, a few shoot higher.
-        angle = Math.random() * Math.PI * 2
-        tilt = Math.random() ** 2 * 0.45
-        speed = power * (Math.random() < 0.12 ? 1.12 + Math.random() * 0.1 : 0.72 + Math.random() * 0.3)
-        particle.size = 0.04 + Math.random() ** 3 * 0.18
-      }
+      const angle = Math.random() * Math.PI * 2
+      const tilt = 0.06 + Math.random() ** 1.4 * 0.62
+      const speed = power * (0.5 + Math.random() * 0.55)
+      particle.size = 0.03 + Math.random() ** 2.5 * 0.15
       particle.position.set(
-        spout.position.x,
-        spout.position.y + stem.scale.y * spout.scale.y,
-        spout.position.z,
-      )
+        spout.position.x + (Math.random() - 0.5) * 0.2,
+        spout.position.y + 0.15,
+        spout.position.z + (Math.random() - 0.5) * 0.2,
+      ).applyMatrix4(group.matrix)
       particle.velocity.set(
-        Math.cos(angle) * Math.sin(tilt) * speed,
+        Math.cos(angle) * Math.sin(tilt) * speed + blowLean * speed * 0.3,
         Math.cos(tilt) * speed,
         Math.sin(angle) * Math.sin(tilt) * speed * 0.8,
       )
       particle.age = 0
-      particle.life = 1.8 + Math.random() * 0.7
+      particle.life = 1.6 + Math.random() * 0.9
       particle.gravityScale = 1
-      particle.drag = 0.15 + (0.22 - particle.size) * 2.4
+      // Small drops brake hard and drift down softly; big ones carry further.
+      particle.drag = 0.35 + (0.18 - particle.size) * 3.5
     }
   }
 
-  // Splash ring thrown sideways from the belly when the whale lands.
-  const emitSplash = (count: number) => {
+  // --- Mist: soft camera-facing puffs. They leave the blowhole fast, brake
+  // hard in the air, swell and fade, so the plume is narrow and dense at the
+  // base and opens into an airy, irregular cloud higher up.
+  const mistCount = 240
+  const mistGeometry = new THREE.BufferGeometry()
+  const mistPositions = new Float32Array(mistCount * 3)
+  const mistSizes = new Float32Array(mistCount)
+  const mistAlphas = new Float32Array(mistCount)
+  mistGeometry.setAttribute('position', new THREE.BufferAttribute(mistPositions, 3))
+  mistGeometry.setAttribute('size', new THREE.BufferAttribute(mistSizes, 1))
+  mistGeometry.setAttribute('alpha', new THREE.BufferAttribute(mistAlphas, 1))
+  const mistMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      color: { value: new THREE.Color('#d6ecff') },
+      // Pixels per world unit at distance 1; set from the camera before each render.
+      scale: { value: 500 },
+    },
+    vertexShader: /* glsl */ `
+      attribute float size;
+      attribute float alpha;
+      uniform float scale;
+      varying float vAlpha;
+      void main() {
+        vAlpha = alpha;
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * scale / -mvPosition.z;
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform vec3 color;
+      varying float vAlpha;
+      void main() {
+        float falloff = 1.0 - smoothstep(0.0, 1.0, length(gl_PointCoord - 0.5) * 2.0);
+        gl_FragColor = vec4(color, falloff * falloff * vAlpha);
+        #include <colorspace_fragment>
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+  })
+  const mist = new THREE.Points(mistGeometry, mistMaterial)
+  mist.name = 'spout-mist'
+  mist.frustumCulled = false
+  root.add(mist)
+  const drawingBuffer = new THREE.Vector2()
+  const groupScale = group.scale.x
+  mist.onBeforeRender = (renderer, _scene, camera) => {
+    if (!(camera instanceof THREE.PerspectiveCamera)) return
+    renderer.getDrawingBufferSize(drawingBuffer)
+    mistMaterial.uniforms.scale!.value = groupScale * drawingBuffer.y / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2))
+  }
+  const puffs = Array.from({ length: mistCount }, () => ({
+    position: new THREE.Vector3(),
+    velocity: new THREE.Vector3(),
+    age: 0,
+    life: 0,
+    startSize: 0,
+    endSize: 0,
+    opacity: 0,
+  }))
+  let nextPuff = 0
+
+  const emitMist = (count: number, power: number) => {
+    for (let i = 0; i < count; i += 1) {
+      const puff = puffs[nextPuff]!
+      nextPuff = (nextPuff + 1) % mistCount
+      const angle = Math.random() * Math.PI * 2
+      const tilt = Math.random() ** 1.4 * 0.46
+      const speed = power * (0.7 + Math.random() * 0.45)
+      puff.position.set(
+        spout.position.x + (Math.random() - 0.5) * 0.25,
+        spout.position.y + 0.1,
+        spout.position.z + (Math.random() - 0.5) * 0.25,
+      ).applyMatrix4(group.matrix)
+      puff.velocity.set(
+        Math.cos(angle) * Math.sin(tilt) * speed + blowLean * speed * 0.35,
+        Math.cos(tilt) * speed,
+        Math.sin(angle) * Math.sin(tilt) * speed * 0.8,
+      )
+      puff.age = 0
+      puff.life = 1.3 + Math.random() * 1.1
+      puff.startSize = 0.6 + Math.random() * 0.5
+      puff.endSize = 3 + Math.random() * 3
+      puff.opacity = 0.3 + Math.random() * 0.35
+    }
+  }
+
+  // Splash thrown up from the sea around the belly on take-off and landing.
+  const emitSplash = (count: number, power = 1) => {
     for (let i = 0; i < count; i += 1) {
       const particle = particles[nextParticle]!
       nextParticle = (nextParticle + 1) % sprayCount
       const angle = Math.random() * Math.PI * 2
-      const speed = 2.2 + Math.random() * 2.4
-      particle.position.set(Math.cos(angle) * 2.6, bellyY + 0.6, Math.sin(angle) * 1.6)
-      particle.velocity.set(Math.cos(angle) * speed, 3.5 + Math.random() * 3, Math.sin(angle) * speed * 0.6)
-      particle.size = 0.08 + Math.random() * 0.12
+      const speed = (1.6 + Math.random() * 2.4) * power
+      particle.position.set(Math.cos(angle) * (2.4 + Math.random() * 1.2), seaY + 0.05, Math.sin(angle) * 1.8)
+      particle.velocity.set(Math.cos(angle) * speed, (3 + Math.random() * 3.5) * power, Math.sin(angle) * speed * 0.6)
+      particle.size = 0.06 + Math.random() ** 2 * 0.15
       particle.age = 0
       particle.life = 1 + Math.random() * 0.5
       particle.gravityScale = 1
@@ -374,6 +495,7 @@ export function createWhale(
       const particle = particles[nextParticle]!
       nextParticle = (nextParticle + 1) % sprayCount
       particle.position.set(mouth.x + 0.3 + Math.random() * 0.3, mouth.y + Math.random() * 0.3, mouth.z + (Math.random() - 0.5) * 0.6)
+        .applyMatrix4(group.matrix)
       particle.velocity.set(0.3 + Math.random() * 0.3, 0.9 + Math.random() * 0.5, (Math.random() - 0.5) * 0.3)
       particle.size = 0.14 + Math.random() * 0.16
       particle.age = 0
@@ -400,10 +522,24 @@ export function createWhale(
   let burstPending = false
   let burstStrength = 1
   let landingPending = false
-  let emitCarry = 0
+  let dropCarry = 0
+  let mistCarry = 0
+  // Blows: a short, strong burst every few seconds; hops blow harder.
+  const blowDuration = 1.1
+  let blowStart = -Infinity
+  let blowPower = 1
+  let nextBlow = 0.6
   let hoverTarget = 0
   let hover = 0
   let nextBubble = 4
+  let nextIdleRipple = 1
+
+  const startBlow = (power: number) => {
+    blowStart = clock
+    blowPower = power
+    blowLean = (Math.random() - 0.5) * 0.5
+    nextBlow = clock + 2.6 + Math.random() * 1.2
+  }
 
   const startHop = () => {
     if (clock - hopStart < hopDuration * 0.6) return
@@ -411,6 +547,8 @@ export function createWhale(
     nextHop = clock + hopInterval + Math.random() * 2
     burstPending = true
     landingPending = true
+    emitSplash(Math.round(8 * burstStrength), 0.7)
+    addRipple(3, 5.2, 0.6)
   }
 
   const animate = (time: number): void => {
@@ -430,10 +568,12 @@ export function createWhale(
     // Ease toward the hover state so entering and leaving never snaps.
     hover += (hoverTarget - hover) * Math.min(1, dt * 6)
 
-    group.position.y = baseY + Math.sin(time * 0.8) * 0.1 + lift * 1.1
+    group.position.y = baseY + Math.sin(time * 0.8) * 0.1 + lift * 1.5
     group.rotation.z = Math.sin(time * 0.55) * 0.012 + lift * 0.12
     group.rotation.y = Math.sin(time * 1.3) * 0.06
     group.rotation.x = Math.sin(time * 0.9) * 0.03
+    // Emitters read the whale's pose this frame.
+    group.updateMatrix()
 
     const breath = 1 + Math.sin(time * 1.45) * 0.014
     anatomy.scale.set(
@@ -461,32 +601,59 @@ export function createWhale(
     const blush = 1 + Math.max(hover, joy) * 0.35
     cheeks.forEach(cheek => cheek.scale.set(0.14, 0.4 * blush, 0.5 * blush))
 
-    // The jet stretches in a rhythm and shoots highest at a hop; it thins
-    // as it stretches, like a stream under more pressure.
-    const pulse = (Math.sin(time * 2.2) + 1) / 2
-    stem.scale.y = 0.55 + pulse * 0.7 + joy * 1.1
-    const thin = 1 / Math.sqrt(stem.scale.y)
-    stem.scale.x = stem.scale.z = 0.8 + thin * 0.3
-    const wobble = Math.sin(time * 9) * 0.04
-    tip.position.set(wobble, stem.scale.y + 0.08, 0)
-    tip.scale.set(0.12 - wobble * 0.3, 0.17 + wobble * 0.5 + joy * 0.04, 0.12)
+    // Blow intensity: peaks the instant a blow starts, then dies away.
+    if (clock >= nextBlow) startBlow(1)
+    const blowProgress = (clock - blowStart) / blowDuration
+    const intensity = blowProgress >= 0 && blowProgress < 1 ? (1 - blowProgress) ** 1.6 * blowPower : 0
+    const flicker = 1 + Math.sin(time * 31) * 0.06
+    burst.visible = intensity > 0.02
+    burst.scale.set(
+      (0.7 + intensity * 0.6) * flicker,
+      0.25 + intensity * 1.1,
+      (0.7 + intensity * 0.6) * flicker,
+    )
+    burst.position.x = blowLean * intensity * 0.3
+    burstMaterial.opacity = Math.min(0.6, intensity * 0.7)
     spout.position.y = spoutBaseY
 
-    // Continuous spray, plus a big burst near the top of every hop.
-    emitCarry += dt * (38 + pulse * 18 + joy * 40)
-    const steady = Math.floor(emitCarry)
-    emitCarry -= steady
-    if (steady > 0) emit(steady, 6.8 + pulse * 1.8)
+    // The first puffs of a blow leave fastest and climb highest.
+    mistCarry += dt * 150 * intensity
+    const puffCount = Math.floor(mistCarry)
+    mistCarry -= puffCount
+    if (puffCount > 0) emitMist(puffCount, 9 + intensity * 3.5)
+    dropCarry += dt * 70 * intensity
+    const dropCount = Math.floor(dropCarry)
+    dropCarry -= dropCount
+    if (dropCount > 0) emit(dropCount, 6 + intensity * 2.4)
     if (burstPending && hop >= 0.35) {
       burstPending = false
-      // Clicks add volume more than height so the column stays inside the canvas.
-      emit(Math.round(36 * burstStrength), 9.6 + (burstStrength - 1))
+      // Clicks add volume more than height so the plume stays inside the canvas.
+      startBlow(1.15 + (burstStrength - 1) * 0.25)
+      emit(Math.round(24 * burstStrength), 8.4)
     }
     if (landingPending && hop >= 1) {
       landingPending = false
-      emitSplash(Math.round(16 * burstStrength))
+      emitSplash(Math.round(18 * burstStrength))
+      addRipple(3, 7, 1)
+      addRipple(2.6, 5.8, 0.7, 0.2)
+      addRipple(2.4, 4.8, 0.5, 0.45)
       burstStrength = 1
     }
+    // The bobbing whale sends a gentle ripple out every so often.
+    if (clock >= nextIdleRipple) {
+      nextIdleRipple = clock + 1.6 + Math.random() * 0.8
+      if (!hopping) addRipple(3.2, 5, 0.4)
+    }
+    ripples.forEach((ripple) => {
+      ripple.age += dt
+      const t = ripple.age / ripple.life
+      ripple.mesh.visible = t > 0 && t < 1
+      if (!ripple.mesh.visible) return
+      const radius = ripple.from + (ripple.to - ripple.from) * (1 - (1 - t) ** 2)
+      ripple.mesh.scale.set(radius, 1, radius * 0.7)
+      ripple.material.opacity = ripple.strength * 0.85 * (1 - t) ** 1.3
+    })
+
     if (clock >= nextBubble) {
       nextBubble = clock + 3 + Math.random() * 4
       if (!hopping) emitBubbles(1 + Math.floor(Math.random() * 3))
@@ -500,7 +667,8 @@ export function createWhale(
         particle.position.addScaledVector(particle.velocity, dt)
       }
       const fade = Math.max(0, 1 - particle.age / particle.life)
-      const alive = particle.age < particle.life && particle.position.y > bellyY - 1.5
+      // Drops falling back disappear into the sea.
+      const alive = particle.age < particle.life && particle.position.y > seaY - 0.15
       dummy.position.copy(particle.position)
       // Point each drop along its path: long and quick on the way up, rounder
       // as it slows at the top and drifts back down.
@@ -510,11 +678,32 @@ export function createWhale(
         ? 1 + Math.min(speed * 0.07, 0.9)
         : 1.1 + Math.min(speed * 0.03, 0.3)
       dummy.scale.set(1 / Math.sqrt(stretch), stretch, 1 / Math.sqrt(stretch))
-        .multiplyScalar(alive ? particle.size * (0.45 + fade * 0.55) : 0)
+        .multiplyScalar(alive ? particle.size * groupScale * (0.45 + fade * 0.55) : 0)
       dummy.updateMatrix()
       spray.setMatrixAt(index, dummy.matrix)
     })
     spray.instanceMatrix.needsUpdate = true
+
+    puffs.forEach((puff, index) => {
+      let alpha = 0
+      let size = 0
+      if (puff.age < puff.life) {
+        puff.age += dt
+        puff.velocity.multiplyScalar(Math.exp(-1.8 * dt))
+        // Rising air and a slow sideways drift once the puff has lost its push.
+        puff.velocity.y += 0.35 * dt
+        puff.position.addScaledVector(puff.velocity, dt)
+        const t = Math.min(puff.age / puff.life, 1)
+        size = puff.startSize + (puff.endSize - puff.startSize) * Math.sqrt(t)
+        alpha = puff.opacity * Math.min(t / 0.06, 1) * (1 - t) ** 1.2
+      }
+      mistPositions.set([puff.position.x, puff.position.y, puff.position.z], index * 3)
+      mistSizes[index] = size
+      mistAlphas[index] = alpha
+    })
+    mistGeometry.attributes.position!.needsUpdate = true
+    mistGeometry.attributes.size!.needsUpdate = true
+    mistGeometry.attributes.alpha!.needsUpdate = true
   }
 
   const splash = (strength = 1): void => {
@@ -534,8 +723,8 @@ export function createWhale(
     const geometries = new Set<ThreeTypes.BufferGeometry>()
     const materials = new Set<ThreeTypes.Material>()
 
-    group.traverse((object) => {
-      if (!(object instanceof THREE.Mesh)) return
+    root.traverse((object) => {
+      if (!(object instanceof THREE.Mesh || object instanceof THREE.Points)) return
       geometries.add(object.geometry)
       const meshMaterials = Array.isArray(object.material)
         ? object.material
@@ -545,8 +734,8 @@ export function createWhale(
 
     geometries.forEach(geometry => geometry.dispose())
     materials.forEach(material => material.dispose())
-    group.clear()
+    root.clear()
   }
 
-  return { group, animate, splash, setHover, dispose }
+  return { group: root, animate, splash, setHover, dispose }
 }
