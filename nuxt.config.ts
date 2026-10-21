@@ -42,11 +42,12 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // 網頁字型延到 load 之後、瀏覽器閒置時才套用（見 main.css 的 .fonts-ready），確保首屏與 LCP 圖片已經畫完；
+          // 網頁字型延到 load 之後、瀏覽器閒置時才套用（見 main.css 的 .fonts-ready）；lazy 圖片不會擋 load，
+          // 所以再等畫面內的圖片載完（最多 5 秒），首屏與 LCP 圖片畫完才開始下載字型；
           // 同一個分頁載過一次就有快取，直接套用避免閃字
           key: 'fonts-ready',
           tagPosition: 'head',
-          innerHTML: `(function(){var r=document.documentElement,k='blog-fonts-ready',on=function(){r.classList.add('fonts-ready');try{sessionStorage.setItem(k,'1')}catch(e){}};try{if(sessionStorage.getItem(k)){on();return}}catch(e){}var idle=function(){'requestIdleCallback' in window?requestIdleCallback(on,{timeout:3000}):setTimeout(on,300)};if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})()`,
+          innerHTML: `(function(){var r=document.documentElement,k='blog-fonts-ready',on=function(){r.classList.add('fonts-ready');try{sessionStorage.setItem(k,'1')}catch(e){}};try{if(sessionStorage.getItem(k)){on();return}}catch(e){}var ready=function(){var h=innerHeight,w=[].filter.call(document.images,function(i){var b=i.getBoundingClientRect();return !i.complete&&b.bottom>0&&b.top<h&&b.width>0});if(!w.length)return on();var n=w.length,t=setTimeout(on,5000),d=function(){if(--n<=0){clearTimeout(t);on()}};w.forEach(function(i){i.addEventListener('load',d,{once:true});i.addEventListener('error',d,{once:true})})},idle=function(){'requestIdleCallback' in window?requestIdleCallback(ready,{timeout:3000}):setTimeout(ready,300)};if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})()`,
         },
       ],
       link: [
