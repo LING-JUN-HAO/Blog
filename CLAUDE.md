@@ -36,7 +36,7 @@ Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + 
 - 需要 template ref 的純前端元件不要用 `.client.vue`：放在預渲染頁面時 hydration 後 ref 會是 `null`。改成一般元件，在使用處包 `<ClientOnly>`（並給同尺寸 `#fallback` 避免版面跳動），參考 `WhaleModel.vue`。
 - 新文章的 Giscus 討論串在第一則留言時才建立，之前 console 會有一則「Discussion not found」警告（不是錯誤）。
 - 驗證頁面錯誤時，Playwright 無頭瀏覽器開 CodePen 會被 Cloudflare 回 403，WebGL 也會出現「GPU stall」提示，兩者都是自動化環境才有；以真實 Chrome 的 console 為準。
-- 圖示、商標、favicon、OG 圖、3D 模型等視覺素材，作者要求一律請 Codex 產生（`codex exec -s workspace-write -C <暫存資料夾> --skip-git-repo-check -o <結果檔> - < brief.md`；prompt 要從 stdin 給，否則會卡在等待輸入），審稿後再整合。favicon PNG 由 `public/favicon.svg` 渲染出 32／180／192／512 四種尺寸。
+- 圖示、商標、favicon、OG 圖、3D 模型等視覺素材，作者要求一律請 Codex 產生（`codex exec -s workspace-write -C <暫存資料夾> --skip-git-repo-check -o <結果檔> - < brief.md`；prompt 要從 stdin 給，否則會卡在等待輸入），審稿後再整合。favicon PNG 由 `public/favicon.svg` 渲染出 32／180／192／512 四種尺寸；`public/favicon.ico`（16／32／48）由 `icon-512.png` 轉出，給直接抓 `/favicon.ico` 的工具用，換 favicon 時要一起重轉。
 - **舊網址轉址**：舊站 `ling-jun-hao.github.io/Blog/` 由 `.github/workflows/redirect.yml` 建置網站後執行 `scripts/build-redirects.ts`，把每個頁面產生成轉址頁發布到 GitHub Pages（repo 的 Pages 來源須為 GitHub Actions，即 `build_type: workflow`）；網站本體在 Vercel 專案 `ling-jun-hao-blog`（已連結 GitHub，`master` 自動部署；`vercel.json`）。
 
 ## 作者偏好
