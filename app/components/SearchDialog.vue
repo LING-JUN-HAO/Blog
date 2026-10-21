@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import MiniSearch from 'minisearch'
 import { withTrailingSlash } from 'ufo'
-
-interface Section { id: string, title: string, titles: string[], content: string }
+import type { SearchRequest, SearchResponse, Section } from '~/workers/search.worker'
 
 const open = useState('search-open', () => false)
 // 輸入框的即時內容；v-model 在中文輸入法組字時不會更新（手機要按確認才搜得到），所以直接聽 input 事件
@@ -14,28 +12,28 @@ watchDebounced(typed, (value) => {
 }, { debounce: 500 })
 const input = useTemplateRef('input')
 const dialog = useTemplateRef('dialog')
-const engine = shallowRef<MiniSearch<Section>>()
 
-// 中文沒有空白分詞，用單字＋雙字切分，英文則照單字切
-function tokenize(text: string) {
-  const tokens: string[] = []
-  for (const word of text.toLowerCase().match(/[a-z0-9_.$-]+|[㐀-鿿]+/g) ?? []) {
-    if (/^[a-z0-9_.$-]+$/.test(word)) {
-      tokens.push(word)
-      continue
-    }
-    for (let i = 0; i < word.length; i++) {
-      tokens.push(word[i]!)
-      if (i + 1 < word.length) tokens.push(word.slice(i, i + 2))
-    }
-  }
-  return tokens
+// 索引與查詢在 Worker 裡（app/workers/search.worker.ts），段落資料是建置時預渲染的靜態 JSON（server/routes/search-sections.json.ts）
+const ready = ref(false)
+const rawHits = shallowRef<Section[]>([])
+let worker: Worker | undefined
+let seq = 0
+let waiting: (() => void)[] = []
+
+function send(message: SearchRequest) {
+  worker?.postMessage(message)
 }
 
-const { data: sections, execute } = useLazyAsyncData('search-sections', () => queryCollectionSearchSections('posts'), {
-  immediate: false,
-  server: false,
-})
+/** 用目前的 query 查詢；回傳的 Promise 在最新一次查詢的結果回來時完成 */
+function runSearch() {
+  if (!ready.value || query.value.trim().length === 0) {
+    rawHits.value = []
+    return Promise.resolve()
+  }
+  send({ type: 'search', query: query.value, seq: ++seq })
+  return new Promise<void>(resolve => waiting.push(resolve))
+}
+watch(query, runSearch)
 
 // sections 的 id 是「文章路徑#標題」，用文章路徑對回文章標題與標籤
 const { data: posts } = usePosts()
@@ -44,20 +42,19 @@ const activeTag = ref('')
 
 // 一篇文章只留一筆（分數最高的段落），點下去從文章頂端開始讀，摘要仍取自最相關的段落
 const hits = computed(() => {
-  if (!engine.value || query.value.trim().length === 0) return []
   const seen = new Set<string>()
-  return engine.value.search(query.value, { prefix: true, combineWith: 'AND' }).flatMap((hit) => {
-    const path = (hit.id as string).split('#')[0]!
+  return rawHits.value.flatMap((hit) => {
+    const path = hit.id.split('#')[0]!
     if (seen.has(path)) return []
     seen.add(path)
     const post = postByPath.value.get(path)
-    const title = post?.title ?? (hit.titles as string[])[0] ?? (hit.title as string)
+    const title = post?.title ?? hit.titles[0] ?? hit.title
     return [{
       path,
       title,
       // 命中的是文章內的段落時，標出段落名稱
-      section: hit.title === title ? '' : hit.title as string,
-      content: hit.content as string,
+      section: hit.title === title ? '' : hit.title,
+      content: hit.content,
       tags: post?.tags.filter(t => !/鐵人賽$/.test(t)) ?? [],
     }]
   })
@@ -106,21 +103,31 @@ watch(open, async (value) => {
 // 下載文章資料並建立索引；滑過或 focus 搜尋按鈕時就先開始，打開時多半已經好了
 let preparing: Promise<void> | undefined
 function prepare() {
-  preparing ??= (async () => {
-    if (!sections.value) await execute()
-    if (!engine.value && sections.value) {
-      const search = new MiniSearch<Section>({
-        fields: ['title', 'titles', 'content'],
-        storeFields: ['title', 'titles', 'content'],
-        tokenize,
-        searchOptions: { boost: { title: 3, titles: 2 }, tokenize },
-      })
-      search.addAll(sections.value as Section[])
-      engine.value = search
+  preparing ??= new Promise<void>((resolve) => {
+    worker = new Worker(new URL('../workers/search.worker.ts', import.meta.url), { type: 'module' })
+    worker.onmessage = ({ data }: MessageEvent<SearchResponse>) => {
+      if (data.type === 'ready') {
+        ready.value = true
+        resolve()
+        runSearch()
+      }
+      else if (data.type === 'result') {
+        // 打字很快時只採用最新一次的結果
+        if (data.seq !== seq) return
+        rawHits.value = data.hits
+        waiting.forEach(done => done())
+        waiting = []
+      }
+      else {
+        // 下載失敗時下次再試
+        worker?.terminate()
+        worker = undefined
+        preparing = undefined
+        resolve()
+      }
     }
-    // 下載失敗時下次再試
-    if (!engine.value) preparing = undefined
-  })()
+    send({ type: 'init', url: '/search-sections.json' })
+  })
   return preparing
 }
 
@@ -144,9 +151,12 @@ onKeyStroke(['k', 'K'], (event) => {
 // Enter（手機鍵盤的「搜尋」）：不等 debounce，直接開第一筆結果
 async function openFirst() {
   query.value = typed.value
+  await runSearch()
   const first = results.value[0]
   if (first) await navigateTo(withTrailingSlash(first.path))
 }
+
+onBeforeUnmount(() => worker?.terminate())
 
 const route = useRoute()
 watch(() => route.fullPath, () => {
@@ -182,7 +192,7 @@ watch(() => route.fullPath, () => {
     </div>
     <div class="max-h-[60vh] overflow-y-auto">
       <p
-        v-if="!sections"
+        v-if="!ready"
         class="px-5 py-6 text-(--ink-soft)"
       >
         正在載入索引…
