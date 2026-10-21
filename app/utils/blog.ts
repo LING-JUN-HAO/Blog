@@ -46,16 +46,24 @@ export function listDescription(lead: string, titles: string[], max = 150): stri
   return `${text}。`
 }
 
+const CLOUDINARY = /^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/
+
 /**
  * Cloudinary 圖片加上 f_auto,q_auto：依瀏覽器回傳 AVIF / WebP 並自動壓縮品質
- * `width` 有給時再加 c_limit（只縮小不放大）；SVG 與已帶轉換參數的網址不動
+ * `width` 有給時再加 c_limit（只縮小不放大）。網址已帶轉換參數時改成在後面串接一段縮寬；SVG 不動
  */
 export function optimizeImage(src: string, width?: number): string {
-  const match = src.match(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/)
+  const match = src.match(CLOUDINARY)
   if (!match || /\.svg(\?|$)/i.test(src)) return src
   const [, base, rest] = match
-  // 第一段已經是轉換參數（如 f_auto,q_auto,w_800）就不重複加
-  if (/^[a-z]{1,3}_[^/]*\//.test(rest!)) return src
-  const transform = ['f_auto', 'q_auto', ...(width ? ['c_limit', `w_${width}`] : [])].join(',')
-  return `${base}${transform}/${rest}`
+  const limit = width ? `c_limit,w_${width}` : ''
+  // 第一段已經是轉換參數（如 f_auto,q_auto,w_1200,h_675,c_fill）：保留原轉換，再串接縮寬
+  if (/^[a-z]{1,3}_[^/]*\//.test(rest!)) return limit ? `${base}${rest!.replace(/\//, `/${limit}/`)}` : src
+  return `${base}${['f_auto', 'q_auto', limit].filter(Boolean).join(',')}/${rest}`
+}
+
+/** Cloudinary 圖片的 srcset（640／960／1280／1600 寬），讓手機不必下載桌機尺寸；非 Cloudinary 圖片回傳 undefined */
+export function imageSrcset(src: string): string | undefined {
+  if (!CLOUDINARY.test(src) || /\.svg(\?|$)/i.test(src)) return undefined
+  return [640, 960, 1280, 1600].map(width => `${optimizeImage(src, width)} ${width}w`).join(', ')
 }

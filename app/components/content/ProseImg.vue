@@ -8,6 +8,7 @@ const first = counter ? counter.count++ === 0 : false
 // 文內最寬 1600px（內文欄 50rem 在 2x 螢幕約 1600px）；放大時用原尺寸
 const inlineSrc = computed(() => optimizeImage(src, 1600))
 const fullSrc = computed(() => optimizeImage(src))
+const srcset = computed(() => imageSrcset(src))
 const open = ref(false)
 const dialog = useTemplateRef('dialog')
 
@@ -28,6 +29,8 @@ watch(open, async (value) => {
   >
     <img
       :src="inlineSrc"
+      :srcset="srcset"
+      sizes="(min-width: 50rem) 50rem, 100vw"
       :alt="label"
       :width="width"
       :height="height"
