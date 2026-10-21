@@ -15,7 +15,8 @@ export async function buildFeed(event: H3Event) {
     description: site.description,
     language: 'zh-TW',
     favicon: `${home}images/icon-192.png`,
-    image: `${home}images/antonio.webp`,
+    // RSS 2.0 的頻道圖片只接受 GIF / JPEG / PNG
+    image: `${home}images/icon-192.png`,
     copyright: `© ${new Date().getFullYear()} Antonio`,
     updated: posts[0]?.date ? new Date(posts[0].date) : new Date(),
     feedLinks: { rss: `${home}rss.xml`, atom: `${home}atom.xml` },
@@ -32,7 +33,7 @@ export async function buildFeed(event: H3Event) {
       date: new Date(post.updated ?? post.date ?? Date.now()),
       published: post.date ? new Date(post.date) : undefined,
       category: [...post.categories, ...post.tags].map(name => ({ name })),
-      author: [{ name: 'Antonio' }],
+      // RSS 的 <author> 必須是 Email，只有名字會驗證失敗；作者由整個訂閱的 author 表示
     })
   }
 
