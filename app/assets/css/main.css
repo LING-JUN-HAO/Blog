@@ -240,6 +240,16 @@
   border-bottom-color: var(--ink-soft);
 }
 
+/*
+ * 程式碼註解（github-light #6A737D／github-dark-dimmed #768390）放在 --code-bg 上對比不到 4.5:1，
+ * 各調深／調亮一點（4.77、4.81）。sDN9O 是 Content 依這組顏色產生的 class，換主題時要一起檢查；
+ * Content 的規則是 `html pre.shiki code .sDN9O`，這裡多加 body 讓權重高一級才蓋得過
+ */
+html body pre.shiki code .sDN9O {
+  --shiki-default: #646d77;
+  --shiki-dark: #808d9a;
+}
+
 /* Shiki 深淺色切換 */
 .dark .shiki,
 .dark .shiki span {
