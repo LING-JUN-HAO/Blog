@@ -53,6 +53,16 @@
   --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   --font-display: "LXGW WenKai TC", "Noto Sans TC", "PingFang TC", serif;
 }
+/*
+ * 觸控裝置（手機、平板）的系統中文字型本來就好：iOS 是蘋方、Android 本身就是 Noto Sans CJK。
+ * 內文維持系統字、只有標題換成霞鶩文楷，省下約 1MB 的 Noto Sans TC，換字型時內文也不會整頁重排
+ */
+@media (hover: none) and (pointer: coarse) {
+  :root.fonts-ready {
+    --font-sans: "Blog Sans Fallback", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --font-display: "LXGW WenKai TC", "PingFang TC", serif;
+  }
+}
 
 /* 語意色票：淺色是紙白與深海墨藍，強調色是蝦紅，只用在連結與目前位置 */
 :root {
@@ -141,13 +151,6 @@
 }
 .prose > * + * {
   margin-top: 1.15em;
-}
-/* 程式碼區塊與表格是長文裡排版最重的部分（Shiki 每個 token 一個 span）；捲到附近才排版與繪製，換頁進長文時不會卡住
-   auto 會記住實際算過的高度，捲回去不會跳 */
-.prose > .code-block,
-.prose > table {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 16rem;
 }
 .prose h2,
 .prose h3,
