@@ -44,11 +44,7 @@ const year = new Date().getFullYear()
     <!-- 分隔線和上方的 border-t 一樣橫跨整個寬度，內容才收進版心 -->
     <div class="border-t border-(--line)">
       <div class="mx-auto flex max-w-(--container-site) flex-col-reverse gap-2 px-5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:px-8">
-        <p class="inline-flex items-center gap-2">
-          <AppIcon
-            name="whale"
-            :size="20"
-          />
+        <p>
           © 2023–{{ year }} {{ blog.author }}
         </p>
         <a
