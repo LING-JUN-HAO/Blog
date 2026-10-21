@@ -32,7 +32,8 @@ export async function buildFeed(event: H3Event) {
       description: post.description,
       date: new Date(post.updated ?? post.date ?? Date.now()),
       published: post.date ? new Date(post.date) : undefined,
-      category: [...post.categories, ...post.tags].map(name => ({ name })),
+      // Atom 的 <category> 必須有 term；分類與標籤可能重複，先去重
+      category: [...new Set([...post.categories, ...post.tags])].map(name => ({ name, term: name })),
       // RSS 的 <author> 必須是 Email，只有名字會驗證失敗；作者由整個訂閱的 author 表示
     })
   }
