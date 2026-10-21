@@ -103,7 +103,7 @@ const summary = computed(() => {
           :key="tag"
         >#{{ tag }}</span>
       </div>
-      <span style="color: #5D6779; font-family: 'LXGW WenKai TC'; font-size: 18px; line-height: 1.4;">ling-jun-hao-blog.vercel.app</span>
+      <span style="color: #5D6779; font-family: 'LXGW WenKai TC'; font-size: 18px; line-height: 1.4;">antonio-ling.com</span>
     </div>
   </div>
 </template>

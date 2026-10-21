@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + Nuxt Content v3 的全靜態網站（`nuxt generate`），部署在 Vercel（`https://ling-jun-hao-blog.vercel.app`）。
+Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + Nuxt Content v3 的全靜態網站（`nuxt generate`），部署在 Vercel，正式網域 `https://antonio-ling.com`（DNS 在 Cloudflare；`www.antonio-ling.com` 與原本的 `ling-jun-hao-blog.vercel.app` 都在 Vercel 專案的網域設定裡 308 轉到根網域）。
 
 ## 環境與指令
 

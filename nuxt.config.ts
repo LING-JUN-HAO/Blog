@@ -17,7 +17,7 @@ const syndicatedRoutes = readdirSync('content/_posts')
   .map(name => `/${name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '')}/`)
 
 // 正式網址；換自訂網域時改這裡（或設定環境變數 NUXT_SITE_URL）
-const SITE_URL = process.env.NUXT_SITE_URL ?? 'https://ling-jun-hao-blog.vercel.app'
+const SITE_URL = process.env.NUXT_SITE_URL ?? 'https://antonio-ling.com'
 
 export default defineNuxtConfig({
   modules: [

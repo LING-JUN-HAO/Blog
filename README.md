@@ -6,7 +6,7 @@
 
 <p align="center">
   我是一隻前端小蝦米，努力夢想有一天變成大鯨魚。<br>
-  <a href="https://ling-jun-hao-blog.vercel.app">ling-jun-hao-blog.vercel.app</a>
+  <a href="https://antonio-ling.com">antonio-ling.com</a>
 </p>
 
 這是凌俊豪（Antonio）的繁體中文技術部落格，記錄前端、後端與開發工具的學習筆記，也收錄三屆 iThome 鐵人賽的完整系列：
@@ -26,7 +26,7 @@
 | 互動 | VueUse、GSAP、Three.js、View Transitions API |
 | SEO | @nuxtjs/seo（sitemap、robots、schema.org、OG 分享圖）、RSS、llms.txt |
 | 留言 | Giscus（GitHub Discussions） |
-| 部署 | Vercel；舊網址 `ling-jun-hao.github.io/Blog/` 由 GitHub Pages 轉址到新站 |
+| 部署 | Vercel，網域 `antonio-ling.com`；舊網址 `ling-jun-hao.github.io/Blog/` 與 `ling-jun-hao-blog.vercel.app` 都轉址到新網域 |
 
 ## 開始開發
 

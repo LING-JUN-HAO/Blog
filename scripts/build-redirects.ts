@@ -10,7 +10,7 @@ import { join, relative, resolve } from 'node:path'
 const ROOT = resolve(import.meta.dirname, '..')
 const PUBLIC_DIR = join(ROOT, '.output/public')
 const OUT_DIR = join(ROOT, '.redirects')
-const SITE_URL = (process.env.NUXT_SITE_URL ?? 'https://ling-jun-hao-blog.vercel.app').replace(/\/$/, '')
+const SITE_URL = (process.env.NUXT_SITE_URL ?? 'https://antonio-ling.com').replace(/\/$/, '')
 const OLD_BASE = '/Blog'
 
 function escapeHtml(value: string) {
