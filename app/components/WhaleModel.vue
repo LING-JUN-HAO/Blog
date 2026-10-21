@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { gsap } from 'gsap'
-
 // 首頁的 3D 可愛鯨魚（「努力夢想有一天變成大鯨魚」）；模型由 Codex 依設計規格以 Three.js 幾何組成
 const container = useTemplateRef('container')
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+// 捲出畫面或切到背景分頁就暫停動畫，不佔主執行緒
+const inView = useElementVisibility(container)
+const pageVisibility = useDocumentVisibility()
+const running = computed(() => inView.value && pageVisibility.value === 'visible')
+const interactive = ref(false)
 
 let dispose: (() => void) | undefined
 
@@ -11,7 +14,10 @@ onMounted(async () => {
   const el = container.value
   if (!el) return
 
-  const [THREE, { createWhale }] = await Promise.all([import('three'), import('~/three/createWhale')])
+  // 等瀏覽器閒置再載入 Three.js 與 GSAP，避開首屏載入時的主執行緒
+  await new Promise<void>(resolve => ('requestIdleCallback' in window ? requestIdleCallback(() => resolve(), { timeout: 2000 }) : setTimeout(resolve, 300)))
+  if (!container.value) return
+  const [THREE, { createWhale }, { gsap }] = await Promise.all([import('three'), import('~/three/createWhale'), import('gsap')])
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -66,21 +72,42 @@ onMounted(async () => {
       turnX(baseTilt + (event.clientY / window.innerHeight - 0.5) * 0.5)
     }
     window.addEventListener('pointermove', onPointerMove, { passive: true })
-    // 點一下鯨魚：跳起來噴一大把水
-    const onPointerDown = () => whale.splash()
-    el.addEventListener('pointerdown', onPointerDown)
-    el.classList.add('cursor-pointer')
+    // 滑鼠移上去：搖尾巴、瞇眼、臉紅；手機沒有 hover，點一下維持 1.5 秒
+    const { start: endTouchHover } = useTimeoutFn(() => whale.setHover(false), 1500, { immediate: false })
+    const stopEnter = useEventListener(el, 'pointerenter', (event: PointerEvent) => event.pointerType === 'mouse' && whale.setHover(true))
+    const stopLeave = useEventListener(el, 'pointerleave', (event: PointerEvent) => event.pointerType === 'mouse' && whale.setHover(false))
+    // 點一下鯨魚：跳起來噴出比平常更大的水柱，落水時濺起水花
+    const stopDown = useEventListener(el, 'pointerdown', (event: PointerEvent) => {
+      whale.splash(1.8)
+      if (event.pointerType !== 'mouse') {
+        whale.setHover(true)
+        endTouchHover()
+      }
+    })
+    const stopKey = useEventListener(el, 'keydown', (event: KeyboardEvent) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return
+      event.preventDefault()
+      whale.splash(1.8)
+    })
+    interactive.value = true
 
     gsap.from(pivot.scale, { x: 0.7, y: 0.7, z: 0.7, duration: 1.2, ease: 'elastic.out(1, 0.5)' })
     const tick = (time: number) => {
       whale.animate(time)
       render()
     }
-    gsap.ticker.add(tick)
+    const stopRunning = watch(running, (value) => {
+      if (value) gsap.ticker.add(tick)
+      else gsap.ticker.remove(tick)
+    }, { immediate: true })
 
     stopMotion = () => {
       window.removeEventListener('pointermove', onPointerMove)
-      el.removeEventListener('pointerdown', onPointerDown)
+      stopEnter()
+      stopLeave()
+      stopDown()
+      stopKey()
+      stopRunning()
       gsap.ticker.remove(tick)
       gsap.killTweensOf(pivot.rotation)
       gsap.killTweensOf(pivot.scale)
@@ -100,10 +127,13 @@ onBeforeUnmount(() => dispose?.())
 </script>
 
 <template>
+  <!-- 有動畫時是可以點的按鈕；減少動態效果時只是一張圖 -->
   <div
     ref="container"
-    class="aspect-square [&>canvas]:block [&>canvas]:size-full"
-    role="img"
-    aria-label="3D 可愛鯨魚：努力夢想有一天變成大鯨魚"
+    class="aspect-square rounded-full outline-offset-4 [&>canvas]:block [&>canvas]:size-full"
+    :class="{ 'cursor-pointer': interactive }"
+    :role="interactive ? 'button' : 'img'"
+    :tabindex="interactive ? 0 : undefined"
+    :aria-label="interactive ? '3D 可愛鯨魚，點一下讓牠噴水' : '3D 可愛鯨魚：努力夢想有一天變成大鯨魚'"
   />
 </template>

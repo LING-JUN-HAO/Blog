@@ -71,7 +71,7 @@ useSeoMeta({
         </div>
       </div>
       <ClientOnly>
-        <WhaleModel class="mx-auto w-56 md:w-full" />
+        <LazyWhaleModel class="mx-auto w-56 md:w-full" />
         <template #fallback>
           <div class="mx-auto aspect-square w-56 md:w-full" />
         </template>

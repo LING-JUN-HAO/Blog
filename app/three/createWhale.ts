@@ -11,8 +11,10 @@ export type Whale = {
   group: ThreeTypes.Group
   /** Update the idle animation and water spray. `time` is measured in seconds. */
   animate: (time: number) => void
-  /** Make the whale hop happily and burst a big splash of water. */
-  splash: () => void
+  /** Make the whale hop happily and burst a big splash of water; `strength` > 1 for a stronger burst (clicks). */
+  splash: (strength?: number) => void
+  /** Pointer hovering: the tail wags faster, the eyes squint happily and the cheeks blush. */
+  setHover: (hovering: boolean) => void
   dispose: () => void
 }
 
@@ -185,6 +187,7 @@ export function createWhale(
   const smallHighlightGeometry = new THREE.SphereGeometry(0.06, 14, 10)
   const cheekGeometry = new THREE.SphereGeometry(1, 28, 18)
   const eyeRigs: ThreeTypes.Group[] = []
+  const cheeks: ThreeTypes.Mesh[] = []
 
   for (const side of [-1, 1] as const) {
     const eyeRig = new THREE.Group()
@@ -212,6 +215,7 @@ export function createWhale(
     cheek.rotation.y = -side * 0.8
     cheek.scale.set(0.14, 0.4, 0.5)
     anatomy.add(cheek)
+    cheeks.push(cheek)
   }
 
   // A small, slightly lopsided smile for a shy, playful expression.
@@ -278,7 +282,7 @@ export function createWhale(
   group.children.forEach(child => (child.position.y -= 1.6))
 
   // --- Spray particles, added after framing so they never affect the bounds.
-  const sprayCount = 90
+  const sprayCount = 160
   const spray = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 12, 8), waterMaterial, sprayCount)
   spray.name = 'spray'
   spray.frustumCulled = false
@@ -289,7 +293,13 @@ export function createWhale(
     size: 0,
     age: 0,
     life: 0,
+    // 1 = water drop; negative = bubble floating up
+    gravityScale: 1,
   }))
+  // Where bubbles leave the mouth and where the landing splash starts, in the group's local space.
+  group.updateMatrixWorld(true)
+  const mouth = group.worldToLocal(smile.getWorldPosition(new THREE.Vector3()))
+  const bellyY = group.worldToLocal(new THREE.Box3().setFromObject(anatomy).min.clone()).y
   const dummy = new THREE.Object3D()
   const gravity = 9.5
   let nextParticle = 0
@@ -309,6 +319,37 @@ export function createWhale(
       particle.size = 0.1 + Math.random() * 0.14
       particle.age = 0
       particle.life = 1.6 + Math.random() * 0.6
+      particle.gravityScale = 1
+    }
+  }
+
+  // Splash ring thrown sideways from the belly when the whale lands.
+  const emitSplash = (count: number) => {
+    for (let i = 0; i < count; i += 1) {
+      const particle = particles[nextParticle]!
+      nextParticle = (nextParticle + 1) % sprayCount
+      const angle = Math.random() * Math.PI * 2
+      const speed = 2.2 + Math.random() * 2.4
+      particle.position.set(Math.cos(angle) * 2.6, bellyY + 0.6, Math.sin(angle) * 1.6)
+      particle.velocity.set(Math.cos(angle) * speed, 3.5 + Math.random() * 3, Math.sin(angle) * speed * 0.6)
+      particle.size = 0.08 + Math.random() * 0.12
+      particle.age = 0
+      particle.life = 1 + Math.random() * 0.5
+      particle.gravityScale = 1
+    }
+  }
+
+  // Idle bubbles drifting up from the mouth.
+  const emitBubbles = (count: number) => {
+    for (let i = 0; i < count; i += 1) {
+      const particle = particles[nextParticle]!
+      nextParticle = (nextParticle + 1) % sprayCount
+      particle.position.set(mouth.x + 0.3 + Math.random() * 0.3, mouth.y + Math.random() * 0.3, mouth.z + (Math.random() - 0.5) * 0.6)
+      particle.velocity.set(0.3 + Math.random() * 0.3, 0.9 + Math.random() * 0.5, (Math.random() - 0.5) * 0.3)
+      particle.size = 0.14 + Math.random() * 0.16
+      particle.age = 0
+      particle.life = 2.6 + Math.random() * 1.2
+      particle.gravityScale = -0.04
     }
   }
 
@@ -327,13 +368,19 @@ export function createWhale(
   let hopStart = -Infinity
   let nextHop = 2.5
   let burstPending = false
+  let burstStrength = 1
+  let landingPending = false
   let emitCarry = 0
+  let hoverTarget = 0
+  let hover = 0
+  let nextBubble = 4
 
   const startHop = () => {
     if (clock - hopStart < hopDuration * 0.6) return
     hopStart = clock
     nextHop = clock + hopInterval + Math.random() * 2
     burstPending = true
+    landingPending = true
   }
 
   const animate = (time: number): void => {
@@ -350,6 +397,8 @@ export function createWhale(
     const lift = hopping ? Math.sin(hop * Math.PI) : 0
     // Squash on take-off and landing, stretch in the air.
     const squash = hopping ? Math.sin(hop * Math.PI * 2) * -0.07 * (1 - hop) : 0
+    // Ease toward the hover state so entering and leaving never snaps.
+    hover += (hoverTarget - hover) * Math.min(1, dt * 6)
 
     group.position.y = baseY + Math.sin(time * 0.8) * 0.1 + lift * 1.1
     group.rotation.z = Math.sin(time * 0.55) * 0.012 + lift * 0.12
@@ -364,7 +413,8 @@ export function createWhale(
     )
 
     // The tail flicks hard during a hop, gently otherwise.
-    tail.rotation.z = tailBase + Math.sin(time * 1.08) * 0.14 + Math.sin(hop * Math.PI * 3) * 0.35 * lift
+    // Hovering adds a quicker, happier wag on top of the idle sway.
+    tail.rotation.z = tailBase + Math.sin(time * 1.08) * 0.14 + Math.sin(time * 6) * 0.22 * hover + Math.sin(hop * Math.PI * 3) * 0.35 * lift
     nearFlipper.rotation.z = nearFlipperBase + Math.sin(time * 1.12) * 0.08 + lift * 0.35
     const wave = Math.max(Math.max(0, Math.sin(time * 0.9)) ** 3, joy)
     farFlipper.rotation.x = farFlipperBase + Math.sin(time * 7) * 0.22 * wave
@@ -375,12 +425,15 @@ export function createWhale(
     const blink = blinkTime < 0.2
       ? 0.12 + Math.abs(Math.cos(blinkProgress * Math.PI)) * 0.88
       : 1
-    const eyeOpen = Math.min(blink, 1 - joy * 0.65)
+    const eyeOpen = Math.min(blink, 1 - Math.max(joy * 0.65, hover * 0.45))
     eyeRigs.forEach(eyeRig => eyeRig.scale.set(1, eyeOpen, 1))
+    // Blush while hovered or playing.
+    const blush = 1 + Math.max(hover, joy) * 0.35
+    cheeks.forEach(cheek => cheek.scale.set(0.14, 0.4 * blush, 0.5 * blush))
 
     // The column stretches tall in a rhythm and shoots highest at a hop.
     const pulse = (Math.sin(time * 2.2) + 1) / 2
-    stem.scale.y = 0.7 + pulse * 0.9 + joy * 1.2
+    stem.scale.y = 0.9 + pulse * 1.1 + joy * 1.4
     crown.position.y = stem.scale.y
     crown.rotation.y = Math.sin(time * 3) * 0.3
     const spoutPulse = 1 + Math.sin(time * 4.4) * 0.06
@@ -388,23 +441,33 @@ export function createWhale(
     spout.position.y = spoutBaseY
 
     // Continuous spray, plus a big burst near the top of every hop.
-    emitCarry += dt * (14 + pulse * 16 + joy * 30)
+    emitCarry += dt * (18 + pulse * 20 + joy * 36)
     const steady = Math.floor(emitCarry)
     emitCarry -= steady
-    if (steady > 0) emit(steady, 7.5 + pulse * 2)
+    if (steady > 0) emit(steady, 8.5 + pulse * 2.5)
     if (burstPending && hop >= 0.35) {
       burstPending = false
-      emit(32, 11)
+      // Clicks add volume more than height so the column stays inside the canvas.
+      emit(Math.round(36 * burstStrength), 11.5 + (burstStrength - 1))
+    }
+    if (landingPending && hop >= 1) {
+      landingPending = false
+      emitSplash(Math.round(16 * burstStrength))
+      burstStrength = 1
+    }
+    if (clock >= nextBubble) {
+      nextBubble = clock + 3 + Math.random() * 4
+      if (!hopping) emitBubbles(1 + Math.floor(Math.random() * 3))
     }
 
     particles.forEach((particle, index) => {
       if (particle.age < particle.life) {
         particle.age += dt
-        particle.velocity.y -= gravity * dt
+        particle.velocity.y -= gravity * particle.gravityScale * dt
         particle.position.addScaledVector(particle.velocity, dt)
       }
       const fade = Math.max(0, 1 - particle.age / particle.life)
-      const alive = particle.age < particle.life && particle.position.y > spoutBaseY - 4
+      const alive = particle.age < particle.life && particle.position.y > bellyY - 1.5
       dummy.position.copy(particle.position)
       // Stretch drops along their direction of travel for a sense of speed.
       dummy.scale.set(1, 1 + Math.min(Math.abs(particle.velocity.y) * 0.08, 0.8), 1)
@@ -415,9 +478,15 @@ export function createWhale(
     spray.instanceMatrix.needsUpdate = true
   }
 
-  const splash = (): void => {
+  const splash = (strength = 1): void => {
     if (disposed) return
+    // A click during a hop still tops up the burst instead of being ignored.
+    burstStrength = Math.max(burstStrength, strength)
     startHop()
+  }
+
+  const setHover = (hovering: boolean): void => {
+    hoverTarget = hovering ? 1 : 0
   }
 
   const dispose = (): void => {
@@ -440,5 +509,5 @@ export function createWhale(
     group.clear()
   }
 
-  return { group, animate, splash, dispose }
+  return { group, animate, splash, setHover, dispose }
 }
