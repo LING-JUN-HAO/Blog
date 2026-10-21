@@ -1,6 +1,8 @@
 /** 頁面捲動百分比（0–100），`y` 可寫入以捲動頁面 */
 export const useScrollProgress = createSharedComposable(() => {
-  const { y } = useWindowScroll({ behavior: 'smooth' })
+  // 系統設定減少動態效果時直接跳轉
+  const reducedMotion = usePreferredReducedMotion()
+  const { y } = useWindowScroll({ behavior: () => (reducedMotion.value === 'reduce' ? 'auto' : 'smooth') })
   const { height: windowHeight } = useWindowSize()
   const { height: pageHeight } = useElementSize(() => (import.meta.client ? document.documentElement : null))
 

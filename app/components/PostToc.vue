@@ -4,6 +4,17 @@ interface TocLink { id: string, text: string, depth: number, children?: TocLink[
 defineProps<{ links: TocLink[] }>()
 
 const activeId = useActiveHeading()
+const reducedMotion = usePreferredReducedMotion()
+
+// 平滑捲到標題（頁首的遮擋由 html 的 scroll-padding-top 處理），網址同步換成該標題的錨點
+function jump(event: MouseEvent, id: string) {
+  const target = document.getElementById(id)
+  if (!target) return
+  event.preventDefault()
+  target.scrollIntoView({ behavior: reducedMotion.value === 'reduce' ? 'auto' : 'smooth' })
+  history.replaceState(history.state, '', `#${id}`)
+  activeId.value = id
+}
 </script>
 
 <template>
@@ -15,6 +26,8 @@ const activeId = useActiveHeading()
       <a
         :href="`#${link.id}`"
         :class="{ active: activeId === link.id }"
+        :aria-current="activeId === link.id ? 'location' : undefined"
+        @click="jump($event, link.id)"
       >{{ link.text }}</a>
       <PostToc
         v-if="link.children?.length"
