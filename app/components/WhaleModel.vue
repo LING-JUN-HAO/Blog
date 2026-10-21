@@ -57,6 +57,15 @@ onMounted(async () => {
   const observer = new ResizeObserver(resize)
   observer.observe(el)
 
+  // 先非同步編譯 shader（瀏覽器支援 KHR_parallel_shader_compile 時不佔主執行緒），第一次繪製才不會卡住幾百毫秒
+  await renderer.compileAsync(scene, camera)
+  if (!container.value) {
+    observer.disconnect()
+    whale.dispose()
+    renderer.dispose()
+    return
+  }
+
   const render = () => renderer.render(scene, camera)
   let stopMotion: (() => void) | undefined
 
