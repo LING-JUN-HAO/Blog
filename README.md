@@ -19,14 +19,12 @@
 
 ## 技術
 
-| 用途 | 使用 |
-|---|---|
-| 框架 | Nuxt 4、Nuxt Content v3（Markdown 文章，全站靜態輸出） |
-| 樣式 | Tailwind CSS v4、LXGW WenKai TC／Noto Sans TC |
-| 互動 | VueUse、GSAP、Three.js、View Transitions API |
-| SEO | @nuxtjs/seo（sitemap、robots、schema.org、OG 分享圖）、RSS、llms.txt |
-| 留言 | Giscus（GitHub Discussions） |
-| 部署 | Vercel，網域 `antonio-ling.com`；舊網址 `ling-jun-hao.github.io/Blog/` 與 `ling-jun-hao-blog.vercel.app` 都轉址到新網域 |
+- **框架**：Nuxt 4、Nuxt Content v3（Markdown 文章，全站靜態輸出）
+- **樣式**：Tailwind CSS v4、LXGW WenKai TC／Noto Sans TC
+- **互動**：VueUse、GSAP、Three.js、View Transitions API
+- **SEO**：@nuxtjs/seo（sitemap、robots、schema.org、OG 分享圖）、RSS、llms.txt
+- **留言**：Giscus（GitHub Discussions）
+- **部署**：Vercel，網域 `antonio-ling.com`；舊網址 `ling-jun-hao.github.io/Blog/` 與 `ling-jun-hao-blog.vercel.app` 都轉址到新網域
 
 ## 開始開發
 
