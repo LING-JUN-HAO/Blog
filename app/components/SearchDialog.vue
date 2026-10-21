@@ -4,7 +4,13 @@ import MiniSearch from 'minisearch'
 interface Section { id: string, title: string, titles: string[], content: string }
 
 const open = useState('search-open', () => false)
+// 輸入框的即時內容；v-model 在中文輸入法組字時不會更新（手機要按確認才搜得到），所以直接聽 input 事件
+const typed = ref('')
 const query = ref('')
+// 停止輸入 0.5 秒後才搜尋
+watchDebounced(typed, (value) => {
+  query.value = value
+}, { debounce: 500 })
 const input = useTemplateRef('input')
 const dialog = useTemplateRef('dialog')
 const engine = shallowRef<MiniSearch<Section>>()
@@ -30,20 +36,49 @@ const { data: sections, execute } = useLazyAsyncData('search-sections', () => qu
   server: false,
 })
 
-const results = computed(() => {
+// 結果的標籤：sections 的 id 是「文章路徑#標題」，用文章路徑對回標籤
+const { data: posts } = usePosts()
+const tagsByPath = computed(() => new Map(posts.value.map(p => [p.path, p.tags.filter(t => !/鐵人賽$/.test(t))])))
+const activeTag = ref('')
+
+const hits = computed(() => {
   if (!engine.value || query.value.trim().length === 0) return []
-  return engine.value.search(query.value, { prefix: true, combineWith: 'AND' }).slice(0, 12).map(hit => ({
+  return engine.value.search(query.value, { prefix: true, combineWith: 'AND' }).map(hit => ({
     id: hit.id as string,
     title: hit.title as string,
     titles: hit.titles as string[],
-    excerpt: excerpt(hit.content as string, query.value),
+    content: hit.content as string,
+    tags: tagsByPath.value.get((hit.id as string).split('#')[0]!) ?? [],
   }))
 })
+// 篩選用的標籤：結果裡最常出現的前 8 個
+const tagOptions = computed(() => {
+  const count = new Map<string, number>()
+  for (const hit of hits.value) for (const tag of hit.tags) count.set(tag, (count.get(tag) ?? 0) + 1)
+  return [...count.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([tag]) => tag)
+})
+const results = computed(() => hits.value
+  .filter(hit => !activeTag.value || hit.tags.includes(activeTag.value))
+  .slice(0, 12)
+  .map(hit => ({ ...hit, excerpt: excerpt(hit.content, query.value) })))
+watch(query, () => {
+  activeTag.value = ''
+})
+
+const terms = computed(() => query.value.toLowerCase().split(/\s+/).filter(Boolean))
 
 function excerpt(content: string, keyword: string) {
-  const index = content.toLowerCase().indexOf(keyword.toLowerCase().trim())
+  const first = keyword.toLowerCase().trim().split(/\s+/)[0] ?? ''
+  const index = content.toLowerCase().indexOf(first)
   const start = Math.max(0, index - 30)
   return (start > 0 ? '…' : '') + content.slice(start, start + 100) + '…'
+}
+
+/** 把文字切成一般與命中關鍵字的片段，給 <mark> 高亮用（不用 v-html） */
+function highlight(text: string) {
+  if (!terms.value.length) return [{ text, hit: false }]
+  const pattern = new RegExp(`(${terms.value.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi')
+  return text.split(pattern).filter(Boolean).map(part => ({ text: part, hit: terms.value.includes(part.toLowerCase()) }))
 }
 
 watch(open, async (value) => {
@@ -79,6 +114,13 @@ onKeyStroke(['k', 'K'], (event) => {
   open.value = !open.value
 })
 
+// Enter（手機鍵盤的「搜尋」）：不等 debounce，直接開第一筆結果
+async function openFirst() {
+  query.value = typed.value
+  const first = results.value[0]
+  if (first) await navigateTo(first.id)
+}
+
 const route = useRoute()
 watch(() => route.fullPath, () => {
   open.value = false
@@ -100,11 +142,14 @@ watch(() => route.fullPath, () => {
       />
       <input
         ref="input"
-        v-model="query"
+        :value="typed"
         type="search"
+        enterkeyhint="search"
         placeholder="搜尋文章標題或內容"
         class="h-14 w-full bg-transparent text-lg outline-none placeholder:text-(--ink-soft)"
         aria-label="搜尋關鍵字"
+        @input="typed = ($event.target as HTMLInputElement).value"
+        @keydown.enter.prevent="openFirst"
       >
       <kbd class="hidden rounded border border-(--line) px-1.5 text-xs text-(--ink-soft) sm:inline">Esc</kbd>
     </div>
@@ -125,33 +170,80 @@ watch(() => route.fullPath, () => {
         />
         <br>找不到「{{ query }}」，換個關鍵字試試，例如 Signal、Promise、NestJS。
       </p>
-      <ul v-else>
-        <li
-          v-for="item in results"
-          :key="item.id"
-          class="border-b border-(--line) last:border-b-0"
+      <template v-else>
+        <p
+          v-if="tagOptions.length > 1"
+          class="flex gap-2 overflow-x-auto border-b border-(--line) px-5 py-3 sm:flex-wrap"
+          role="group"
+          aria-label="依標籤篩選"
         >
-          <NuxtLink
-            :to="item.id"
-            class="block px-5 py-3.5 hover:bg-(--wash)"
+          <button
+            v-for="tag in ['', ...tagOptions]"
+            :key="tag"
+            type="button"
+            class="filter-chip"
+            :aria-pressed="activeTag === tag"
+            @click="activeTag = tag"
           >
-            <p class="text-xs text-(--ink-soft)">
-              {{ item.titles.join(' / ') }}
-            </p>
-            <p class="font-bold">
-              {{ item.title }}
-            </p>
-            <p class="mt-0.5 line-clamp-2 text-sm text-(--ink-soft)">
-              {{ item.excerpt }}
-            </p>
-          </NuxtLink>
-        </li>
-      </ul>
+            {{ tag || '全部' }}
+          </button>
+        </p>
+        <ul>
+          <li
+            v-for="item in results"
+            :key="item.id"
+            class="border-b border-(--line) last:border-b-0"
+          >
+            <NuxtLink
+              :to="item.id"
+              class="block px-5 py-3.5 hover:bg-(--wash)"
+            >
+              <p class="text-xs text-(--ink-soft)">
+                {{ item.titles.join(' / ') }}
+              </p>
+              <p class="font-bold">
+                <component
+                  :is="part.hit ? 'mark' : 'span'"
+                  v-for="(part, i) in highlight(item.title)"
+                  :key="i"
+                >{{ part.text }}</component>
+              </p>
+              <p class="mt-0.5 line-clamp-2 text-sm text-(--ink-soft)">
+                <component
+                  :is="part.hit ? 'mark' : 'span'"
+                  v-for="(part, i) in highlight(item.excerpt)"
+                  :key="i"
+                >{{ part.text }}</component>
+              </p>
+            </NuxtLink>
+          </li>
+        </ul>
+      </template>
     </div>
   </dialog>
 </template>
 
 <style scoped>
+mark {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: inherit;
+  border-radius: 2px;
+}
+.filter-chip {
+  flex-shrink: 0;
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  transition: color 0.15s, border-color 0.15s;
+}
+.filter-chip:hover,
+.filter-chip[aria-pressed='true'] {
+  color: var(--ink);
+  border-color: var(--accent);
+}
 .search-dialog::backdrop {
   background: rgb(14 22 38 / 0.35);
 }

@@ -15,9 +15,16 @@ watch(() => route.fullPath, () => {
   menuOpen.value = false
 })
 
+// 行動版選單蓋在內容上：打開時鎖住背景捲動，內容不會被推動也不會在後面捲走
+const scrollLock = useScrollLock(import.meta.client ? document.body : null)
+watch(menuOpen, (open) => {
+  scrollLock.value = open
+})
+
 // 多個選單路徑互為前綴時（鐵人賽在 /categories/ 底下），只亮最長、最具體的那一個
 const activeTo = computed(() => {
-  const path = decodeURI(route.path)
+  // 鐵人賽各系列的入口在「YYYY 鐵人賽」標籤頁，選單亮「鐵人賽」
+  const path = decodeURI(route.path).replace(/^\/tags\/\d{4}-鐵人賽\//, '/categories/iThome-鐵人賽/')
   return blog.menu
     .map(item => item.to)
     .filter(to => path.startsWith(to))
@@ -92,7 +99,7 @@ function isActive(to: string) {
           class="tool-btn menu-btn"
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
-          aria-label="開啟選單"
+          :aria-label="menuOpen ? '關閉選單' : '開啟選單'"
           @click="menuOpen = !menuOpen"
         >
           <AppIcon :name="menuOpen ? 'close' : 'menu'" />
@@ -100,32 +107,63 @@ function isActive(to: string) {
       </div>
     </div>
 
-    <nav
-      v-if="menuOpen"
-      id="mobile-menu"
-      class="border-t border-(--line) px-5 pb-4 md:hidden"
-      aria-label="行動版選單"
-    >
-      <NuxtLink
-        v-for="item in blog.menu"
-        :key="item.to"
-        :to="item.to"
-        class="flex items-center gap-3 border-b border-(--line) py-3 last:border-b-0"
-        :class="isActive(item.to) ? 'text-(--accent-ink)' : ''"
+    <Transition name="menu">
+      <div
+        v-if="menuOpen"
+        class="absolute inset-x-0 top-full md:hidden"
       >
-        <AppIcon
-          :name="item.icon"
-          :size="18"
+        <nav
+          id="mobile-menu"
+          class="relative z-10 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-(--line) bg-(--paper) px-5 pb-4 shadow-sm"
+          aria-label="行動版選單"
+        >
+          <NuxtLink
+            v-for="item in blog.menu"
+            :key="item.to"
+            :to="item.to"
+            class="flex items-center gap-3 border-b border-(--line) py-3 last:border-b-0"
+            :class="isActive(item.to) ? 'text-(--accent-ink)' : ''"
+          >
+            <AppIcon
+              :name="item.icon"
+              :size="18"
+            />
+            {{ item.label }}
+          </NuxtLink>
+        </nav>
+        <!-- header 有 backdrop-filter，裡面的 fixed 會以 header 為基準，所以遮罩用 absolute＋整個視窗高 -->
+        <div
+          class="menu-scrim absolute inset-x-0 top-0 h-dvh"
+          aria-hidden="true"
+          @click="menuOpen = false"
         />
-        {{ item.label }}
-      </NuxtLink>
-    </nav>
+      </div>
+    </Transition>
 
     <SearchDialog />
   </header>
 </template>
 
 <style scoped>
+.menu-scrim {
+  background: rgb(8 12 22 / 0.35);
+}
+.menu-enter-active,
+.menu-leave-active {
+  transition: opacity 0.18s ease;
+}
+.menu-enter-active nav,
+.menu-leave-active nav {
+  transition: transform 0.18s ease;
+}
+.menu-enter-from,
+.menu-leave-to {
+  opacity: 0;
+}
+.menu-enter-from nav,
+.menu-leave-to nav {
+  transform: translateY(-0.5rem);
+}
 .nav-link {
   display: inline-flex;
   align-items: center;
