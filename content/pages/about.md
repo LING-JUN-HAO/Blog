@@ -68,7 +68,7 @@ description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級
 三屆 iThome 鐵人賽的系列文都收錄在這個部落格的[鐵人賽分類](/categories/iThome-鐵人賽/)：
 
 - 2026：[Angular 22 Signal 進化論](https://ithelp.ithome.com.tw/users/20116554/ironman/9939)
-- 2025：[Line Bot × NestJS：30 天開發日記](https://ithelp.ithome.com.tw/users/20116554/ironman/8779)，Modern Web 組佳作。深入 NestJS 架構設計、依賴注入（DI）、Line Messaging API 整合與 Docker 部署，累計 5,000 以上閱讀數
+- 2025：[Line Bot × NestJS：30 天開發日記](https://ithelp.ithome.com.tw/users/20116554/ironman/8779)，Modern Web 組佳作
 - 2024：[Vue 3 初學者：用實作帶你看過核心概念](https://ithelp.ithome.com.tw/users/20116554/ironman/7800)
 
 ## 演講
