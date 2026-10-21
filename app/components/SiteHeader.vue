@@ -20,7 +20,19 @@ watch(() => route.fullPath, () => {
 const scrollLock = useScrollLock(import.meta.client ? document.body : null)
 watch(menuOpen, (open) => {
   scrollLock.value = open
+  if (open) preloadMenu()
 })
+
+// 手機沒有滑過連結的預載，點下去才抓的話要等下載完才換頁；打開選單時就先把各頁的程式與資料載好
+let menuPreloaded = false
+function preloadMenu() {
+  if (menuPreloaded) return
+  menuPreloaded = true
+  for (const item of blog.menu) {
+    preloadRouteComponents(item.to)
+    preloadPayload(item.to)
+  }
+}
 
 // 多個選單路徑互為前綴時（鐵人賽在 /categories/ 底下），只亮最長、最具體的那一個
 const activeTo = computed(() => {
@@ -126,6 +138,7 @@ function isActive(to: string) {
             :to="item.to"
             class="flex items-center gap-3 border-b border-(--line) py-3 last:border-b-0"
             :class="isActive(item.to) ? 'text-(--accent-ink)' : ''"
+            @click="menuOpen = false"
           >
             <AppIcon
               :name="item.icon"
