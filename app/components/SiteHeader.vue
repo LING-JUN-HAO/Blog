@@ -47,6 +47,9 @@ const activeTo = computed(() => {
 function isActive(to: string) {
   return activeTo.value === to
 }
+
+// 平板寬度放不下全部選單時只留這幾個，其餘（鐵人賽、標籤）收進右上角的選單按鈕
+const essential = new Set(['/archives/', '/categories/', '/about/'])
 </script>
 
 <template>
@@ -73,8 +76,8 @@ function isActive(to: string) {
           height="30"
           class="hidden h-7.5 w-auto dark:block"
         >
-        <span class="font-display text-xl font-bold">{{ blog.title }}</span>
-        <span class="hidden text-sm text-(--ink-soft) sm:inline">{{ blog.subtitle }}</span>
+        <span class="font-display text-xl font-bold whitespace-nowrap">{{ blog.title }}</span>
+        <span class="hidden text-sm whitespace-nowrap text-(--ink-soft) sm:inline">{{ blog.subtitle }}</span>
       </NuxtLink>
 
       <nav
@@ -86,7 +89,7 @@ function isActive(to: string) {
           :key="item.to"
           :to="item.to"
           class="nav-link"
-          :class="{ 'is-active': isActive(item.to) }"
+          :class="{ 'is-active': isActive(item.to), 'is-extra': !essential.has(item.to) }"
         >
           <AppIcon
             :name="item.icon"
@@ -125,7 +128,7 @@ function isActive(to: string) {
     <Transition name="menu">
       <div
         v-if="menuOpen"
-        class="absolute inset-x-0 top-full md:hidden"
+        class="absolute inset-x-0 top-full lg:hidden"
       >
         <nav
           id="mobile-menu"
@@ -186,6 +189,7 @@ function isActive(to: string) {
   gap: 7px;
   padding-block: 0.35rem;
   color: var(--ink-soft);
+  white-space: nowrap;
   transition: color 0.15s;
 }
 .nav-link:hover,
@@ -204,7 +208,14 @@ function isActive(to: string) {
   color: var(--ink-soft);
   transition: color 0.15s, background 0.15s;
 }
-@media (min-width: 768px) {
+/* 平板只顯示必要的選單項目，選單按鈕留著讓其他項目也找得到；桌機全部顯示 */
+.nav-link.is-extra {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .nav-link.is-extra {
+    display: inline-flex;
+  }
   .menu-btn {
     display: none;
   }
