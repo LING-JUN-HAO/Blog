@@ -10,12 +10,14 @@ const current = computed(() => stream.value.slice(0, blog.perPage))
 // 三屆鐵人賽：依年份由新到舊
 const series = computed(() => groupSeries(posts.value))
 
-// 手機版鯨魚浮在海浪線上：鯨魚激起的漣漪交給 SeaLine 畫，鯨魚自己的小片海面關掉；平板以上兩者分開排
-const isMobile = useMediaQuery('(max-width: 639.98px)')
+// 鯨魚浮在海浪線上，在整條海面上來回游、也能拖著走：激起的漣漪交給 SeaLine 從鯨魚目前的位置盪開，鯨魚自己的小片海面關掉
 const whaleBox = useTemplateRef('whaleBox')
 const seaLine = useTemplateRef('seaLine')
+const hero = useTemplateRef('hero')
+const whale = useTemplateRef('whale')
+const whaleAnchor = computed(() => whale.value?.el ?? whaleBox.value)
 function onWhaleRipple(strength: number, delay: number) {
-  if (isMobile.value) seaLine.value?.ripple(strength, delay)
+  seaLine.value?.ripple(strength, delay)
 }
 
 useSeoMeta({
@@ -33,29 +35,35 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
       <h1 class="sr-only">
         {{ blog.title }}
       </h1>
-      <!-- 手機：鯨魚游在標語下方的海浪線裡（同一格疊在 SeaLine 後面），標語上方不留空；平板以上標語與鯨魚並排 -->
-      <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:gap-x-4">
-        <p class="col-start-1 row-start-1 font-display text-[2rem] leading-[1.35] font-bold sm:self-end sm:text-[2.75rem] lg:text-[3.25rem]">
+      <!-- 鯨魚游在標語下方的海浪線裡（同一格疊在 SeaLine 後面） -->
+      <div
+        ref="hero"
+        class="grid grid-cols-1"
+      >
+        <p class="col-start-1 row-start-1 font-display text-[2rem] leading-[1.35] font-bold sm:text-[2.75rem] lg:text-[3.25rem]">
           我是一隻前端小蝦米，<br>努力夢想有一天變成大鯨魚。
         </p>
         <!-- 尺寸放在外層：Lazy 元件下載期間 ClientOnly 裡是空的，佔位不能跟著塌掉（會整個首屏位移） -->
         <div
           ref="whaleBox"
-          class="col-start-1 row-start-2 -mt-7 mr-5 aspect-square w-36 shrink-0 justify-self-end sm:col-start-2 sm:mr-0 sm:row-start-1 sm:-mb-4 sm:mt-0 sm:w-40 lg:w-60"
+          class="col-start-1 row-start-2 -mt-7 mr-5 aspect-square w-36 shrink-0 justify-self-end sm:mt-0 sm:w-56 lg:w-64"
         >
           <ClientOnly>
             <LazyWhaleModel
+              ref="whale"
               class="size-full"
-              :sea="!isMobile"
+              :sea="false"
+              :swim="hero"
               @ripple="onWhaleRipple"
             />
           </ClientOnly>
         </div>
-        <!-- 手機版海浪線就是鯨魚浮著的海面，畫在鯨魚前面、線下的水蓋住泡在水裡的半身；不攔截點擊，鯨魚仍點得到 -->
+        <!-- 海浪線就是鯨魚浮著的海面，畫在鯨魚前面、線下的水蓋住泡在水裡的半身；不攔截指標，鯨魚仍點得到、拖得動。
+             海面落在鯨魚畫布約 70% 的高度（和手機版一樣）；平板以上鯨魚從這一列頂端開始，水柱才不會蓋到標語 -->
         <SeaLine
           ref="seaLine"
-          :anchor="whaleBox"
-          class="pointer-events-none relative col-start-1 row-start-2 mt-2 self-start sm:pointer-events-auto sm:col-span-2"
+          :anchor="whaleAnchor"
+          class="pointer-events-none relative col-start-1 row-start-2 mt-2 self-start sm:mt-[6.3rem] lg:mt-[7.7rem]"
         />
       </div>
       <p class="max-w-(--container-prose) text-(--ink-soft)">

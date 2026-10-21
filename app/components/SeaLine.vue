@@ -76,9 +76,11 @@ function render() {
 let lastY = 0
 let moveX: ((value: number) => void) | undefined
 
+// 海浪線疊在鯨魚前面、不攔截指標（鯨魚才拖得動、點得到），改在 window 上聽，只處理經過海面的指標
 function onPointerMove(event: PointerEvent) {
-  if (reducedMotion.value || !svg.value || !gsap) return
+  if (reducedMotion.value || !svg.value || !gsap || event.pointerType !== 'mouse') return
   const rect = svg.value.getBoundingClientRect()
+  if (event.clientY < rect.top || event.clientY > rect.bottom || event.clientX < rect.left || event.clientX > rect.right) return
   const x = ((event.clientX - rect.left) / rect.width) * WIDTH
   const speed = Math.min(36, Math.abs(event.clientY - lastY) + Math.abs(event.movementX) * 0.4)
   lastY = event.clientY
@@ -91,6 +93,8 @@ function settle() {
 }
 
 // 捲出畫面就停止海浪的 ticker
+useEventListener(import.meta.client ? window : null, 'pointermove', onPointerMove, { passive: true })
+
 const inView = useElementVisibility(svg)
 let stopTicking: (() => void) | undefined
 
@@ -130,6 +134,8 @@ function tick(time: number) {
   lastTime = time
   // 有延遲的漣漪不一定依加入順序結束，逐一過濾
   if (rings.length) rings = rings.filter(ring => (ring.age += dt) < RIPPLE_LIFE)
+  // 鯨魚會游動（transform 不會觸發 useElementBounding 更新），有漣漪時每幀重新量牠的位置
+  if (rings.length) anchorBox.update()
   // 相位依時間推進，降成 30fps 時海浪速度不變（原本每幀 0.012，以 60fps 計）
   wave.phase += dt * 0.72
   render()
@@ -148,15 +154,11 @@ onBeforeUnmount(() => {
     ref="svg"
     :viewBox="`0 0 ${WIDTH} ${HEIGHT}`"
     preserveAspectRatio="none"
-    class="block h-28 w-full touch-pan-y sm:h-24"
+    class="block h-28 w-full sm:h-24"
     aria-hidden="true"
-    @pointermove="onPointerMove"
   >
-    <!-- 線下的水：只在手機版（鯨魚浮在線上）出現。veil 是頁面底色，讓鯨魚泡在水裡的半身變淡；water 是一抹往下淡出的海色 -->
-    <g
-      v-if="anchor !== undefined"
-      class="sm:hidden"
-    >
+    <!-- 線下的水：有東西浮在線上（鯨魚）時才畫。veil 是頁面底色，讓鯨魚泡在水裡的半身變淡；water 是一抹往下淡出的海色 -->
+    <g v-if="anchor !== undefined">
       <defs>
         <linearGradient
           :id="`${id}-veil`"
