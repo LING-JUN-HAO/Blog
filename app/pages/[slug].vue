@@ -27,6 +27,24 @@ const neighbours = computed(() => {
   return { newer: posts.value[index - 1], older: posts.value[index + 1] }
 })
 
+// 客戶端換頁進長文時先畫前面一段，其餘等瀏覽器閒置再補：換頁那一幀不必一次渲染整篇（手機上要好幾百毫秒）
+// 首次載入要跟預渲染的 HTML 一致、按上一頁回來要還原捲動位置，這兩種都整篇一次畫完
+const nuxtApp = useNuxtApp()
+const shownBlocks = ref(import.meta.client && !nuxtApp.isHydrating && !window.history.state?.scroll ? 12 : Infinity)
+const rendered = computed(() => {
+  const current = post.value!
+  if (shownBlocks.value >= current.body.value.length) return current
+  return { ...current, body: { ...current.body, value: current.body.value.slice(0, shownBlocks.value) } }
+})
+onMounted(() => {
+  const idle = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 300 }) : setTimeout(fn, 50))
+  const more = () => {
+    shownBlocks.value = shownBlocks.value < 40 ? 40 : Infinity
+    if (shownBlocks.value !== Infinity) idle(more)
+  }
+  if (shownBlocks.value !== Infinity) idle(more)
+})
+
 // 文章開頭的封面圖常是 LCP：在 head 預先載入（HTML 前段有大量字型宣告，等解析到 body 才發現會太晚），
 // ProseImg 對它用高優先序立即載入，其餘圖片 lazy
 const cover = coverImage(post.value.body)
@@ -185,7 +203,7 @@ defineOgImage('Post', {
       </details>
 
       <ContentRenderer
-        :value="post"
+        :value="rendered"
         class="prose mt-10 max-w-(--container-prose)"
       />
 
