@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "LXGW WenKai TC", "Noto Sans TC", "PingFang TC", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* 版面寬度：整體 72rem，內文欄 50rem（一行約 47 個中文字） */
+  --container-site: 72rem;
+  --container-prose: 50rem;
+}
+
+/* 語意色票：淺色是紙白與深海墨藍，強調色是蝦紅，只用在連結與目前位置 */
+:root {
+  --paper: #fbfcfd;
+  --ink: #17213a;
+  --ink-soft: #5d6779;
+  --line: #e3e7ee;
+  --accent: #e0517a;
+  /* 正文上的蝦紅文字由強調色與墨色混出，維持對比（Codex 設計規格） */
+  --accent-ink: color-mix(in srgb, var(--accent) 78%, var(--ink));
+  --wash: #f2f4f8;
+  --code-bg: var(--wash);
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #0e1626;
+  --ink: #e4e8f0;
+  --ink-soft: #97a1b4;
+  --line: #233049;
+  --accent: #ff86a5;
+  --accent-ink: color-mix(in srgb, var(--accent) 86%, white);
+  --wash: #142035;
+  --code-bg: var(--wash);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  a {
+    text-underline-offset: 0.25em;
+  }
+}
+
+@layer components {
+  .text-link {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .tag {
+    color: var(--ink-soft);
+    font-size: 0.875rem;
+  }
+  .tag::before {
+    content: "#";
+    color: var(--accent);
+    margin-right: 0.1em;
+  }
+  .tag:hover {
+    color: var(--ink);
+  }
+}
+
+/* 文章內文 */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+.prose > * + * {
+  margin-top: 1.15em;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.prose h2 {
+  margin-top: 2.6em;
+  font-size: 1.6rem;
+}
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.3rem;
+}
+.prose h4 {
+  margin-top: 1.6em;
+  font-size: 1.1rem;
+}
+.prose :where(h2, h3, h4) a {
+  color: inherit;
+  text-decoration: none;
+}
+.prose :where(h2, h3, h4) + * {
+  margin-top: 0.7em;
+}
+.prose a:not(:where(h2, h3, h4) a) {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.prose a:not(:where(h2, h3, h4) a):hover {
+  text-decoration-color: currentColor;
+}
+.prose strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+.prose ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.6em;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose li::marker {
+  color: var(--ink-soft);
+}
+.prose blockquote {
+  padding: 0.2em 0 0.2em 1.1em;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-soft);
+}
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 4px;
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: 2.5em;
+}
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.12em 0.38em;
+  border-radius: 4px;
+  background: var(--wash);
+  color: var(--ink);
+}
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+.prose th,
+.prose td {
+  padding: 0.55em 0.9em;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+.prose th {
+  font-weight: 700;
+  border-bottom-color: var(--ink-soft);
+}
+
+/* Shiki 深淺色切換 */
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+  font-style: var(--shiki-dark-font-style) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 頁面轉場（View Transitions API）：整頁短暫淡入淡出，文章標題在列表與文章頁之間 morph */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+}
+::view-transition-group(*) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

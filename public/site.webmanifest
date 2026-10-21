@@ -1,0 +1,14 @@
+{
+  "name": "Antonio's blog",
+  "short_name": "Antonio",
+  "description": "我是一隻前端小蝦米，努力夢想有一天變成大鯨魚",
+  "lang": "zh-TW",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfcfd",
+  "theme_color": "#fbfcfd",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

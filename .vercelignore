@@ -1,0 +1,7 @@
+# 本機建置產物與快取，交給 Vercel 重新產生
+.output
+.nuxt
+.data
+.redirects
+dist
+node_modules

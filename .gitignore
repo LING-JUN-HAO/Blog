@@ -5,10 +5,13 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Hexo 相關
-.deploy_git/
-public/
-db.json
+# Nuxt 相關
+.nuxt/
+.output/
+.data/
+.redirects/
+.vercel/
+dist
 
 # 作業系統相關
 .DS_Store
@@ -42,3 +45,4 @@ logs/
 *.bak
 *.backup
 *.orig
+.vercel
