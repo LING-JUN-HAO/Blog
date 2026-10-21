@@ -32,6 +32,23 @@ description: 我是凌俊豪 Antonio，軟體工程師。2 年 Angular 企業級
 - 使用 GSAP、Lenis、SVG、p5.js 打造動畫與視差滾動，結合 VueUse 強化互動，使用者停留時間提升 35%
 - 建立 Storybook 元件文件，導入 ESLint、Commitizen、Husky 工作流，維持多人協作的程式碼品質
 
+## LINE 應用
+
+從 Messaging API、Flex Message、LIFF 到後台管理，做過實際上線、由真實使用者每天在用的 LINE 官方帳號；2025 鐵人賽也以 [Line Bot × NestJS](https://ithelp.ithome.com.tw/users/20116554/ironman/8779) 為題寫了 30 天的開發日記。
+
+### 公眾人物 LINE 官方帳號｜接案開發
+
+為公眾人物的 LINE 官方帳號開發聊天機器人，並以管理員身分協助維運。帳號目前好友約 1,400 人，訊息量屬於 LINE 官方帳號的高用量級距。
+
+### LINE 里長伯聊天機器人
+
+2020 年 6 月至 9 月。透過 LINE Bot 建立里長的數位分身，推播地區資訊、減少紙本傳單，讓里長把心力留給重要的社區問題。帳號目前好友約 265 人。
+
+- 使用 React Class Component 開發後台管理介面
+- 整合 XMPP 與 LINE Messaging API：以 Reply API 即時回覆居民常見問答，以 Push API 定期推播重要事務
+- 串接 MySQL，使用 Sequelize ORM 操作資料
+- 以 Buttons template 與 Flex Message 打造互動對話介面，並用 LIFF 建立里區公告網頁，方便居民查看社區資訊
+
 ## 工作經歷
 
 ### 雲行至善股份有限公司｜軟體工程師
