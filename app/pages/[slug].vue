@@ -27,8 +27,23 @@ const neighbours = computed(() => {
   return { newer: posts.value[index - 1], older: posts.value[index + 1] }
 })
 
-// 讓 ProseImg 知道哪一張是文章的第一張圖（SSR 與 hydration 的渲染順序相同）
-provide('prose-img-counter', { count: 0 })
+// 文章開頭的封面圖常是 LCP：在 head 預先載入（HTML 前段有大量字型宣告，等解析到 body 才發現會太晚），
+// ProseImg 對它用高優先序立即載入，其餘圖片 lazy
+const cover = coverImage(post.value.body)
+provide('prose-img-cover', cover)
+if (cover) {
+  useHead({
+    link: [{
+      key: 'cover-image',
+      rel: 'preload',
+      as: 'image',
+      href: optimizeImage(cover, 1600),
+      imagesrcset: imageSrcset(cover),
+      imagesizes: '(min-width: 50rem) 50rem, 100vw',
+      fetchpriority: 'high',
+    }],
+  })
+}
 
 const toc = computed(() => post.value?.body?.toc?.links ?? [])
 

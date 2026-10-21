@@ -67,3 +67,13 @@ export function imageSrcset(src: string): string | undefined {
   if (!CLOUDINARY.test(src) || /\.svg(\?|$)/i.test(src)) return undefined
   return [640, 960, 1280, 1600].map(width => `${optimizeImage(src, width)} ${width}w`).join(', ')
 }
+
+type MinimarkNode = string | [string, Record<string, unknown>, ...MinimarkNode[]]
+
+/** 文章一開頭的封面圖（第一個節點就是圖片，或只包一張圖的段落），沒有就回傳 undefined */
+export function coverImage(body?: { value?: unknown[] }): string | undefined {
+  const first = body?.value?.[0] as MinimarkNode | undefined
+  if (!Array.isArray(first)) return undefined
+  const node = first[0] === 'p' && first.length === 3 ? first[2] : first
+  return Array.isArray(node) && node[0] === 'img' && typeof node[1].src === 'string' ? node[1].src : undefined
+}
