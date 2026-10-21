@@ -45,6 +45,16 @@ onMounted(() => {
   if (shownBlocks.value !== Infinity) idle(more)
 })
 
+// 回文章列表：從站內的列表頁（首頁、彙整、分類、標籤）點進來時直接回上一頁，回到原本捲到的位置；
+// 從外部連結或搜尋引擎直接進來時，到文章彙整頁
+const router = useRouter()
+function backToList(event: MouseEvent) {
+  const back = import.meta.client ? window.history.state?.back : undefined
+  if (typeof back !== 'string' || !/^\/($|archives\/|categories\/|tags\/|page\/)/.test(back)) return
+  event.preventDefault()
+  router.back()
+}
+
 // 文章開頭的封面圖常是 LCP：在 head 預先載入（HTML 前段有大量字型宣告，等解析到 body 才發現會太晚），
 // ProseImg 對它用高優先序立即載入，其餘圖片 lazy
 const cover = coverImage(post.value.body)
@@ -122,30 +132,40 @@ defineOgImage('Post', {
   >
     <article class="min-w-0">
       <header class="max-w-(--container-prose)">
-        <nav
-          aria-label="麵包屑"
-          class="mb-5 text-sm text-(--ink-soft)"
-        >
-          <ol class="flex flex-wrap items-center gap-2">
-            <li>
-              <NuxtLink
-                to="/"
-                class="hover:text-(--ink)"
-              >首頁</NuxtLink>
-            </li>
-            <template v-if="mainCategory">
-              <li aria-hidden="true">
-                /
-              </li>
+        <div class="mb-5 flex items-center justify-between gap-4 text-sm text-(--ink-soft)">
+          <nav aria-label="麵包屑">
+            <ol class="flex flex-wrap items-center gap-2">
               <li>
                 <NuxtLink
-                  :to="`/categories/${slugize(mainCategory)}/`"
+                  to="/"
                   class="hover:text-(--ink)"
-                >{{ mainCategory }}</NuxtLink>
+                >首頁</NuxtLink>
               </li>
-            </template>
-          </ol>
-        </nav>
+              <template v-if="mainCategory">
+                <li aria-hidden="true">
+                  /
+                </li>
+                <li>
+                  <NuxtLink
+                    :to="`/categories/${slugize(mainCategory)}/`"
+                    class="hover:text-(--ink)"
+                  >{{ mainCategory }}</NuxtLink>
+                </li>
+              </template>
+            </ol>
+          </nav>
+          <NuxtLink
+            to="/archives/"
+            class="back-link shrink-0"
+            @click="backToList"
+          >
+            <AppIcon
+              name="posts"
+              :size="16"
+            />
+            回文章列表
+          </NuxtLink>
+        </div>
         <h1
           class="w-fit font-display text-[1.9rem] leading-[1.35] font-bold sm:text-[2.4rem]"
           :style="{ viewTransitionName: titleTransitionName(path) }"
@@ -243,6 +263,20 @@ defineOgImage('Post', {
           </NuxtLink>
         </nav>
 
+        <p>
+          <NuxtLink
+            to="/archives/"
+            class="back-link"
+            @click="backToList"
+          >
+            <AppIcon
+              name="posts"
+              :size="16"
+            />
+            回文章列表
+          </NuxtLink>
+        </p>
+
         <section
           v-if="related.length"
           aria-labelledby="related-title"
@@ -292,6 +326,17 @@ defineOgImage('Post', {
 </template>
 
 <style scoped>
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: var(--ink-soft);
+  transition: color 0.15s;
+}
+.back-link:hover {
+  color: var(--accent-ink);
+}
 .neighbour {
   display: flex;
   flex-direction: column;
