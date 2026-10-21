@@ -37,8 +37,18 @@ Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + 
 - 圖示、商標、favicon、OG 圖、3D 模型等視覺素材，作者要求一律請 Codex 產生（`codex exec -s workspace-write -C <暫存資料夾> --skip-git-repo-check -o <結果檔> - < brief.md`；prompt 要從 stdin 給，否則會卡在等待輸入），審稿後再整合。favicon PNG 由 `public/favicon.svg` 渲染出 32／180／192／512 四種尺寸。
 - **舊網址轉址**：舊站 `ling-jun-hao.github.io/Blog/` 由 `.github/workflows/redirect.yml` 建置網站後執行 `scripts/build-redirects.ts`，把每個頁面產生成轉址頁發布到 GitHub Pages（repo 的 Pages 來源須為 GitHub Actions，即 `build_type: workflow`）；網站本體在 Vercel 專案 `ling-jun-hao-blog`（已連結 GitHub，`master` 自動部署；`vercel.json`）。
 
-## 協作偏好
+## 作者偏好
 
-- 回覆一律用繁體中文；建置、部署等長時間工作要主動回報每個階段的進度，不要等作者提醒。
-- `git push --force`、刪除分支等破壞性 git 操作會被 Claude Code 的安全機制擋下：給作者可直接貼上的 `!` 指令（`!` 前不能有空格），由作者本人執行，並說明每一步成功時會看到什麼。
-- 部署後要實際打開頁面檢查錯誤（console、失敗請求、4xx／5xx），外部服務的錯誤也要列出並說明是否需要處理。
+設計風格：
+- 簡約、有個人辨識度；討厭 AI 樣板感（emoji 裝飾、大圓角卡片、漸層、點點背景）。粉色只當克制的強調色。
+- 中間內容區要寬、資訊密度高；要有自己的 icon 語彙。
+- 品牌是自有商標＋Q 版可愛鯨魚，「我是一隻前端小蝦米，努力夢想有一天變成大鯨魚」一定保留。
+- 互動（GSAP、Three.js、View Transition）點到為止，互動邏輯優先用 VueUse。
+- 視覺素材（icon、商標、favicon、OG、3D 模型）一律請 Codex 產生，Claude 審稿後整合。
+- SEO 要完整：sitemap、robots、schema.org、OG、RSS、llms.txt 都要能被讀到。
+
+做事方式：
+- 一律用繁體中文回覆；長時間工作主動回報每個階段的進度，不要等作者提醒。
+- 改完先 lint、typecheck、build，用 Playwright 與 preview 驗收沒有錯誤才部署；部署後用真實 Chrome 打開檢查 console，外部服務的錯誤也要列出並說明是否要處理。
+- 第三方服務會產生錯誤就換掉（例如 Disqus 換成 Giscus）。
+- 破壞性 git 操作（force push、刪分支）給可直接貼上的 `!` 指令（`!` 前不能有空格）由作者執行，並說明成功時會看到什麼。
