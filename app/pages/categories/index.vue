@@ -2,7 +2,7 @@
 const { data: posts } = await usePosts()
 const groups = computed(() => groupBy(posts.value.filter(p => !p.draft), 'categories'))
 
-useSeoMeta({ title: '文章分類', description: '依分類瀏覽所有文章。' })
+useSeoMeta({ title: '文章分類', description: () => listDescription(`Antonio's blog 的 ${groups.value.length} 個文章分類，涵蓋前端、後端、資料庫與三屆 iThome 鐵人賽`, groups.value.map(g => `${g.name}（${g.posts.length}）`)) })
 useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
 defineOgImage('Post', { title: '文章分類', description: `共 ${groups.value.length} 個分類` })
 </script>

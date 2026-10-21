@@ -15,7 +15,7 @@ if (prefix && list.value.length === 0) {
 }
 
 const title = prefix ? `文章列表：${prefix.replace('-', ' 年 ')}${month ? ' 月' : ' 年'}` : '文章列表'
-useSeoMeta({ title, description: '依時間瀏覽所有文章。' })
+useSeoMeta({ title, description: listDescription(`${prefix ? title.replace('文章列表：', '') : '依時間排列的所有文章'}，共 ${list.value.length} 篇`, list.value.map(p => p.title)) })
 // 舊版彙整分頁顯示的是同一份清單，canonical 指回不分頁的網址
 if (pageIndex !== -1) {
   useHead({ link: [{ rel: 'canonical', href: `${useSiteConfig().url}/archives/${[year, month].filter(Boolean).map(p => `${p}/`).join('')}`, key: 'canonical' }] })

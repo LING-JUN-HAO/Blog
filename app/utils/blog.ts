@@ -34,3 +34,28 @@ export function formatCount(value: number): string {
 export function titleTransitionName(path: string): string {
   return `post-${path.replace(/[^a-z0-9-]/gi, c => c.charCodeAt(0).toString(36))}`
 }
+
+/** 列表頁的 meta description：說明＋前幾篇文章標題，控制在約 150 字內 */
+export function listDescription(lead: string, titles: string[], max = 150): string {
+  let text = lead
+  for (const [index, title] of titles.entries()) {
+    const next = `${text}${index === 0 ? '：' : '、'}${title}`
+    if ([...next].length > max - 1) return `${text}…`
+    text = next
+  }
+  return `${text}。`
+}
+
+/**
+ * Cloudinary 圖片加上 f_auto,q_auto：依瀏覽器回傳 AVIF / WebP 並自動壓縮品質
+ * `width` 有給時再加 c_limit（只縮小不放大）；SVG 與已帶轉換參數的網址不動
+ */
+export function optimizeImage(src: string, width?: number): string {
+  const match = src.match(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/)
+  if (!match || /\.svg(\?|$)/i.test(src)) return src
+  const [, base, rest] = match
+  // 第一段已經是轉換參數（如 f_auto,q_auto,w_800）就不重複加
+  if (/^[a-z]{1,3}_[^/]*\//.test(rest!)) return src
+  const transform = ['f_auto', 'q_auto', ...(width ? ['c_limit', `w_${width}`] : [])].join(',')
+  return `${base}${transform}/${rest}`
+}
