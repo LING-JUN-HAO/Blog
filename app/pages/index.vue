@@ -25,19 +25,20 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
       <h1 class="sr-only">
         {{ blog.title }}
       </h1>
-      <!-- 手機：鯨魚在標語右上方；平板以上並排 -->
-      <div class="flex flex-col-reverse items-end gap-0 sm:flex-row sm:justify-between sm:gap-4">
-        <p class="self-start font-display text-[2rem] leading-[1.35] font-bold sm:self-auto sm:text-[2.75rem] lg:text-[3.25rem]">
+      <!-- 手機：鯨魚游在標語下方的海浪線裡（同一格疊在 SeaLine 後面），標語上方不留空；平板以上標語與鯨魚並排 -->
+      <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:gap-x-4">
+        <p class="col-start-1 row-start-1 font-display text-[2rem] leading-[1.35] font-bold sm:self-end sm:text-[2.75rem] lg:text-[3.25rem]">
           我是一隻前端小蝦米，<br>努力夢想有一天變成大鯨魚。
         </p>
-        <!-- 尺寸放在外層：Lazy 元件下載期間 ClientOnly 裡是空的，佔位不能跟著塌掉（手機版會整個首屏位移） -->
-        <div class="-mb-6 aspect-square w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60">
+        <!-- 尺寸放在外層：Lazy 元件下載期間 ClientOnly 裡是空的，佔位不能跟著塌掉（會整個首屏位移） -->
+        <div class="col-start-1 row-start-2 -mt-4 aspect-square w-28 shrink-0 justify-self-end sm:col-start-2 sm:row-start-1 sm:-mb-4 sm:mt-0 sm:w-40 lg:w-60">
           <ClientOnly>
             <LazyWhaleModel class="size-full" />
           </ClientOnly>
         </div>
+        <!-- 手機版海浪線畫在鯨魚前面，像鯨魚半身泡在浪裡；不攔截點擊，鯨魚仍點得到 -->
+        <SeaLine class="pointer-events-none relative col-start-1 row-start-2 mt-2 self-start sm:pointer-events-auto sm:col-span-2" />
       </div>
-      <SeaLine class="mt-2" />
       <p class="max-w-(--container-prose) text-(--ink-soft)">
         這裡有 {{ published.length }} 篇前端、後端與開發工具的學習筆記，從 JavaScript 基礎、TypeScript 踩坑到資料庫設計，也收錄了三屆 iThome 鐵人賽的完整系列。
       </p>
