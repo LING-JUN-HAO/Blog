@@ -71,11 +71,12 @@ const readCount = computed(() => props.series.posts.filter(p => read.value[p.pat
         <NuxtLink
           :to="post.path"
           class="group flex items-baseline gap-4 py-3.5"
+          @click="nameTransitionTitle(($event.currentTarget as HTMLElement).querySelector('[data-title]'), post.path)"
         >
           <span class="w-8 shrink-0 font-display text-lg font-bold text-(--accent-ink) tabular-nums">{{ String(post.series?.day ?? i + 1).padStart(2, '0') }}</span>
           <span
+            data-title
             class="min-w-0 flex-1 group-hover:underline group-hover:decoration-(--accent) group-hover:underline-offset-4"
-            :style="{ viewTransitionName: titleTransitionName(post.path) }"
           >{{ seriesEntryTitle(post.title) }}</span>
           <AppIcon
             v-if="read[post.path]"

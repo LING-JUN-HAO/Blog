@@ -142,6 +142,13 @@
 .prose > * + * {
   margin-top: 1.15em;
 }
+/* 程式碼區塊與表格是長文裡排版最重的部分（Shiki 每個 token 一個 span）；捲到附近才排版與繪製，換頁進長文時不會卡住
+   auto 會記住實際算過的高度，捲回去不會跳 */
+.prose > .code-block,
+.prose > table {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 16rem;
+}
 .prose h2,
 .prose h3,
 .prose h4 {

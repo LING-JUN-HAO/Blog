@@ -26,13 +26,11 @@ function listTags(post: PostSummary) {
         class="text-sm text-(--accent-ink) md:pt-1.5"
       >草稿</span>
       <div class="min-w-0">
-        <h2
-          class="w-fit font-display text-[1.35rem] leading-snug font-bold"
-          :style="{ viewTransitionName: titleTransitionName(post.path) }"
-        >
+        <h2 class="w-fit font-display text-[1.35rem] leading-snug font-bold">
           <NuxtLink
             :to="post.path"
             class="decoration-(--accent) decoration-2 underline-offset-[0.3em] group-hover:underline"
+            @click="nameTransitionTitle(($event.currentTarget as HTMLElement).parentElement, post.path)"
           >
             {{ post.title }}
           </NuxtLink>

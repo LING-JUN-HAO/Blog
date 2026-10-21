@@ -35,6 +35,14 @@ export function titleTransitionName(path: string): string {
   return `post-${path.replace(/[^a-z0-9-]/gi, c => c.charCodeAt(0).toString(36))}`
 }
 
+/**
+ * 點列表上的文章時才替那一個標題命名；列表上每個標題都帶 view-transition-name 的話，
+ * 轉場要把每一個都拆成獨立圖層，手機換頁會卡住
+ */
+export function nameTransitionTitle(el: Element | null | undefined, path: string) {
+  if (el instanceof HTMLElement) el.style.viewTransitionName = titleTransitionName(path)
+}
+
 /** 列表頁的 meta description：說明＋前幾篇文章標題，控制在約 150 字內 */
 export function listDescription(lead: string, titles: string[], max = 150): string {
   let text = lead
