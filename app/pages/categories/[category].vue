@@ -24,6 +24,7 @@ defineOgImage('Post', { title: group.value.name, description: `共 ${group.value
     <SeriesCards
       v-if="series.length"
       :series="series"
+      flush
       class="mb-14"
     />
     <ArchiveList :posts="group.posts" />

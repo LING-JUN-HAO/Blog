@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import type { SeriesInfo } from '~/composables/usePosts'
 
-defineProps<{ series: SeriesInfo[] }>()
+// flush：接在已經有底線的標題下方時（如分類頁的 PageHeading），不再畫上緣框線，避免兩條線疊在一起
+defineProps<{ series: SeriesInfo[], flush?: boolean }>()
 
 const { bookmarks } = useSeriesReading()
 </script>
 
 <template>
-  <ol class="grid border-t border-(--line) md:grid-cols-3 md:border-t-0">
+  <ol
+    class="grid border-(--line) md:grid-cols-3"
+    :class="{ 'border-t md:border-t-0': !flush }"
+  >
     <li
       v-for="item in series"
       :key="item.name"
-      class="border-b border-(--line) md:border-t md:border-b-0 md:border-l md:px-6 md:first:border-l-0 md:first:pl-0"
+      class="border-b border-(--line) md:border-b-0 md:border-l md:px-6 md:first:border-l-0 md:first:pl-0"
+      :class="{ 'md:border-t': !flush }"
     >
       <NuxtLink
         :to="item.path"
