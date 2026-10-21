@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { src, alt } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
+const { src, alt, width, height } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
 
 const label = computed(() => alt || '文章插圖')
 // 文章開頭的封面圖在首屏，用高優先序立即載入；其餘延後到捲動接近時才載（封面由文章頁 provide）
@@ -8,6 +8,8 @@ const first = inject<string | undefined>('prose-img-cover', undefined) === src
 const inlineSrc = computed(() => optimizeImage(src, 1600))
 const fullSrc = computed(() => optimizeImage(src))
 const srcset = computed(() => imageSrcset(src))
+// Markdown 沒寫寬高時，從 Cloudinary 的裁切參數推出來，圖片載入前先保留空間（避免版面位移）
+const size = computed(() => (width && height ? { width, height } : imageSize(src)))
 const open = ref(false)
 const dialog = useTemplateRef('dialog')
 
@@ -31,8 +33,8 @@ watch(open, async (value) => {
       :srcset="srcset"
       sizes="(min-width: 50rem) 50rem, 100vw"
       :alt="label"
-      :width="width"
-      :height="height"
+      :width="size?.width"
+      :height="size?.height"
       :loading="first ? 'eager' : 'lazy'"
       :fetchpriority="first ? 'high' : 'auto'"
       decoding="async"

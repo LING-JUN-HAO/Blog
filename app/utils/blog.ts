@@ -68,6 +68,15 @@ export function imageSrcset(src: string): string | undefined {
   return [640, 960, 1280, 1600].map(width => `${optimizeImage(src, width)} ${width}w`).join(', ')
 }
 
+/** Cloudinary 網址帶有裁切成固定尺寸的轉換（c_fill + w_ + h_）時，取出寬高給 <img> 預留空間 */
+export function imageSize(src: string): { width: number, height: number } | undefined {
+  const transform = src.match(CLOUDINARY)?.[2]?.split('/')[0] ?? ''
+  if (!/(^|,)c_fill(,|$)/.test(transform)) return undefined
+  const width = Number(transform.match(/(?:^|,)w_(\d+)/)?.[1])
+  const height = Number(transform.match(/(?:^|,)h_(\d+)/)?.[1])
+  return width && height ? { width, height } : undefined
+}
+
 type MinimarkNode = string | [string, Record<string, unknown>, ...MinimarkNode[]]
 
 /** 文章一開頭的封面圖（第一個節點就是圖片，或只包一張圖的段落），沒有就回傳 undefined */
