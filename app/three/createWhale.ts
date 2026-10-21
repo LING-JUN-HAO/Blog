@@ -62,10 +62,10 @@ export function createWhale(
     metalness: 0,
   })
   const waterMaterial = new THREE.MeshStandardMaterial({
-    color: '#8fd0f5',
-    emissive: '#4f9fe0',
-    emissiveIntensity: 0.4,
-    roughness: 0.35,
+    color: '#86ccff',
+    emissive: '#3f8ef0',
+    emissiveIntensity: 0.55,
+    roughness: 0.18,
     metalness: 0,
   })
 
@@ -233,40 +233,25 @@ export function createWhale(
   smile.name = 'smile'
   anatomy.add(smile)
 
-  // --- Signature three-droplet spout fanning out of the blowhole.
+  // --- Spout: a narrow jet out of the blowhole; the spray particles below
+  // carry it on from the top of the jet.
   const spout = new THREE.Group()
   spout.name = 'spout'
   spout.position.set(1.9, 3.05, 0)
   group.add(spout)
 
-  // The water column grows and shrinks; its geometry starts at the blowhole so
+  // The jet grows and shrinks; its geometry starts at the blowhole so
   // scaling Y stretches it upward only.
-  const stemGeometry = new THREE.CylinderGeometry(0.1, 0.18, 1, 16)
+  const stemGeometry = new THREE.CylinderGeometry(0.05, 0.13, 1, 16)
   stemGeometry.translate(0, 0.5, 0)
   const stem = new THREE.Mesh(stemGeometry, waterMaterial)
   stem.name = 'spout-column'
   spout.add(stem)
 
-  // The fan of drops rides on top of the column.
-  const crown = new THREE.Group()
-  crown.name = 'spout-crown'
-  spout.add(crown)
-
-  const dropGeometry = new THREE.SphereGeometry(1, 24, 18)
-  const dropData: ReadonlyArray<readonly [number, number, number]> = [
-    // [tilt toward Z, height, size]
-    [0, 1.0, 0.34],
-    [0.75, 0.72, 0.27],
-    [-0.75, 0.72, 0.27],
-  ]
-  dropData.forEach(([tilt, height, size], index) => {
-    const drop = new THREE.Mesh(dropGeometry, waterMaterial)
-    drop.name = `spout-drop-${index + 1}`
-    drop.position.set(0, Math.cos(tilt) * height * 0.6, Math.sin(tilt) * height * 0.6)
-    drop.rotation.x = tilt
-    drop.scale.set(size * 0.82, size * 1.25, size * 0.82)
-    crown.add(drop)
-  })
+  // A rounded teardrop where the jet starts to break apart.
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), waterMaterial)
+  tip.name = 'spout-tip'
+  spout.add(tip)
 
   // Centre the complete silhouette, including fins, tail, and the spout.
   const boundsCenter = new THREE.Box3().setFromObject(group).getCenter(new THREE.Vector3())
@@ -282,7 +267,7 @@ export function createWhale(
   group.children.forEach(child => (child.position.y -= 1.6))
 
   // --- Spray particles, added after framing so they never affect the bounds.
-  const sprayCount = 160
+  const sprayCount = 360
   const spray = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 12, 8), waterMaterial, sprayCount)
   spray.name = 'spray'
   spray.frustumCulled = false
@@ -295,31 +280,74 @@ export function createWhale(
     life: 0,
     // 1 = water drop; negative = bubble floating up
     gravityScale: 1,
+    // Air resistance: small drops slow down more and drift back down softly.
+    drag: 0,
   }))
   // Where bubbles leave the mouth and where the landing splash starts, in the group's local space.
   group.updateMatrixWorld(true)
   const mouth = group.worldToLocal(smile.getWorldPosition(new THREE.Vector3()))
   const bellyY = group.worldToLocal(new THREE.Box3().setFromObject(anatomy).min.clone()).y
   const dummy = new THREE.Object3D()
+  const up = new THREE.Vector3(0, 1, 0)
+  const heading = new THREE.Vector3()
   const gravity = 9.5
   let nextParticle = 0
+
+  // Most drops follow a short-lived "arc": the same launch direction for a
+  // handful of drops in a row, so they trail one another into a connected
+  // stream that curves outward and falls. Each new arc swings to another
+  // side, which keeps the fountain lopsided instead of a symmetric fan.
+  let arcAngle = Math.random() * Math.PI * 2
+  let arcTilt = 0.25
+  let arcLeft = 0
+  let arcLength = 1
+  let arcHead = false
 
   const emit = (count: number, power: number) => {
     for (let i = 0; i < count; i += 1) {
       const particle = particles[nextParticle]!
       nextParticle = (nextParticle + 1) % sprayCount
-      const angle = Math.random() * Math.PI * 2
-      const spread = (0.4 + Math.random() * 1.1) * power * 0.18
-      particle.position.set(spout.position.x, spout.position.y + stem.scale.y * spout.scale.y, spout.position.z)
-      particle.velocity.set(
-        Math.cos(angle) * spread,
-        power * (0.85 + Math.random() * 0.3),
-        Math.sin(angle) * spread,
+      if (arcLeft <= 0) {
+        arcAngle += 1.3 + Math.random() * 3.6
+        arcTilt = 0.32 + Math.random() * 0.38
+        arcLength = 8 + Math.floor(Math.random() * 8)
+        arcLeft = arcLength
+        arcHead = true
+      }
+      const inArc = arcHead || Math.random() < 0.8
+      let angle: number
+      let tilt: number
+      let speed: number
+      if (inArc) {
+        arcLeft -= 1
+        angle = arcAngle + (Math.random() - 0.5) * 0.2
+        tilt = arcTilt + (Math.random() - 0.5) * 0.05
+        speed = power * (arcHead ? 1.05 : 0.94 + Math.random() * 0.08)
+        // The leading drop of each arc is the big one; the trail tapers off.
+        particle.size = arcHead ? 0.17 + Math.random() * 0.05 : 0.05 + 0.1 * (arcLeft / arcLength) + Math.random() * 0.03
+        arcHead = false
+      }
+      else {
+        // Loose droplets in a narrow cone; sizes skew small, a few shoot higher.
+        angle = Math.random() * Math.PI * 2
+        tilt = Math.random() ** 2 * 0.45
+        speed = power * (Math.random() < 0.12 ? 1.12 + Math.random() * 0.1 : 0.72 + Math.random() * 0.3)
+        particle.size = 0.04 + Math.random() ** 3 * 0.18
+      }
+      particle.position.set(
+        spout.position.x,
+        spout.position.y + stem.scale.y * spout.scale.y,
+        spout.position.z,
       )
-      particle.size = 0.1 + Math.random() * 0.14
+      particle.velocity.set(
+        Math.cos(angle) * Math.sin(tilt) * speed,
+        Math.cos(tilt) * speed,
+        Math.sin(angle) * Math.sin(tilt) * speed * 0.8,
+      )
       particle.age = 0
-      particle.life = 1.6 + Math.random() * 0.6
+      particle.life = 1.8 + Math.random() * 0.7
       particle.gravityScale = 1
+      particle.drag = 0.15 + (0.22 - particle.size) * 2.4
     }
   }
 
@@ -336,6 +364,7 @@ export function createWhale(
       particle.age = 0
       particle.life = 1 + Math.random() * 0.5
       particle.gravityScale = 1
+      particle.drag = 0.3
     }
   }
 
@@ -350,6 +379,7 @@ export function createWhale(
       particle.age = 0
       particle.life = 2.6 + Math.random() * 1.2
       particle.gravityScale = -0.04
+      particle.drag = 0
     }
   }
 
@@ -431,24 +461,26 @@ export function createWhale(
     const blush = 1 + Math.max(hover, joy) * 0.35
     cheeks.forEach(cheek => cheek.scale.set(0.14, 0.4 * blush, 0.5 * blush))
 
-    // The column stretches tall in a rhythm and shoots highest at a hop.
+    // The jet stretches in a rhythm and shoots highest at a hop; it thins
+    // as it stretches, like a stream under more pressure.
     const pulse = (Math.sin(time * 2.2) + 1) / 2
-    stem.scale.y = 0.9 + pulse * 1.1 + joy * 1.4
-    crown.position.y = stem.scale.y
-    crown.rotation.y = Math.sin(time * 3) * 0.3
-    const spoutPulse = 1 + Math.sin(time * 4.4) * 0.06
-    crown.scale.setScalar(spoutPulse + joy * 0.25)
+    stem.scale.y = 0.55 + pulse * 0.7 + joy * 1.1
+    const thin = 1 / Math.sqrt(stem.scale.y)
+    stem.scale.x = stem.scale.z = 0.8 + thin * 0.3
+    const wobble = Math.sin(time * 9) * 0.04
+    tip.position.set(wobble, stem.scale.y + 0.08, 0)
+    tip.scale.set(0.12 - wobble * 0.3, 0.17 + wobble * 0.5 + joy * 0.04, 0.12)
     spout.position.y = spoutBaseY
 
     // Continuous spray, plus a big burst near the top of every hop.
-    emitCarry += dt * (18 + pulse * 20 + joy * 36)
+    emitCarry += dt * (38 + pulse * 18 + joy * 40)
     const steady = Math.floor(emitCarry)
     emitCarry -= steady
-    if (steady > 0) emit(steady, 8.5 + pulse * 2.5)
+    if (steady > 0) emit(steady, 6.8 + pulse * 1.8)
     if (burstPending && hop >= 0.35) {
       burstPending = false
       // Clicks add volume more than height so the column stays inside the canvas.
-      emit(Math.round(36 * burstStrength), 11.5 + (burstStrength - 1))
+      emit(Math.round(36 * burstStrength), 9.6 + (burstStrength - 1))
     }
     if (landingPending && hop >= 1) {
       landingPending = false
@@ -464,14 +496,21 @@ export function createWhale(
       if (particle.age < particle.life) {
         particle.age += dt
         particle.velocity.y -= gravity * particle.gravityScale * dt
+        particle.velocity.multiplyScalar(Math.exp(-particle.drag * dt))
         particle.position.addScaledVector(particle.velocity, dt)
       }
       const fade = Math.max(0, 1 - particle.age / particle.life)
       const alive = particle.age < particle.life && particle.position.y > bellyY - 1.5
       dummy.position.copy(particle.position)
-      // Stretch drops along their direction of travel for a sense of speed.
-      dummy.scale.set(1, 1 + Math.min(Math.abs(particle.velocity.y) * 0.08, 0.8), 1)
-        .multiplyScalar(alive ? particle.size * (0.4 + fade * 0.6) : 0)
+      // Point each drop along its path: long and quick on the way up, rounder
+      // as it slows at the top and drifts back down.
+      const speed = particle.velocity.length()
+      if (speed > 0.001) dummy.quaternion.setFromUnitVectors(up, heading.copy(particle.velocity).divideScalar(speed))
+      const stretch = particle.velocity.y > 0
+        ? 1 + Math.min(speed * 0.07, 0.9)
+        : 1.1 + Math.min(speed * 0.03, 0.3)
+      dummy.scale.set(1 / Math.sqrt(stretch), stretch, 1 / Math.sqrt(stretch))
+        .multiplyScalar(alive ? particle.size * (0.45 + fade * 0.55) : 0)
       dummy.updateMatrix()
       spray.setMatrixAt(index, dummy.matrix)
     })
