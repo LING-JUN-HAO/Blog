@@ -40,14 +40,21 @@ function ripple(strength: number, delay = 0) {
 }
 defineExpose({ ripple })
 
-/** x 與 origin 都是 viewBox 座標；scale 把距離換成 px */
+/**
+ * 一圈漣漪的形狀：一道平滑的波峰從鯨魚身邊往外推，前 0.2 秒慢慢浮起（不會突然冒出尖角），
+ * 越往外越寬、越淡；後面只跟著很淺的一點波谷，不會變成一串細碎的鋸齒
+ * x 與 origin 都是 viewBox 座標；scale 把距離換成 px
+ */
 function rippleAt(x: number, scale: number) {
   let lift = 0
   for (const ring of rings) {
     if (ring.age <= 0 || ring.age >= RIPPLE_LIFE || ring.origin === undefined) continue
+    const width = 14 + ring.age * 16
     const offset = Math.abs(x - ring.origin) * scale - ring.start! - ring.age * RIPPLE_SPEED
+    const rise = Math.min(1, ring.age / 0.2)
     const fade = (1 - ring.age / RIPPLE_LIFE) ** 1.5
-    lift += ring.strength * 7 * fade * Math.exp(-(offset ** 2) / (2 * 16 ** 2)) * Math.cos(offset / 9)
+    lift += ring.strength * 6 * rise * rise * (3 - 2 * rise) * fade
+      * Math.exp(-(offset ** 2) / (2 * width ** 2)) * Math.cos(offset / (width * 0.8))
   }
   return lift
 }
