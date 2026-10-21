@@ -71,6 +71,7 @@ description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級
 - 2025：[Line Bot × NestJS：30 天開發日記](https://ithelp.ithome.com.tw/users/20116554/ironman/8779)，Modern Web 組佳作
 - 2024：[Vue 3 初學者：用實作帶你看過核心概念](https://ithelp.ithome.com.tw/users/20116554/ironman/7800)
 
-## 演講
+## 演講與分享
 
 - 2026/06/29 devfrontier：《Angular Module Federation 踩坑實錄》（30 分鐘，[簡報](https://ling-jun-hao.github.io/angular-module-federation-pitfalls/)）
+- 2025/12/11 [Tech Book Community](https://hackmd.io/@tech-book-community/info) 讀書會：《Vue.js 設計與實現》第 11、12 章，快速 Diff 演算法與組件的實作原理，拆解前後置比對、key 映射與最長遞增子序列（[簡報](https://ling-jun-hao.github.io/vue-diff-book-club/)、[讀書會資料](https://github.com/Tech-Book-Community/Vue.js-design-practice/tree/main/2025-12-11-diff-algorithm-and-component-Instances)）
