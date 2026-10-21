@@ -29,7 +29,8 @@ const RIPPLE_SPEED = 70
 const RIPPLE_LIFE = 2.2
 // 漣漪從鯨魚身體邊緣開始往外盪，水線在牠身上保持平穩，不會拱起來蓋住臉
 const RIPPLE_START = 0.32
-let rings: { age: number, strength: number }[] = []
+// origin / start 在漣漪真正開始（延遲結束）時才記下：之後鯨魚游走，已經盪開的波紋留在原地，不會跟著被拖走
+let rings: { age: number, strength: number, origin?: number, start?: number }[] = []
 const box = useElementBounding(svg)
 const anchorBox = useElementBounding(() => props.anchor)
 
@@ -39,11 +40,12 @@ function ripple(strength: number, delay = 0) {
 }
 defineExpose({ ripple })
 
-function rippleAt(distance: number, start: number) {
+/** x 與 origin 都是 viewBox 座標；scale 把距離換成 px */
+function rippleAt(x: number, scale: number) {
   let lift = 0
   for (const ring of rings) {
-    if (ring.age <= 0 || ring.age >= RIPPLE_LIFE) continue
-    const offset = distance - start - ring.age * RIPPLE_SPEED
+    if (ring.age <= 0 || ring.age >= RIPPLE_LIFE || ring.origin === undefined) continue
+    const offset = Math.abs(x - ring.origin) * scale - ring.start! - ring.age * RIPPLE_SPEED
     const fade = (1 - ring.age / RIPPLE_LIFE) ** 1.5
     lift += ring.strength * 7 * fade * Math.exp(-(offset ** 2) / (2 * 16 ** 2)) * Math.cos(offset / 9)
   }
@@ -52,14 +54,24 @@ function rippleAt(distance: number, start: number) {
 
 function buildPath() {
   const scale = box.width.value / WIDTH || 1
-  const anchorX = (anchorBox.left.value + anchorBox.width.value / 2 - box.left.value) / scale
   const rippling = rings.length > 0 && anchorBox.width.value > 0
+  if (rippling) {
+    const anchorX = (anchorBox.left.value + anchorBox.width.value / 2 - box.left.value) / scale
+    for (const ring of rings) {
+      if (ring.age > 0 && ring.origin === undefined) {
+        ring.origin = anchorX
+        ring.start = anchorBox.width.value * RIPPLE_START
+      }
+    }
+  }
+  // 大約每 3px 一個點：波紋只有約 60px 寬，桌機上點太稀會畫成折線
+  const steps = Math.min(400, Math.max(STEPS, Math.ceil(box.width.value / 3)))
   let d = ''
-  for (let i = 0; i <= STEPS; i++) {
-    const x = (WIDTH / STEPS) * i
+  for (let i = 0; i <= steps; i++) {
+    const x = (WIDTH / steps) * i
     const swell = Math.sin(x / 95 + wave.phase) * 4 + Math.sin(x / 41 + wave.phase * 1.7) * 1.5
     const bump = wave.bumpAmp * Math.exp(-((x - wave.bumpX) ** 2) / (2 * 70 ** 2))
-    const lift = rippling ? rippleAt(Math.abs(x - anchorX) * scale, anchorBox.width.value * RIPPLE_START) : 0
+    const lift = rippling ? rippleAt(x, scale) : 0
     d += `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${(BASE_Y + swell - bump - lift).toFixed(1)}`
   }
   return d
@@ -81,6 +93,9 @@ function onPointerMove(event: PointerEvent) {
   if (reducedMotion.value || !svg.value || !gsap || event.pointerType !== 'mouse') return
   const rect = svg.value.getBoundingClientRect()
   if (event.clientY < rect.top || event.clientY > rect.bottom || event.clientX < rect.left || event.clientX > rect.right) return
+  // 指標在鯨魚身上（點牠、拖牠）時不掀水波，不然水會在牠正下方拱起來蓋住臉
+  const whale = props.anchor?.getBoundingClientRect()
+  if (whale && event.clientX >= whale.left && event.clientX <= whale.right && event.clientY >= whale.top && event.clientY <= whale.bottom) return
   const x = ((event.clientX - rect.left) / rect.width) * WIDTH
   const speed = Math.min(36, Math.abs(event.clientY - lastY) + Math.abs(event.movementX) * 0.4)
   lastY = event.clientY
