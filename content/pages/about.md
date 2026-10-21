@@ -34,20 +34,23 @@ description: 我是凌俊豪 Antonio，軟體工程師。2 年 Angular 企業級
 
 ## LINE 應用
 
-從 Messaging API、Flex Message、LIFF 到後台管理，做過實際上線、由真實使用者每天在用的 LINE 官方帳號；2025 鐵人賽也以 [Line Bot × NestJS](https://ithelp.ithome.com.tw/users/20116554/ironman/8779) 為題寫了 30 天的開發日記。
+把 LINE 用在真實的溝通場景，從需求討論、開發到上線維運都自己負責；2025 鐵人賽也以 [Line Bot × NestJS](https://ithelp.ithome.com.tw/users/20116554/ironman/8779) 為題寫了 30 天的開發日記。
 
-### 公眾人物 LINE 官方帳號｜接案開發
+### 公眾人物 LINE 官方帳號活動｜接案開發
 
-為公眾人物的 LINE 官方帳號開發聊天機器人，並以管理員身分協助維運。帳號目前好友約 1,400 人，訊息量屬於 LINE 官方帳號的高用量級距。
+2026 年 9 月至今。
+
+- 獨立完成活動從需求溝通、開發到上線維運，服務好友約 1,400 人的高用量官方帳號
+- 以互動小遊戲與個人化圖卡帶動加好友與分享，讓活動自己擴散
+- 同一套活動延伸到其他公眾人物的官方帳號，可重複套用
 
 ### LINE 里長伯聊天機器人
 
-2020 年 6 月至 9 月。透過 LINE Bot 建立里長的數位分身，推播地區資訊、減少紙本傳單，讓里長把心力留給重要的社區問題。帳號目前好友約 265 人。
+2020 年 6 月至 9 月。
 
-- 使用 React Class Component 開發後台管理介面
-- 整合 XMPP 與 LINE Messaging API：以 Reply API 即時回覆居民常見問答，以 Push API 定期推播重要事務
-- 串接 MySQL，使用 Sequelize ORM 操作資料
-- 以 Buttons template 與 Flex Message 打造互動對話介面，並用 LIFF 建立里區公告網頁，方便居民查看社區資訊
+- 打造里長的數位分身：自動回覆居民問答、推播社區公告，取代紙本傳單
+- 前後端一手完成：React 管理後台、Messaging API、LIFF 公告頁與 MySQL 資料庫
+- 帳號至今仍在營運，好友約 265 人
 
 ## 工作經歷
 
