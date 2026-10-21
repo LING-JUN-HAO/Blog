@@ -303,6 +303,21 @@ html body pre.shiki code .sDN9O {
 ::view-transition-new(*):only-child {
   animation: page-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both;
 }
+/* 切換深淺色（ColorModeToggle）：不套換頁動畫，只留 root 一張快照，整頁含頁首同時淡入新配色 */
+html.theme-switching * {
+  view-transition-name: none !important;
+}
+html.theme-switching::view-transition-old(root) {
+  animation: none;
+}
+html.theme-switching::view-transition-new(root) {
+  animation: theme-in 0.3s ease both;
+}
+@keyframes theme-in {
+  from {
+    opacity: 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),

@@ -9,10 +9,14 @@ function toggle() {
     colorMode.preference = next
     return
   }
-  document.startViewTransition(async () => {
+  // 加上 theme-switching 讓 CSS 換成整頁淡入，不跑換頁的滑動動畫
+  const root = document.documentElement
+  root.classList.add('theme-switching')
+  const transition = document.startViewTransition(async () => {
     colorMode.preference = next
     await nextTick()
   })
+  transition.finished.finally(() => root.classList.remove('theme-switching'))
 }
 </script>
 
