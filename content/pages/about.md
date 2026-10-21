@@ -9,6 +9,14 @@ description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級
 
 目前有 2 年 Angular 企業級架構經驗，也橫跨 Vue / Nuxt 生態系。我喜歡把學到的東西寫下來，留下學習過的歷程，也記錄當下思考的想法，而我就是自己的第一個讀者。
 
+## 技術專長
+
+- **Angular**：Angular 20 企業級分層架構、路由與懶載策略、Signal、RxJS、PrimeNG 元件庫
+- **Vue / Nuxt**：Vue 3、Nuxt 3 / 4、Nuxt Content、SEO 與預渲染、VueUse
+- **Node.js / NestJS**：RESTful API、依賴注入、Line Messaging API、Docker 部署
+- **TypeScript**：型別設計與型別安全，前後端共用
+- **工程實務**：Tailwind CSS、GSAP、Storybook、ESLint、Husky、Module Federation
+
 ## 代表作
 
 ### 2026 VueConf Taiwan 官網｜開發組長
@@ -23,6 +31,15 @@ description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級
 - 實作 SEO 與效能最佳化（SSR、預渲染、圖片優化），Lighthouse 評分 95 分以上
 - 使用 GSAP、Lenis、SVG、p5.js 打造動畫與視差滾動，結合 VueUse 強化互動，使用者停留時間提升 35%
 - 建立 Storybook 元件文件，導入 ESLint、Commitizen、Husky 工作流，維持多人協作的程式碼品質
+
+## 開源專案
+
+- [nestjs-linebot-ironman](https://github.com/LING-JUN-HAO/nestjs-linebot-ironman)：2025 鐵人賽《Line Bot × NestJS》的實作專案，搭配前端 [liff-ironman](https://github.com/LING-JUN-HAO/liff-ironman)（Vue + LIFF）
+- [Angular20-Module-Federation-sample](https://github.com/LING-JUN-HAO/Angular20-Module-Federation-sample)：Angular 20 Module Federation 微前端範例
+- [Blog](https://github.com/LING-JUN-HAO/Blog)：這個部落格，從 Hexo 改寫成 Nuxt 4 + Nuxt Content 的全靜態網站
+- [cat-planet](https://github.com/LING-JUN-HAO/cat-planet)：用 Vue 做的作品《喵星球：滿足貓咪的一切需求》（[線上展示](https://ling-jun-hao.github.io/cat-planet/)）
+
+更多專案在 [GitHub](https://github.com/LING-JUN-HAO)。
 
 ## 工作經歷
 
@@ -56,4 +73,4 @@ description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級
 
 ## 演講
 
-- 2026/06/29 devfrontier：《Angular Module Federation 踩坑實錄》（30 分鐘）
+- 2026/06/29 devfrontier：《Angular Module Federation 踩坑實錄》（30 分鐘，[簡報](https://ling-jun-hao.github.io/angular-module-federation-pitfalls/)）

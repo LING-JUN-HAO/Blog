@@ -31,6 +31,28 @@ useSchemaOrg([defineWebPage({ '@type': 'ProfilePage' })])
         <p class="mt-1 text-(--ink-soft)">
           前端工程師，{{ blog.subtitle }}
         </p>
+        <ul
+          class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm"
+          aria-label="社群連結"
+        >
+          <li
+            v-for="item in blog.social"
+            :key="item.href"
+          >
+            <a
+              :href="item.href"
+              target="_blank"
+              rel="noopener me"
+              class="inline-flex items-center gap-1.5 text-(--ink-soft) hover:text-(--ink)"
+            >
+              <AppIcon
+                :name="item.icon"
+                :size="16"
+              />
+              {{ item.label }}
+            </a>
+          </li>
+        </ul>
       </div>
     </header>
     <ContentRenderer
