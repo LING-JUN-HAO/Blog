@@ -16,28 +16,24 @@ if (!post.value) {
 }
 
 const { data: posts } = await usePosts()
+const series = computed(() => post.value?.series && groupSeries(posts.value).find(s => s.name === post.value!.series!.name))
+// 系列文章依 Day 前後，其他文章依發表時間
 const neighbours = computed(() => {
+  if (series.value) {
+    const index = series.value.posts.findIndex(p => p.path === path)
+    return { older: series.value.posts[index - 1], newer: series.value.posts[index + 1] }
+  }
   const index = posts.value.findIndex(p => p.path === path)
   return { newer: posts.value[index - 1], older: posts.value[index + 1] }
 })
 
+// 讓 ProseImg 知道哪一張是文章的第一張圖（SSR 與 hydration 的渲染順序相同）
+provide('prose-img-counter', { count: 0 })
+
 const toc = computed(() => post.value?.body?.toc?.links ?? [])
 
-// 相關文章：依共同標籤（權重 2）與分類（權重 1）排序，增加站內連結
-const related = computed(() => {
-  const current = post.value!
-  return posts.value
-    .filter(p => p.path !== path && !p.draft)
-    .map(p => ({
-      post: p,
-      score: p.tags.filter(t => current.tags.includes(t)).length * 2
-        + p.categories.filter(c => current.categories.includes(c)).length,
-    }))
-    .filter(item => item.score > 0)
-    .sort((a, b) => b.score - a.score || (b.post.date ?? '').localeCompare(a.post.date ?? ''))
-    .slice(0, 4)
-    .map(item => item.post)
-})
+// 相關文章：上一篇與下一篇已經在上方，不重複推薦
+const related = computed(() => relatedPosts(post.value!, posts.value, [neighbours.value.older?.path, neighbours.value.newer?.path].filter(p => p !== undefined)))
 
 const mainCategory = post.value.categories[0]
 
@@ -140,10 +136,7 @@ defineOgImage('Post', {
               rel="noopener"
               class="text-link"
             >{{ post.series.name }}</a>
-            <span v-else>{{ post.series.name }}</span>
-            <template v-if="post.series.day">
-              第 {{ post.series.day }} 天。
-            </template>
+            <span v-else>{{ post.series.name }}</span>。
           </template>
           <template v-if="post.canonical">
             原文發表於 <a
@@ -151,9 +144,14 @@ defineOgImage('Post', {
               target="_blank"
               rel="noopener"
               class="text-link"
-            >iThome</a>，留言請到原文。
+            >iThome</a>，也可以在下方留言。
           </template>
         </p>
+        <SeriesNav
+          v-if="series"
+          :series="series"
+          :path="path"
+        />
       </header>
 
       <details
@@ -238,7 +236,7 @@ defineOgImage('Post', {
       </footer>
 
       <GiscusComments
-        v-if="!post.draft && !post.canonical"
+        v-if="!post.draft"
         :term="path.slice(1)"
         class="max-w-(--container-prose)"
       />

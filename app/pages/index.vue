@@ -3,29 +3,12 @@ const { blog } = useAppConfig()
 const { data: posts } = await usePosts()
 
 const published = computed(() => posts.value.filter(p => !p.draft))
-// 鐵人賽文章另有系列區塊，最新文章只列一般文章
-const stream = computed(() => posts.value.filter(p => !p.canonical))
+const stream = computed(() => latestStream(posts.value))
 const total = computed(() => Math.max(1, Math.ceil(stream.value.length / blog.perPage)))
 const current = computed(() => stream.value.slice(0, blog.perPage))
 
 // 三屆鐵人賽：依年份由新到舊
-const series = computed(() => {
-  const map = new Map<string, { year: string, name: string, count: number }>()
-  for (const post of published.value) {
-    const tag = post.tags.find(t => /^\d{4} 鐵人賽$/.test(t))
-    if (!tag) continue
-    const year = tag.slice(0, 4)
-    const entry = map.get(year) ?? { year, name: '', count: 0 }
-    entry.count++
-    map.set(year, entry)
-  }
-  return [...map.values()].sort((a, b) => b.year.localeCompare(a.year))
-})
-const SERIES_NAMES: Record<string, string> = {
-  2026: 'Angular 22 Signal 進化論',
-  2025: 'Line Bot × NestJS：30 天開發日記',
-  2024: 'Vue 3 初學者：用實作帶你看過核心概念',
-}
+const series = computed(() => groupSeries(posts.value))
 
 useSeoMeta({
   title: blog.title,
@@ -42,14 +25,15 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
       <h1 class="sr-only">
         {{ blog.title }}
       </h1>
-      <div class="flex items-end justify-between gap-4">
-        <p class="font-display text-[2rem] leading-[1.35] font-bold sm:text-[2.75rem] lg:text-[3.25rem]">
+      <!-- 手機：鯨魚在標語右上方；平板以上並排 -->
+      <div class="flex flex-col-reverse items-end gap-0 sm:flex-row sm:justify-between sm:gap-4">
+        <p class="self-start font-display text-[2rem] leading-[1.35] font-bold sm:self-auto sm:text-[2.75rem] lg:text-[3.25rem]">
           我是一隻前端小蝦米，<br>努力夢想有一天變成大鯨魚。
         </p>
         <ClientOnly>
-          <WhaleModel class="-mb-4 hidden w-40 shrink-0 sm:block lg:w-60" />
+          <LazyWhaleModel class="-mb-6 w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60" />
           <template #fallback>
-            <div class="-mb-4 hidden aspect-square w-40 shrink-0 sm:block lg:w-60" />
+            <div class="-mb-6 aspect-square w-32 shrink-0 sm:-mb-4 sm:w-40 lg:w-60" />
           </template>
         </ClientOnly>
       </div>
@@ -75,22 +59,7 @@ useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
         />
         iThome 鐵人賽
       </h2>
-      <ol class="grid border-t border-(--line) md:grid-cols-3 md:border-t-0">
-        <li
-          v-for="item in series"
-          :key="item.year"
-          class="border-b border-(--line) md:border-t md:border-b-0 md:border-l md:px-6 md:first:border-l-0 md:first:pl-0"
-        >
-          <NuxtLink
-            :to="`/tags/${item.year}-鐵人賽/`"
-            class="group block py-5"
-          >
-            <span class="font-display text-3xl font-bold text-(--accent-ink) tabular-nums">{{ item.year }}</span>
-            <span class="mt-2 block font-bold group-hover:underline group-hover:decoration-(--accent) group-hover:underline-offset-4">{{ SERIES_NAMES[item.year] }}</span>
-            <span class="mt-1 block text-sm text-(--ink-soft)">{{ item.count }} 篇</span>
-          </NuxtLink>
-        </li>
-      </ol>
+      <SeriesCards :series="series" />
     </section>
 
     <section aria-labelledby="latest-title">

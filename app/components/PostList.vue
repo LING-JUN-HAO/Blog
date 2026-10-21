@@ -38,6 +38,19 @@ function listTags(post: PostSummary) {
           </NuxtLink>
         </h2>
         <p
+          v-if="post.series && seriesPath(post)"
+          class="mt-1.5 text-sm"
+        >
+          <NuxtLink
+            :to="seriesPath(post)"
+            class="text-(--accent-ink) hover:underline hover:underline-offset-4"
+          >{{ post.series.name }}</NuxtLink>
+          <span
+            v-if="post.series.day"
+            class="text-(--ink-soft)"
+          >・第 {{ post.series.day }} 天</span>
+        </p>
+        <p
           v-if="post.description"
           class="mt-2 line-clamp-2 text-(--ink-soft)"
         >

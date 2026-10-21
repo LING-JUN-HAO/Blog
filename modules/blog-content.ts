@@ -45,6 +45,11 @@ export default defineNuxtModule({
       content.date = toIsoDate(content.date)
       content.updated = toIsoDate(content.updated)
 
+      // 系列的第幾天：沒寫 series.day 時從檔名（ithome-2026-day-05）推出來
+      const series = content.series as { day?: number } | undefined
+      const day = slug.match(/-day-(\d+)$/i)?.[1]
+      if (series && series.day == null && day) series.day = Number(day)
+
       // sitemap 的 lastmod（轉載文章由 nuxt.config 的 sitemap.exclude 排除）
       content.sitemap = { ...(content.sitemap as object | undefined), lastmod: content.updated ?? content.date }
 

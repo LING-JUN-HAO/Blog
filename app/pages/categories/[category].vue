@@ -7,8 +7,11 @@ if (!group.value) {
   throw createError({ statusCode: 404, message: '找不到這個分類', fatal: true })
 }
 
-useSeoMeta({ title: `分類：${group.value.name}`, description: `分類「${group.value.name}」的所有文章。` })
+useSeoMeta({ title: `分類：${group.value.name}`, description: listDescription(`分類「${group.value.name}」共 ${group.value.posts.length} 篇文章`, group.value.posts.map(p => p.title)) })
 useSchemaOrg([defineWebPage({ '@type': 'CollectionPage' })])
+// 「iThome 鐵人賽」分類頁上方列出三個系列的入口
+const series = computed(() => group.value?.name === 'iThome 鐵人賽' ? groupSeries(posts.value) : [])
+
 defineOgImage('Post', { title: group.value.name, description: `共 ${group.value.posts.length} 篇文章` })
 </script>
 
@@ -17,6 +20,11 @@ defineOgImage('Post', { title: group.value.name, description: `共 ${group.value
     <PageHeading
       :title="group.name"
       :note="`共 ${group.posts.length} 篇文章`"
+    />
+    <SeriesCards
+      v-if="series.length"
+      :series="series"
+      class="mb-14"
     />
     <ArchiveList :posts="group.posts" />
   </div>
