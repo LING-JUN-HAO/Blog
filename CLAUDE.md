@@ -14,6 +14,9 @@ Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + 
   - `pnpm blog server [--drafts]`：`nuxt dev`；`--drafts` 才會顯示草稿
   - `pnpm blog generate` / `pnpm blog preview`（預覽 `.output/public`，port 4173）/ `pnpm blog clean`
 - 檢查：`pnpm lint`（`lint:fix` 自動修）、`pnpm typecheck`、`pnpm build`。沒有單元測試；建置時 `nuxt-link-checker` 會檢查所有連結，`failOnError: true`，壞連結或預渲染錯誤會讓建置失敗。
+- 本機 `nuxt generate` 可能因防毒軟體（WithSecure）掃描上千個輸出檔而極慢甚至逾時；完整驗證改用 `vercel deploy`（preview，Vercel 遠端建置）。preview 有登入保護，用 `vercel curl <path> --deployment <url>` 檢查。
+- 作者常自己開著 `nuxt dev`（:3000）；要另開測試用 `NUXT_IGNORE_LOCK=1 pnpm exec nuxt dev --port 3123`，不要停掉他的程序。
+- `.vercelignore` 排除 `.output`、`.nuxt` 等本機產物：少了它，`vercel deploy` 會把本機舊的 `.output/public/llms.txt` 一起上傳並蓋掉新產生的檔案。
 - Commit 由 Husky 檢查：pre-commit 跑 lint-staged（ESLint），commit-msg 跑 commitlint（`commitlint.config.mjs`：conventional 類型清單、禁止訊息出現 AI 相關字詞）。
 
 ## 架構重點
@@ -28,4 +31,14 @@ Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + 
 - **留言**：用 Giscus（GitHub Discussions，`GiscusComments.vue`，設定在 `runtimeConfig.public.giscus`），以文章 slug 對應討論串（`data-mapping: specific`），換網域不受影響；捲到留言區附近才載入。原本的 Disqus 已移除（它載入的廣告與登入腳本會在頁面上產生錯誤）。
 - **品牌**：頁首與 favicon／OG 圖用作者自己的商標（`public/images/logo.svg`，深色模式用 `logo-dark.svg`），首頁與錯誤頁的 3D 可愛鯨魚是 `app/three/createWhale.ts`（Three.js 幾何組成，由 `WhaleModel.vue` 在 `<ClientOnly>` 內載入）。
 - **設計系統**：簡約風，色彩／字體 token 在 `app/assets/css/main.css`（`--paper`、`--ink`、`--accent` 等，`.dark` 覆寫），標題字 LXGW WenKai TC。圖示是專案自有的線條 SVG（`app/assets/icons/`，由 Codex 依設計規格繪製），透過 `<AppIcon name>` 使用；首頁有 GSAP 海平面線 `SeaLine.vue`；頁面轉場用 View Transitions API（`experimental.viewTransition`，文章標題以 `titleTransitionName()` 在列表與文章頁 morph）。互動邏輯優先用 VueUse。
+- 需要 template ref 的純前端元件不要用 `.client.vue`：放在預渲染頁面時 hydration 後 ref 會是 `null`。改成一般元件，在使用處包 `<ClientOnly>`（並給同尺寸 `#fallback` 避免版面跳動），參考 `WhaleModel.vue`。
+- 新文章的 Giscus 討論串在第一則留言時才建立，之前 console 會有一則「Discussion not found」警告（不是錯誤）。
+- 驗證頁面錯誤時，Playwright 無頭瀏覽器開 CodePen 會被 Cloudflare 回 403，WebGL 也會出現「GPU stall」提示，兩者都是自動化環境才有；以真實 Chrome 的 console 為準。
+- 圖示、商標、favicon、OG 圖、3D 模型等視覺素材，作者要求一律請 Codex 產生（`codex exec -s workspace-write -C <暫存資料夾> --skip-git-repo-check -o <結果檔> - < brief.md`；prompt 要從 stdin 給，否則會卡在等待輸入），審稿後再整合。favicon PNG 由 `public/favicon.svg` 渲染出 32／180／192／512 四種尺寸。
 - **舊網址轉址**：舊站 `ling-jun-hao.github.io/Blog/` 由 `.github/workflows/redirect.yml` 建置網站後執行 `scripts/build-redirects.ts`，把每個頁面產生成轉址頁發布到 GitHub Pages；網站本體在 Vercel 專案 `ling-jun-hao-blog`（已連結 GitHub，`master` 自動部署；`vercel.json`）。
+
+## 協作偏好
+
+- 回覆一律用繁體中文；建置、部署等長時間工作要主動回報每個階段的進度，不要等作者提醒。
+- `git push --force`、刪除分支等破壞性 git 操作會被 Claude Code 的安全機制擋下：給作者可直接貼上的 `!` 指令（`!` 前不能有空格），由作者本人執行，並說明每一步成功時會看到什麼。
+- 部署後要實際打開頁面檢查錯誤（console、失敗請求、4xx／5xx），外部服務的錯誤也要列出並說明是否需要處理。
