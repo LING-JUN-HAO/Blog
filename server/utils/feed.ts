@@ -15,7 +15,7 @@ export async function buildFeed(event: H3Event) {
     description: site.description,
     language: 'zh-TW',
     favicon: `${home}images/icon-192.png`,
-    image: `${home}images/antonio.jpg`,
+    image: `${home}images/antonio.webp`,
     copyright: `© ${new Date().getFullYear()} Antonio`,
     updated: posts[0]?.date ? new Date(posts[0].date) : new Date(),
     feedLinks: { rss: `${home}rss.xml`, atom: `${home}atom.xml` },

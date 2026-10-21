@@ -4,7 +4,7 @@ export default defineAppConfig({
     subtitle: '前端小蝦米',
     description: '我是一隻前端小蝦米，努力夢想有一天變成大鯨魚',
     author: 'Antonio',
-    avatar: '/images/antonio.jpg',
+    avatar: '/images/antonio.webp',
     perPage: 10,
     menu: [
       { label: '文章', to: '/archives/', icon: 'posts' },

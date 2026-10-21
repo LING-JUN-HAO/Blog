@@ -172,7 +172,7 @@ export default defineNuxtConfig({
       name: 'Antonio',
       alternateName: '凌俊豪',
       url: `${SITE_URL}/about/`,
-      image: `${SITE_URL}/images/antonio.jpg`,
+      image: `${SITE_URL}/images/antonio.webp`,
       sameAs: [
         'https://github.com/LING-JUN-HAO',
         'https://www.linkedin.com/in/antonio-222984258/',
