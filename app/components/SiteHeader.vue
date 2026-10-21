@@ -39,7 +39,7 @@ function isActive(to: string) {
 <template>
   <header
     ref="header"
-    class="sticky top-0 z-40 border-b border-(--line) bg-(--paper)/90 backdrop-blur"
+    class="sticky top-0 z-40 border-b border-(--line) bg-(--paper)/90 backdrop-blur [view-transition-name:site-header]"
   >
     <div class="mx-auto flex h-16 max-w-(--container-site) items-center gap-6 px-5 sm:px-8">
       <NuxtLink

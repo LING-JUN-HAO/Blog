@@ -269,14 +269,39 @@ html body pre.shiki code .sDN9O {
   }
 }
 
-/* 頁面轉場（View Transitions API）：整頁短暫淡入淡出，文章標題在列表與文章頁之間 morph */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.22s;
-}
+/* 頁面轉場（View Transitions API）：頁首固定不動，畫面其餘部分舊頁先淡出、新頁由下往上浮入；文章標題在列表與文章頁之間 morph
+   root 擷取的是當下可視範圍，捲到一半點連結也不會跳回頂端 */
 ::view-transition-group(*) {
   animation-duration: 0.35s;
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+::view-transition-group(site-header) {
+  animation: none;
+}
+::view-transition-old(root) {
+  animation: page-out 0.16s ease-in both;
+}
+::view-transition-new(root) {
+  animation: page-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both;
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+/* 列表上沒被點到的文章標題只存在於舊頁（或只存在於新頁），跟著主內容一起淡出／浮入，不要單獨停在畫面上 */
+::view-transition-old(*):only-child {
+  animation: page-out 0.16s ease-in both;
+}
+::view-transition-new(*):only-child {
+  animation: page-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both;
 }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
