@@ -2,7 +2,7 @@
 title: 關於我
 date: 2023-10-12 00:16:15
 comments: false
-description: 我是凌俊豪 Antonio，前端工程師。2 年 Angular 企業級架構經驗，橫跨 Vue / Nuxt 生態系，喜歡把學習的歷程與思考寫下來。
+description: 我是凌俊豪 Antonio，軟體工程師。2 年 Angular 企業級架構經驗，橫跨 Vue / Nuxt 生態系，喜歡把學習的歷程與思考寫下來。
 ---
 
 我是凌俊豪（Antonio），一隻前端小蝦米，努力夢想有一天變成大鯨魚。

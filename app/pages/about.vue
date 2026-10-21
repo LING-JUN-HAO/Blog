@@ -29,7 +29,7 @@ useSchemaOrg([defineWebPage({ '@type': 'ProfilePage' })])
           凌俊豪 Antonio
         </h1>
         <p class="mt-1 text-(--ink-soft)">
-          前端工程師，{{ blog.subtitle }}
+          軟體工程師，從{{ blog.subtitle }}出發
         </p>
         <ul
           class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm"
