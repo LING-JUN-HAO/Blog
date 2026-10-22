@@ -27,11 +27,15 @@ export default defineNuxtPlugin((nuxtApp) => {
     !!href && ((/^\/[^/]+\/$/.test(href) && !NOT_POSTS.has(href)) || PAGER.test(href)) && href !== window.location.pathname
 
   function pump() {
-    if (busy || !queue.length || budget <= 0) return
+    // 分頁連結只有一個、而且是往下翻的主要路徑，不佔文章的預載額度
+    while (queue.length && budget <= 0 && !PAGER.test(queue[0]!)) queue.shift()
+    if (busy || !queue.length) return
     busy = true
-    budget--
     const path = queue.shift()!
+    if (!PAGER.test(path)) budget--
     idle(() => {
+      // 分頁頁面的程式不在文章頁那一組裡，一起先載好
+      if (PAGER.test(path)) preloadRouteComponents(path).catch(() => {})
       preloadPayload(path).then(() => loaded.add(path), () => {}).finally(() => {
         busy = false
         pump()
@@ -58,7 +62,8 @@ export default defineNuxtPlugin((nuxtApp) => {
           dwell.delete(entry.target)
           if (requested.has(path)) return
           requested.add(path)
-          queue.push(path)
+          if (PAGER.test(path)) queue.unshift(path)
+          else queue.push(path)
           pump()
         }, DWELL))
       }
