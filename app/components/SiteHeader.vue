@@ -16,11 +16,22 @@ watch(() => route.fullPath, () => {
   menuOpen.value = false
 })
 
+// 點選單項目換頁時選單直接收起、不跑淡出：換頁轉場會在點下去的瞬間截下舊畫面，
+// 淡到一半的選單會被截進去，等新頁面準備好的那段時間就一直停在半透明的選單上
+const closingForNav = ref(false)
+function closeForNav() {
+  closingForNav.value = true
+  menuOpen.value = false
+}
+
 // 行動版選單蓋在內容上：打開時鎖住背景捲動，內容不會被推動也不會在後面捲走
 const scrollLock = useScrollLock(import.meta.client ? document.body : null)
 watch(menuOpen, (open) => {
   scrollLock.value = open
-  if (open) preloadMenu()
+  if (open) {
+    closingForNav.value = false
+    preloadMenu()
+  }
 })
 
 // 手機沒有滑過連結的預載，點下去才抓的話要等下載完才換頁；打開選單時就先把各頁的程式與資料載好
@@ -125,7 +136,10 @@ const essential = new Set(['/archives/', '/categories/', '/about/'])
       </div>
     </div>
 
-    <Transition name="menu">
+    <Transition
+      name="menu"
+      :css="!closingForNav"
+    >
       <div
         v-if="menuOpen"
         class="absolute inset-x-0 top-full lg:hidden"
@@ -141,7 +155,7 @@ const essential = new Set(['/archives/', '/categories/', '/about/'])
             :to="item.to"
             class="flex items-center gap-3 border-b border-(--line) py-3 last:border-b-0"
             :class="isActive(item.to) ? 'text-(--accent-ink)' : ''"
-            @click="menuOpen = false"
+            @click="closeForNav"
           >
             <AppIcon
               :name="item.icon"
