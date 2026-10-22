@@ -8,7 +8,8 @@ if (!page.value) {
 
 useSeoMeta({ title: page.value.title, description: page.value.description })
 defineOgImage('Post', { title: page.value.title, description: page.value.description })
-useSchemaOrg([defineWebPage({ '@type': 'ProfilePage' })])
+// Google 的 ProfilePage 必須用 mainEntity 指出這頁介紹的人，指向全站 identity 的 Person
+useSchemaOrg([defineWebPage({ '@type': 'ProfilePage', 'mainEntity': { '@id': '#identity' } })])
 </script>
 
 <template>
