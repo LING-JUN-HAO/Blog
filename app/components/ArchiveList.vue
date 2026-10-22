@@ -3,12 +3,28 @@ import type { PostSummary } from '~/composables/usePosts'
 
 const props = defineProps<{ posts: PostSummary[] }>()
 
+// 客戶端換頁進來時先畫前 30 篇（約兩個畫面高），其餘等瀏覽器閒置再補：一百多個連結一次建立，手機換頁那一幀會卡住
+// 首次載入要跟預渲染的 HTML 一致、按上一頁回來要還原捲動位置，這兩種都整份一次畫完
+const nuxtApp = useNuxtApp()
+const shown = ref(import.meta.client && !nuxtApp.isHydrating && !window.history.state?.scroll ? 30 : Infinity)
+onMounted(() => {
+  if (shown.value === Infinity) return
+  const idle = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 300 }) : setTimeout(fn, 50))
+  idle(() => {
+    shown.value = Infinity
+  })
+})
+
+// 篇數一律算整份清單，只有列出來的項目分段補上
 const years = computed(() => {
-  const map = new Map<string, PostSummary[]>()
-  for (const post of props.posts) {
+  const map = new Map<string, { list: PostSummary[], total: number }>()
+  props.posts.forEach((post, index) => {
     const year = post.date ? formatDate(post.date).slice(0, 4) : '草稿'
-    map.set(year, [...(map.get(year) ?? []), post])
-  }
+    const group = map.get(year) ?? { list: [], total: 0 }
+    group.total++
+    if (index < shown.value) group.list.push(post)
+    map.set(year, group)
+  })
   return [...map.entries()]
 })
 </script>
@@ -16,7 +32,7 @@ const years = computed(() => {
 <template>
   <div class="space-y-12">
     <section
-      v-for="[year, list] in years"
+      v-for="[year, { list, total }] in years"
       :key="year"
       class="grid gap-x-8 md:grid-cols-[7.5rem_minmax(0,1fr)]"
     >
@@ -27,7 +43,7 @@ const years = computed(() => {
           class="hover:text-(--accent-ink)"
         >{{ year }}</NuxtLink>
         <span v-else>草稿</span>
-        <span class="ml-2 align-middle text-sm font-normal text-(--ink-soft)">{{ list.length }} 篇</span>
+        <span class="ml-2 align-middle text-sm font-normal text-(--ink-soft)">{{ total }} 篇</span>
       </h2>
       <ol class="mt-3 md:mt-0">
         <li
