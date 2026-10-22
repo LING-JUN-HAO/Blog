@@ -45,6 +45,13 @@ function preloadMenu() {
   }
 }
 
+// 桌機的選單一直顯示著，載入完、瀏覽器閒置時就把各頁先載好，點選單不用等下載；手機等打開選單時才載，省流量
+onNuxtReady(() => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+  const idle = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 3000 }) : setTimeout(fn, 500))
+  idle(preloadMenu)
+})
+
 // 多個選單路徑互為前綴時（鐵人賽在 /categories/ 底下），只亮最長、最具體的那一個
 const activeTo = computed(() => {
   // 鐵人賽各系列的入口在「YYYY 鐵人賽」標籤頁，選單亮「鐵人賽」

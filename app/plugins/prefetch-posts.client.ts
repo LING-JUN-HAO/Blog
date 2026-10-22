@@ -5,8 +5,9 @@
 // - 游標移到文章上、focus 或手指碰到時，那一篇直接以一般優先序下載、不用排隊；點下去換頁時會接續這次下載，不會重抓
 const PER_PAGE = 6
 const DWELL = 300
-// 只有一段路徑、而且不是這些頁面的連結才是文章（/JS-1/、/ithome-2026-day-30/）
+// 只有一段路徑、而且不是這些頁面的連結才是文章（/JS-1/、/ithome-2026-day-30/）；首頁的分頁（/page/2/）也一起預載
 const NOT_POSTS = new Set(['/about/', '/archives/', '/categories/', '/tags/', '/page/'])
+const PAGER = /^\/page\/\d+\/$/
 
 export default defineNuxtPlugin((nuxtApp) => {
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean, effectiveType?: string } }).connection
@@ -23,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   let observer: IntersectionObserver | undefined
 
   const isPost = (href: string | null): href is string =>
-    !!href && /^\/[^/]+\/$/.test(href) && !NOT_POSTS.has(href) && href !== window.location.pathname
+    !!href && ((/^\/[^/]+\/$/.test(href) && !NOT_POSTS.has(href)) || PAGER.test(href)) && href !== window.location.pathname
 
   function pump() {
     if (busy || !queue.length || budget <= 0) return
