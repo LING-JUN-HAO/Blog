@@ -27,7 +27,8 @@ const neighbours = computed(() => {
   return { newer: posts.value[index - 1], older: posts.value[index + 1] }
 })
 
-// 客戶端換頁進長文時先畫前面一段，其餘等瀏覽器閒置再補：換頁那一幀不必一次渲染整篇（手機上要好幾百毫秒）
+// 客戶端換頁進長文時先畫前面一段，其餘等轉場動畫播完、瀏覽器閒置再補：換頁那一幀不必一次渲染整篇（手機上要好幾百毫秒），
+// 補畫的長工作也不會讓轉場動畫頓一下
 // 首次載入要跟預渲染的 HTML 一致、按上一頁回來要還原捲動位置，這兩種都整篇一次畫完
 const nuxtApp = useNuxtApp()
 const shownBlocks = ref(import.meta.client && !nuxtApp.isHydrating && !window.history.state?.scroll ? 12 : Infinity)
@@ -42,7 +43,7 @@ onMounted(() => {
     shownBlocks.value = shownBlocks.value < 40 ? 40 : Infinity
     if (shownBlocks.value !== Infinity) idle(more)
   }
-  if (shownBlocks.value !== Infinity) idle(more)
+  if (shownBlocks.value !== Infinity) viewTransitionFinished().then(() => idle(more))
 })
 
 // 回文章列表：從站內的列表頁（首頁、彙整、分類、標籤）點進來時直接回上一頁，回到原本捲到的位置；

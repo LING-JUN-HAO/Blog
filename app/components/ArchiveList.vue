@@ -3,16 +3,16 @@ import type { PostSummary } from '~/composables/usePosts'
 
 const props = defineProps<{ posts: PostSummary[] }>()
 
-// 客戶端換頁進來時先畫前 30 篇（約兩個畫面高），其餘等瀏覽器閒置再補：一百多個連結一次建立，手機換頁那一幀會卡住
+// 客戶端換頁進來時先畫前 30 篇（約兩個畫面高），其餘等轉場動畫播完、瀏覽器閒置再補：一百多個連結一次建立，手機換頁那一幀會卡住
 // 首次載入要跟預渲染的 HTML 一致、按上一頁回來要還原捲動位置，這兩種都整份一次畫完
 const nuxtApp = useNuxtApp()
 const shown = ref(import.meta.client && !nuxtApp.isHydrating && !window.history.state?.scroll ? 30 : Infinity)
 onMounted(() => {
   if (shown.value === Infinity) return
   const idle = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 300 }) : setTimeout(fn, 50))
-  idle(() => {
+  viewTransitionFinished().then(() => idle(() => {
     shown.value = Infinity
-  })
+  }))
 })
 
 // 篇數一律算整份清單，只有列出來的項目分段補上

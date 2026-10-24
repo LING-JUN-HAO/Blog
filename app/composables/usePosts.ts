@@ -5,25 +5,41 @@ export type PostSummary = Pick<
   'path' | 'title' | 'description' | 'date' | 'updated' | 'tags' | 'categories' | 'draft' | 'wordCount' | 'readingTime' | 'canonical' | 'series'
 >
 
-const SUMMARY_FIELDS = ['path', 'title', 'description', 'date', 'updated', 'tags', 'categories', 'draft', 'wordCount', 'readingTime', 'canonical', 'series'] as const
+/**
+ * 所有文章（由新到舊），來自預渲染的 /posts.json（server/routes/posts.json.ts）
+ * 每一頁都用得到，如果放在 useAsyncData，每頁的 _payload.json 都會重複帶一份（約佔一半大小），
+ * 換頁、預載文章都要重抓；獨立成一個檔案後，瀏覽器只下載一次（app.vue 在 head 預先載入）
+ * 回傳值跟 useAsyncData 一樣可以 await 或直接取 data
+ */
+const posts = shallowRef<PostSummary[]>([])
+let loading: Promise<void> | undefined
 
-/** 所有文章（由新到舊）；`pnpm blog server --drafts` 時一併列出草稿 */
+export function postsURL() {
+  return `/posts.json?_b=${useRuntimeConfig().app.buildId}`
+}
+
 export function usePosts() {
-  const { showDrafts } = useRuntimeConfig().public
-
-  return useAsyncData('all-posts', async () => {
-    const posts = await queryCollection('posts').select(...SUMMARY_FIELDS).all()
-    const drafts = showDrafts
-      // drafts collection 只在草稿模式下存在
-      ? await queryCollection('drafts' as 'posts').select(...SUMMARY_FIELDS).all()
-      : []
-    return [...drafts, ...posts].sort((a, b) => {
-      // 草稿沒有日期，排在最前面
-      if (!a.date) return -1
-      if (!b.date) return 1
-      return Date.parse(b.date) - Date.parse(a.date)
-    }) as PostSummary[]
-  }, { default: () => [] as PostSummary[] })
+  const data = import.meta.server ? shallowRef<PostSummary[]>([]) : posts
+  let promise: Promise<void>
+  if (import.meta.server) {
+    // 伺服器端每次渲染各自取（建置時是內部呼叫，不走網路），不寫進 payload
+    const nuxtApp = useNuxtApp() as ReturnType<typeof useNuxtApp> & { _posts?: Promise<PostSummary[]> }
+    nuxtApp._posts ??= $fetch<PostSummary[]>('/posts.json')
+    promise = nuxtApp._posts.then((list) => {
+      data.value = list
+    })
+  }
+  else {
+    loading ??= fetch(postsURL(), { cache: 'force-cache' })
+      .then(res => res.json() as Promise<PostSummary[]>)
+      .then((list) => { posts.value = list })
+      .catch((error) => {
+        loading = undefined
+        throw error
+      })
+    promise = loading
+  }
+  return Object.assign(promise.then(() => ({ data })), { data })
 }
 
 /**
@@ -72,7 +88,7 @@ export function groupSeries(posts: PostSummary[]): SeriesInfo[] {
   for (const entry of map.values()) {
     entry.posts.sort((a, b) => (a.series?.day ?? Infinity) - (b.series?.day ?? Infinity) || Date.parse(a.date ?? '') - Date.parse(b.date ?? ''))
   }
-  return [...map.values()].sort((a, b) => b.year.localeCompare(a.year))
+  return [...map.values()].sort((a, b) => b.year.localeCompare(a.year, 'en'))
 }
 
 /** 系列文章標題去掉「… Day N：」前綴，給系列目錄用 */
@@ -141,5 +157,6 @@ export function groupBy(posts: PostSummary[], key: 'tags' | 'categories') {
       groups.set(slug, group)
     }
   }
-  return [...groups.values()].sort((a, b) => b.posts.length - a.posts.length || a.name.localeCompare(b.name))
+  // 排序指定語系：不指定時跟著執行環境，建置時的 Node 與讀者的中文瀏覽器排出來不同，hydration 會對不上
+  return [...groups.values()].sort((a, b) => b.posts.length - a.posts.length || a.name.localeCompare(b.name, 'en'))
 }

@@ -121,7 +121,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/search-sections.json', '/rss.xml', '/atom.xml', '/llms.txt', '/llms-full.txt', '/sitemap.xml', '/robots.txt', '/archives/page/2/', '/archives/page/3/', '/archives/2023/page/2/', ...archiveRoutes],
+      routes: ['/', '/posts.json', '/search-sections.json', '/rss.xml', '/atom.xml', '/llms.txt', '/llms-full.txt', '/sitemap.xml', '/robots.txt', '/archives/page/2/', '/archives/page/3/', '/archives/2023/page/2/', ...archiveRoutes],
       failOnError: true,
     },
   },
