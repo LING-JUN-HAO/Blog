@@ -34,7 +34,7 @@ description: 我是凌俊豪 Antonio，軟體工程師。2 年 Angular 企業級
 
 ## LINE 應用
 
-把 LINE 用在真實的溝通場景，從需求討論、開發到上線維運都自己負責；2025 鐵人賽也以 [Line Bot × NestJS](https://ithelp.ithome.com.tw/users/20116554/ironman/8779) 為題寫了 30 天的開發日記。
+把 LINE 用在真實的溝通場景，從需求討論、開發到上線維運都自己負責。
 
 ### 公眾人物 LINE 官方帳號活動｜接案開發
 
