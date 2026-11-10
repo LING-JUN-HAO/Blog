@@ -42,15 +42,17 @@ pnpm blog server
 
 指令沿用 Hexo 的習慣：
 
-| 指令 | 說明 |
-|---|---|
-| `pnpm blog new "標題" [--slug my-post]` | 新增文章到 `content/_posts/YYYY-MM-DD-<slug>.md` |
-| `pnpm blog new draft "標題" [--slug my-post]` | 新增草稿到 `content/_drafts/<slug>.md` |
-| `pnpm blog publish <slug>` | 草稿移到 `_posts`，檔名補上日期並寫入發布時間 |
-| `pnpm blog server [--drafts]` | 本機預覽；加 `--drafts` 才會顯示草稿 |
-| `pnpm blog generate` | 產生靜態網站到 `.output/public` |
-| `pnpm blog preview` | 預覽產生好的網站（<http://localhost:4173>） |
-| `pnpm blog clean` | 清除建置快取 |
+| 指令 | 簡短寫法 | 說明 |
+|---|---|---|
+| `pnpm blog new "標題" [--slug my-post]` | `pnpm new "標題"` | 新增文章到 `content/_posts/YYYY-MM-DD-<slug>.md` |
+| `pnpm blog new draft "標題" [--slug my-post]` | `pnpm draft "標題"` | 新增草稿到 `content/_drafts/<slug>.md` |
+| `pnpm blog publish <slug>` | `pnpm publish:draft <slug>` | 草稿移到 `_posts`，檔名補上日期並寫入發布時間 |
+| `pnpm blog server [--drafts]` | `pnpm dev`／`pnpm dev:drafts` | 本機預覽；加 `--drafts` 才會顯示草稿 |
+| `pnpm blog generate` | | 產生靜態網站到 `.output/public` |
+| `pnpm blog preview` | `pnpm preview` | 預覽產生好的網站（<http://localhost:4173>） |
+| `pnpm blog clean` | | 清除建置快取 |
+
+簡短寫法一樣可以加 `--slug`。發布草稿不能直接寫 `pnpm publish`，那是 pnpm 內建的「發布套件到 npm」指令。
 
 文章網址是 `/<slug>/`，slug 預設取自檔名（去掉日期）。front-matter 範例：
 

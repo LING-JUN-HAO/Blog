@@ -13,6 +13,7 @@ Antonio 的繁體中文技術部落格。原本是 Hexo，已改寫成 Nuxt 4 + 
   - `pnpm blog publish <slug>`：草稿搬到 `_posts`，檔名補日期、front-matter 寫入 `date`
   - `pnpm blog server [--drafts]`：`nuxt dev`；`--drafts` 才會顯示草稿
   - `pnpm blog generate` / `pnpm blog preview`（預覽 `.output/public`，port 4173）/ `pnpm blog clean`
+  - package.json 有對應的簡短寫法：`pnpm new`、`pnpm draft`、`pnpm publish:draft <slug>`、`pnpm dev:drafts`（`pnpm publish` 是 pnpm 內建指令，不能拿來當腳本名）
 - 檢查：`pnpm lint`（`lint:fix` 自動修）、`pnpm typecheck`、`pnpm build`。沒有單元測試；建置時 `nuxt-link-checker` 會檢查所有連結，`failOnError: true`，壞連結或預渲染錯誤會讓建置失敗。
 - 本機 `nuxt generate` 可能因防毒軟體（WithSecure）掃描上千個輸出檔而極慢甚至逾時；完整驗證改用 `vercel deploy`（preview，Vercel 遠端建置）。preview 有登入保護，用 `vercel curl <path> --deployment <url>` 檢查。
 - 作者常自己開著 `nuxt dev`（:3000）；要另開測試用 `NUXT_IGNORE_LOCK=1 pnpm exec nuxt dev --port 3123`，不要停掉他的程序。
