@@ -28,6 +28,8 @@ const postSchema = z.object({
   canonical: z.string().url().optional(),
   // 系列文章，例如 { name: '2024 iThome 鐵人賽：…', url: '…', day: 1 }
   series: z.object({ name: z.string(), url: z.string().url().optional(), day: z.number().optional() }).optional(),
+  // true 時拿文章開頭的封面圖當分享圖（og:image），不用 OG 模板產生
+  ogCover: z.boolean().default(false),
   // 原始 Markdown，給 llms-full.txt 使用（Content 會自動填入）
   rawbody: z.string().optional(),
   // 以下由 content:file:afterParse hook 計算

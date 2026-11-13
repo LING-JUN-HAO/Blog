@@ -70,6 +70,19 @@ export function optimizeImage(src: string, width?: number): string {
   return `${base}${['f_auto', 'q_auto', limit].filter(Boolean).join(',')}/${rest}`
 }
 
+/**
+ * 分享圖用的網址：裁成 1200×630 的 JPEG。社群平台的爬蟲不一定看得懂 AVIF／WebP，所以不用 f_auto；
+ * 網址已帶轉換參數時改成在後面串接一段裁切
+ */
+export function socialImage(src: string): string {
+  const match = src.match(CLOUDINARY)
+  if (!match || /\.svg(\?|$)/i.test(src)) return src
+  const [, base, rest] = match
+  const fill = 'c_fill,g_auto,w_1200,h_630,f_jpg,q_auto'
+  if (/^[a-z]{1,3}_[^/]*\//.test(rest!)) return `${base}${rest!.replace(/\//, `/${fill}/`)}`
+  return `${base}${fill}/${rest}`
+}
+
 /** Cloudinary 圖片的 srcset（640／960／1280／1600 寬），讓手機不必下載桌機尺寸；非 Cloudinary 圖片回傳 undefined */
 export function imageSrcset(src: string): string | undefined {
   if (!CLOUDINARY.test(src) || /\.svg(\?|$)/i.test(src)) return undefined

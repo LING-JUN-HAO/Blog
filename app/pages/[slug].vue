@@ -119,11 +119,26 @@ useSchemaOrg([
     ],
   }),
 ])
-defineOgImage('Post', {
-  title: post.value.title,
-  description: post.value.description,
-  tags: post.value.tags,
-})
+// front-matter 設了 ogCover 的文章拿封面當分享圖，其餘用 OG 模板產生
+if (cover && post.value.ogCover) {
+  const image = socialImage(cover)
+  useSeoMeta({
+    ogImage: image,
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    ogImageType: 'image/jpeg',
+    ogImageAlt: post.value.title,
+    twitterCard: 'summary_large_image',
+    twitterImage: image,
+  })
+}
+else {
+  defineOgImage('Post', {
+    title: post.value.title,
+    description: post.value.description,
+    tags: post.value.tags,
+  })
+}
 </script>
 
 <template>
