@@ -46,3 +46,6 @@ logs/
 *.backup
 *.orig
 .vercel
+
+# 草稿暫存圖片（完稿後換成 Cloudinary）
+content/_drafts/images/

@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const { src, alt, width, height } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
+const { src: rawSrc, alt, width, height } = defineProps<{ src: string, alt?: string, width?: string | number, height?: string | number }>()
+
+// 草稿裡 VS Code 貼上的相對路徑圖片（images/<檔名>/x.png）改指向草稿模式提供的 /_drafts/images/
+const src = rawSrc.startsWith('images/') ? `/_drafts/${rawSrc}` : rawSrc
 
 const label = computed(() => alt || '文章插圖')
 // 文章開頭的封面圖在首屏，用高優先序立即載入；其餘延後到捲動接近時才載（封面由文章頁 provide）
-const first = inject<string | undefined>('prose-img-cover', undefined) === src
+const first = inject<string | undefined>('prose-img-cover', undefined) === rawSrc
 // 文內最寬 1600px（內文欄 50rem 在 2x 螢幕約 1600px）；放大時用原尺寸
 const inlineSrc = computed(() => optimizeImage(src, 1600))
 const fullSrc = computed(() => optimizeImage(src))

@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { readdirSync, readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 
 const showDrafts = process.env.BLOG_DRAFTS === '1'
@@ -119,6 +120,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
 
   nitro: {
+    // 草稿在 VS Code 貼上的暫存圖片（content/_drafts/images/，未進版控），只在草稿模式提供，完稿後換成 Cloudinary
+    publicAssets: showDrafts ? [{ dir: resolve('content/_drafts/images'), baseURL: '/_drafts/images', maxAge: 0 }] : [],
     prerender: {
       crawlLinks: true,
       routes: ['/', '/posts.json', '/search-sections.json', '/rss.xml', '/atom.xml', '/llms.txt', '/llms-full.txt', '/sitemap.xml', '/robots.txt', '/archives/page/2/', '/archives/page/3/', '/archives/2023/page/2/', ...archiveRoutes],

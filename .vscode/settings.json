@@ -1,5 +1,21 @@
 {
     "cSpell.words": [
         "githubpage"
-    ]
+    ],
+    "editor.wordWrap": "on",
+    "[markdown]": {
+        "editor.wordWrap": "on"
+    },
+    "[mdc]": {
+        "editor.wordWrap": "on"
+    },
+    "markdown.editor.filePaste.enabled": "always",
+    "markdown.editor.drop.enabled": "always",
+    "markdown.copyFiles.destination": {
+        "/content/**/*.md": "/content/_drafts/images/${documentBaseName}/${fileName}"
+    },
+    "markdown.editor.filePaste.copyIntoWorkspace": "mediaFiles",
+    "files.associations": {
+        "**/content/**/*.md": "markdown"
+    }
 }
