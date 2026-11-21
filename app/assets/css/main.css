@@ -231,6 +231,9 @@
   background: var(--wash);
   color: var(--ink);
 }
+.prose a code {
+  color: inherit;
+}
 .prose table {
   display: block;
   width: 100%;
